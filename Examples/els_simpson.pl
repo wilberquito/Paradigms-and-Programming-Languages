@@ -78,12 +78,3 @@ progenitor(X,Y) :- mare(X,Y).
 
 % X i Y s�n germans
 germa(X,Y) :- progenitor(Z,X), progenitor(Z,Y), X\=Y.
-
-avantpassat(X, Y) :- progenitor(X, Y).
-avantpassat(X, Y) :- progenitor(A, Y), avantpassat(X, A).
-
-avi(X, Y) :- progenitor(Z, Y), pare(X, Z).
-avia(X, Y) :- progenitor(Z, Y), mare(X, Z).
-
-oncle(X, Y) :- home(X), germa(X, Z), progenitor(Z, Y).
-tia(X, Y) :- dona(X), germa(X, Z), progenitor(Z, Y).

@@ -186,6 +186,27 @@ viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
 ```
 </details>
 
+### It's your turn to practice
 
+#### lovers.pl
+
+Use the knowledge in lovers.pl and write in Prolog the following questions.
+
+- Who does "John" love?
+- Who loves "Ann"?
+- Who loves someone?
+- Who is loved by someone?
+- Who love each other mutually?
+- Who loves without being loved back?
+
+### els_simpsons.pl
+
+Given the knowlage of els_simpsons.pl, think how would you define the following questions.
+
+- Ancestor
+- Grandfather
+- Grandmother
+- Uncle
+- Aunt
 
 [^1]: [tutorialspoint](https://www.tutorialspoint.com/prolog)
