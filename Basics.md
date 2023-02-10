@@ -4,7 +4,7 @@ Prolog as the name itself suggests, is the short form of LOGical PROgramming. It
 
 Logic Programming is one of the Computer Programming Paradigm, in which the program statements express the facts and rules about different problems within a system of formal logic.
 
-## Class 1
+## Session 1
 
 ### Logic and Procedural Programming
 
