@@ -81,7 +81,7 @@ Terms: A term is a combination of atoms, numbers, and other terms, connected by 
 
 In Prolog, a variable is also a data type. Variables in Prolog start with an uppercase letter, like X or Y, and they can be used to represent any value.
 
-PSS: Prolog is a dynamically typed language, so the type of a term is not fixed and can change during the execution of a program. n Prolog, you can define terms that represent more complex data structures, like lists, trees, and graphs, using a combination of atoms, numbers, and other terms. For example, you can define a term to represent a point in two-dimensional space, like this:
+PSS: Prolog is a dynamically typed language, so the type of a term is not fixed and can change during the execution of a program. In Prolog, you can define terms that represent more complex data structures, like lists, trees, and graphs, using a combination of atoms, numbers, and other terms. For example, you can define a term to represent a point in two-dimensional space, like this:
 
 ```prolog
 point(X, Y).
