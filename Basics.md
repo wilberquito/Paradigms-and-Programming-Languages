@@ -100,7 +100,7 @@ For a practical implementation see the knowledge base of the [var_anonymous.pl s
 
 Anonymous variables have no names. The anonymous variables in prolog is written by a single underscore character ‘_’. One important thing is that each individual anonymous variable is treated as different. They are not same.
 
-Now the question is, where should we use these anonymous variables? It's usuful when what matters is to know if exist any constant that in variable sustitution satisty the logic equation.
+Now the question is, where should we use these anonymous variables? It's usuful when what matters is to know if exist any constant that in variable sustitution satisty the logic equation instead of knowing which are the terms that satisfy the logic equation.
 
 <details>
     <summary>Toggle me to see the var_anonymous.pl knowledge</summary>
