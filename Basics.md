@@ -55,3 +55,10 @@ Now we can see in the prolog console, it shows that we have successfully changed
 
 ![Change directory](Img/prolog_console.jpg)
 
+Step 3 − Now create one file (extension is *.pl) and write the code as follows. Or use the [hello.pl](Examples/hello.pl) already given for you.
+
+```
+main :- write('Hello World').
+```
+
+
