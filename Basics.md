@@ -15,19 +15,19 @@ In functional programming, we have to mention how one problem can be solved, but
 
 ## What's Prolog?
 
-Prolog or PROgramming in LOGics is a logical and declarative programming language. Is  is particularly suitable for programs that involve symbolic or non-numeric computation. This is the main reason to use Prolog as the programming language in Artificial Intelligence, where symbol manipulation and inference manipulation are the fundamental tasks.
+Prolog or PROgramming in LOGics is a logical and declarative programming language. It  is particularly suitable for programs that involve symbolic or non-numeric computation. This is the main reason to use Prolog as the programming language in Artificial Intelligence, where symbol manipulation and inference manipulation are the fundamental tasks.
 
 In Prolog, we need not mention the way how one problem can be solved, we just need to mention what the problem is, so that Prolog automatically solves it. However, in Prolog we are supposed to give clues as the solution method.
 
-Prolog language basically has three different elements −
+Prolog language basically has three different elements.
 
-- Facts: The fact is predicate that is true, for example, if we say, “Tom is the son of Jack”, then this is a fact.
+- Facts: The fact is predicate that is true, for example, if we say, “Tom is the father of Jack”, then this is a fact.
 
 ```prolog
 father(X, Z)
 ```
 
-- Rules: Rules are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met. For example, if we define a rule as −
+- Rules: Rules are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met.
 
 ```prolog
 grandfather(X, Y) :- father(X, Z), parent(Z, Y)
