@@ -36,7 +36,7 @@ grandfather(X, Y) :- father(X, Z), parent(Z, Y).
 - Questions: And to run a prolog program, we need some questions, and those questions can be answered by the given facts and rules.
 
 ```prolog
-?- father(X, wil)
+father(X, wil).
 X = santos ? ;
 no
 ```
