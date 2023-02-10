@@ -61,7 +61,7 @@ Step 2 − Select the proper folder and press OK.
 
 Now we can see in the prolog console, it shows that we have successfully changed the directory.
 
-![Change directory](Img/prolog_console.jpg)
+![Prolog console](Img/prolog_console.jpg)
 
 Step 3 − Now create one file (extension is *.pl) and write the code as follows. Or use the [hello.pl](Examples/hello.pl) already given for you.
 
@@ -69,4 +69,75 @@ Step 3 − Now create one file (extension is *.pl) and write the code as follows
 main :- write('Hello World').
 ```
 
+## Tracing the ouput
 
+In Prolog we can trace the execution. To trace the output, you have to enter into the trace mode by typing “trace.”. Then from the output we can see that we are just tracing “marge is mother of whom?”. See the tracing output by taking X = marge, and Y as variable, there Y will be { bart, maggie ... } as answer. To come out from the tracing mode press “notrace.”
+
+Given the knowledge:
+
+<details>
+    <summary>Toggle me to see the knowledge</summary>
+
+```prolog
+nen(bart).
+nen(milhouse).
+nen(lisa).
+nen(maggie).
+nen(rod).
+nen(todd).
+nen(ralph).
+
+home(abe).
+home(homer).
+home(bart).
+home(ned).
+home(rod).
+home(todd).
+home(chief_wiggum).
+home(ralph).
+home(milhouse).
+home(mr_burns).
+home(smithers).
+home(groundskeeper_willie).
+home(principal_skinner).
+
+dona(marge).
+dona(lisa).
+dona(maggie).
+dona(maude).
+dona(mrs_krabappel).
+dona(ms_hoover).
+dona(patty).
+dona(selma).
+dona(jacqueline).
+
+pare(abe, homer).
+pare(homer, bart).
+pare(homer, lisa).
+pare(homer, maggie).
+pare(ned, rod).
+pare(ned, todd).
+pare(chief_wiggum,ralph).
+
+mare(marge, bart).
+mare(marge, lisa).
+mare(marge, maggie).
+mare(jacqueline, marge).
+mare(jacqueline, patty).
+mare(jacqueline, selma).
+mare(maude, rod).
+mare(maude, todd).
+
+casat(homer, marge).
+casat(ned, maude).
+
+amic(bart, milhouse).
+amic(homer, ned).
+amic(marge, maude).
+
+viu(homer, adr("Evergreen Terrace", 742, "Springfield")).
+viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
+```
+</details>
+
+![Trace example](Img/trace-example.jpg)
