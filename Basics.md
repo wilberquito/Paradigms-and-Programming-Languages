@@ -69,6 +69,28 @@ Step 3 − Now create one file (extension is *.pl) and write the code as follows
 main :- write('Hello World').
 ```
 
+## Data types in Prolog
+
+In Prolog, the main data types are atoms, numbers, and terms.
+
+Atoms: Atoms are the basic building blocks of Prolog, and they represent a unique identifier, such as a constant or a string. Atoms can be either an atom name, like "dog" or "cat", or a string enclosed in single quotes, like 'dog' or 'cat'.
+
+Numbers: In Prolog, numbers are used to represent integers, floating-point numbers, or rational numbers. They are used to perform mathematical operations, like addition, subtraction, and multiplication.
+
+Terms: A term is a combination of atoms, numbers, and other terms, connected by a functor. For example, the term "dog(fido)" is a combination of the atom "dog" and the atom "fido", connected by the functor "()".
+
+In Prolog, a variable is also a data type. Variables in Prolog start with an uppercase letter, like X or Y, and they can be used to represent any value.
+
+PSS: Prolog is a dynamically typed language, so the type of a term is not fixed and can change during the execution of a program. n Prolog, you can define terms that represent more complex data structures, like lists, trees, and graphs, using a combination of atoms, numbers, and other terms. For example, you can define a term to represent a point in two-dimensional space, like this:
+
+```
+point(X, Y).
+```
+
+![Data types](Img/data_objects.jpg)
+
+By defining these custom data types, you can write more expressive and readable Prolog programs that can solve more complex problems.
+
 ## Tracing the ouput
 
 In Prolog we can trace the execution. To trace the output, you have to enter into the trace mode by typing “trace.”. Then from the output we can see that we are just tracing “marge is mother of whom?”. See the tracing output by taking X = marge, and Y as variable, there Y will be { bart, maggie ... } as answer. To come out from the tracing mode press “notrace.”
