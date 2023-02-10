@@ -32,3 +32,26 @@ father(X, Z)
 ```prolog
 grandfather(X, Y) :- father(X, Z), parent(Z, Y)
 ```
+
+## Hello World Program
+
+After running the GNU prolog or an interactive Prolog instance in your terminal, we can write hello world program directly from the console. To do so, we have to write the command as follows
+
+```
+write('Hello World').
+```
+
+Now let us see how to run the Prolog script file (extension is *.pl) into the Prolog console.
+
+Before running *.pl file, we must store the file into the directory where the GNU prolog console is pointing, otherwise just change the directory by the following steps −
+
+Step 1 − From the prolog console, go to File > Change Dir, then click on that menu.
+
+Step 2 − Select the proper folder and press OK.
+
+![Change directory](./Img/select_working_directory.jpg)
+
+Now we can see in the prolog console, it shows that we have successfully changed the directory.
+
+![Change directory](./Img/prolog_console.jpg)
+
