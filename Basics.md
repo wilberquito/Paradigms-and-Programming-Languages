@@ -49,9 +49,9 @@ Step 1 − From the prolog console, go to File > Change Dir, then click on that 
 
 Step 2 − Select the proper folder and press OK.
 
-![Change directory](./Img/select_working_directory.jpg)
+![Change directory](Img/select_working_directory.jpg)
 
 Now we can see in the prolog console, it shows that we have successfully changed the directory.
 
-![Change directory](./Img/prolog_console.jpg)
+![Change directory](Img/prolog_console.jpg)
 
