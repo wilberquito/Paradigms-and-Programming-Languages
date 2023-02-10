@@ -24,20 +24,20 @@ Prolog language basically has three different elements.
 - Facts: The fact is predicate that is true, for example, if we say, “Tom is the father of Jack”, then this is a fact.
 
 ```prolog
-father(X, Z)
+father(X, Z).
 ```
 
 - Rules: Rules are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met.
 
 ```prolog
-grandfather(X, Y) :- father(X, Z), parent(Z, Y)
+grandfather(X, Y) :- father(X, Z), parent(Z, Y).
 ```
 
 ## Hello World Program
 
 After running the GNU prolog or an interactive Prolog instance in your terminal, we can write hello world program directly from the console. To do so, we have to write the command as follows
 
-```
+```prolog
 write('Hello World').
 ```
 
