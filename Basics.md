@@ -1,11 +1,12 @@
-# Day 1 [^1]
+# Prolog Sessions [^1]
 
 Prolog as the name itself suggests, is the short form of LOGical PROgramming. It is a logical and declarative programming language. Before diving deep into the concepts of Prolog, let us first understand what exactly logical programming is.
 
 Logic Programming is one of the Computer Programming Paradigm, in which the program statements express the facts and rules about different problems within a system of formal logic.
 
+## Class 1
 
-## Logic and Procedural Programming
+### Logic and Procedural Programming
 
 From this illustration, we can see that in Functional Programming, we have to define the procedures, and the rule how the procedures work. These procedures work step by step to solve one specific problem based on the algorithm. On the other hand, for the Logic Programming, we will provide knowledge base. Using this knowledge base, the machine can find answers to the given questions, which is totally different from functional programming.
 
@@ -13,7 +14,7 @@ From this illustration, we can see that in Functional Programming, we have to de
 
 In functional programming, we have to mention how one problem can be solved, but in logic programming we have to specify for which problem we actually want the solution. Then the logic programming automatically finds a suitable solution that will help us solve that specific problem.
 
-## What's Prolog?
+### What's Prolog?
 
 Prolog or PROgramming in LOGics is a logical and declarative programming language. It  is particularly suitable for programs that involve symbolic or non-numeric computation. This is the main reason to use Prolog as the programming language in Artificial Intelligence, where symbol manipulation and inference manipulation are the fundamental tasks.
 
@@ -41,7 +42,7 @@ X = santos ? ;
 no
 ```
 
-## Hello World Program
+### Hello World Program
 
 After running the GNU prolog or an interactive Prolog instance in your terminal, we can write hello world program directly from the console. To do so, we have to write the command as follows
 
@@ -69,7 +70,7 @@ Step 3 − Now create one file (extension is *.pl) and write the code as follows
 main :- write('Hello World').
 ```
 
-## Data types in Prolog
+### Data types in Prolog
 
 In Prolog, the main data types are atoms, numbers, and terms.
 
@@ -93,7 +94,7 @@ By defining these custom data types, you can write more expressive and readable 
 
 ![Data types](Img/data_objects.jpg)
 
-## Tracing the ouput
+### Tracing the ouput
 
 In Prolog we can trace the execution. To trace the output, you have to enter into the trace mode by typing “trace.”. Then from the output we can see that we are just tracing “marge is mother of whom?”. See the tracing output by taking X = marge, and Y as variable, there Y will be { bart, maggie ... } as answer. To come out from the tracing mode press “notrace.”
 
