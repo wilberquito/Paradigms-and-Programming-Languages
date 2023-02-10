@@ -33,7 +33,7 @@ father(X, Z).
 grandfather(X, Y) :- father(X, Z), parent(Z, Y).
 ```
 
-- Questions: And to run a prolog program, we need some questions, and those questions can be answered by the given facts and rules.
+- Questions: And to run a prolog program, we need some questions, and those questions can be answered by the given facts and rules. In queries, variables are existentially quantified. The question is whether there exists a value for the variables that makes a certain conjunction of atoms true according to the theory.
 
 ```prolog
 father(X, wil).
