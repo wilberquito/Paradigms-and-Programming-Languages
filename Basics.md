@@ -33,6 +33,14 @@ father(X, Z).
 grandfather(X, Y) :- father(X, Z), parent(Z, Y).
 ```
 
+- Questions: And to run a prolog program, we need some questions, and those questions can be answered by the given facts and rules.
+
+```prolog
+?- father(X, wil)
+X = santos ? ;
+no
+```
+
 ## Hello World Program
 
 After running the GNU prolog or an interactive Prolog instance in your terminal, we can write hello world program directly from the console. To do so, we have to write the command as follows
@@ -57,7 +65,7 @@ Now we can see in the prolog console, it shows that we have successfully changed
 
 Step 3 − Now create one file (extension is *.pl) and write the code as follows. Or use the [hello.pl](Examples/hello.pl) already given for you.
 
-```
+```prolog
 main :- write('Hello World').
 ```
 
