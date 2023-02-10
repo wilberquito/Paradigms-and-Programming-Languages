@@ -1,10 +1,10 @@
 # Prolog Sessions [^1]
 
+## Session 1
+
 Prolog as the name itself suggests, is the short form of LOGical PROgramming. It is a logical and declarative programming language. Before diving deep into the concepts of Prolog, let us first understand what exactly logical programming is.
 
 Logic Programming is one of the Computer Programming Paradigm, in which the program statements express the facts and rules about different problems within a system of formal logic.
-
-## Session 1
 
 ### Logic and Procedural Programming
 
