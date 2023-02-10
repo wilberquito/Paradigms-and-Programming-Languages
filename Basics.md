@@ -92,7 +92,28 @@ point(X, Y).
 
 By defining these custom data types, you can write more expressive and readable Prolog programs that can solve more complex problems.
 
+For a practical implementation see the knowledge base of the [var_anonymous.pl script](Examples/var_anonymous.pl).
+
 ![Data types](Img/data_objects.jpg)
+
+### Anonymous Variables in Prolog
+
+Anonymous variables have no names. The anonymous variables in prolog is written by a single underscore character ‘_’. One important thing is that each individual anonymous variable is treated as different. They are not same.
+
+Now the question is, where should we use these anonymous variables? It's usuful when what matters is to know if exist any constant that in variable sustitution satisty the logic equation.
+
+<details>
+    <summary>Toggle me to see the var_anonymous.pl knowledge</summary>
+
+```prolog
+hates(jim,tom).
+hates(pat,bob).
+hates(dog,fox).
+hates(peter,tom).
+```
+</details>
+
+![Anonymous variable example](Img/anonymous_variable.png)
 
 ### Tracing the ouput
 
@@ -164,5 +185,7 @@ viu(homer, adr("Evergreen Terrace", 742, "Springfield")).
 viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
 ```
 </details>
+
+
 
 [^1]: [tutorialspoint](https://www.tutorialspoint.com/prolog)
