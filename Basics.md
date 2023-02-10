@@ -140,4 +140,4 @@ viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
 ```
 </details>
 
-![Trace example](Img/trace-example.jpg)
+![Trace example](Img/trace-example.png)
