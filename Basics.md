@@ -1,4 +1,4 @@
-# Day 1 [¹]
+# Day 1 [^1]
 
 Prolog as the name itself suggests, is the short form of LOGical PROgramming. It is a logical and declarative programming language. Before diving deep into the concepts of Prolog, let us first understand what exactly logical programming is.
 
