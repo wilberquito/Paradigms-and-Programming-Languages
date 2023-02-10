@@ -73,11 +73,11 @@ main :- write('Hello World').
 
 In Prolog, the main data types are atoms, numbers, and terms.
 
-Atoms: Atoms are the basic building blocks of Prolog, and they represent a unique identifier, such as a constant or a string. Atoms can be either an atom name, like "dog" or "cat", or a string enclosed in single quotes, like 'dog' or 'cat'.
+- Atoms: Atoms are the basic building blocks of Prolog, and they represent a unique identifier, such as a constant or a string. Atoms can be either an atom name, like "dog" or "cat", or a string enclosed in single quotes, like 'dog' or 'cat'.
 
-Numbers: In Prolog, numbers are used to represent integers, floating-point numbers, or rational numbers. They are used to perform mathematical operations, like addition, subtraction, and multiplication.
+- Numbers: In Prolog, numbers are used to represent integers, floating-point numbers, or rational numbers. They are used to perform mathematical operations, like addition, subtraction, and multiplication.
 
-Terms: A term is a combination of atoms, numbers, and other terms, connected by a functor. For example, the term "dog(fido)" is a combination of the atom "dog" and the atom "fido", connected by the functor "()".
+- Terms: A term is a combination of atoms, numbers, and other terms, connected by a functor. For example, the term "dog(fido)" is a combination of the atom "dog" and the atom "fido", connected by the functor "()".
 
 In Prolog, a variable is also a data type. Variables in Prolog start with an uppercase letter, like X or Y, and they can be used to represent any value.
 
