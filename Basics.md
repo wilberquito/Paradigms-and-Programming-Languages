@@ -1,4 +1,4 @@
-# Day 1
+# Day 1 [tutorialspoint]
 
 Prolog as the name itself suggests, is the short form of LOGical PROgramming. It is a logical and declarative programming language. Before diving deep into the concepts of Prolog, let us first understand what exactly logical programming is.
 
@@ -165,3 +165,5 @@ viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
 </details>
 
 ![Trace example](Img/trace-example.png)
+
+[tutorialspoint]: https://www.tutorialspoint.com/prolog
