@@ -78,3 +78,13 @@ progenitor(X,Y) :- mare(X,Y).
 
 % X i Y s�n germans
 germa(X,Y) :- progenitor(Z,X), progenitor(Z,Y), X\=Y.
+
+
+/*
+TODO:
+  - Ancestor
+  - Grandfather
+  - Grandmother
+  - Uncle
+  - Aunt
+ */
