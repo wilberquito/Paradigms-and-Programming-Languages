@@ -12,22 +12,26 @@ rather than how it should be done.
 Haskell doesn't have:
 
 - Asigments
+
 ```python
 a = 2
 ```
 - Loops
+
 ```python
 numbers = [1, 2, 3, 4]
 for n in numnbers:
   pass
 ```
 - Side effects
+
 ```python
 def add1():
   x = x + 1 # where x came from?
   return x
 ```
 - Memory managment
+
 ```cpp
 using namespace std;
 void geeks()
@@ -42,4 +46,16 @@ void geeks()
 }
 ```
 
+What does haskell has?
 
+- Lazy evaluation: hat means that unless specifically told otherwise, 
+Haskell won't execute functions and calculate things until it's really forced to show you a result. 
+That goes well with referential transparency and it allows you to think of programs as a series of transformations
+on data. It also allows cool things such as infinite data structures. 
+
+Infinite list
+
+```haskell
+infiniteList :: [Int]
+infiniteList = [1..]
+```
