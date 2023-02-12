@@ -200,7 +200,7 @@ Use the knowledge in lovers.pl and write in Prolog the following questions.
 - Who love each other mutually?
 - Who loves without being loved back?
 
-### [els_simpsons.pl](Examples/els_simpsons.pl)
+### [els_simpsons.pl](Examples/els_simpson.pl)
 
 Given the knowlage of els_simpsons.pl, think how would you define the following questions.
 
