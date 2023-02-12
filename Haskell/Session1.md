@@ -53,9 +53,9 @@ Haskell won't execute functions and calculate things until it's really forced to
 That goes well with referential transparency and it allows you to think of programs as a series of transformations
 on data. It also allows cool things such as infinite data structures. 
 
-Infinite list
+  - Infinite list
 
-```haskell
-infiniteList :: [Int]
-infiniteList = [1..]
-```
+  ```haskell
+  infiniteList :: [Int]
+  infiniteList = [1..]
+  ```
