@@ -68,7 +68,7 @@ on data. It also allows cool things such as infinite data structures.
     mayHang infiniteList (1 + 1) -- it does'nt hang
     mayHang (1 + 1) infiniteList -- it hangs
     ```
-- Functions, it's all you need: 
+- Functions, it's all you need (for compute).
 
   In mathematics the application of function is denotated with parenthesis:
 
