@@ -73,17 +73,28 @@ on data. It also allows cool things such as infinite data structures.
   Functions in functional programming are also pure, meaning they do not have side effects and always produce 
   the same output for a given input.
 
-  In mathematics the application of function is denotated with parenthesis.
+  In mathematics the application of function is denotated with parenthesis:
 
   ```text
   f (a, b) + c × d -- applies the function f to the parameters a and b
   ```
 
-  In Haskell the function application is denotated by a space.
+  In Haskell the function application is denotated by a space:
 
   ```haskell
   f a b + c * d -- same as f (a, b) + c × d
   ```
 
+  In Haskell the application of functions has maximum priority:
+
+  ```haskell
+  g a + b -- means (g a) + b and NO g (a + b)
+  ```
+
+  In Haskell the compound arguments go between parentheses:
+
+  ```haskell
+  f (a + b) c -- applies f function to 2 arguments.
+  ```
  
 
