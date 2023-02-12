@@ -4,7 +4,7 @@ Learning Haskell is much like learning to program for the first time — it's fu
 
 ## What is Haskell?
 
-Haskell is a pure functional programming language. And what exactly functional programming means? 
+Haskell is a pure functional programming language. What exactly functional programming means? 
 Functional programming is a programming paradigm that emphasizes the use of pure functions and immutability.
 It is a declarative style of programming, in which the focus is on describing what the program should do,
 rather than how it should be done.
@@ -24,7 +24,8 @@ for n in numnbers:
 - Side effects
 ```python
 def add1():
-  return x + 1 # where x came from?
+  x = x + 1 # where x came from?
+  return x
 ```
 - Memory managment
 ```cpp
