@@ -184,7 +184,10 @@ amic(marge, maude).
 viu(homer, adr("Evergreen Terrace", 742, "Springfield")).
 viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
 ```
+
 </details>
+
+![Trace](Img/trace-example-png)
 
 ### It's your turn to practice
 
