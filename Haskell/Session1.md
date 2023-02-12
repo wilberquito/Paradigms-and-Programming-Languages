@@ -68,3 +68,22 @@ on data. It also allows cool things such as infinite data structures.
     mayHang infiniteList (1 + 1) -- it does'nt hang
     mayHang (1 + 1) infiniteList -- it hangs
     ```
+- Functions as first-order objects: functions are considered first-class citizens, which means 
+  they can be passed as arguments, returned as values, and composed together to form more complex operations. 
+  Functions in functional programming are also pure, meaning they do not have side effects and always produce 
+  the same output for a given input.
+
+  In mathematics the application of function is denotated with parenthesis.
+
+  ```text
+  f (a, b) + c × d -- applies the function f to the parameters a and b
+  ```
+
+  In Haskell the function application is denotated by a space.
+
+  ```haskell
+  f a b + c * d -- same as f (a, b) + c × d
+  ```
+
+ 
+
