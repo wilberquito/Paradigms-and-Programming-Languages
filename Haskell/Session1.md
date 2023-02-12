@@ -55,7 +55,7 @@ on data. It also allows cool things such as infinite data structures.
 
   - Infinite list
 
-  ```haskell
-  infiniteList :: [Int]
-  infiniteList = [1..]
-  ```
+    ```haskell
+    infiniteList :: [Int]
+    infiniteList = [1..]
+    ```
