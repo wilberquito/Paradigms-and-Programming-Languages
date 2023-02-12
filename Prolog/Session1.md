@@ -111,7 +111,7 @@ hates(peter,tom).
 
 ![Anonymous variable example](Img/anonymous_variable.png)
 
-For a practical implementation see the knowledge base of the [var_anonymous.pl script](Examples/var_anonymous.pl).
+For a practical implementation see the knowledge base of the [var_anonymous.pl](Examples/var_anonymous.pl).
 
 ## Tracing the ouput
 
