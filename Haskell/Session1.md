@@ -48,8 +48,8 @@ void geeks()
 
 Haskell have:
 
-- Lazy evaluation: hat means that unless specifically told otherwise, 
-Haskell won't execute functions and calculate things until it's really forced to show you a result. 
+- Lazy evaluation: this means that unless specifically told, Haskell won't execute functions and 
+calculate things until it's really forced to show you a result. 
 That goes well with referential transparency and it allows you to think of programs as a series of transformations
 on data. It also allows cool things such as infinite data structures. 
 
