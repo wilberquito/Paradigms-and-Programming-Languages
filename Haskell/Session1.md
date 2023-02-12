@@ -132,8 +132,15 @@ which is a string and so on. That means that a lot of possible errors are caught
 Haskell uses a very good type system that has type inference. That means that you don't have to explicitly label every piece of code with a type because the type 
 system can intelligently figure out a lot about it.
 
-```haskell
--- greed :: [Char]
-greed = "Hello world!" -- you don't need to specify to the compiler that greeds is a function that returns an array of char
-```
+  Error data type detected by Haskell compiler example:
+
+  ```
+  (+) "hello friend" 2 -- (+) is a operator that expects to number to be added, but here, one of it's parameters is a string.
+  ```
+  Type system inference example:
+
+  ```haskell
+  -- greed :: [Char]
+  greed = "Hello world!" -- you don't need to specify to the compiler that greeds is a function that returns an array of char
+  ```
 
