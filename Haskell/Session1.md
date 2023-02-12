@@ -125,4 +125,5 @@ on data. It also allows cool things such as infinite data structures.
         return a > b ? a : b
     }
   }
+  max(4)(5)
   ```
