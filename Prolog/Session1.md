@@ -90,8 +90,6 @@ point(X, Y).
 
 By defining these custom data types, you can write more expressive and readable Prolog programs that can solve more complex problems.
 
-For a practical implementation see the knowledge base of the [var_anonymous.pl script](Examples/var_anonymous.pl).
-
 ![Data types](Img/data_objects.jpg)
 
 ## Anonymous Variables in Prolog
@@ -112,6 +110,8 @@ hates(peter,tom).
 </details>
 
 ![Anonymous variable example](Img/anonymous_variable.png)
+
+For a practical implementation see the knowledge base of the [var_anonymous.pl script](Examples/var_anonymous.pl).
 
 ## Tracing the ouput
 
