@@ -68,10 +68,7 @@ on data. It also allows cool things such as infinite data structures.
     mayHang infiniteList (1 + 1) -- it does'nt hang
     mayHang (1 + 1) infiniteList -- it hangs
     ```
-- Functions as first-order objects: functions are considered first-class citizens, which means 
-  they can be passed as arguments, returned as values, and composed together to form more complex operations. 
-  Functions in functional programming are also pure, meaning they do not have side effects and always produce 
-  the same output for a given input.
+- Functions, it's all you need: 
 
   In mathematics the application of function is denotated with parenthesis:
 
@@ -96,5 +93,36 @@ on data. It also allows cool things such as infinite data structures.
   ```haskell
   f (a + b) c -- applies f function to 2 arguments.
   ```
- 
 
+  In Haskell functions are considered first-class citizens, which means they can be passed as arguments, 
+  returned as values, and composed together to form more complex operations. 
+  Functions in functional programming are also pure, meaning they do not have side effects and always produce 
+  the same output for a given input.
+
+  ```haskell
+  map :: (a -> b) -> [a] -> [b]
+  map f []     = []
+  map f (x:xs) = f x : map f xs
+  ```
+
+  Every function in Haskell officially only takes one parameter. So how is it possible that we 
+  defined and used several functions that take more than one parameter so far? Well, it's a clever trick! 
+  All the functions that accepted several parameters so far have been curried functions.
+
+  The following two calls are equivalent:
+  
+  ```haskell
+  max :: Ord a => a -> a -> a -- same as max :: Ord a => a -> (a -> a)
+  max 4 5
+  (max 4) 5
+  ```
+
+  Does other languages support this feature? not by default, for example, in JS you can emulate this as:
+  
+  ```js
+  function max(a) {
+    return function(b) {
+        return a > b ? a : b
+    }
+  }
+  ```
