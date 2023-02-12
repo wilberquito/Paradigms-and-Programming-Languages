@@ -105,7 +105,7 @@ on data. It also allows cool things such as infinite data structures.
   map f (x:xs) = f x : map f xs
   ```
 
-  Every function in Haskell officially only takes one parameter. So how is it possible that we 
+  Curry functions, every function in Haskell officially only takes one parameter. So how is it possible that we 
   defined and used several functions that take more than one parameter so far? Well, it's a clever trick! 
   All the functions that accepted several parameters so far have been curried functions.
 
@@ -127,3 +127,13 @@ on data. It also allows cool things such as infinite data structures.
   }
   max(4)(5)
   ```
+- Static type system: When you compile your program, the compiler knows which piece of code is a number, 
+which is a string and so on. That means that a lot of possible errors are caught at compile time. 
+Haskell uses a very good type system that has type inference. That means that you don't have to explicitly label every piece of code with a type because the type 
+system can intelligently figure out a lot about it.
+
+```haskell
+-- greed :: [Char]
+greed = "Hello world!" -- you don't need to specify to the compiler that greeds is a function that returns an array of char
+```
+
