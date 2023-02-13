@@ -20,21 +20,22 @@ In Prolog, we need not mention the way how one problem can be solved, we just ne
 
 Prolog language basically has three different elements.
 
-- Facts: The fact is predicate that is true, for example, if we say, “Tom is the father of Jack”, then this is a fact.
+- *Facts* are predicate that are true, for example, if we say, “Tom is the father of Jack”, then this is a fact.
 
 ```prolog
 father(X, Z).
 ```
 
-- Rules: Rules are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met. 
-More generally, the :- should be read as “if”, or “is implied by”. The part on the left hand side of the :- is called the head of the rule, 
+- *Rules* are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met. 
+More generally, the `:-` should be read as “if”, or “is implied by”. The part on the left hand side of the :- is called the head of the rule, 
 the part on the right hand side is called the body. So in general rules say: if the body of the rule is true, then the head of the rule is also true.
+This is extreamly powerful, because **Prolog can use the rule of modus pones to deduce head**.
 
 ```prolog
 grandfather(X, Y) :- father(X, Z), parent(Z, Y).
 ```
 
-- Questions: And to run a prolog program, we need some questions, and those questions can be answered by the given facts and rules. In queries, variables are existentially quantified. The question is whether there exists a value for the variables that makes a certain conjunction of atoms true according to the theory.
+- And to run a prolog program, we need some *Questions*, and those questions can be answered by the given facts and rules. In queries, variables are existentially quantified. The question is whether there exists a value for the variables that makes a certain conjunction of atoms true according to the theory.
 
 ```prolog
 father(X, wil).
