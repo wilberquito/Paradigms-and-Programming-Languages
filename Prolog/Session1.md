@@ -93,19 +93,17 @@ and we discuss late.
 - *Complex Terms*, in Prolog you can define terms that represent more complex data structures, like lists, trees, and graphs, using a combination of atoms, numbers, 
 and other terms.
 
-For example, you can define a term to represent a point in two-dimensional space, like this:
+  For example, you can define a term to represent a point in two-dimensional space, like this:
 
-```prolog
-point(X, Y).
-```
+  ```prolog
+  point(X, Y).
+  ```
 
-Complex terms can also be facts or rules.
+  Complex terms can also be facts or rules.
 
-```prolog
-loves(vincent,mia).
-```
-
-PSS: Prolog is a dynamically typed language, so the type of a term is not fixed and can change during the execution of a program. 
+  ```prolog
+  loves(vincent,mia).
+  ```
 
 ![Data types](Img/data_objects.jpg)
 
