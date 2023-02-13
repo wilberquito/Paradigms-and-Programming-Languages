@@ -97,7 +97,7 @@ For example, you can define a term to represent a point in two-dimensional space
 point(X, Y).
 ```
 
-Or you can create a functor like this:
+Complex Terms can also be facts or rules.
 
 ```prolog
 loves(vincent,mia).
