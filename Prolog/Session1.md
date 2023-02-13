@@ -26,7 +26,9 @@ Prolog language basically has three different elements.
 father(X, Z).
 ```
 
-- Rules: Rules are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met.
+- Rules: Rules are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met. 
+More generally, the :- should be read as “if”, or “is implied by”. The part on the left hand side of the :- is called the head of the rule, 
+the part on the right hand side is called the body. So in general rules say: if the body of the rule is true, then the head of the rule is also true.
 
 ```prolog
 grandfather(X, Y) :- father(X, Z), parent(Z, Y).
