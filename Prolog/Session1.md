@@ -1,4 +1,4 @@
-# Session 1 [^1]
+# Session 1 [^1][^2]
 
 Prolog as the name itself suggests, is the short form of LOGical PROgramming. It is a logical and declarative programming language. Before diving deep into the concepts of Prolog, let us first understand what exactly logical programming is.
 
@@ -226,3 +226,4 @@ Given the knowlage of els_simpsons.pl, think how would you define the following 
 - Aunt
 
 [^1]: [tutorialspoint](https://www.tutorialspoint.com/prolog)
+[^2]: [learnprolog](http://www.let.rug.nl/bos/lpn//lpnpage.php?pagetype=html&pageid=lpn-htmlse1)
