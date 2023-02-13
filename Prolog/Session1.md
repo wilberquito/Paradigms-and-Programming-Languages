@@ -22,34 +22,34 @@ Prolog language basically has three different elements.
 
 - *Facts* are predicate that are true, for example, if we say, “Tom is the father of Jack”, then this is a fact.
 
-```prolog
-father(X, Z).
-```
+  ```prolog
+  father(X, Z).
+  ```
 
 - *Rules* are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met. 
 More generally, the `:-` should be read as “if”, or “is implied by”. The part on the left hand side of the `:-` is called the head of the rule, 
 the part on the right hand side is called the body. So in general rules say: if the body of the rule is true, then the head of the rule is also true.
 This is extreamly powerful, because **Prolog can use the rule of modus pones to deduce head**.
 
-```prolog
-grandfather(X, Y) :- father(X, Z), parent(Z, Y).
-```
+  ```prolog
+  grandfather(X, Y) :- father(X, Z), parent(Z, Y).
+  ```
 
 - And to run a prolog program, we need some *Questions*, and those questions can be answered by the given facts and rules. In queries, variables are existentially quantified. The question is whether there exists a value for the variables that makes a certain conjunction of atoms true according to the theory.
 
-```prolog
-father(X, wil).
-X = santos ? ;
-no
-```
+  ```prolog
+  father(X, wil).
+  X = santos ? ;
+  no
+  ```
 
 ## Hello World Program
 
 After running the GNU prolog or an interactive Prolog instance in your terminal, we can write hello world program directly from the console. To do so, we have to write the command as follows
 
-```prolog
-write('Hello World').
-```
+  ```prolog
+  write('Hello World').
+  ```
 
 Now let us see how to run the Prolog script file (extension is *.pl) into the Prolog console.
 
@@ -97,7 +97,7 @@ For example, you can define a term to represent a point in two-dimensional space
 point(X, Y).
 ```
 
-Complex Terms can also be facts or rules.
+Complex terms can also be facts or rules.
 
 ```prolog
 loves(vincent,mia).
