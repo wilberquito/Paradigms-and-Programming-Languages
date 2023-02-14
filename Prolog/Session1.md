@@ -1,41 +1,53 @@
 # Session 1 [^1][^2]
 
-Prolog as the name itself suggests, is the short form of LOGical PROgramming. It is a logical and declarative programming language. Before diving deep into the concepts of Prolog, let us first understand what exactly logical programming is.
+Prolog as the name itself suggests, is the short form of LOGic PROgramming. It is a logic-based declarative programming language. Before diving deep into the concepts of Prolog, let us first understand what exactly logic programming is.
 
-Logic Programming is one of the Computer Programming Paradigm, in which the program statements express the facts and rules about different problems within a system of formal logic.
+Logic Programming is one of the Computer Programming Paradigm, in which the program statements express the facts and rules about different problems within a system of formal logic, namely the Horn clauses fragment of first-order logic.
 
 ## Logic and Procedural Programming
 
-From this illustration, we can see that in Functional Programming, we have to define the procedures, and the rule how the procedures work. These procedures work step by step to solve one specific problem based on the algorithm. On the other hand, for the Logic Programming, we will provide knowledge base. Using this knowledge base, the machine can find answers to the given questions, which is totally different from functional programming.
+From this illustration, we can see that in Procedural (imperative) Programming, we have to define the procedures, and the rule how the procedures work. These procedures work step by step to solve one specific problem based on the algorithm. On the other hand, for the Logic Programming, we will provide knowledge base. Using this knowledge base, the machine can find answers by means of reasoning to the given questions, which is totally different from functional programming.
 
 ![logic-vs-procedural](Img/logic_functional_programming.jpg)
 
-In functional programming, we have to mention how one problem can be solved, but in logic programming we have to specify for which problem we actually want the solution. Then the logic programming automatically finds a suitable solution that will help us solve that specific problem.
+In procedural programming, we have to mention how one problem can be solved, but in logic programming we have to specify for which problem we actually want the solution, then the deductive mechanism (resolution) automatically finds a suitable solution that will help us solve that specific problem.
 
 ## What's Prolog?
 
-Prolog or PROgramming in LOGics is a logical and declarative programming language. It  is particularly suitable for programs that involve symbolic or non-numeric computation. This is the main reason to use Prolog as the programming language in Artificial Intelligence, where symbol manipulation and inference manipulation are the fundamental tasks.
+Prolog or PROgramming in LOGics is a logic-based declarative programming language. It is particularly suitable for programs that involve symbolic or non-numeric-intensive computation. This is the main reason to use Prolog as the programming language in Artificial Intelligence, where symbol manipulation and inference manipulation are the fundamental tasks.
 
 In Prolog, we need not mention the way how one problem can be solved, we just need to mention what the problem is, so that Prolog automatically solves it. However, in Prolog we are supposed to give clues as the solution method.
 
-Prolog language basically has three different elements.
+Prolog language is really simple and basically has three different elements.
 
-- *Facts* are predicate that are true, for example, if we say, “Tom is the father of Jack”, then this is a fact.
+- *Facts* are logical atoms (typically a predicate relating some elements) that are true, for example, if we say, “Tom is the father of Jack”, then this is a fact.
 
   ```prolog
-  father(X, Z).
+  father(tom, jack).
   ```
+
+Since previous fact could also be read as "the father of Tom is Jack" we **Strongly recommend** to add comments to clarify, e.g.:
+ ```prolog
+ % tom is the father of jack
+  father(tom, jack).
+  ```
+at least the first time a predicate is used...
 
 - *Rules* are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met. 
 More generally, the `:-` should be read as “if”, or “is implied by”. The part on the left hand side of the `:-` is called the head of the rule, 
-the part on the right hand side is called the body. So in general rules say: if the body of the rule is true, then the head of the rule is also true.
+the part on the right hand side is called the body. So in general rules say: if the body of the rule is true, then the head of the rule is also true; alternatively rules can also be read as: if you want me to prove the head of the rule you need to prove all the **literals** (logical atoms and netations of logical atoms) of the body.
+
+NO ES BEN BE EL MODUS PONENS, FA SERVIR RESOLUCIÓ
+CAL POSAR COMENTARIS DELS PREDICATS GRANDFAHTER, ETC...
+NECESSITEM PARLAR DE LES VARIABLES A LES REGLES (DE FET ELS FETS TB EN PODEN TENIR DE VARIABLES) I DIR QUE HI ESTAN QUANTIFICADES UNIVERSALMENT.
+
 This is extreamly powerful, because **Prolog can use the rule of modus pones to deduce head**.
 
   ```prolog
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
   ```
 
-- And to run a prolog program, we need some *Questions*, and those questions can be answered by the given facts and rules. In queries, variables are existentially quantified. The question is whether there exists a value for the variables that makes a certain conjunction of atoms true according to the theory.
+- And to run a prolog program, we need some *Questions*, and those questions can be answered by the given facts and rules. In queries, variables are existentially quantified. The question is whether there exists a value for the variables that makes a certain conjunction of literals true according to the theory.
 
   ```prolog
   father(X, wil).
@@ -44,6 +56,9 @@ This is extreamly powerful, because **Prolog can use the rule of modus pones to 
   ```
 
 ## Hello World Program
+
+
+A CLASSE HI HA EL SICSTUS TAMBÉ DIRIA...
 
 After running the GNU prolog or an interactive Prolog instance in your terminal, we can write hello world program directly from the console. To do so, we have to write the command as follows
 
@@ -71,10 +86,12 @@ Step 3 − Now create one file (extension is *.pl) and write the code as follows
 main :- write('Hello World').
 ```
 
+Now, when you load the program and ask for the query main, to prove it Prolog needs to prove write('Hello World'), and this is done by its execution, i.e., by writing Hello World.
+
 ## Belive in terms 
 
 It’s time for precision: exactly what are facts, rules, and queries built out of? In Prolog, 
-The answer is terms, and there are four kinds of term in Prolog: atoms, numbers, variables, and complex terms (or structures)
+the answer is terms, and there are four kinds of term in Prolog: atoms, numbers, variables, and complex terms (or structures)
 
 - *Constants*
 
