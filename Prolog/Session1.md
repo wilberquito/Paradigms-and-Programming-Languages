@@ -6,7 +6,8 @@ Logic Programming is one of the Computer Programming Paradigm, in which the prog
 
 ## Logic and Procedural Programming
 
-From this illustration, we can see that in Procedural (imperative) Programming, we have to define the procedures, and the rule how the procedures work. These procedures work step by step to solve one specific problem based on the algorithm. On the other hand, for the Logic Programming, we will provide knowledge base. Using this knowledge base, the machine can find answers by means of reasoning to the given questions, which is totally different from functional programming.
+From this illustration, we can see that in Procedural (imperative) Programming, we have to define the procedures, 
+and the rule how the procedures work. These procedures work step by step to solve one specific problem based on the algorithm. On the other hand, for the Logic Programming, we will provide knowledge base. Using this knowledge base, the machine can find answers by means of reasoning to the given questions, which is totally different from procedural programming.
 
 ![logic-vs-procedural](Img/logic_functional_programming.jpg)
 
@@ -26,12 +27,13 @@ Prolog language is really simple and basically has three different elements.
   father(tom, jack).
   ```
 
-Since previous fact could also be read as "the father of Tom is Jack" we **Strongly recommend** to add comments to clarify, e.g.:
+  Since previous fact could also be read as "the father of Tom is Jack" we **Strongly recommend** to add comments to clarify, e.g.:
+
  ```prolog
  % tom is the father of jack
   father(tom, jack).
   ```
-at least the first time a predicate is used...
+  at least the first time a predicate is used...
 
 - *Rules* are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met. 
 More generally, the `:-` should be read as “if”, or “is implied by”. The part on the left hand side of the `:-` is called the head of the rule, 
@@ -101,7 +103,7 @@ the answer is terms, and there are four kinds of term in Prolog: atoms, numbers,
 
   - *Numbers* In Prolog, numbers are used to represent integers, floating-point numbers, or rational numbers. 
   They are used to perform mathematical operations, like addition, subtraction, and multiplication. 
-  **Numbers numbers aren’t particularly important in typical Prolog applications**.
+  **Numbers aren’t particularly important in typical Prolog applications**.
 
 - *Variables* are also terms. Variables in Prolog start with an uppercase letter, like X or Y, 
 and they can be used to represent any value. The variable `_` (that is, a single underscore character) is rather special. It’s called the anonymous variable,
