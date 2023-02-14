@@ -29,8 +29,8 @@ Prolog language is really simple and basically has three different elements.
 
   Since previous fact could also be read as "the father of Tom is Jack" we **Strongly recommend** to add comments to clarify, e.g.:
 
- ```prolog
- % tom is the father of jack
+  ```prolog
+  % tom is the father of jack
   father(tom, jack).
   ```
   at least the first time a predicate is used...
