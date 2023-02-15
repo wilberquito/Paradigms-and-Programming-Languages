@@ -119,7 +119,15 @@ hates(peter,tom).
 
 For a practical implementation see the knowledge base of the [var_anonymous.pl](Examples/var_anonymous.pl).
 
-## It's your turn to practice (1)
+## The not meta-predicate
+
+The "not" operator in Prolog is a built-in meta-predicate. A meta-predicate is a predicate that takes one or more predicates as arguments, rather than data. The "not" operator takes a single predicate as its argument and negates its truth value.
+
+The "not" operator is also known as the negation-as-failure operator, because it works by attempting to prove the negation of the goal and failing if it cannot be proven. It does not actually perform logical negation, but rather it checks if the goal can be proven to be false.
+
+The "not" operator is one of several built-in meta-predicates in Prolog that allow for more advanced logical reasoning and rule-based programming. Other examples of meta-predicates in Prolog include "call", "findall", and "assert" that we may see latter.
+
+## It's your turn to practice (I)
 
 ### [lovers.pl](Examples/lovers.pl)
 
@@ -242,7 +250,7 @@ viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
 
 ![Trace](Img/trace-example.png)
 
-## It's your turn to practice (2)
+## It's your turn to practice (II)
 
 ### [els_simpsons.pl](Examples/els_simpson.pl)
 
