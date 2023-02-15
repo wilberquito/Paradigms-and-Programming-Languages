@@ -37,7 +37,7 @@ Prolog language is really simple and basically has three different elements.
 
 - *Rules* are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met. 
 More generally, the `:-` should be read as “if”, or “is implied by”. The part on the left hand side of the `:-` is called the head of the rule, 
-the part on the right hand side is called the body. So in general rules say: if the body of the rule is true, then the head of the rule is also true; alternatively rules can also be read as: if you want me to prove the head of the rule you need to prove all the **literals** (logical atoms and netations of logical atoms) of the body.
+the part on the right hand side is called the body. So in general rules say: if the body of the rule is true, then the head of the rule is also true; alternatively rules can also be read as: if you want me to prove the head of the rule you need to prove all the **literals** (logical atoms and negations of logical atoms) of the body.
 
 NO ES BEN BE EL MODUS PONENS, FA SERVIR RESOLUCIÓ
 CAL POSAR COMENTARIS DELS PREDICATS GRANDFAHTER, ETC...
