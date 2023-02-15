@@ -31,6 +31,8 @@ Prolog language is really simple and basically has three different elements.
 
 - *Facts* are logical atoms (typically a predicate relating some elements) that are true, for example, if we say, “Tom is the father of Jack”, then this is a fact.
 
+In Facts, variables are existentially quantified.
+
   ```prolog
   father(tom, jack).
   ```
@@ -47,11 +49,9 @@ Prolog language is really simple and basically has three different elements.
 More generally, the `:-` should be read as “if”, or “is implied by”. The part on the left hand side of the `:-` is called the head of the rule, 
 the part on the right hand side is called the body. So in general rules say: if the body of the rule is true, then the head of the rule is also true; alternatively rules can also be read as: if you want me to prove the head of the rule you need to prove all the **literals** (logical atoms and negations of logical atoms) of the body.
 
-NO ES BEN BE EL MODUS PONENS, FA SERVIR RESOLUCIÓ
-CAL POSAR COMENTARIS DELS PREDICATS GRANDFAHTER, ETC...
-NECESSITEM PARLAR DE LES VARIABLES A LES REGLES (DE FET ELS FETS TB EN PODEN TENIR DE VARIABLES) I DIR QUE HI ESTAN QUANTIFICADES UNIVERSALMENT.
+In Facts, variables are existentially quantified.
 
-This is extreamly powerful, because **Prolog can use the rule of modus pones to deduce head**.
+This is extreamly powerful, because **Prolog can use the mechanism of inference `resolution` to deduce head**.
 
   ```prolog
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
@@ -101,12 +101,12 @@ Now, when you load the program and ask for the query main, to prove it Prolog ne
 ## Belive in terms 
 
 It’s time for precision: exactly what are facts, rules, and queries built out of? In Prolog, 
-the answer is terms, and there are four kinds of term in Prolog: atoms, numbers, variables, and complex terms (or structures)
+the answer is terms, and there are four kinds of term in Prolog: term atoms, numbers, variables, and complex terms (or structures)
 
 - *Constants*
 
-  - *Atoms* are the basic building blocks of Prolog, and they represent a unique identifier, 
-  such as a constant or a string. Atoms can be either an atom name, like "dog" or "cat", or a string 
+  - *Term atoms* are the basic building blocks of Prolog, and they represent a unique identifier, 
+  such as a constant or a string. Term atoms can be either a name, like "dog" or "cat", or a string 
   enclosed in single quotes, like 'dog' or 'cat'.
 
   - *Numbers* In Prolog, numbers are used to represent integers, floating-point numbers, or rational numbers. 
