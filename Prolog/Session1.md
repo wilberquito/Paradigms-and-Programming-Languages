@@ -98,6 +98,40 @@ main :- write('Hello World').
 
 Now, when you load the program and ask for the query main, to prove it Prolog needs to prove write('Hello World'), and this is done by its execution, i.e., by writing Hello World.
 
+## Anonymous Variables in Prolog
+
+Anonymous variables have no names. The anonymous variables in prolog is written by a single underscore character ‘_’. One important thing is that each individual anonymous variable is treated as different. They are not same.
+
+Now the question is, where should we use these anonymous variables? It's usuful when what matters is to know if exist any constant that in variable sustitution satisty the logic equation instead of knowing which are the terms that satisfy the logic equation.
+
+<details>
+    <summary>Toggle me to see the var_anonymous.pl knowledge</summary>
+
+```prolog
+hates(jim,tom).
+hates(pat,bob).
+hates(dog,fox).
+hates(peter,tom).
+```
+</details>
+
+![Anonymous variable example](Img/anonymous_variable.png)
+
+For a practical implementation see the knowledge base of the [var_anonymous.pl](Examples/var_anonymous.pl).
+
+## It's your turn to practice (1)
+
+### [lovers.pl](Examples/lovers.pl)
+
+Use the knowledge in lovers.pl and write in Prolog the following questions.
+
+- Who does "John" love?
+- Who loves "Ann"?
+- Who loves someone?
+- Who is loved by someone?
+- Who love each other mutually?
+- Who loves without being loved back?
+
 ## Belive in terms 
 
 It’s time for precision: exactly what are facts, rules, and queries built out of? In Prolog, 
@@ -133,27 +167,6 @@ and other terms.
   ```
 
 ![Data types](Img/data_objects.jpg)
-
-## Anonymous Variables in Prolog
-
-Anonymous variables have no names. The anonymous variables in prolog is written by a single underscore character ‘_’. One important thing is that each individual anonymous variable is treated as different. They are not same.
-
-Now the question is, where should we use these anonymous variables? It's usuful when what matters is to know if exist any constant that in variable sustitution satisty the logic equation instead of knowing which are the terms that satisfy the logic equation.
-
-<details>
-    <summary>Toggle me to see the var_anonymous.pl knowledge</summary>
-
-```prolog
-hates(jim,tom).
-hates(pat,bob).
-hates(dog,fox).
-hates(peter,tom).
-```
-</details>
-
-![Anonymous variable example](Img/anonymous_variable.png)
-
-For a practical implementation see the knowledge base of the [var_anonymous.pl](Examples/var_anonymous.pl).
 
 ## Tracing the ouput
 
@@ -229,18 +242,7 @@ viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
 
 ![Trace](Img/trace-example.png)
 
-## It's your turn to practice
-
-### [lovers.pl](Examples/lovers.pl)
-
-Use the knowledge in lovers.pl and write in Prolog the following questions.
-
-- Who does "John" love?
-- Who loves "Ann"?
-- Who loves someone?
-- Who is loved by someone?
-- Who love each other mutually?
-- Who loves without being loved back?
+## It's your turn to practice (2)
 
 ### [els_simpsons.pl](Examples/els_simpson.pl)
 
