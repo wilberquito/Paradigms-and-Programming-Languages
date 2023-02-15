@@ -8,6 +8,10 @@ In propositional logic, a logical formula is a Horn clause if it is a clause (di
 
 ${\displaystyle \neg p\lor \neg q\vee \cdots \vee \neg t\vee u}$
 
+This formula can also be rewritten equivalently as an implication.
+
+${\displaystyle (p\wedge q\wedge \cdots \wedge t)\rightarrow u}$
+
 ## Logic and Procedural Programming
 
 From this illustration, we can see that in Procedural (imperative) Programming, we have to define the procedures, 
