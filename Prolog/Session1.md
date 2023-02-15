@@ -4,6 +4,10 @@ Prolog as the name itself suggests, is the short form of LOGic PROgramming. It i
 
 Logic Programming is one of the Computer Programming Paradigm, in which the program statements express the facts and rules about different problems within a system of formal logic, namely the Horn clauses fragment of first-order logic.
 
+In propositional logic, a logical formula is a Horn clause if it is a clause (disjunction of literals) with at most one positive literal.
+
+${\displaystyle \neg p\lor \neg q\vee \cdots \vee \neg t\vee u}$
+
 ## Logic and Procedural Programming
 
 From this illustration, we can see that in Procedural (imperative) Programming, we have to define the procedures, 
