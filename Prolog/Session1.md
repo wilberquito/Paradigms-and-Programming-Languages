@@ -127,6 +127,15 @@ The "not" operator is also known as the negation-as-failure operator, because it
 
 The "not" operator is one of several built-in meta-predicates in Prolog that allow for more advanced logical reasoning and rule-based programming. Other examples of meta-predicates in Prolog include "call", "findall", and "assert" that we may see latter.
 
+```prolog
+parent(john, mary).
+parent(john, tom).
+parent(mary, peter).
+parent(tom, lisa).
+
+not_siblings(X, Y) :- parent(Z, X), parent(Z, Y), not(X=Y).
+```
+
 ## It's your turn to practice (I)
 
 ### [lovers.pl](Examples/lovers.pl)
