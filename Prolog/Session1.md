@@ -131,7 +131,7 @@ The "not" operator is one of several built-in meta-predicates in Prolog that all
 domestic_animal(cat).
 domestic_animal(dog).
 
-non_domestic_animal(X) -> not(domestic_animal(X)).
+non_domestic_animal(X) :- not(domestic_animal(X)).
 ```
 
 ## It's your turn to practice (I)
