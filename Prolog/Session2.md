@@ -111,3 +111,36 @@ append([1,2],[], L). % L = [1,2]
 append([],[], L). % L = []
 ```
 
+The `append` predicate is really useful, it allows us define other predicates.
+
+```prolog
+% member(X,L) => X in L
+member(X,L) :- append(_,[X| ],L).
+```
+
+```prolog
+% permutation(L1,L2) => L2 is a permutation of L1.
+permutation([],[]).
+permutation(L,[X|Xs]) :- append(V,[X|P],L), append(V,P,W), permutation(W,Xs).
+```
+
+```prolog
+% reverse(L,In) => In is L reversed.
+reverse([],[]).
+reverse([X|Xs],In) :- reverse(Xs,Ps), append(Ps,[X],In).
+```
+
+```prolog
+% prefix(P,L) => P is prefix of L.
+prefix(P,L):- append(P,_,L).
+```
+
+```prolog
+% suffix(S,L) => S is suffix of L.
+suffix(S,L):- append(_,S,L).
+```
+
+
+
+
+
