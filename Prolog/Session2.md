@@ -30,7 +30,7 @@ Examples:
 
 ### List predicates
 
-#### The member predicate.
+#### Member
 
 The first clause `member(X,[X|_])` states that `X` is a member of the list if `X` is the first element of the list.
 
@@ -55,13 +55,13 @@ member(X, [1,2,3]).
 member(1, X). % this one is tricky
 ```
 
-#### A remove predicate
+#### Remove
 
 Let's define a predicate that remove all occurrences of a given element X from a list.
 
 The predicate has three clauses:
 
-The first clause `remove(X,[],[])` states that if the input list is empty, then the output list is also empty.
+The first clause `remove(_,[],[])` states that if the input list is empty, then the output list is also empty.
 
 The second clause `remove(X,[X|L1],L2) :- remove(X,L1,L2)` states that if `X` is the head of the input list, then we remove it and continue 
 recursively with the tail `L1` to produce the output list `L2`.
@@ -76,9 +76,13 @@ If the input list does not contain `X`, then the predicate will return the input
 
 ```prolog
 % remove(X,L1,L2) => L2 is L1 without X.
-remove(X,[],[]).
+remove(_,[],[]).
 remove(X,[X|L1],L2) :- remove(X,L1,L2).
 remove(X,[Y|L1],[Y|L2]) :- remove(X,L1,L2).
 ```
+What happend if you ask more than one solution?
 
+```prolog
+remove(1, [1,2,1],L).
+```
 
