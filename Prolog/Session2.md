@@ -42,8 +42,15 @@ is because the first clause only matches non-empty lists that start with `X`, an
 of the tail. Since an empty list has no head or tail, neither of the clauses will match it. Therefore, when `member` is called with an empty list, Prolog will backtrack 
 and try to find an alternative solution if one exists. If no alternative solution is found, the predicate will simply fail.
 
-```
+```prolog
 % member(X,L) => X appears in L.
 member(X,[X|_]).
 member(X,[_|XS]) :- member(X,XS).
+```
+
+What do you think Prolog will respond to this questions?
+
+```prolog
+member(X, [1,2,3]).
+member(1, X). % this one is tricky
 ```
