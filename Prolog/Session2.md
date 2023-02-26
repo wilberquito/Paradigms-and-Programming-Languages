@@ -132,12 +132,12 @@ reverse([X|Xs],In) :- reverse(Xs,Ps), append(Ps,[X],In).
 
 ```prolog
 % prefix(P,L) => P is prefix of L.
-prefix(P,L):- append(P,_,L).
+prefix(P,L) :- append(P,_,L).
 ```
 
 ```prolog
 % suffix(S,L) => S is suffix of L.
-suffix(S,L):- append(_,S,L).
+suffix(S,L) :- append(_,S,L).
 ```
 
 ## Your turn to practice ;)
@@ -180,7 +180,18 @@ Z is (X + Y) / 2.
 Z = 10.5
 ```
 
+Note that the is operator can only be used with variables on the left-hand side of the operator. And an evaluable arithmetic expression on the right hand.
 
+```prolog
+2+2 is 4.
+no
+
+4 is X. 
+Inst. error
+
+4 is 2+X.
+Inst. error
+```
 
 
 
