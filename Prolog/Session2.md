@@ -140,6 +140,47 @@ prefix(P,L):- append(P,_,L).
 suffix(S,L):- append(_,S,L).
 ```
 
+## Your turn to practice ;)
+
+- Implement the sublist predicate
+
+```
+sublist(Lp, L) :- ...
+```
+
+## Arithmetic
+
+Remember, in Prolog all data structures are terms, numbers like `33, -2, 2.3` are terms and expressions arithmetics like 
+`3+3, 33*3+1...`, are also terms. 
+
+```prolog
+4 = 2+2.
+no
+```
+
+```prolog
+X = 2+2.
+X = 2+2
+```
+
+To evaluate arithmetic expressions you need to use the `is` predicate. Technically, if we have the following expression `E1 is E2`, `E1` unifies with 
+*the arithmetic value* of `E2`. `E2` must be arithmetically evaluable. 
+
+The is operator can be used to perform basic arithmetic operations such as addition, subtraction, multiplication, and division. 
+It can also be used to evaluate more complex expressions involving multiple operations and parentheses.
+
+```prolog
+X is 3 + 4.
+X = 7
+
+Y is X * 2.
+Y = 14
+
+Z is (X + Y) / 2.
+Z = 10.5
+```
+
+
 
 
 
