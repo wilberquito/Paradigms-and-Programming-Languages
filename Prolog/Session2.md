@@ -220,25 +220,14 @@ X = 2+2.
 X = 2+2
 ```
 
-To evaluate arithmetic expressions you need to use the `is` predicate. Technically, if we have the following expression `E1 is E2`, `E1` unifies with
-*the arithmetic value* of `E2`. `E2` must be arithmetically evaluable.
+To evaluate arithmetic expressions you need to use the `is` predicate. Technically, if we have the following expression `E1 is E2`, `E1` **unifies with the arithmetic value** of `E2`. `E2` must be arithmetically evaluable.
 
 The is operator can be used to perform basic arithmetic operations such as addition, subtraction, multiplication, and division.
 It can also be used to evaluate more complex expressions involving multiple operations and parentheses.
 
 ```prolog
-X is 3 + 4.
-X = 7
-```
-
-```prolog
-Y is X * 2.
-Y = 14
-```
-
-```prolog
-Z is (X + Y) / 2.
-Z = 10.5
+X is 3 * 4.
+X = 12
 ```
 
 Note that the `is` operator can only be used with variables on the left-hand side of the operator. And an evaluable arithmetic expression on the right hand.
@@ -289,5 +278,5 @@ X=Y
 
 ```prolog
 2+X==2+Y.
-no.
+no
 ```
