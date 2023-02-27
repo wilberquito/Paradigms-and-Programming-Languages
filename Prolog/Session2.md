@@ -21,11 +21,17 @@ Examples:
 
 ```prolog
 [1,2,3] = [X,Y|L].
-% L=[3], X=1, Y=2
+L=[3], X=1, Y=2
+```
+
+```prolog
 [1,2,3] = [X,Y,Z|L].
-% L=[], X=1, Y=2, Z=3
+L=[], X=1, Y=2, Z=3
+```
+
+```prolog
 [1,2,3] = [X,Y,Z,T].
-% no
+no
 ```
 
 ### List predicates
