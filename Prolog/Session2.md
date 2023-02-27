@@ -241,7 +241,7 @@ Z is (X + Y) / 2.
 Z = 10.5
 ```
 
-Note that the is operator can only be used with variables on the left-hand side of the operator. And an evaluable arithmetic expression on the right hand.
+Note that the `is` operator can only be used with variables on the left-hand side of the operator. And an evaluable arithmetic expression on the right hand.
 
 ```prolog
 2+2 is 4.
@@ -256,4 +256,38 @@ Inst. error
 ```prolog
 4 is 2+X.
 Inst. error
+```
+
+Relational predicates like `<`, `=<`, `>`, `>=`, `=:=` and `=\=` evaluate both sides (as long as they are evaluable).
+
+```prolog
+2+2 =:= 9/2.
+no
+```
+
+```prolog
+2+2 =:= 9//2.
+yes
+```
+
+```prolog
+4 mod 2 >= 2+X.
+Inst. error no
+```
+
+```prolog
+2+2 =\= 3+1.
+no
+```
+
+Notice that the operators `=`, `==` and their negations (`\=`, `=\=`) are not the same. This expresion; `E1 = E2` means, `E1` unifies with `E2` and the expression `E1 == E2` means that they are the same terms.
+
+```prolog
+2+X=2+Y.
+X=Y
+```
+
+```prolog
+2+X==2+Y.
+no.
 ```
