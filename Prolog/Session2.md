@@ -261,7 +261,7 @@ yes
 
 ```prolog
 4 mod 2 >= 2+X.
-Inst. error no
+Inst. error
 ```
 
 ```prolog
@@ -289,4 +289,44 @@ yes
 ```prolog
 2+X==2+X.
 yes
+```
+
+### Factorial predicate
+
+The first clause, `fact(0,1)`, states that the factorial of 0 is 1. The base case.
+
+The second line, `fact(N,F):- N>0, ...`, defines the recursive case for calculating the factorial of N. The N>0 condition ensures that the predicate only applies to positive integers.
+
+The next line, Np is N-1, subtracts 1 from N and assigns the result to a new variable, Np.
+
+The line `fact(Np,F1)` recursively calls the fact predicate with Np as the argument and assigns the result to F1.
+
+Finally, the line `F is F1 * N` calculates the factorial of N by multiplying F1 (the factorial of N-1) by N.
+
+Overall, this definition recursively calculates the factorial of a given positive integer N by multiplying it with the factorial of N-1 until it reaches the base case of 0, where the factorial is defined as 1.
+
+```prolog
+% fact(+N,F) => F is the factorial of N.
+fact(0,1).
+fact(N,F):- N>0,
+            Np is N-1,
+            fact(Np,F1),
+            F is F1 * N.
+```
+
+The predicate `fact`, "does not go in both directions" because +N has to be a definite number due to the use of `is`.
+
+```prolog
+fact(3,6).
+yes
+```
+
+```prolog
+fact(3,F).
+F=6
+```
+
+```prolog
+fact(N,6).
+Inst. error
 ```
