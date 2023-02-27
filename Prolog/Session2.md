@@ -371,3 +371,26 @@ quicksort([X|Xs],L) :- split(X,Xs,Min,Max),
                        quicksort(Max,MaxOrd),
                        append(MinOrd,[X|MaxOrd],L).
 ```
+
+## Your turn to practice (II)
+
+- Implement the sum predicate
+
+```prolog
+% sum_(L,N) => N is the sum of numbers in L
+sum_(L, N) :- ...
+```
+
+- Implement the sum evens predicate, you might need the operator [mod](https://www.swi-prolog.org/pldoc/man?function=mod%2f2)
+
+```prolog
+% sum_evens_(L,N) => N is the sum of the even numbers in L
+sum_evens_(L,N) :- ...
+```
+
+- Implement the gcd predicate
+
+```prolog
+% gcd_(A, B, M) => M is the gcd_ (greatest common division) of A and B
+gcd_(A, B, M) :- ...
+```
