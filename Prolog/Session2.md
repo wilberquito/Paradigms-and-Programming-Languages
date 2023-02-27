@@ -280,3 +280,13 @@ X=Y
 2+X==2+Y.
 no
 ```
+
+```prolog
+2+X=2+X.
+yes
+```
+
+```prolog
+2+X==2+X.
+yes
+```
