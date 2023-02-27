@@ -128,7 +128,9 @@ member(X,L) :- append(_,[X|_],L).
 ```prolog
 % permutation(L1,L2) => L2 is a permutation of L1.
 permutation([],[]).
-permutation(L,[X|Xs]) :- append(V,[X|P],L), append(V,P,W), permutation(W,Xs).
+permutation(L,[X|Xs]) :- append(V,[X|P],L),
+                         append(V,P,W),
+                         permutation(W,Xs).
 ```
 
 ```prolog
@@ -329,4 +331,43 @@ F=6
 ```prolog
 fact(N,6).
 Inst. error
+```
+
+## List and arithmetic
+
+```prolog
+% length(L,N) => N is the length of L.
+length([],0).
+length([_|Xs],N) :- length(Xs,Np), N is Np+1.
+```
+
+```prolog
+% count(L,X,N) => N is the number of times that X appear in L.
+count([],_,0).
+count([X|Xs],X,N) :- count(Xs,X,Np), N is Np+1.
+count([Y|Xs],X,N) :- X\=Y, count(Xs,X,N).
+```
+
+```prolog
+% nessim(L,N,X) => X appear in the N position in L.
+nessim([X|_],0,X).
+nessim([_|Xs],N,X) :- N>0,
+                      Np is N-1,
+                      nessim(Xs,Np,X).
+```
+
+```prolog
+% split(X,L,Min,Max) => Min are the elements of L minors than X, Max are the elements bigger than X
+split( ,[],[],[]).
+split(X,[Y|L],[Y|Mn],Mx) :- Y =< X, split(X,L,Mn,Mx).
+split(X,[Y|L],Mn,[Y|Mx]):- Y > X, split(X,L,Mn,Mx).
+```
+
+```prolog
+% quicksort(L1,L2) => L2 is the sorted list of L1.
+quicksort([],[]).
+quicksort([X|Xs],L) :- split(X,Xs,Min,Max),
+                       quicksort(Min,MinOrd),
+                       quicksort(Max,MaxOrd),
+                       append(MinOrd,[X|MaxOrd],L).
 ```
