@@ -116,7 +116,7 @@ The `append` predicate is really useful, it allows us define other predicates.
 
 ```prolog
 % member(X,L) => X in L
-member(X,L) :- append(_,[X| ],L).
+member(X,L) :- append(_,[X|_],L).
 ```
 
 ```prolog
@@ -174,7 +174,7 @@ sort_insert_(L, Ls) :- ...
 - Implement the union predicate
 
 ```prolog
-% union_(Xs, Ys, Zs) => Z is the union of the sets Xs and Ys. Zs can be a multiset
+% union_(Xs, Ys, Zs) => Zs is the union of the sets Xs and Ys. Zs can be a multiset
 union_(Xs, Ys, Zs) :- ...
 ```
 
@@ -223,10 +223,14 @@ It can also be used to evaluate more complex expressions involving multiple oper
 ```prolog
 X is 3 + 4.
 X = 7
+```
 
+```prolog
 Y is X * 2.
 Y = 14
+```
 
+```prolog
 Z is (X + Y) / 2.
 Z = 10.5
 ```
@@ -236,10 +240,14 @@ Note that the is operator can only be used with variables on the left-hand side 
 ```prolog
 2+2 is 4.
 no
+```
 
+```prolog
 4 is X.
 Inst. error
+```
 
+```prolog
 4 is 2+X.
 Inst. error
 ```
