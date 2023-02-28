@@ -113,6 +113,8 @@ remove(X,[X|L1],L2) :- remove(X,L1,L2).
 remove(X,[Y|L1],[Y|L2]) :- X\=Y, remove(X,L1,L2).
 ```
 
+`X` and `Y` are variables that maight represent the same value, so when the backtracking is done, it tries to demostrate with the third rule `remove(X,[Y|L1],[Y|L2])` and generates a list with values from the first list. To control it, we add the constraint `X\=Y` that forces that the variable `Y` that we use to generate the resulting list is not the same as `X` which is the value we want to remove from the first list.
+
 </details>
 
 #### Append
