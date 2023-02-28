@@ -98,8 +98,6 @@ recursively with the tail `L1` to produce the output list `L2`.
 The third clause `remove(X,[Y|L1],[Y|L2]) :- remove(X,L1,L2)` states that if `X` is not the head of the input list, then we keep the head `Y`
 and continue recursively with the tail `L1` to produce the output list `L2`.
 
-Together, the three clauses cover all possible cases for removing all occurrences of an element `X` from a list.
-
 Note that this predicate will remove all occurrences of `X` from the input list, not just the first occurrence.
 If the input list does not contain `X`, then the predicate will return the input list unchanged as the output list.
 
