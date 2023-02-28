@@ -72,6 +72,13 @@ member(1,X).
 
 #### Remove
 
+```prolog
+% remove(X,L1,L2) => L2 is L1 without X.
+remove(_,[],[]).
+remove(X,[X|L1],L2) :- remove(X,L1,L2).
+remove(X,[Y|L1],[Y|L2]) :- remove(X,L1,L2).
+```
+
 Let's define a predicate that remove all occurrences of a given element X from a list.
 
 The predicate has three clauses:
@@ -89,18 +96,24 @@ Together, the three clauses cover all possible cases for removing all occurrence
 Note: that this predicate will remove all occurrences of `X` from the input list, not just the first occurrence.
 If the input list does not contain `X`, then the predicate will return the input list unchanged as the output list.
 
-```prolog
-% remove(X,L1,L2) => L2 is L1 without X.
-remove(_,[],[]).
-remove(X,[X|L1],L2) :- remove(X,L1,L2).
-remove(X,[Y|L1],[Y|L2]) :- remove(X,L1,L2).
-```
-
 What happend if you ask more than one solution?
 
 ```prolog
 remove(1,[1,2,1],L).
 ```
+
+<details>
+
+<summary>How to fix remove predicate?</summary>
+
+```prolog
+% remove(X,L1,L2) => L2 is L1 without X.
+remove(_,[],[]).
+remove(X,[X|L1],L2) :- remove(X,L1,L2).
+remove(X,[Y|L1],[Y|L2]) :- X\=Y, remove(X,L1,L2).
+```
+
+</details>
 
 #### Append
 
