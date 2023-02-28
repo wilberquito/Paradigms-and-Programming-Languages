@@ -9,8 +9,8 @@ For example, a list of integers `[1, 2, 3, 4]` represents a sequence of four int
 a sequence of two term-atoms.
 
 Lists in Prolog are also recursive data structures, which means that they can be defined in terms of themselves.
-A list is either an empty list, represented as `[]`, or a non-empty list, represented as `[Head | Tail]`, where 'Head' is the first element
-of the list and 'Tail' is the rest of the list.
+A list is either an empty list, represented as `[]`, or a non-empty list, represented as `[Head | Tail]`, where `Head` is the first element
+of the list and `Tail` is the list that follows `Head`.
 
 - The empty list is represented as `[]`.
 - `[X|L]` represents a list with X as its head and L as its tail.
@@ -27,6 +27,11 @@ L=[3], X=1, Y=2
 ```prolog
 [1,2,3] = [X,Y,Z|L].
 L=[], X=1, Y=2, Z=3
+```
+
+```prolog
+[1,2|3,4] = [X,Y|L].
+L=[3,4], X=1, Y=2
 ```
 
 ```prolog
