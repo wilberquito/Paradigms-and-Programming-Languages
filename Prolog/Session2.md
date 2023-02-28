@@ -66,7 +66,8 @@ member(X,[1,2,3]).
 ```
 
 ```prolog
-member(1,X). % this one is tricky
+% this one is tricky
+member(1,X).
 ```
 
 #### Remove
