@@ -93,7 +93,7 @@ and continue recursively with the tail `L1` to produce the output list `L2`.
 
 Together, the three clauses cover all possible cases for removing all occurrences of an element `X` from a list.
 
-Note: that this predicate will remove all occurrences of `X` from the input list, not just the first occurrence.
+Note that this predicate will remove all occurrences of `X` from the input list, not just the first occurrence.
 If the input list does not contain `X`, then the predicate will return the input list unchanged as the output list.
 
 What happend if you ask more than one solution?
@@ -353,7 +353,7 @@ fact(N,F):- N>0,
             F is F1 * N.
 ```
 
-The predicate `fact`, "does not go in both directions" because +N has to be a definite number due to the use of `is`.
+The predicate `fact`, "does not go in both directions" because `N` has to be a defined value due to the use of `is`. That's why, in the documentation of the predicate we use the notation `fact(+N,F)`, where `+N` means; `N` has to be a value.
 
 ```prolog
 fact(3,6).
@@ -425,7 +425,7 @@ sum_(L, N) :- ...
 sum_evens_(L,N) :- ...
 ```
 
-- Implement the gcd predicate
+- Implement the gcd predicate, you might need the operator [mod](https://www.swi-prolog.org/pldoc/man?function=mod%2f2)
 
 ```prolog
 % gcd_(A, B, M) => M is the gcd_ (greatest common division) of A and B
