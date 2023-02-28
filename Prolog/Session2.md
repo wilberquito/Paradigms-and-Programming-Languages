@@ -134,12 +134,25 @@ append([],Ys,Ys).
 append([X|Xs],Ys,[X|Zs]) :- append(Xs,Ys,Zs).
 ```
 
-Example:
+Unification examples of the append predicate:
 
 ```prolog
-append([1,2],[3,4], L). % L = [1,2,3,4]
-append([1,2],[], L). % L = [1,2]
-append([],[], L). % L = []
+append([1,2],[3,4], L).
+L = [1,2,3,4]
+```
+
+```prolog
+append([1,2],L,[1,2,9,8]).
+L = [9,8]
+```
+
+```prolog
+append(Xs,Ys,[1,2,3]).
+Xs=[], Ys=[1,2,3] ;
+Xs=[1], Ys=[2,3] ;
+Xs=[1,2], Ys=[3] ;
+Xs=[1,2,3], Ys=[] ;
+no
 ```
 
 The `append` predicate is really useful, it allows us define other predicates.
