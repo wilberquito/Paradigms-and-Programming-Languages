@@ -17,7 +17,7 @@ of the list and `Tail` is the list that follows `Head`.
 - `[X,Y|L]` represents a list with X and Y as its first two elements and L as its tail.
 - `[X,Y,Z]` represents a list with three elements.
 
-Examples:
+Unification examples with lists:
 
 ```prolog
 [1,2,3] = [X,Y|L].
