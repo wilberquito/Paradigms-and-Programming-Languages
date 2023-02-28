@@ -59,10 +59,13 @@ is because the first clause only matches non-empty lists that start with `X`, an
 of the tail. Since an empty list has no head or tail, neither of the clauses will match it. Therefore, when `member` is called with an empty list, Prolog will backtrack
 and try to find an alternative solution if one exists. If no alternative solution is found, the predicate will simply fail.
 
-What do you think Prolog will respond to this questions?
+What do you think Prolog will respond to the following questions?
 
 ```prolog
 member(X,[1,2,3]).
+```
+
+```prolog
 member(1,X). % this one is tricky
 ```
 
