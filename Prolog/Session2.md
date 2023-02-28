@@ -37,6 +37,11 @@ L=[3,4], X=1, Y=2
 ```
 
 ```prolog
+[1,2|3,4] = [X,Y|L].
+Syntax error
+```
+
+```prolog
 [1,2,3] = [X,Y,Z,T].
 no
 ```
