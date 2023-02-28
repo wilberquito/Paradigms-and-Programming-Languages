@@ -31,7 +31,8 @@ L=[], X=1, Y=2, Z=3
 ```
 
 ```prolog
-[1,2|3,4] = [X,Y|L].
+% Note that the tail of the list is a list
+[1,2|[3,4]] = [X,Y|L].
 L=[3,4], X=1, Y=2
 ```
 
