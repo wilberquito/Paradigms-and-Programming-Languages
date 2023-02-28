@@ -43,6 +43,12 @@ no
 
 #### Member
 
+```prolog
+% member(X,L) => X appears in L.
+member(X,[X|_]).
+member(X,[_|XS]) :- member(X,XS).
+```
+
 The first clause `member(X,[X|_])` states that `X` is a member of the list if `X` is the first element of the list.
 
 The second clause `member(X,[_|XS]) :- member(X,XS)` states that `X` is a member of the list if it is a member of the tail of the list. The `_` is used
@@ -52,12 +58,6 @@ When the `member` predicate is called (recursive or not) with an empty list as t
 is because the first clause only matches non-empty lists that start with `X`, and the second clause only matches non-empty lists where `X` is a member
 of the tail. Since an empty list has no head or tail, neither of the clauses will match it. Therefore, when `member` is called with an empty list, Prolog will backtrack
 and try to find an alternative solution if one exists. If no alternative solution is found, the predicate will simply fail.
-
-```prolog
-% member(X,L) => X appears in L.
-member(X,[X|_]).
-member(X,[_|XS]) :- member(X,XS).
-```
 
 What do you think Prolog will respond to this questions?
 
