@@ -16,6 +16,7 @@ of the list and `Tail` is the list that follows `Head`.
 - `[X|L]` represents a list with X as its head and L as its tail.
 - `[X,Y|L]` represents a list with X and Y as its first two elements and L as its tail.
 - `[X,Y,Z]` represents a list with three elements.
+- The vertical bar symbol `|` is used to represent the division between the `Head` and `Tail` of the list.
 
 Unification examples with lists:
 
