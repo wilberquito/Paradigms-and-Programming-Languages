@@ -119,6 +119,11 @@ remove(X,[Y|L1],[Y|L2]) :- X\=Y, remove(X,L1,L2).
 
 #### Append
 
+```prolog
+append([],Ys,Ys).
+append([X|Xs],Ys,[X|Zs]) :- append(Xs,Ys,Zs).
+```
+
 The predicate is used to concatenate two lists, where the third argument is the result of appending the first two arguments together.
 
 The predicate has two clauses:
@@ -128,11 +133,6 @@ The first clause `append([],Ys,Ys)` states that if the first argument is an empt
 The second clause `append([X|Xs],Ys,[X|Zs]) :- append(Xs,Ys,Zs)` states that if the first argument is a non-empty list with head `X` and tail `Xs`,
 then the result is the list that starts with `X` and continues with the concatenation of `Xs` and `Ys`, which is represented by the variable `Zs`.
 This clause is defined recursively by calling `append` on the tail `Xs`, the second argument `Ys`, and the variable `Zs`.
-
-```prolog
-append([],Ys,Ys).
-append([X|Xs],Ys,[X|Zs]) :- append(Xs,Ys,Zs).
-```
 
 Unification examples of the append predicate:
 
