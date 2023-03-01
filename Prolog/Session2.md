@@ -340,10 +340,10 @@ yes
 ```prolog
 % fact(+N,F) => F is the factorial of N.
 fact(0,1).
-fact(N,F):- N>0,
-            Np is N-1,
-            fact(Np,F1),
-            F is F1 * N.
+fact(N,F) :- N>0,
+             Np is N-1,
+             fact(Np,F1),
+             F is F1 * N.
 ```
 
 The first clause, `fact(0,1)`, states that the factorial of 0 is 1. The base case.
@@ -400,9 +400,9 @@ nessim([_|Xs],N,X) :- N>0,
 
 ```prolog
 % split(X,L,Min,Max) => Min are the elements of L minors than X, Max are the elements bigger than X
-split( ,[],[],[]).
-split(X,[Y|L],[Y|Mn],Mx) :- Y =< X, split(X,L,Mn,Mx).
-split(X,[Y|L],Mn,[Y|Mx]):- Y > X, split(X,L,Mn,Mx).
+split(_,[],[],[]).
+split(X,[Y|L],[Y|Mn],Mx) :- Y=<X, split(X,L,Mn,Mx).
+split(X,[Y|L],Mn,[Y|Mx]) :- Y>X, split(X,L,Mn,Mx).
 ```
 
 ```prolog
