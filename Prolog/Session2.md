@@ -133,7 +133,7 @@ append([],Ys,Ys).
 append([X|Xs],Ys,[X|Zs]) :- append(Xs,Ys,Zs).
 ```
 
-The predicate is used state that the third argument is the result of appending the first two arguments together. This can be used in several ways, being the most evident, to compute the concatenation of two list or to find all possible pairs of lists whose concatenation results in the third list.
+The predicate states that the third argument is the result of appending the first two arguments together. This can be used in several ways, being the most evident, to compute the concatenation of two list or to find all possible pairs of lists whose concatenation results in the third list.
 
 The predicate has two clauses:
 
@@ -295,15 +295,15 @@ Inst. error
 Inst. error
 ```
 
-Relational predicates like `<`, `=<`, `>`, `>=`, `=:=` and `=\=` evaluate both sides (as long as they are evaluable). Roughly is as they where using `is` in both directions.
+Relational predicates like `<`, `=<`, `>`, `>=`, `==` and `=\=` evaluate both sides (as long as they are evaluable). Roughly is as they where using `is` in both directions.
 
 ```prolog
-?- 2+2 =:= 9/2.
+?- 2+2 == 9/2.
 no
 ```
 
 ```prolog
-?- 2+2 =:= 9//2.
+?- 2+2 == 9//2.
 yes
 ```
 
@@ -427,7 +427,7 @@ quicksort([X|Xs],L) :- split(X,Xs,Min,Max),
 sum_(L, N) :- ...
 ```
 
-- Implement the `sum_evens` predicate, you might need the operator [mod](https://www.swi-prolog.org/pldoc/man?function=mod%2f2)
+- Implement the `sum_evens_` predicate, you might need the operator [mod](https://www.swi-prolog.org/pldoc/man?function=mod%2f2)
 
 ```prolog
 % sum_evens_(L,N) => N is the sum of the even numbers in L
