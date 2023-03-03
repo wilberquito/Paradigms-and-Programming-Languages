@@ -434,7 +434,7 @@ sum_(L, N) :- ...
 sum_evens_(L,N) :- ...
 ```
 
-- Implement the `gcd_` predicate, you might need the operator [mod](https://www.swi-prolog.org/pldoc/man?function=mod%2f2)
+- Implement the `gcd_` predicate, you might need the operator [mod](https://www.swi-prolog.org/pldoc/man?function=mod%2f2). You can use the [Euclidian Algorithm](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm) to solve this problem.
 
 ```prolog
 % gcd_(A, B, M) => M is the gcd (greatest common division) of A and B
