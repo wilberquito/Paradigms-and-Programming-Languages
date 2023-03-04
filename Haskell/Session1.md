@@ -84,9 +84,13 @@ Haskell have:
 
 ```math
 \lambda x. x² (\lambda x (x + 1) 2))
+
 (\lambda x. (x + 1) 2)²
+
 (2 + 1)²
+
 3²
+
 9
 ```
 
