@@ -82,9 +82,12 @@ Haskell have:
 
 - Normal order reduction. The expression would be reduced from the outside in
 
-
 ```math
-\sqrt{3}
+\lambda x. x² (\lambda x (x + 1) 2))
+(\lambda x. (x + 1) 2)²
+(2 + 1)²
+3²
+9
 ```
 
 - Infinite extructures
