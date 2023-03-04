@@ -51,7 +51,7 @@ Haskell doesn't have:
 
 Haskell have:
 
-- Strong static type system. The type system in Haskell ensures that every expression in the program has a well-defined type, and that types are checked at compile-time.
+- Strong static type system. The type system in Haskell ensures that every expression in the program has a well-defined type, and type's expressions are checked at compile-time. Inconsistent use of types leads to type errors, and Haskell's compiler is so great that found before executing the program.
 
   ```haskell
   -- (+) is an operator that expects two number to be added, but here, one of it's parameters is a string.
@@ -79,6 +79,13 @@ Haskell have:
   ghci> :t (+) 
   (+) :: Num a => a -> a -> a -> a
   ```
+
+- Normal order reduction. The expression would be reduced from the outside in
+
+
+```math
+\sqrt{3}
+```
 
 - Infinite extructures
 
@@ -138,7 +145,8 @@ Haskell have:
     ```
 
   - Functions are pure, where its return value depends solely on its input parameters. In other words, functions
-    in Haskell respect the referencial transparency property, meaning that they don't produce side effects
+    in Haskell respect the referencial transparency property, meaning that they don't produce side effects. Because functions
+    are pure, formal verification is relatively easy
 
     ```haskell
     double :: Int -> Int
