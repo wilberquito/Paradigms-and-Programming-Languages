@@ -80,20 +80,27 @@ Haskell have:
   (+) :: Num a => a -> a -> a -> a
   ```
 
-- Normal order reduction. The expression would be reduced from the outside in
+- Normal order reduction. Expressions are reduced outside in
 
-```text
-\lambda x. x² (\lambda x (x + 1) 2)) \\
-
-(\lambda x. (x + 1) 2)² \\
-
-(2 + 1)² \\
-
-3² \\
-
-9
-```
-
+  ```text
+  lambda x. x² (lambda x. (x + 1) 2))
+  (lambda x. (x + 1) 2)²
+  (2 + 1)²
+  3²
+  9
+  ```
+  
+  Notice that this is different from the application order reduction that always evaluate the arguments of a function before
+  evaluating the function itself.
+  
+   ```text
+  lambda x. x² (lambda x. (x + 1) 2))
+  lambda x. x² (2 + 1)
+  lambda x. x² (3)
+  3²
+  9
+  ```
+  
 - Infinite extructures
 
   ```haskell
