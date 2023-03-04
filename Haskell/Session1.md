@@ -1,10 +1,10 @@
-# Section 1
+# Session 1
 
 Learning Haskell is much like learning to program for the first time — it's fun! It forces you to think differently.
 
 ## What is Haskell?
 
-Haskell is a pure functional programming language. What exactly functional programming means?
+Haskell is a pure functional programming language. What functional programming means?
 Functional programming is a programming paradigm that emphasizes the use of pure functions and immutability.
 It is a declarative style of programming, in which the focus is on describing what the program should do,
 rather than how it should be done.
@@ -13,141 +13,179 @@ Haskell doesn't have:
 
 - Asigments
 
-```python
-a = 2
-```
+  ```python
+  a = 2
+  ```
 
 - Loops
 
-```python
-numbers = [1, 2, 3, 4]
-for n in numnbers:
-  pass
-```
+  ```python
+  numbers = [1, 2, 3, 4]
+  for n in numnbers:
+    pass
+  ```
 
 - Side effects
 
-```python
-def add1():
-  x = x + 1 # where x came from?
-  return x
-```
+  ```python
+  def add1():
+    x = x + 1 # where x came from?
+    return x
+  ```
 
 - Memory managment
 
-```cpp
-using namespace std;
-void geeks()
-{
-    int var = 20;
+  ```cpp
+  using namespace std;
+  void geeks()
+  {
+      int var = 20;
 
-    // declare pointer variable
-    int* ptr;
+      // declare pointer variable
+      int* ptr;
 
-    // note that data type of ptr and var must be same
-    ptr = &var;
-}
-```
+      // note that data type of ptr and var must be same
+      ptr = &var;
+  }
+  ```
 
 Haskell have:
 
-- Lazy evaluation: this means that unless specifically told, Haskell won't execute functions and
-calculate things until it's really forced to show you a result.
-That goes well with referential transparency and it allows you to think of programs as a series of transformations
-on data. It also allows cool things such as infinite data structures.
+- Strong static type system. The type system in Haskell ensures that every expression in the program has a well-defined type, and that types are checked at compile-time.
 
-- Infinite extructure
+  ```haskell
+  -- (+) is an operator that expects two number to be added, but here, one of it's parameters is a string.
+  ghci> (+) "hello friend" 2
 
-```haskell
-infiniteList :: [Int]
-infiniteList = [1..]
-```
+  <interactive>:4:1: error:
+      • No instance for (Num [Char]) arising from a use of ‘+’
+      • In the expression: (+) "hello friend" 2
+        In an equation for ‘it’: it = (+) "hello friend" 2
+  ```
 
-- Hang
+- Type inference. Everything in Haskell has a type, so the compiler can reason quite a lot about your program before compiling it, Unlike Java or Python, Haskell has type inference. If we write a number, we don't have to tell Haskell it's a number. It can infer that on its own, so we don't have to explicitly write out the types of our functions and expressions to get things done.
 
-```haskell
-mayHang :: a -> b -> b
-mayHang x y = y
+  ```haskell
+  ghci> :t 'a'  
+  'a' :: Char  
+  ghci> :t True  
+  True :: Bool  
+  ghci> :t "HELLO!"  
+  "HELLO!" :: [Char]  
+  ghci> :t (True, 'a')  
+  (True, 'a') :: (Bool, Char)  
+  ghci> :t 4 == 5  
+  4 == 5 :: Bool
+  ghci> :t (+) 
+  (+) :: Num a => a -> a -> a -> a
+  ```
 
-mayHang infiniteList (1 + 1) -- it does'nt hang
-mayHang (1 + 1) infiniteList -- it hangs
-```
+- Infinite extructures
 
-- Functions, it's all you need (to compute).
+  ```haskell
+  infiniteList :: [Int]
+  infiniteList = [1..]
+  ```
 
-In mathematics the application of function is denotated with parenthesis:
+- Lazy evaluation
 
-```text
-f (a, b) + c × d -- applies the function f to the parameters a and b
-```
+  ```haskell
+  mayHang :: a -> b -> b
+  mayHang x y = y
+  ```
 
-In Haskell the function application is denotated by a space:
+  ```haskell
+  ghci> mayHang infiniteList (1 + 1)
+  ```
 
-```haskell
-f a b + c * d -- same as f (a, b) + c × d
-```
+  ```haskell
+  ghci> mayHang (1 + 1) infiniteList
+  ```
 
-In Haskell the application of functions has maximum priority:
+- Functions, it's all you need (to compute)
 
-```haskell
-g a + b -- means (g a) + b and NO g (a + b)
-```
+  - In mathematics the application of function is denotated with parenthesis:
 
-In Haskell the compound arguments go between parentheses:
+    ```text
+    f (a, b) + c × d -- applies the function f to the parameters a and b
+    ```
 
-```haskell
-f (a + b) c -- applies f function to 2 arguments.
-```
+  - In Haskell the function application is denotated by a space:
 
-In Haskell functions are considered first-class citizens, which means they can be passed as arguments,
-returned as values, and composed together to form more complex operations.
-Functions in functional programming are also pure, meaning they do not have side effects and always produce
-the same output for a given input.
+    ```haskell
+    f a b + c * d -- same as f (a, b) + c × d
+    ```
 
-```haskell
-map :: (a -> b) -> [a] -> [b]
-map f []     = []
-map f (x:xs) = f x : map f xs
-```
+  - The application of functions has maximum priority:
 
-Curry functions, every function in Haskell officially only takes one parameter. So how is it possible that we
-defined and used several functions that take more than one parameter so far? Well, it's a clever trick!
-All the functions that accepted several parameters so far have been curried functions.
+    ```haskell
+    g a + b -- means (g a) + b and NO g (a + b)
+    ```
+    
+  - Compound arguments go between parentheses:
 
-The following two calls are equivalent:
+    ```haskell
+    f (a + b) c -- applies f function to 2 arguments.
+    ```
 
-```haskell
-max :: Ord a => a -> a -> a -- same as max :: Ord a => a -> (a -> a)
-max 4 5
-(max 4) 5
-```
+  - In Haskell functions are considered first-class citizens, which means they can be passed as arguments,
+    returned as values, and composed together to form more complex operations.
+    
+    ```haskell
+    map :: (a -> b) -> [a] -> [b]
+    map f []     = []
+    map f (x:xs) = f x : map f xs
+    ```
 
-Does other languages support this feature? not by default, for example, in JS you can emulate this as:
+  - Functions are pure, where its return value depends solely on its input parameters. In other words, functions
+    in Haskell respect the referencial transparency property, meaning that they don't produce side effects.
 
-```js
-function max(a) {
-  return function(b) {
-    return a > b ? a : b
-  }
-}
+    ```haskell
+    double :: Int -> Int
+    double x = x * 2
+    ```
 
-max(4)(5)
-```
+  - Curried functions, every function in Haskell only takes one parameter. Didn't wee see functions that take more than one parameter so far? 
+    Well, it's a clever trick!. All the functions that accepted several parameters so far have been curried functions. 
+    Currying is the process of transforming a function that takes multiple arguments, into a function that takes just a single argument 
+    and returns another function which accepts further arguments, one by one, that the original function would receive in the rest of that tuple.
 
-- Static type system: When you compile your program, the compiler knows which piece of code is a number,
-which is a string and so on. That means that a lot of possible errors are caught at compile time.
-Haskell uses a very good type system that has type inference. That means that you don't have to explicitly label every piece of code with a type because the type
-system can intelligently figure out a lot about it.
+    For example:
 
-Error data type detected by Haskell compiler example:
+    ```haskell
+    -- same as max :: Ord a => a -> (a -> a)
+    max :: Ord a => a -> a -> a 
+    ```
+    
+    ```haskell
+    ghci> max 4 5
+    5
+    ```
+    
+    ```haskell
+    ghci> let f = max 4
+    ghci> f 5
+    5
+    ```
 
-```haskell
-(+) "hello friend" 2 -- (+) is a operator that expects to number to be added, but here, one of it's parameters is a string.
-```
+    Does other languages support this feature? the vast majority don't. For example, in JS you can emulate this as:
 
-Type system inference example:
-
-```haskell
--- greed :: [Char]
-greed = "Hello world!" -- you don't need to specify to the compiler that greeds is a function that returns a list of chars
-```
+    ```js
+    function max(a) {
+      return function(b) {
+        return a > b ? a : b
+      }
+    }
+    ```
+    
+    or
+    
+     ```js
+    const max = (a) => (b) => a > b ? a : b
+    ```
+    
+    ```js
+    const f = max(4)
+    f(5)
+    5
+    ```
