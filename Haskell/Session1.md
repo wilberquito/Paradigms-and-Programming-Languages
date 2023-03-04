@@ -104,32 +104,32 @@ Haskell have:
 
 - Functions, it's all you need (to compute)
 
-  - In mathematics the application of function is denotated with parenthesis:
+  - In mathematics the application of function is denotated with parenthesis
 
     ```text
     f (a, b) + c × d -- applies the function f to the parameters a and b
     ```
 
-  - In Haskell the function application is denotated by a space:
+  - In Haskell the function application is denotated by a space
 
     ```haskell
     f a b + c * d -- same as f (a, b) + c × d
     ```
 
-  - The application of functions has maximum priority:
+  - The application of functions has maximum priority
 
     ```haskell
     g a + b -- means (g a) + b and NO g (a + b)
     ```
     
-  - Compound arguments go between parentheses:
+  - Compound arguments go between parentheses
 
     ```haskell
     f (a + b) c -- applies f function to 2 arguments.
     ```
 
   - In Haskell functions are considered first-class citizens, which means they can be passed as arguments,
-    returned as values, and composed together to form more complex operations.
+    returned as values, and composed together to form more complex operations
     
     ```haskell
     map :: (a -> b) -> [a] -> [b]
@@ -138,7 +138,7 @@ Haskell have:
     ```
 
   - Functions are pure, where its return value depends solely on its input parameters. In other words, functions
-    in Haskell respect the referencial transparency property, meaning that they don't produce side effects.
+    in Haskell respect the referencial transparency property, meaning that they don't produce side effects
 
     ```haskell
     double :: Int -> Int
@@ -148,9 +148,7 @@ Haskell have:
   - Curried functions, every function in Haskell only takes one parameter. Didn't wee see functions that take more than one parameter so far? 
     Well, it's a clever trick!. All the functions that accepted several parameters so far have been curried functions. 
     Currying is the process of transforming a function that takes multiple arguments, into a function that takes just a single argument 
-    and returns another function which accepts further arguments, one by one, that the original function would receive in the rest of that tuple.
-
-    For example:
+    and returns another function which accepts further arguments, one by one, that the original function would receive in the rest of that tuple
 
     ```haskell
     -- same as max :: Ord a => a -> (a -> a)
