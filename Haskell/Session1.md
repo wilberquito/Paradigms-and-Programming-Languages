@@ -2,12 +2,22 @@
 
 Learning Haskell is much like learning to program for the first time — it's fun! It forces you to think differently.
 
+## Functional programming
+
+Functional programming is a programming paradigm that is based on the principles of lambda calculus. Lambda calculus is a formal system developed in the 1930s by [Alonzo Church](https://es.wikipedia.org/wiki/Alonzo_Church) as a way of representing mathematical functions.
+
+With functional programming we aim to write clear, concise, and highly abstracted programs. Functional programming emphasizes in the use of pure functions and immutability. It is a declarative style of programming, in which the focus is on describing what the program should do,
+rather than how it should be done.
+
+> 1936 - Alan Turing invents every programming language that will ever be but is shanghaied by British Intelligence to be 007 before he can patent them.
+
+> 1936 - Alonzo Church also invents every language that will ever be but does it better. His lambda calculus is ignored because it is insufficiently C-like. This criticism occurs in spite of the fact that C has not yet been invented.
+
 ## What is Haskell?
 
-Haskell is a pure functional programming language. What functional programming means?
-Functional programming is a programming paradigm that emphasizes the use of pure functions and immutability.
-It is a declarative style of programming, in which the focus is on describing what the program should do,
-rather than how it should be done.
+Haskell is a pure functional programming language.
+
+> 1990 - A committee formed by Simon Peyton-Jones, Paul Hudak, Philip Wadler, Ashton Kutcher, and People for the Ethical Treatment of Animals creates Haskell, a pure, non-strict, functional language. Haskell gets some resistance due to the complexity of using monads to control side effects. Wadler tries to appease critics by explaining that "a monad is a monoid in the category of endofunctors, what's the problem?"
 
 Haskell doesn't have:
 
