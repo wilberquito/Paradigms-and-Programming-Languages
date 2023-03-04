@@ -82,7 +82,7 @@ Haskell have:
 
 - Normal order reduction. The expression would be reduced from the outside in
 
-```math
+```text
 \lambda x. x² (\lambda x (x + 1) 2)) \\
 
 (\lambda x. (x + 1) 2)² \\
