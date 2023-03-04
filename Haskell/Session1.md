@@ -83,13 +83,13 @@ Haskell have:
 - Normal order reduction. The expression would be reduced from the outside in
 
 ```math
-\lambda x. x² (\lambda x (x + 1) 2))
+\lambda x. x² (\lambda x (x + 1) 2)) \\
 
-(\lambda x. (x + 1) 2)²
+(\lambda x. (x + 1) 2)² \\
 
-(2 + 1)²
+(2 + 1)² \\
 
-3²
+3² \\
 
 9
 ```
