@@ -21,10 +21,11 @@ Haskell is a pure functional programming language.
 
 Haskell doesn't have:
 
-- Asigments
+- Asigments, but we do have binding
 
   ```python
   a = 2
+  a = 1
   ```
 
 - Loops
@@ -39,6 +40,7 @@ Haskell doesn't have:
 
   ```python
   def add1():
+    global x
     x = x + 1 # where x came from?
     return x
   ```
@@ -61,7 +63,7 @@ Haskell doesn't have:
 
 Haskell have:
 
-- Strong static type system. The type system in Haskell ensures that every expression in the program has a well-defined type, and type's expressions are checked at compile-time. Inconsistent use of types leads to type errors, and Haskell's compiler is so great that found before executing the program.
+- Strong static type system. The type system in Haskell ensures that every expression in the program has a well-defined type, and type's expressions are checked at compile-time. Inconsistent use of types leads to type errors, and Haskell's compiler is so great that find them before executing the program.
 
   ```haskell
   -- (+) is an operator that expects two number to be added, but here, one of it's parameters is a string.
@@ -87,7 +89,7 @@ Haskell have:
   ghci> :t 4 == 5  
   4 == 5 :: Bool
   ghci> :t (+) 
-  (+) :: Num a => a -> a -> a -> a
+  (+) :: Num a => a -> a -> a
   ```
 
 - Normal order reduction. Expressions are reduced outside in
@@ -180,10 +182,11 @@ Haskell have:
   - Curried functions, every function in Haskell only takes one parameter. Didn't wee see functions that take more than one parameter so far? 
     Well, it's a clever trick!. All the functions that accepted several parameters so far have been curried functions. 
     Currying is the process of transforming a function that takes multiple arguments, into a function that takes just a single argument 
-    and returns another function which accepts further arguments, one by one, that the original function would receive in the rest of that tuple
-
+    and returns another function which accepts further arguments, one by one, that the original function would receive.
+    
     ```haskell
     -- same as max :: Ord a => a -> (a -> a)
+    ghci> :t max
     max :: Ord a => a -> a -> a 
     ```
     
