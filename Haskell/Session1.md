@@ -17,8 +17,6 @@ rather than how it should be done.
 
 A text editor and a Haskell compiler. A good way to get started is to downlaod [GHCup](https://www.haskell.org/ghcup/) which is the main installer for general purpose language Haskell. Once you had downloaded any GHC version (Haskell compiler) you can take a Haskell script with `.hs` extension and compile it but it also has an interactive mode which allows you to interactively interact with scripts.
 
-![GHCup](../Haskell/Gif/ghcup.gif)
-
 Suppose we have the following Haskell source code, which we place in a file Main.hs:
 
 ```haskell
@@ -77,8 +75,11 @@ Haskell doesn't have:
 
   ```python
   def add1():
+    # This is unsafe, 
+    # I can mutate the state of the app
+    # and it's difficult to track 💀
     global x
-    x = x + 1 # where x came from?
+    x = x + 1
     return x
   ```
 
@@ -129,8 +130,8 @@ Haskell have:
   (+) :: Num a => a -> a -> a
   ```
 
-- Normal order reduction. Expressions are reduced outside in.
-  
+- Normal order reduction. Expressions are reduced outside in. 
+
   Example
   
   ```haskell
@@ -153,20 +154,62 @@ Haskell have:
 
   ```text
   lambda x. x² (lambda x. (x + 1) 2))
+  ==> { by square definition }
   (lambda x. (x + 1) 2)²
+  ==> { by add1 definition }
   (2 + 1)²
+  ==> { by (+) operator }
   3²
+  ==> { by (^) operator }
   9
   ```
+  
+  This aprouch has many benefits
+  
+  - If the expression has normal form, a reduction by means of this order reaches it. (Standardization theorem).
+  - Expressions are passed as arguments without necessarily evaluating (pass by name)
+  - Any time you give a value a name, it gets shared. This means that every occurrence of the name points at
+    the same (potentially unevaluated) expression (Sharing)
+    
+    Example
+    
+    ```haskell
+    square x = x*x
+    ```
+    
+    Based on the previous sections, you might imagine evaluation works like the following.
+    
+    ```text
+    square (2+2)
+    ==> (2+2) * (2+2)   -- definition of square
+    ==>   4   * (2+2)   -- (*) forces left argument
+    ==>   4   *   4     -- (*) forces right argument
+    ==>      16         -- definition of (*)
+    ```
+    
+    However, what really happens is that the expression 2+2 named by the variable x is only computed once. 
+    The result of the evaluation is then shared between the two occurrences of x inside square.
+    
+    ```text
+    square (2+2)
+    ==> (2+2) * (2+2)
+    ==>   4   *   4
+    ==>      16
+    ```
+  
   
   Notice that this is different from the application order reduction that always evaluate the arguments of a function before
   evaluating the function itself.
   
    ```text
   lambda x. x² (lambda x. (x + 1) 2))
+  ==> { by add1 definition }
   lambda x. x² (2 + 1)
+  ==> { by (+) operator }
   lambda x. x² (3)
+  ==> { by square definition }
   3²
+  ==> { by (^) operator }
   9
   ```
   
