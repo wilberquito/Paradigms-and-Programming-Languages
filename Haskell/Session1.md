@@ -129,7 +129,26 @@ Haskell have:
   (+) :: Num a => a -> a -> a
   ```
 
-- Normal order reduction. Expressions are reduced outside in
+- Normal order reduction. Expressions are reduced outside in.
+  
+  Example
+  
+  ```haskell
+  -- equivalent to: 
+  -- add1 = (+1)
+  add1 x = x + 1
+
+  -- equivalent to: 
+  -- square = (^2)
+  square x = x^2
+  ```
+  
+  ```haskell
+  ghci> square(add1 2)
+  ```
+  
+  The evaluator look for a redex in the expression, reduce it and repeat this process until the expression is in normal form.
+  When an expression cannot be further reduced it is said to be in normal form.
 
   ```text
   lambda x. x² (lambda x. (x + 1) 2))
