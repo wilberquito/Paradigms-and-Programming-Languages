@@ -145,6 +145,7 @@ Haskell have:
   
   ```haskell
   ghci> square(add1 2)
+  9
   ```
   
   The evaluator look for a redex in the expression, reduce it and repeat this process until the expression is in normal form.
