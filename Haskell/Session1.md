@@ -15,7 +15,38 @@ rather than how it should be done.
 
 ## What you need to dive in?
 
-A text editor and a Haskell compiler. A good way to get started is to downlaod [GHCup](https://www.haskell.org/ghcup/) which is the main installer for general purpose language Haskell. Once you had downloaded any GHC version (Haskell compiler) you can take a Haskell script with `.hs` extension and compile it but it also has an interactive mode which allows you to interactively interact with scripts. For learning it's a lot easier and faster than compiling every time you make a change and then running the program from the prompt. The interactive mode is invoked by typing in `ghci` at your prompt. If you have defined some functions in a file called, say, *myfunctions.hs*, you load up those functions by typing in `:l myfunctions` and then you can play with them, provided *myfunctions.hs* is in the same folder from which ghci was invoked. If you change the `.hs` script, just run `:l myfunctions` again or do `:r`, which is equivalent because it reloads the current script.
+A text editor and a Haskell compiler. A good way to get started is to downlaod [GHCup](https://www.haskell.org/ghcup/) which is the main installer for general purpose language Haskell. Once you had downloaded any GHC version (Haskell compiler) you can take a Haskell script with `.hs` extension and compile it but it also has an interactive mode which allows you to interactively interact with scripts.
+
+Suppose we have the following Haskell source code, which we place in a file Main.hs:
+
+```haskell
+main = print (fac 20)
+
+fac 0 = 1
+fac n = n * fac (n-1)
+```
+
+You can save Main.hs anywhere you like, but if you save it somewhere other than the current directory then we will need to change to the right directory in GHCi:
+
+```haskell
+ghci> :cd dir
+```
+
+To load a Haskell source file into GHCi, use the `:load` command:
+
+```haskell
+ghci> :load Main
+Compiling Main             ( Main.hs, interpreted )
+Ok, modules loaded: Main.
+```
+
+If you make some changes to the source code and want GHCi to recompile the program, give the `:reload` command. The program will be recompiled as necessary, with GHCi doing its best to avoid actually recompiling modules if their external dependencies haven’t changed.
+
+```haskell
+ghci> :reload
+Compiling Main                ( Main.hs, interpreted )
+Ok, modules loaded: Main.
+```
 
 ## What is Haskell?
 
@@ -213,11 +244,9 @@ Haskell have:
         return a > b ? a : b
       }
     }
-    ```
     
-    or
+    // or
     
-     ```js
     const max = (a) => (b) => a > b ? a : b
     ```
     
