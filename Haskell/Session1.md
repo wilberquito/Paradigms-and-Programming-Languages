@@ -17,6 +17,8 @@ rather than how it should be done.
 
 A text editor and a Haskell compiler. A good way to get started is to downlaod [GHCup](https://www.haskell.org/ghcup/) which is the main installer for general purpose language Haskell. Once you had downloaded any GHC version (Haskell compiler) you can take a Haskell script with `.hs` extension and compile it but it also has an interactive mode which allows you to interactively interact with scripts.
 
+![GHCup](../Haskell/Gif/ghcup.gif)
+
 Suppose we have the following Haskell source code, which we place in a file Main.hs:
 
 ```haskell
