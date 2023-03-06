@@ -13,6 +13,10 @@ rather than how it should be done.
 
 > 1936 - Alonzo Church also invents every language that will ever be but does it better. His lambda calculus is ignored because it is insufficiently C-like. This criticism occurs in spite of the fact that C has not yet been invented.
 
+## What you need to dive in?
+
+A text editor and a Haskell compiler. A good way to get started is to downlaod [GHCup](https://www.haskell.org/ghcup/) which is the main installer for general purpose language Haskell. Once you had downloaded any GHC version (Haskell compiler) you can take a Haskell script with `.hs` extension and compile it but it also has an interactive mode which allows you to interactively interact with scripts. For learning it's a lot easier and faster than compiling every time you make a change and then running the program from the prompt. The interactive mode is invoked by typing in `ghci` at your prompt. If you have defined some functions in a file called, say, *myfunctions.hs*, you load up those functions by typing in `:l myfunctions` and then you can play with them, provided *myfunctions.hs* is in the same folder from which ghci was invoked. If you change the `.hs` script, just run `:l myfunctions` again or do `:r`, which is equivalent because it reloads the current script.
+
 ## What is Haskell?
 
 Haskell is a pure functional programming language.
