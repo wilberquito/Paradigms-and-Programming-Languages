@@ -271,8 +271,7 @@ Haskell have:
     ```
 
   - Functions are pure, where its return value depends solely on its input parameters. In other words, functions
-    in Haskell respect the referencial transparency property, meaning that they don't produce side effects. Because functions
-    are pure, formal verification is relatively easy
+    in Haskell respect don't produce side effects. Because functions are pure, formal verification is relatively easy
 
     ```haskell
     double :: Int -> Int
