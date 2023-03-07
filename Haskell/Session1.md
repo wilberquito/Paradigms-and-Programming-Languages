@@ -215,7 +215,7 @@ Haskell have:
   
   If an incorrect redex is selected, the expression may fail to produce its normal form.
   
-  Ejemplo:
+  Example
   
   ```haskell
   infinite :: Integer
