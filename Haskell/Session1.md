@@ -153,9 +153,9 @@ Haskell have:
   When an expression cannot be further reduced it is said to be in normal form.
 
   ```text
-  lambda x. x² (lambda x. (x + 1) 2))
+  λx. x² (λx. (x + 1) 2))
   ==> { by square definition }
-  (lambda x. (x + 1) 2)²
+  (λx. (x + 1) 2)²
   ==> { by add1 definition }
   (2 + 1)²
   ==> { by (+) operator }
@@ -202,17 +202,30 @@ Haskell have:
   evaluating the function itself.
   
    ```text
-  lambda x. x² (lambda x. (x + 1) 2))
+  λx. x² (λx. (x + 1) 2))
   ==> { by add1 definition }
-  lambda x. x² (2 + 1)
+  λx. x² (2 + 1)
   ==> { by (+) operator }
-  lambda x. x² (3)
+  λx. x² (3)
   ==> { by square definition }
   3²
   ==> { by (^) operator }
   9
   ```
   
+  If an incorrect redex is selected, the expression may fail to produce its normal form.
+  
+  Ejemplo:
+  
+  ```haskell
+  infinite :: Integer
+  infinite = 1 + infinito
+  
+  zero :: Integer → Integer
+  zero x = 0
+  ```
+  
+ 
 - Infinite extructures
 
   ```haskell
