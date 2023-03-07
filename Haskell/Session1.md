@@ -154,13 +154,13 @@ Haskell have:
 
   ```text
   λx. x² (λx. (x + 1) 2))
-  ==> { by square definition }
+  ===> { by square definition }
   (λx. (x + 1) 2)²
-  ==> { by add1 definition }
+  ===> { by add1 definition }
   (2 + 1)²
-  ==> { by (+) operator }
+  ===> { by (+) operator }
   3²
-  ==> { by (^) operator }
+  ===> { by (^) operator }
   9
   ```
   
@@ -181,10 +181,10 @@ Haskell have:
     
     ```text
     square (2+2)
-    ==> (2+2) * (2+2)   -- definition of square
-    ==>   4   * (2+2)   -- (*) forces left argument
-    ==>   4   *   4     -- (*) forces right argument
-    ==>      16         -- definition of (*)
+    ===> (2+2) * (2+2)   -- definition of square
+    ===>   4   * (2+2)   -- (*) forces left argument
+    ===>   4   *   4     -- (*) forces right argument
+    ===>      16         -- definition of (*)
     ```
     
     However, what really happens is that the expression 2+2 named by the variable x is only computed once. 
@@ -192,9 +192,9 @@ Haskell have:
     
     ```text
     square (2+2)
-    ==> (2+2) * (2+2)
-    ==>   4   *   4
-    ==>      16
+    ===> (2+2) * (2+2)
+    ===>   4   *   4
+    ===>      16
     ```
   
   
@@ -203,13 +203,13 @@ Haskell have:
   
    ```text
   λx. x² (λx. (x + 1) 2))
-  ==> { by add1 definition }
+  ===> { by add1 definition }
   λx. x² (2 + 1)
-  ==> { by (+) operator }
+  ===> { by (+) operator }
   λx. x² (3)
-  ==> { by square definition }
+  ===> { by square definition }
   3²
-  ==> { by (^) operator }
+  ===> { by (^) operator }
   9
   ```
   
@@ -225,6 +225,30 @@ Haskell have:
   zero x = 0
   ```
   
+  ```text
+  ∀n :: Integer. zero n => 0
+  ```
+  
+  If we try to to produce the normal form with the application order reduction, it hangs.
+  
+  ```text
+  zero infinite
+  ===> { by infinite definition }
+  cero (1 + inf inito)
+  ===> { by infinite defintion }
+  cero (1 + (1 + inf inito))
+  ===> { by infinite definition }
+  . . .
+  ```
+  
+  On the other hand, if we use normal order reduction, it generates the normal form.
+  
+   ```text
+  zero infinite
+  ===> { by zero defintion }
+  0
+  . . .
+  ```
  
 - Infinite extructures
 
