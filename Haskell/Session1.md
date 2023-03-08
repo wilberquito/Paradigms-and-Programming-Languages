@@ -130,7 +130,7 @@ Haskell have:
   (+) :: Num a => a -> a -> a
   ```
 
-- Normal order reduction. Expressions are reduced outside in. 
+- Normal order reduction. Expressions are reduced outside-in. 
 
   Example
   
@@ -177,7 +177,7 @@ Haskell have:
     square x = x*x
     ```
     
-    Based on the previous sections, you might imagine evaluation works like the following.
+    You might imagine evaluation works like the following
     
     ```text
     square (2+2)
@@ -187,8 +187,8 @@ Haskell have:
     ===>      16         -- definition of (*)
     ```
     
-    However, what really happens is that the expression 2+2 named by the variable x is only computed once. 
-    The result of the evaluation is then shared between the two occurrences of x inside square.
+    However, what really happens is that the expression `2+2` named by the variable `x` is only computed once. 
+    The result of the evaluation is then shared between the two occurrences of `x`.
     
     ```text
     square (2+2)
@@ -197,9 +197,8 @@ Haskell have:
     ===>      16
     ```
   
-  
-  Notice that this is different from the application order reduction that always evaluate the arguments of a function before
-  evaluating the function itself.
+  Notice that the normal order reduction is different from the application order reduction that always evaluate the arguments of a function before
+  evaluating the function itself. Evaluation process is inside-out.
   
    ```text
   λx. x² (λx. (x + 1) 2))
@@ -272,7 +271,7 @@ Haskell have:
   ghci> mayHang (1 + 1) infiniteList
   ```
 
-- Functions, it's all you need (to compute)
+- Functions it's all you need (to compute)
 
   - In mathematics the application of function is denotated with parenthesis
 
@@ -308,7 +307,7 @@ Haskell have:
     ```
 
   - Functions are pure, where its return value depends solely on its input parameters. In other words, functions
-    in Haskell respect don't produce side effects. Because functions are pure, formal verification is relatively easy
+    in Haskell don't produce side effects. Because functions are pure, formal verification is relatively easy.
 
     ```haskell
     double :: Int -> Int
