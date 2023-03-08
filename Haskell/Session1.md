@@ -101,7 +101,7 @@ Haskell doesn't have:
 
 Haskell have:
 
-- Strong static type system. The type system in Haskell ensures that every expression in the program has a well-defined type, and type's expressions are checked at compile-time. Inconsistent use of types leads to type errors, and Haskell's compiler is so great that find them before executing the program.
+- Static type system. The type system in Haskell ensures that every expression in the program has a well-defined type, and type's expressions are checked at compile-time. Inconsistent use of types leads to type errors, and Haskell's compiler is so great that find them before executing the program.
 
   ```haskell
   -- (+) is an operator that expects two number to be added, but here, one of it's parameters is a string.
@@ -217,8 +217,9 @@ Haskell have:
   Example
   
   ```haskell
+  -- What happend if you call infinite by itself?
   infinite :: Integer
-  infinite = 1 + infinito
+  infinite = 1 + infinite
   
   zero :: Integer → Integer
   zero x = 0
@@ -256,7 +257,8 @@ Haskell have:
   infiniteList = [1..]
   ```
 
-- Lazy evaluation
+- Lazy evaluation, values are only evaluated when they are needed. This makes it possible to work with 
+  infinite data structures, and also makes pure programs more efficient.
 
   ```haskell
   mayHang :: a -> b -> b
@@ -331,7 +333,7 @@ Haskell have:
     ```
     
     ```haskell
-    ghci> let f = max 4
+    ghci> f = max 4
     ghci> f 5
     5
     ```
@@ -344,10 +346,6 @@ Haskell have:
         return a > b ? a : b
       }
     }
-    
-    // or
-    
-    const max = (a) => (b) => a > b ? a : b
     ```
     
     ```js
