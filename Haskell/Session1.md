@@ -129,7 +129,19 @@ Haskell have:
   ghci> :t (+) 
   (+) :: Num a => a -> a -> a
   ```
-
+  
+  Since Haskell has type inference, you don’t need to give any type annotations. 
+  However even though type annotations aren’t required, there are multiple reasons to add them.
+  
+  ```haskell
+  doubleMe :: Int -> Int
+  doubleMe x = x + x  
+  ```
+  
+  - They act as documentation
+  - They act as assertions that the compiler checks: help you spot mistakes
+  - You can use type annotations to give a function a narrower type than Haskell infers
+  
 - Normal order reduction. Expressions are reduced outside-in. 
 
   Example
@@ -137,7 +149,7 @@ Haskell have:
   ```haskell
   -- equivalent to: 
   -- add1 = (+1)
-  add1 x = x + 1
+  add1 x = x+1
 
   -- equivalent to: 
   -- square = (^2)
@@ -153,9 +165,9 @@ Haskell have:
   When an expression cannot be further reduced it is said to be in normal form.
 
   ```text
-  λx. x² (λx. (x + 1) 2))
+  λx. x² (λx. (x+1) 2))
   ===> { by square definition }
-  (λx. (x + 1) 2)²
+  (λx. (x+1) 2)²
   ===> { by add1 definition }
   (2 + 1)²
   ===> { by (+) operator }
@@ -201,9 +213,9 @@ Haskell have:
   evaluating the function itself. Evaluation process is inside-out.
   
    ```text
-  λx. x² (λx. (x + 1) 2))
+  λx. x² (λx. (x+1) 2))
   ===> { by add1 definition }
-  λx. x² (2 + 1)
+  λx. x² (2+1)
   ===> { by (+) operator }
   λx. x² (3)
   ===> { by square definition }
@@ -221,7 +233,7 @@ Haskell have:
   infinite :: Integer
   infinite = 1 + infinite
   
-  zero :: Integer → Integer
+  zero :: Integer -> Integer
   zero x = 0
   ```
   
@@ -234,9 +246,9 @@ Haskell have:
   ```text
   zero infinite
   ===> { by infinite definition }
-  cero (1 + inf inito)
+  cero (1 + infinite)
   ===> { by infinite defintion }
-  cero (1 + (1 + inf inito))
+  cero (1 + (1 + infinite))
   ===> { by infinite definition }
   . . .
   ```
