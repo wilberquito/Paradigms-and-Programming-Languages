@@ -48,9 +48,27 @@ Let's see how the search tree is generated for the query:
 ?- q(X).
 ```
 
-The corresponding search tree.
-
 ![Search tree 01](Img/search_tree_01.png)
+
+As the search is depth-first, the solutions are enumerated from the deepest left to the right. Hence the solutions are `X=2, X=2, X=3, X=1, X=0`.
+
+### A second example
+
+Do you rememeber de predicate `member`?
+
+```prolog
+member(X,[X|_]).
+member(X,[_|L]) :- member(X,L).
+```
+
+Say we have a query `member(X,[1,2,3]).`
+
+Sometimes variables need to be renamed when drawing a search tree. This is required when
+there is a variable occuring in a query that is also used in the rule.
+In the tree below the renaming is represented as  `X’, X’’`. 
+However, you could also chose `X1, X2` or other variables.
+
+The corresponding search tree.
 
 http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Programacion%20en%20PROLOG(2)-2009-ByN.pdf
 
