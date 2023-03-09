@@ -77,7 +77,7 @@ The solutions are enumerated from the left to the right. As `X=X'` and `X'=X'' -
 
 ### A second example
 
-Do you rememeber de predicate `member`?
+Do you remember de predicate `member`?
 
 ```prolog
 member(X,[X|_]).
