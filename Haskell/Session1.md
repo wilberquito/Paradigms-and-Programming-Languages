@@ -58,20 +58,27 @@ Haskell is a pure functional programming language.
 
 #### Asigments
 
-But we do have name binding.
-
 ```python
 a = 2
 a = 1
 ```
 
-#### Loops
+But we do have name binding.
+
+#### Imperative loops
 
 ```python
 numbers = [1, 2, 3, 4]
-for n in numnbers:
+for n in numbers:
   pass
 ```
+
+```python
+while True:
+  pass
+```
+
+But we do have recursion. Problems that can be solved iteratively can also be solved recursively.
 
 #### Side effects
 
