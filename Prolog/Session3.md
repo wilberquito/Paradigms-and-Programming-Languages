@@ -48,6 +48,12 @@ Let's see how the search tree is generated for the query:
 ?- q(X).
 ```
 
+The corresponding search tree.
+
+![Search tree 01](Img/search_tree_01.png)
+
 http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Programacion%20en%20PROLOG(2)-2009-ByN.pdf
 
 https://arxiv.org/pdf/2001.08133.pdf#:~:text=A%20search%20tree%20shows%20the,tree%2C%20using%20more%20logical%20terminology.
+
+diagrams.net
