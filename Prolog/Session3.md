@@ -8,9 +8,9 @@ Before digging in the topics of this session, remember:
 - A Prolog knowledge (or database) comprises clausules that are either rules or facts
 - Rules introduce new possible queries
 - Facts lead to positive answers
-- Non defined knowledge or a piece of information that can not be deduced returns false
 - A query with variables for which Prolog returns a positive answer, will also instantiate the
   variable with values that make the query true
+- Queries on non defined knowledge or a piece of information that can not be deduced simply fails
 
 ## Search Tree
 
@@ -50,9 +50,30 @@ Let's see how the search tree is generated for the query:
 
 The corresponding search tree.
 
-![Search tree 01](Img/search_tree_01.png)
+```text
+                   q(X)
+                  /    \
+            X=X' /      \ X=0
+                /        \
+              p(X')      []
+             /     \ 
+     X'=X'' /       \ X'=1
+           /         \
+     a(X''),b(X'')   []
+        /     \
+ X''=2 /       \ X''=3
+      /         \
+    b(2)        b(3)
+   /    \         \
+  /      \         \
+ []      []        []
+```
 
-The solutions are enumerated from the left to the right. Hence the solutions are `X=2, X=2, X=3, X=1, X=0`.
+Sometimes variables need to be renamed when drawing a search tree. This is required when there is a variable occuring 
+in a query that is also used in the rule. In the tree above the renaming is represented as  `X', X''`. 
+However, you could also chose `X1, X2` or other variables renaming method.
+
+The solutions are enumerated from the left to the right. As `X=X'` and `X'=X'' -> X=X''`, the solutions are `X=2, X=2, X=3, X=1, X=0`.
 
 ### A second example
 
@@ -71,27 +92,23 @@ member(X,[a,b,c]).
 The corresponding search tree.
 
 ```text
- [member(X,[a,b,c])]
+  member(X,[a,b,c])
       /     \
  X=a /       \ X=X'
     /         \
-  []      [member(X',[b,c])]
+  []       member(X',[b,c])
                /     \
-        X'= b /       \ X'= X'' 7
+        X'= b /       \ X'= X''
              /         \
-           []    [member(X'',[c])]
+           []     member(X'',[c])
                       /     \
               X''= c /       \ X''=X'''
                     /         \
-                  []     [member(X''',[])]
-                             /     \   
-                            /       \
-                          fail     fail 
+                  []      member(X''',[])
+                              /     \   
+                             /       \
+                           fail     fail 
 ```
-
-Sometimes variables need to be renamed when drawing a search tree. This is required when there is a variable occuring 
-in a query that is also used in the rule. In the tree above the renaming is represented as  `X', X''`. 
-However, you could also chose `X1, X2` or other variables renaming method.
 
 This query has tree solutions. `X=a, X=b` (because `X=X'` and `X'=b`), and `X=c` (because `X'=X''` and `X''=c`).
 
