@@ -107,10 +107,47 @@ The corresponding search tree.
                   []      member(X''',[])
                               /     \   
                              /       \
-                           fail     fail 
+                             x       x 
 ```
 
 This query has tree solutions. `X=a, X=b` (because `X=X'` and `X'=b`), and `X=c` (because `X'=X''` and `X''=c`).
+
+## Control over the search tree
+
+Prolog is a highly declarative. To achieve declarativity, sometimes it is paid sometimes with a high computational cost.
+
+The order of the clauses and the repetition of clauses can lead to redundancies in answers and in failures. 
+
+Problems we want to solve:
+
+- Inefficiency
+- Unspecified behaviors
+
+Prolog has a built-in predicate named cut `!` that allows us to prune the search spaces. In other words, it helps us to modify
+the way the search trees are constructed.
+
+### The cut
+
+The cut `!` is a predicate that always succeeds. But it has an extremely useful
+side-effect: it cuts open branches from the search tree, thereby giving direct control on memory
+management. Cuts are used to make Prolog programs efficient. This often goes at the cost of
+making Prolog programs less declarative and readable.
+
+It always succeeds and causes the discard of all alternative (branches) that were pending
+be explored from the moment it was used to resolve the rule containing the cut.
+
+Given a clausule:
+
+```text
+A :- B1,...,Bk,!,Bk+1,...,Bn.
+```
+
+Such that `A` unifies with the objective `G` we want to solve, and `B1,...,Bk` unifies, the cut effect is:
+
+- Any other clausule that it could be applied to resolve `G` is ignored. Discard alternative branches
+- If the attempt to satisfy any `Bi` among `Bk+1,...,Bn` is fails, the BACKTRAKING is done until the cut
+- If it is necessary to redo the cut, it goes back to the previous choice of `G` and performs backtracking from there. Meaning that Prolog 
+  won't try to attemp to satisfy any `Bi` among `B1,..,Bk`.
 
 
 http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Programacion%20en%20PROLOG(2)-2009-ByN.pdf
