@@ -148,6 +148,50 @@ Such that `A` unifies with the objective `G` we want to solve, and `B1,...,Bk` u
 - If the attempt to satisfy any `Bi` among `Bk+1,...,Bn` is fails, the BACKTRAKING is done until the cut
 - If it is necessary to redo the cut, it goes back to the previous choice of `G` and performs backtracking from there. Meaning that Prolog 
   won't try to attemp to satisfy any `Bi` among `B1,..,Bk`.
+  
+Let's see how the cut performs in the first example.
+
+Definition of the base knowledge.
+
+```prolog
+q(X) :- p(X).
+q(0).
+
+p(X) :- a(X), !, b(X).
+p(1).
+
+a(2).
+a(3).
+
+b(2).
+b(2).
+b(3).
+```
+
+Comparation between the pruned tree and the original tree from the first example.
+
+```text
+                 (pruned)                    (original)
+                 
+                   q(X)                         q(X)
+                  /    \                       /    \ 
+            X=X' /      \ X=0            X=X' /      \ X=0
+                /        \                   /        \
+              p(X')      []                p(X')      []
+             /     \                      /     \ 
+     X'=X'' /                     X'=X'' /       \ X'=1
+           /                            /         \
+    a(X''),!,b(X'')                a(X''),b(X'')   []
+        /     \                     /     \
+ X''=2 /                     X''=2 /       \ X''=3
+      /                           /         \
+    b(2)                        b(2)        b(3)
+   /    \                      /    \         \
+  /      \                    /      \         \
+ []      []                  []      []        []
+```
+
+Changing a little bit the code, the solutions now are `X=2, X=2, X=0`.
 
 
 http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Programacion%20en%20PROLOG(2)-2009-ByN.pdf
