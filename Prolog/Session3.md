@@ -51,19 +51,19 @@ Let's see how the search tree is generated for the query:
 The corresponding search tree.
 
 ```text
-                   q(X)
+                  [q(X)]
                   /    \
             X=X' /      \ X=0
                 /        \
-              p(X')      []
+             [p(X')]      []
              /     \ 
      X'=X'' /       \ X'=1
            /         \
-     a(X''),b(X'')   []
+    [a(X''),b(X'')]   []
         /     \
  X''=2 /       \ X''=3
       /         \
-    b(2)        b(3)
+   [b(2)]      [b(3)]
    /    \         \
   /      \         \
  []      []        []
@@ -92,22 +92,22 @@ member(X,[a,b,c]).
 The corresponding search tree.
 
 ```text
-  member(X,[a,b,c])
+ [member(X,[a,b,c])]
       /     \
  X=a /       \ X=X'
     /         \
-  []       member(X',[b,c])
+  []      [member(X',[b,c])]
                /     \
         X'= b /       \ X'= X''
              /         \
-           []     member(X'',[c])
+           []    [member(X'',[c])]
                       /     \
               X''= c /       \ X''=X'''
                     /         \
-                  []      member(X''',[])
+                  []     [member(X''',[])]
                               /     \   
                              /       \
-                             x       x 
+                            x         x 
 ```
 
 This query has tree solutions. `X=a, X=b` (because `X=X'` and `X'=b`), and `X=c` (because `X'=X''` and `X''=c`).
@@ -135,6 +135,13 @@ making Prolog programs less declarative and readable.
 
 It always succeeds and causes the discard of all alternative (branches) that were pending
 be explored from the moment it was used to resolve the rule containing the cut.
+
+```text
+[!]      [!,Q]
+ |         |
+ |         |
+ []       [Q]
+```
 
 Given a clause:
 
@@ -173,19 +180,19 @@ Comparation between the pruned tree and the original tree from the first example
 ```text
                  (pruned)                    (original)
                  
-                   q(X)                         q(X)
+                  [q(X)]                       [q(X)]
                   /    \                       /    \ 
             X=X' /      \ X=0            X=X' /      \ X=0
                 /        \                   /        \
-              p(X')      []                p(X')      []
+             [p(X')]      []              [p(X')]      []
              /     \                      /     \ 
      X'=X'' /                     X'=X'' /       \ X'=1
            /                            /         \
-    a(X''),!,b(X'')                a(X''),b(X'')   []
+   [a(X''),!,b(X'')]             [a(X''),b(X'')]   []
         /     \                     /     \
  X''=2 /                     X''=2 /       \ X''=3
       /                           /         \
-   !,b(2)                       b(2)        b(3)
+  [!,b(2)]                     [b(2)]      [b(3)]
    /    \                      /    \         \
   /      \                    /      \         \
  []      []                  []      []        []
@@ -255,9 +262,10 @@ sort(Xs,Ys):- append(As,[X,Y|Ns],Xs),
               sort(Xs1,Ys).
 ```
 
-- The first cut tells us "there is only one order, so there is no need to check if I can order in a different way".
-- The second cut tells us, "if you find a pair of elements messy, surely they should be sorted, therefore there is 
-  no need to try to leave them for me it's late".
+The first cut tells us "there is only one order, so there is no need to check if I can order in a different way".
+
+The second cut tells us, "if you find a pair of elements messy, surely they should be sorted, therefore there is 
+no need to try to leave them for me it's late".
 
 http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Programacion%20en%20PROLOG(2)-2009-ByN.pdf
 
