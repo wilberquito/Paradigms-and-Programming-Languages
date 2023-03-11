@@ -295,15 +295,15 @@ Inst. error
 Inst. error
 ```
 
-Relational predicates like `<`, `=<`, `>`, `>=`, `==` and `=\=` evaluate both sides (as long as they are evaluable). Roughly is as they where using `is` in both directions.
+Relational predicates like `<`, `=<`, `>`, `>=`, `=:=` and `=\=` evaluate both sides (as long as they are evaluable). Roughly is as they where using `is` in both directions.
 
 ```prolog
-?- 2+2 == 9/2.
+?- 2+2 =:= 9/2.
 no
 ```
 
 ```prolog
-?- 2+2 == 9//2.
+?- 2+2 =:= 9//2.
 yes
 ```
 
@@ -317,7 +317,7 @@ Inst. error
 no
 ```
 
-Notice that the operators `=`, `==` and their negations (`\=`, `=\=`) are not the same. This expresion; `E1 = E2` means, `E1` unifies with `E2` and the expression `E1 == E2` means that they are the same terms.
+The operators `=`, `==` and their negations (`\=`, `\==`) are not the same. This expresion; `E1 = E2` means, `E1` unifies with `E2` and the expression `E1 == E2` means that they are the same terms.
 
 ```prolog
 ?- 2+X=2+Y.
