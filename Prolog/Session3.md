@@ -5,7 +5,7 @@
 Before digging in the topics of this session, remember:
 
 - Prolog works by answering queries with respect to a knowledge base
-- A Prolog knowledge (or database) comprises clausules that are either rules or facts
+- A Prolog knowledge (or database) comprises clauses that are either rules or facts
 - Rules introduce new possible queries
 - Facts lead to positive answers
 - A query with variables for which Prolog returns a positive answer, will also instantiate the
@@ -136,7 +136,7 @@ making Prolog programs less declarative and readable.
 It always succeeds and causes the discard of all alternative (branches) that were pending
 be explored from the moment it was used to resolve the rule containing the cut.
 
-Given a clausule:
+Given a clause:
 
 ```text
 A :- B1,...,Bk,!,Bk+1,...,Bn.
@@ -144,7 +144,7 @@ A :- B1,...,Bk,!,Bk+1,...,Bn.
 
 Such that `A` unifies with the objective `G` we want to solve, and `B1,...,Bk` unifies, the cut effect is:
 
-- Any other clausule that it could be applied to resolve `G` is ignored. Discard alternative branches
+- Any other clause that it could be applied to resolve `G` is ignored. Discard alternative branches
 - If the attempt to satisfy any `Bi` among `Bk+1,...,Bn` is fails, the BACKTRAKING is done until the cut
 - If it is necessary to redo the cut, it goes back to the previous choice of `G` and performs backtracking from there. Meaning that Prolog 
   won't try to attemp to satisfy any `Bi` among `B1,..,Bk`.
@@ -185,7 +185,7 @@ Comparation between the pruned tree and the original tree from the first example
         /     \                     /     \
  X''=2 /                     X''=2 /       \ X''=3
       /                           /         \
-    b(2)                        b(2)        b(3)
+   !,b(2)                       b(2)        b(3)
    /    \                      /    \         \
   /      \                    /      \         \
  []      []                  []      []        []
