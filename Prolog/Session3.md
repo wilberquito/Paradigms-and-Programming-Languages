@@ -193,6 +193,71 @@ Comparation between the pruned tree and the original tree from the first example
 
 Changing a little bit the code, the solutions now are `X=2, X=2, X=0`.
 
+### Factorial and cut
+
+```prolog
+% fact(+N,F) => F is the factorial of N
+fact(0,1).
+fact(N,F):- Np is N-1,
+            fact(Np,F1),
+            F is F1 * N.
+
+% nums(X) => X is a natural number. Starts with 0.
+nums(0).
+nums(X):- nums(Xp), X is Xp+1.
+
+% findf(X,+Y) => X factorial is bigger than Y.
+findf(X,Y):- nums(X), fact(X,Z), Z>Y
+```
+
+What do you think that happend with the following query?
+
+```prolog
+findf(X,2).
+```
+
+A possible solution is to cut the altenative clause when `fact(0,1)` is demostrated.
+
+```prolog
+% fact(+N,F) => F is the factorial of N
+fact(0,1):- !.
+fact(N,F):- Np is N-1,
+            fact(Np,F1),
+            F is F1 * N.
+```
+
+Or control the satisfiability of the second clause adding the constraint `N>0`. As we have seen in the previous session.
+
+```prolog
+% fact(+N,F) => F is the factorial of N
+fact(0,1).
+fact(N,F):- N>0,
+            Np is N-1,
+            fact(Np,F1),
+            F is F1 * N.
+```
+
+### Sort and cut
+
+```prolog
+% sorted(L) => L is ascending sorted
+sorted([]).
+sorted([_]).
+sorted([X,Y|Zs]):- X=<Y, 
+                   sorted([Y|Zs]).
+
+% sort(X,Y) => Y is the resuling list of sort X.
+sort(Xs,Xs):- sorted(Xs), !.
+sort(Xs,Ys):- append(As,[X,Y|Ns],Xs), 
+              X>Y,
+              !,
+              append(As,[Y,X|Ns],Xs1), 
+              sort(Xs1,Ys).
+```
+
+- The first cut tells us "there is only one order, so there is no need to check if I can order in a different way".
+- The second cut tells us, "if you find a pair of elements messy, surely they should be sorted, therefore there is 
+  no need to try to leave them for me it's late".
 
 http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Programacion%20en%20PROLOG(2)-2009-ByN.pdf
 
