@@ -253,7 +253,7 @@ sorted([_]).
 sorted([X,Y|Zs]):- X=<Y, 
                    sorted([Y|Zs]).
 
-% sort(X,Y) => Y is the resuling list of sort X.
+% sort(X,Y) => Y is the result of sort X.
 sort(Xs,Xs):- sorted(Xs), !.
 sort(Xs,Ys):- append(As,[X,Y|Ns],Xs), 
               X>Y,
@@ -265,7 +265,43 @@ sort(Xs,Ys):- append(As,[X,Y|Ns],Xs),
 The first cut tells us "there is only one order, so there is no need to check if I can order in a different way".
 
 The second cut tells us, "if you find a pair of elements messy, surely they should be sorted, therefore there is 
-no need to try to leave them for me it's late".
+no need to try to leave them for late".
+
+## Terms, program with unification
+
+Prolog does not allow us to create new types. To create new types, need to define the behavior of this terms.
+
+```prolog
+% plant(N,A,B,T) => T is the tree with node N, T1 as left son, T2 as right son.
+plant(N,T1,T2,tree(N,T1,T2)).
+
+% node(T,N) => N is the root of the tree T.
+node(tree(N,_,_),N).
+
+% ls(T,T1)/rs(T,T2) => T1/T2 left son/right son.
+ls(tree(_,T1,_),T1).
+rs(tree(_,_,T2),T2).
+
+% preorder(T,L) => L is the preorder of T.
+preorder(tree(N,T1,T2),[N|L]):-  preorder(T1,L1),
+                                 preorder(T2,L2),
+                                 append(L1,L2,L),
+                                 preorder(tempty,[]).
+```
+
+Example:
+
+```prolog
+?- 
+| plant(1,tempty,tempty,L1), 
+| plant(3,tempty,tempty,L2), 
+| plant(2,L1,L2,R), 
+| preorder(R,P).
+L1 = tree(1, tempty, tempty),
+L2 = tree(3, tempty, tempty),
+R = tree(2, tree(1, tempty, tempty), tree(3, tempty, tempty)),
+P = [2, 1, 3].
+```
 
 http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Programacion%20en%20PROLOG(2)-2009-ByN.pdf
 
