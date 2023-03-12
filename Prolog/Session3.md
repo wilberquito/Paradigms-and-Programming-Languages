@@ -303,8 +303,20 @@ R = tree(2, tree(1, tempty, tempty), tree(3, tempty, tempty)),
 P = [2, 1, 3].
 ```
 
-http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Programacion%20en%20PROLOG(2)-2009-ByN.pdf
+##  Negation as failure
 
-https://arxiv.org/pdf/2001.08133.pdf#:~:text=A%20search%20tree%20shows%20the,tree%2C%20using%20more%20logical%20terminology.
+In Prolog, a negated query `Q` is written as `not(Q)` or `\+ Q`. A negated query succeeds if an attempt
+to falsify it fails. This is called *negation as failure*.
 
-diagrams.net
+Prolog's negation makes use of the cut `!` and the built-in predicate `fail` (always fail). When used, it creates
+two new branches in the tree. In the first branch the query in the scope is placed followed by the
+cut and fail predicate. The second branch succeeds (but it will be cut from the tree in case the query
+of the first branch succeeds).
+
+```prolog
+          [\+p(X)]               [\+p(X),Q]
+          /     \                 /      \
+         /       \               /        \
+        /         \             /          \
+  [p(X),!,fail]   []      [p(X),!,fail]    [Q]
+```
