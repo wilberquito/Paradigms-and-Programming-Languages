@@ -85,7 +85,7 @@ member(X,[_|L]):- member(X,L).
 Let's see how the search tree is generated for the query:
 
 ```prolog
-member(X,[a,b,c]).
+?- member(X,[a,b,c]).
 ```
 
 The corresponding search tree.
