@@ -220,7 +220,7 @@ findf(X,Y):- nums(X), fact(X,Z), Z>Y
 What do you think that happend with the following query?
 
 ```prolog
-findf(X,2).
+?- findf(X,2).
 ```
 
 A possible solution is to cut the altenative clause when `fact(0,1)` is satisfied.
