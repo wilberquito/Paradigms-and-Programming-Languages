@@ -305,7 +305,7 @@ P = [2, 1, 3].
 
 ##  Negation as failure
 
-In Prolog, a negated query `Q` is written as `not(Q)` or `\+ Q`. A negated query succeeds if an attempt
+In Prolog, a negated query `Q` is written as `not(Q)` or `\+Q`. A negated query succeeds if an attempt
 to falsify it fails. This is called *negation as failure*.
 
 Prolog's negation makes use of the cut `!` and the built-in predicate `fail` (always fail). When used, it creates
@@ -319,4 +319,29 @@ of the first branch succeeds).
          /       \               /        \
         /         \             /          \
   [p(X),!,fail]   []      [p(X),!,fail]    [Q]
+```
+
+## I/O, cut and arithmetic
+
+```prolog
+% repeat => a built-in predicate that always satisfy.
+repeat.
+repeat:- repeat.
+
+% read_number(X) => X is a number read from the keyboard.
+read_number(X):-  repeat, 
+                  write("PSS. enter a number: "),
+                  read(X), 
+                  number(X), !.
+              
+% treat_number(X) => If X is 0 then satisfy otherwise 
+% the square of the number is computed and then fail,
+treat_number(0):- !.
+treat_number(X):- R is X*X, writeln([X, ’^ 2=’, R]), fail.
+
+% squares => Read integers and show the square of the numbers
+% until a 0 is reached.
+squares:- repeat, 
+          read_number(X), 
+          treat_number(X), !.
 ```
