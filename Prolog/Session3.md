@@ -10,7 +10,7 @@ Before digging in the topics of this session, remember:
 - Facts lead to positive answers
 - A query with variables for which Prolog returns a positive answer, will also instantiate the
   variable with values that make the query true
-- Queries on non defined knowledge or a piece of information that can not be deduced simply fails
+- Queries on non defined knowledge or a piece of information that can not be deduced simply fail
 
 ## Search Tree
 
@@ -24,8 +24,6 @@ of reasoning to come to an answer, so you may also call it a *proof tree*, using
 terminology.
 
 ### A first example
-
-Definition of the base knowledge.
 
 ```prolog
 q(X):- p(X).
@@ -83,6 +81,7 @@ Do you remember de predicate `member`?
 member(X,[X|_]).
 member(X,[_|L]):- member(X,L).
 ```
+
 Let's see how the search tree is generated for the query:
 
 ```prolog
@@ -114,9 +113,9 @@ This query has tree solutions. `X=a, X=b` (because `X=X'` and `X'=b`), and `X=c`
 
 ## Control over the search tree
 
-Prolog is a highly declarative. To achieve declarativity, sometimes it is paid sometimes with a high computational cost.
+Prolog is a highly declarative. To achieve declarativity, sometimes it is paid with computational cost.
 
-The order of the clauses and the repetition of clauses can lead to redundancies in answers and in failures. 
+The order and the repetition of clauses can lead to redundancies in answers and in failures. 
 
 Problems we want to solve:
 
@@ -129,11 +128,12 @@ the way the search trees are constructed.
 ### The cut
 
 The cut `!` is a predicate that always succeeds. But it has an extremely useful
-side-effect: it cuts open branches from the search tree, thereby giving direct control on memory
-management. Cuts are used to make Prolog programs efficient. This often goes at the cost of
+side-effect: it cuts open branches from the search tree, 
+thereby giving direct control in the search tree construction.
+Cuts are used to make Prolog programs efficient. This often goes at the cost of
 making Prolog programs less declarative and readable.
 
-It always succeeds and causes the discard of all alternative (branches) that were pending
+Cut always succeeds and causes the discard of all alternative (branches) that were pending
 be explored from the moment it was used to resolve the rule containing the cut.
 
 ```text
@@ -146,7 +146,7 @@ be explored from the moment it was used to resolve the rule containing the cut.
 Given a clause:
 
 ```text
-A :- B1,...,Bk,!,Bk+1,...,Bn.
+A:- B1,...,Bk,!,Bk+1,...,Bn.
 ```
 
 Such that `A` unifies with the objective `G` we want to solve, and `B1,...,Bk` unifies, the cut effect is:
@@ -154,7 +154,7 @@ Such that `A` unifies with the objective `G` we want to solve, and `B1,...,Bk` u
 - Any other clause that it could be applied to resolve `G` is ignored. Discard alternative branches
 - If the attempt to satisfy any `Bi` among `Bk+1,...,Bn` is fails, the BACKTRAKING is done until the cut
 - If it is necessary to redo the cut, it goes back to the previous choice of `G` and performs backtracking from there. Meaning that Prolog 
-  won't try to attemp to satisfy any `Bi` among `B1,..,Bk`.
+  won't try to attemp to satisfy any different `Bi` among `B1,..,Bk`.
   
 Let's see how the cut performs in the first example.
 
@@ -223,7 +223,7 @@ What do you think that happend with the following query?
 findf(X,2).
 ```
 
-A possible solution is to cut the altenative clause when `fact(0,1)` is demostrated.
+A possible solution is to cut the altenative clause when `fact(0,1)` is satisfied.
 
 ```prolog
 % fact(+N,F) => F is the factorial of N
@@ -256,8 +256,7 @@ sorted([X,Y|Zs]):- X=<Y,
 % sort(X,Y) => Y is the result of sort X.
 sort(Xs,Xs):- sorted(Xs), !.
 sort(Xs,Ys):- append(As,[X,Y|Ns],Xs), 
-              X>Y,
-              !,
+              X>Y, !,
               append(As,[Y,X|Ns],Xs1), 
               sort(Xs1,Ys).
 ```
@@ -272,7 +271,7 @@ no need to try to leave them for late".
 Prolog does not allow us to create new types. To create a new type, we need to define the behavior of the terms.
 
 ```prolog
-% plant(N,A,B,T) => T is the tree with node N, T1 as left son, T2 as right son.
+% plant(N,A,B,T) => T is the tree with node N, A as left son, B as right son.
 plant(N,T1,T2,tree(N,T1,T2)).
 
 % node(T,N) => N is the root of the tree T.
@@ -337,7 +336,9 @@ read_number(X):-  repeat,
 % treat_number(X) => If X is 0 then satisfy otherwise 
 % the square of the number is computed and then fail,
 treat_number(0):- !.
-treat_number(X):- R is X*X, writeln([X, ’^ 2=’, R]), fail.
+treat_number(X):- R is X*X, 
+                  writeln([X, '^ 2=', R]), 
+                  fail.
 
 % squares => Read integers and show the square of the numbers
 % until a 0 is reached.
