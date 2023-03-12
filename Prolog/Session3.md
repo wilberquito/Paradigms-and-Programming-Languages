@@ -152,9 +152,9 @@ A:- B1,...,Bk,!,Bk+1,...,Bn.
 Such that `A` unifies with the objective `G` we want to solve, and `B1,...,Bk` unifies, the cut effect is:
 
 - Any other clause that it could be applied to resolve `G` is ignored. Discard alternative branches
-- If the attempt to satisfy any `Bi` among `Bk+1,...,Bn` is fails, the BACKTRAKING is done until the cut
+- If the attempt to satisfy any `Bi` among `Bk+1,...,Bn` fail, the BACKTRAKING is done until the cut
 - If it is necessary to redo the cut, it goes back to the previous choice of `G` and performs backtracking from there. Meaning that Prolog 
-  won't try to attemp to satisfy any different `Bi` among `B1,..,Bk`.
+  won't attemp to satisfy again any `Bi` among `B1,..,Bk` or alternative clause.
   
 Let's see how the cut performs in the first example.
 
@@ -284,8 +284,8 @@ rs(tree(_,_,T2),T2).
 % preorder(T,L) => L is the preorder of T.
 preorder(tree(N,T1,T2),[N|L]):-  preorder(T1,L1),
                                  preorder(T2,L2),
-                                 append(L1,L2,L),
-                                 preorder(tempty,[]).
+                                 append(L1,L2,L).
+preorder(tempty,[]).
 ```
 
 Example:
