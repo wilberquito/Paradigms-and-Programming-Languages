@@ -292,13 +292,13 @@ Example:
 
 ```prolog
 ?- 
-| plant(1,tempty,tempty,L1), 
-| plant(3,tempty,tempty,L2), 
-| plant(2,L1,L2,R), 
-| preorder(R,P).
-L1 = tree(1, tempty, tempty),
-L2 = tree(3, tempty, tempty),
-R = tree(2, tree(1, tempty, tempty), tree(3, tempty, tempty)),
+| plant(1,tempty,tempty,T1), 
+| plant(3,tempty,tempty,T2), 
+| plant(2,T1,T2,T), 
+| preorder(T,P).
+T1 = tree(1, tempty, tempty),
+T2 = tree(3, tempty, tempty),
+T = tree(2, tree(1, tempty, tempty), tree(3, tempty, tempty)),
 P = [2, 1, 3].
 ```
 
