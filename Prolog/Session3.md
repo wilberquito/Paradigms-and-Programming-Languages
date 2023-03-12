@@ -28,10 +28,10 @@ terminology.
 Definition of the base knowledge.
 
 ```prolog
-q(X) :- p(X).
+q(X):- p(X).
 q(0).
 
-p(X) :- a(X), b(X).
+p(X):- a(X), b(X).
 p(1).
 
 a(2).
@@ -81,7 +81,7 @@ Do you remember de predicate `member`?
 
 ```prolog
 member(X,[X|_]).
-member(X,[_|L]) :- member(X,L).
+member(X,[_|L]):- member(X,L).
 ```
 Let's see how the search tree is generated for the query:
 
@@ -161,10 +161,10 @@ Let's see how the cut performs in the first example.
 Definition of the base knowledge.
 
 ```prolog
-q(X) :- p(X).
+q(X):- p(X).
 q(0).
 
-p(X) :- a(X), !, b(X).
+p(X):- a(X), !, b(X).
 p(1).
 
 a(2).
@@ -269,7 +269,7 @@ no need to try to leave them for late".
 
 ## Terms, program with unification
 
-Prolog does not allow us to create new types. To create new types, need to define the behavior of this terms.
+Prolog does not allow us to create new types. To create a new type, we need to define the behavior of the terms.
 
 ```prolog
 % plant(N,A,B,T) => T is the tree with node N, T1 as left son, T2 as right son.
