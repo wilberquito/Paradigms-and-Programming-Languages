@@ -10,7 +10,7 @@ Before digging in the topics of this session, remember:
 - Facts lead to positive answers
 - A query with variables for which Prolog returns a positive answer, will also instantiate the
   variable with values that make the query true
-- Queries on non defined knowledge or a piece of information that can not be deduced simply fails (due to "closed world assumption")
+- Queries on non defined knowledge or a piece of information that can not be deduced simply fails (due to "Closed World Assumption")
 
 ## Search Tree
 
@@ -154,10 +154,9 @@ A:- (alternative branch for G)
 
 such that `A` unifies with the objective `G` we want to solve at a certain moment of the search, and `B1,...,Bk` are already satisfied, the cut is automatically satisfied and its effect is:
 
-1) Any other clause that  could be applied to resolve `G` is ignored, i.e. those alternative branches are discarted for possible backtracking.
-2) If the attempt to satisfy any `Bi` among `Bk+1,...,Bn` fails,  BACKTRAKING is allowed until the cut,
-3) if it is necessary to redo the cut, it goes back to the previous choice of `G` and performs backtracking from there. Meaning that Prolog 
-  won't attemp to satisfy again any `Bi` among `B1,..,Bk` or alternative branches prunned in 1).
+1) Any other clause that  could be applied to resolve `G` is ignored, i.e. those alternative branches are discarted for possible backtracking. 
+2) If the attempt to satisfy any `Bi` among `Bk+1,...,Bn` fails,  BACKTRAKING is allowed until the cut, 
+3) if it is necessary to redo the cut, it goes back to the previous choice of `G` and performs backtracking from there. Meaning that Prolog  won't attemp to satisfy again any `Bi` among `B1,..,Bk` or alternative branches prunned in 1).
   
 Let's see how the cut performs in the first example.
 
@@ -295,9 +294,9 @@ Example:
 
 ```prolog
 ?- 
-| plant(1,tempty,tempty,T1), 
-| plant(3,tempty,tempty,T2), 
-| plant(2,T1,T2,T), 
+| bluidtree(1,tempty,tempty,T1), 
+| bluidtree(3,tempty,tempty,T2), 
+| bluidtree(2,T1,T2,T), 
 | preorder(T,P).
 T1 = tree(1, tempty, tempty),
 T2 = tree(3, tempty, tempty),
