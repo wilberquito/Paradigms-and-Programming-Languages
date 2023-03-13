@@ -122,8 +122,7 @@ Problems we want to solve:
 - Inefficiency
 - Unspecified behaviors
 
-Prolog has a built-in predicate named cut `!` that allows us to prune the search spaces. In other words, it helps us to modify
-the way the search trees are constructed.
+Prolog has a built-in predicate named cut `!` that allows us to prune the search spaces.
 
 ### The cut
 
