@@ -71,7 +71,7 @@ Sometimes variables need to be renamed when drawing a search tree. This is requi
 in a query that is also used in the rule. In the tree above the renaming is represented as  `X'=X''`. 
 Notice also that you could  chose `X1, X2` or other variables for renaming.
 
-The solutions are enumerated from the left to the right and are reconstruted by means of substitution composition, e.g.: `{X'' -> 2}·{X' -> X''}·{X -> X'}` hence `X -> 2`, the solutions are `X=2, X=2, X=3, X=1, X=0`.
+The solutions are enumerated from the left to the right and are reconstruted by means of substitution composition, e.g.: `{X'' -> 2}∘{X' -> X''}∘{X -> X'}` hence `X -> 2`, the solutions are `X=2, X=2, X=3, X=1, X=0`.
 
 ### A second example
 
