@@ -59,7 +59,7 @@ GHCi> x
 4
 ```
 
-We rather persist our code into file. The `Main.hs` Haskell module has this code:
+We rather persist our code into files. The `Main.hs` Haskell module has the following code:
 
 ```haskell
 main = print (fac 20)
