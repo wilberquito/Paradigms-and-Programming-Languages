@@ -216,7 +216,7 @@ nums(0).
 nums(X):- nums(Xp), X is Xp+1.
 
 % findf(X,+Y) => X factorial is bigger than Y.
-findf(X,Y):- nums(X), fact(X,Z), Z>Y
+findf(X,Y):- nums(X), fact(X,Z), Z>Y.
 ```
 
 What do you think that happend with the following query?
