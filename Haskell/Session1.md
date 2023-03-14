@@ -452,16 +452,23 @@ main = do
    . . .
 ```
 
-A better way to think about variables in Haskell is as definitions or name binding. 
-The key benefit of variables 
-in programming is to clarify your code and avoid repetition.
+A better way to think about variables in Haskell is as definitions or name binding.
 
-For example:
+The key benefit of variables in programming is to clarify 
+your code and avoid repetition, for example:
 
 This function takes two
 arguments: how much is owed and how much is given. If you’re given enough money,
 you return the difference. But if you aren’t given enough money, you don’t want to give
 negative dollars; you’ll return 0.
+
+```haskell
+calcChange owed given = if given - owed > 0
+                        then given - owed
+                        else 0
+```
+
+And now with the use of variable defined in the `where` block.
 
 ```haskell
 calcChange owed given = if change > 0
