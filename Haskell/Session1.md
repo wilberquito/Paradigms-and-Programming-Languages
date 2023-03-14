@@ -203,10 +203,10 @@ doubleMe x = x + x
   
 #### Functions 
 
-What exactly is a function? The behavior of functions in Haskell
+The behavior of functions in Haskell
 comes directly from mathematics. In math, we often say things like `f(x) = y`, meaning
-there’s some function `f` that takes a parameter `x` and maps to a value `y`.
-In mathematics, every x can map to one and only one y.
+there’s some function *f* that takes a parameter *x* and maps to a value *y*.
+In mathematics, every *x* can map to one and only one *y*.
 
 In mathematics the application of function is denotated with parenthesis.
 
