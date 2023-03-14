@@ -201,6 +201,92 @@ doubleMe x = x + x
 - They act as assertions that the compiler checks: help you spot mistakes
 - You can use type annotations to give a function a narrower type than Haskell infers
   
+#### Functions 
+
+What exactly is a function? The behavior of functions in Haskell
+comes directly from mathematics. In math, we often say things like `f(x) = y`, meaning
+there’s some function `f` that takes a parameter `x` and maps to a value `y`.
+In mathematics, every x can map to one and only one y.
+
+In mathematics the application of function is denotated with parenthesis.
+
+```text
+f (a, b) + c × d -- applies the function f to the parameters a and b
+```
+
+In Haskell the function application is denotated by a space.
+
+```haskell
+f a b + c * d -- same as f (a, b) + c × d
+```
+
+The application of functions has maximum priority.
+
+```haskell
+g a + b -- means (g a) + b and NO g (a + b)
+```
+
+Compound arguments go between parentheses.
+
+```haskell
+f (a + b) c -- applies f function to 2 arguments.
+```
+
+In Haskell functions are considered first-class citizens, which means they can be passed as arguments,
+returned as values, and composed together to form more complex operations.
+
+```haskell
+map :: (a -> b) -> [a] -> [b]
+map f []     = []
+map f (x:xs) = f x : map f xs
+```
+
+Functions are pure, where its return value depends solely on its input parameters. In other words, functions
+in Haskell don't produce side effects. Because functions are pure, formal verification is relatively easy.
+
+```haskell
+double :: Int -> Int
+double x = x * 2
+```
+
+Curried functions, every function in Haskell only takes one parameter. Didn't wee see functions that take more than one parameter so far? 
+Well, it's a clever trick!. All the functions that accepted several parameters so far have been curried functions. 
+Currying is the process of transforming a function that takes multiple arguments, into a function that takes just a single argument 
+and returns another function which accepts further arguments, one by one, that the original function would receive.
+
+```haskell
+-- same as max :: Ord a => a -> (a -> a)
+GHCi> :t max
+max :: Ord a => a -> a -> a 
+```
+
+```haskell
+GHCi> max 4 5
+5
+```
+
+```haskell
+GHCi> f = max 4
+GHCi> f 5
+5
+```
+
+Does other languages support this feature? the vast majority don't. For example, in JS you can emulate this as:
+
+```js
+function max(a) {
+  return function(b) {
+    return a > b ? a : b
+  }
+}
+```
+
+```js
+const f = max(4)
+f(5)
+5
+```
+
 #### Normal order reduction
 
 Expressions are reduced outside-in. 
@@ -348,88 +434,6 @@ GHCi> mayHang infiniteList (1 + 1)
 GHCi> mayHang (1 + 1) infiniteList
 ```
 
-#### Functions 
-
-It's all you need (to compute)
-
-In mathematics the application of function is denotated with parenthesis
-
-```text
-f (a, b) + c × d -- applies the function f to the parameters a and b
-```
-
-In Haskell the function application is denotated by a space
-
-```haskell
-f a b + c * d -- same as f (a, b) + c × d
-```
-
-The application of functions has maximum priority
-
-```haskell
-g a + b -- means (g a) + b and NO g (a + b)
-```
-
-Compound arguments go between parentheses
-
-```haskell
-f (a + b) c -- applies f function to 2 arguments.
-```
-
-In Haskell functions are considered first-class citizens, which means they can be passed as arguments,
-returned as values, and composed together to form more complex operations
-
-```haskell
-map :: (a -> b) -> [a] -> [b]
-map f []     = []
-map f (x:xs) = f x : map f xs
-```
-
-Functions are pure, where its return value depends solely on its input parameters. In other words, functions
-in Haskell don't produce side effects. Because functions are pure, formal verification is relatively easy.
-
-```haskell
-double :: Int -> Int
-double x = x * 2
-```
-
-Curried functions, every function in Haskell only takes one parameter. Didn't wee see functions that take more than one parameter so far? 
-Well, it's a clever trick!. All the functions that accepted several parameters so far have been curried functions. 
-Currying is the process of transforming a function that takes multiple arguments, into a function that takes just a single argument 
-and returns another function which accepts further arguments, one by one, that the original function would receive.
-
-```haskell
--- same as max :: Ord a => a -> (a -> a)
-GHCi> :t max
-max :: Ord a => a -> a -> a 
-```
-
-```haskell
-GHCi> max 4 5
-5
-```
-
-```haskell
-GHCi> f = max 4
-GHCi> f 5
-5
-```
-
-Does other languages support this feature? the vast majority don't. For example, in JS you can emulate this as:
-
-```js
-function max(a) {
-  return function(b) {
-    return a > b ? a : b
-  }
-}
-```
-
-```js
-const f = max(4)
-f(5)
-5
-```
 
 ## Types and type constructors
   
