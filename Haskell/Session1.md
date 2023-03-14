@@ -15,9 +15,39 @@ rather than how it should be done.
 
 ## What you need to dive in?
 
-A text editor and a Haskell compiler. A good way to get started is to downlaod [GHCup](https://www.haskell.org/ghcup/) which is the main installer for general purpose language Haskell. Once you had downloaded any GHC version (Haskell compiler) you can take a Haskell script with `.hs` extension and compile it but it also has an interactive mode which allows you to interactively interact with scripts.
+A text editor and a Haskell compiler. A good way to get started is to downlaod [GHCup](https://www.haskell.org/ghcup/) which is the main installer for general purpose language Haskell. Once you had downloaded any GHC version (Haskell compiler) you can take a Haskell script with `.hs` extension and compile it but you can use `GHCi` and interactive interface for `GHC`, GHCi is started with a simple command: `ghci`, you’ll be greeted with a new prompt:
 
-Suppose we have the following Haskell source code, which we place in a file Main.hs:
+```haskell
+$ ghci
+GHCi> 
+```
+
+For GHCi, you use the :q command
+to exit:
+
+```haskell
+$ ghci
+GHCi> :q
+Leaving GHCi.
+```
+
+Working with GHCi is much like working with interpreters in most interpreted programming languages such as Python and Node. 
+It can be used as a simple calculator:
+
+```haskell
+GHCi> 1 + 1
+2
+```
+
+You can also write code on the fly in GHCi:
+
+```haskell
+GHCi> x = 2 + 2
+GHCi> x
+4
+```
+
+We rather persist our code into file. The `Main.hs` Haskell module has this code:
 
 ```haskell
 main = print (fac 20)
@@ -26,16 +56,16 @@ fac 0 = 1
 fac n = n * fac (n-1)
 ```
 
-You can save Main.hs anywhere you like, but if you save it somewhere other than the current directory then we will need to change to the right directory in GHCi:
+You can save `Main.hs` anywhere you like, but if you save it somewhere other than the current directory then we will need to change to the right directory in GHCi:
 
 ```haskell
-ghci> :cd dir
+GHCi> :cd dir
 ```
 
 To load a Haskell source file into GHCi, use the `:load` command:
 
 ```haskell
-ghci> :load Main
+GHCi> :load Main
 Compiling Main             ( Main.hs, interpreted )
 Ok, modules loaded: Main.
 ```
@@ -43,7 +73,7 @@ Ok, modules loaded: Main.
 If you make some changes to the source code and want GHCi to recompile the program, give the `:reload` command. The program will be recompiled as necessary, with GHCi doing its best to avoid actually recompiling modules if their external dependencies haven’t changed.
 
 ```haskell
-ghci> :reload
+GHCi> :reload
 Compiling Main                ( Main.hs, interpreted )
 Ok, modules loaded: Main.
 ```
@@ -129,17 +159,17 @@ The type system in Haskell ensures that every expression in the program has a we
 Everything in Haskell has a type, so the compiler can reason quite a lot about your program before compiling it, Unlike Java or Python, Haskell has type inference. If we write a number, we don't have to tell Haskell it's a number. It can infer that on its own, so we don't have to explicitly write out the types of our functions and expressions to get things done.
 
 ```haskell
-ghci> :t 'a'  
+GHCi> :t 'a'  
 'a' :: Char  
-ghci> :t True  
+GHCi> :t True  
 True :: Bool  
-ghci> :t "HELLO!"  
+GHCi> :t "HELLO!"  
 "HELLO!" :: [Char]  
-ghci> :t (True, 'a')  
+GHCi> :t (True, 'a')  
 (True, 'a') :: (Bool, Char)  
-ghci> :t 4 == 5  
+GHCi> :t 4 == 5  
 4 == 5 :: Bool
-ghci> :t (+) 
+GHCi> :t (+) 
 (+) :: Num a => a -> a -> a
 ```
 
@@ -174,7 +204,7 @@ square x = x^2
 ```
 
 ```haskell
-ghci> square(add1 2)
+GHCi> square(add1 2)
 9
 ```
 
@@ -297,11 +327,11 @@ mayHang x y = y
 ```
 
 ```haskell
-ghci> mayHang infiniteList (1 + 1)
+GHCi> mayHang infiniteList (1 + 1)
 ```
 
 ```haskell
-ghci> mayHang (1 + 1) infiniteList
+GHCi> mayHang (1 + 1) infiniteList
 ```
 
 #### Functions 
@@ -356,18 +386,18 @@ and returns another function which accepts further arguments, one by one, that t
 
 ```haskell
 -- same as max :: Ord a => a -> (a -> a)
-ghci> :t max
+GHCi> :t max
 max :: Ord a => a -> a -> a 
 ```
 
 ```haskell
-ghci> max 4 5
+GHCi> max 4 5
 5
 ```
 
 ```haskell
-ghci> f = max 4
-ghci> f 5
+GHCi> f = max 4
+GHCi> f 5
 5
 ```
 
