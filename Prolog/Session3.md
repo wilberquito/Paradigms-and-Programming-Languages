@@ -386,10 +386,10 @@ Create the predicate echo, that takes a list of numbers and first prints the eve
 
 ```prolog
 ?- echo([1,2,3,4,5]).
-Printing list - of evens
+Printing evens
 2
 4
-Printing list - of odds
+Printing odds
 1
 3
 5
