@@ -348,3 +348,34 @@ squares:- repeat,
           read_number(X), 
           treat_number(X), !.
 ```
+
+## It's your turn to practice
+
+Try to implement the cut in your solutions for the following predicates.
+
+### Rang
+
+```prolog
+% rang(B,D,L) => L is the list of numbers from B to D. B < D.
+rang(B,D,[]):- ...
+```
+
+### Dice
+
+the list L expresses a way to add P points by discarding N
+dice So if P is 5 and N is 2, a solution of L would be [1,4]; the rest of the solutions
+would be [3,2], [4,1] and [2,3]. Note that the length of the lists is 2. P and N have
+to be initially instantiated.
+
+```prolog
+% dice(P,N,L) => L is a list and a way to express the sum of P rolling N dices
+dice(P,N,L):- ...
+```
+
+### Indexes
+
+```prolog
+% indexes(X,L,O) where O is the list of positions in L where X appears.
+% For example, if X is 1 and L is [1,2,1] the solution would be [0,2].
+indexes(X,L,O):- ...
+```
