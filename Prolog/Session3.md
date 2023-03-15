@@ -357,7 +357,7 @@ Try to implement the cut in your solutions for the following predicates.
 
 ```prolog
 % rang(B,D,L) => L is the list of numbers from B to D. B < D.
-rang(B,D,[]):- ...
+rang(B,D,L):- ...
 ```
 
 ### Dice
