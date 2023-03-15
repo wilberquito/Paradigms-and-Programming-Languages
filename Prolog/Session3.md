@@ -362,7 +362,7 @@ rang(B,D,L):- ...
 
 ### Dice
 
-the list L expresses a way to add P points by discarding N
+The list L expresses a way to add P points by discarding N
 dice So if P is 5 and N is 2, a solution of L would be [1,4]; the rest of the solutions
 would be [3,2], [4,1] and [2,3]. Note that the length of the lists is 2. P and N have
 to be initially instantiated.
@@ -378,4 +378,25 @@ dice(P,N,L):- ...
 % indexes(X,L,O) where O is the list of positions in L where X appears.
 % For example, if X is 1 and L is [1,2,1] the solution would be [0,2].
 indexes(X,L,O):- ...
+```
+
+### Echo
+
+Create the predicate echo, that takes a list of numbers and first prints the even numbers and then the odd numbers, for example:
+
+```prolog
+?- echo([1,2,3,4,5]).
+Printing list - of evens
+2
+4
+Printing list - of odds
+1
+3
+5
+true.
+```
+
+```prolog
+% echo(L) => L is the list to be printed
+echo(L):- ...
 ```
