@@ -635,3 +635,25 @@ GHCi> 1:2:3:[]
 GHCi> [1,2,3]
 [1,2,3]
 ```
+
+### Type constructor
+
+It is possible to declare the type corresponding to the different functions. For it
+we have a single constructor: (→).
+
+```text
+If t1, t2, . . . , tn, tr are valid types
+then t1→t2→ . . . tn→tr is the type
+of a function with n arguments
+The type of the result is tr
+```
+
+Example:
+
+```haskell
+inc :: Integer -> Integer
+inc x = x + 1
+
+sumSquares :: Integer -> Integer -> Integer
+sumSquares x y = x^2 + y^2
+```
