@@ -523,3 +523,7 @@ The type of those three values must be a member of the `Integral` class (this wa
 
 So, as `Int` and `Integral` types are part of the typeclass `Integral` they both implement the `div` operator.
 
+<details>
+    <summary>Toggle to see the Prelude Haskell class hierarchy</summary>
+    <img src="Gif/clsses.gif"/>
+</details>
