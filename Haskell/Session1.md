@@ -525,5 +525,5 @@ So, as `Int` and `Integral` types are part of the typeclass `Integral` they both
 
 <details>
     <summary>Toggle to see the Prelude Haskell class hierarchy</summary>
-    <img src="Gif/clsses.gif"/>
+    <img src="Gif/classes.gif"/>
 </details>
