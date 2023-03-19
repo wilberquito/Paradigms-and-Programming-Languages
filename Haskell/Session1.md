@@ -516,7 +516,7 @@ GHCi> :type div
 div :: Integral a => a -> a -> a
 ```
 
-Interesting. We see the => symbol. Everything before the => symbol is called a class constraint. 
+Interesting. We see the `=>` symbol. Everything before the `=>` symbol is called a class constraint. 
 We can read the previous type declaration like this: the `div` function takes any two values 
 that are of the same type and returns a value of the same type. 
 The type of those three values must be a member of the `Integral` class (this was the class constraint).
@@ -568,8 +568,8 @@ A tuple is a composite data where the type of each component can be
 distinct.
 
 ```text
-If v1, v2,...,vn are values with type t1, t2,...,tn
-then (v1, v2,...,vn) is a tuple with type (t1, t2,...,tn)
+If v1, v2, . . . ,vn are values with type t1, t2, . . . ,tn
+then (v1, v2, . . . ,vn) is a tuple with type (t1, t2, . . . ,tn)
 ``` 
 
 Examples:
@@ -581,4 +581,57 @@ GHCi> :type ('a', False)
 ('a', False) :: (Char, Bool)
 GHCi> :type ('a', False)
 ('a', False, 1.5) :: Fractional c => (Char, Bool, c)
+```
+
+### Lists
+
+A list is a collection of zero or more elements, all of the same type.
+
+There are two constructors for lists
+
+- `[]` represents an empty list
+- `(:)` it allows to add elements at the very beggining of a list
+
+```text
+If v1, v2, . . . , vn are values with type t
+then v1 : (v2 : (. . . (vn−1 : (vn : [ ])))) is a list
+with type [t]
+```
+
+Example:
+
+```haskell
+GHCi> :type []
+[] :: [a]
+GHCi> 1:[]
+[1]
+GHCi> 'a':(1:[])
+<interactive>:20:6: error:
+    • No instance for (Num Char) arising from the literal ‘1’
+    • In the first argument of ‘(:)’, namely ‘1’
+      In the second argument of ‘(:)’, namely ‘(1 : [])’
+      In the expression: 'a' : (1 : [])
+```
+
+The constructor `(:)` is right associative:
+
+```text
+x1 : x2 : . . . xn−1 : xn : [ ] ===> x1 : (x2 : (. . . (xn−1 : (xn : [ ]))))
+```
+
+Haskell allows a more convenient syntax for lists:
+
+```text
+[x1, x2, . . . xn−1, xn] ===> x1 : (x2 : (. . . (xn−1 : (xn : [ ]))))
+```
+
+Example:
+
+```haskell
+GHCi> 1:(2:(3:[]))
+[1,2,3]
+GHCi> 1:2:3:[]
+[1,2,3]
+GHCi> [1,2,3]
+[1,2,3]
 ```
