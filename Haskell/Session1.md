@@ -504,3 +504,22 @@ Intuitively, we can think of types as sets of values and a set of allowed operat
 | Char | 'a', 'Z', '\n', '\t', '\\' | Represents a character (a letter, a digit, a punctuation mark, etc) | ord, chr, isAlpha, isDigit, isUpper, isLower |
 | String aka [Char] |	"abcd", ""	| Strings of characters	| reverse, ++ |
 
+Many of this operations are defined for a bigger group in a typeclass, 
+not just for the specific type. A typeclass is a sort of interface that defines some behavior. 
+If a type is a part of a typeclass, that means that it supports and 
+implements the behavior that the typeclass describes.
+
+For example, if we have ask Haskell about `div` operator type.
+
+```haskell
+GHCi> :type div
+div :: Integral a => a -> a -> a
+```
+
+Interesting. We see the => symbol. Everything before the => symbol is called a class constraint. 
+We can read the previous type declaration like this: the `div` function takes any two values 
+that are of the same type and returns a value of the same type. 
+The type of those three values must be a member of the `Integral` class (this was the class constraint).
+
+So, as `Int` and `Integral` types are part of the typeclass `Integral` they both implement the `div` operator.
+
