@@ -642,10 +642,8 @@ It is possible to declare the type corresponding to the different functions. For
 we have a single constructor: (→).
 
 ```text
-If t1, t2, . . . , tn, tr are valid types
-then t1→t2→ . . . tn→tr is the type
-of a function with n arguments
-The type of the result is tr
+If t1, t2, . . . , tn, tr are valid types then t1->t2-> . . . tn->tr is the type
+of a function with n arguments. The type of the result is tr
 ```
 
 Example:
