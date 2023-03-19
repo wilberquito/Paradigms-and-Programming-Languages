@@ -340,36 +340,38 @@ evaluating the function itself. Evaluation process is inside-out.
 
 Normal order reduction has many benefits
 
-- If the expression has normal form, a reduction by means of this order reaches it. (Standardization theorem).
-- Expressions are passed as arguments without necessarily evaluating (pass by name)
-- Any time you give a value a name, it gets shared. This means that every occurrence of the name points at
-  the same (potentially unevaluated) expression (Sharing)
+If the expression has normal form, a reduction by means of this order reaches it. (Standardization theorem).
 
-  Example:
+Expressions are passed as arguments without necessarily evaluating (pass by name)
 
-  ```haskell
-  square x = x*x
-  ```
+Any time you give a value a name, it gets shared. This means that every occurrence of 
+the name points at the same (potentially unevaluated) expression (Sharing)
 
-  You might imagine evaluation works like the following
+Example:
 
-  ```text
-  square (2+2)
-  ===> (2+2) * (2+2)   -- definition of square
-  ===>   4   * (2+2)   -- (*) forces left argument
-  ===>   4   *   4     -- (*) forces right argument
-  ===>      16         -- definition of (*)
-  ```
+```haskell
+square x = x*x
+```
+
+You might imagine evaluation works like the following
+
+```text
+square (2+2)
+===> (2+2) * (2+2)   -- definition of square
+===>   4   * (2+2)   -- (*) forces left argument
+===>   4   *   4     -- (*) forces right argument
+===>      16         -- definition of (*)
+```
     
-  However, what really happens is that the expression `2+2` named by the variable `x` is only computed once. 
-  The result of the evaluation is then shared between the two occurrences of `x`.
+However, what really happens is that the expression `2+2` named by the variable `x` is only computed once. 
+The result of the evaluation is then shared between the two occurrences of `x`.
 
-  ```text
-  square (2+2)
-  ===> (2+2) * (2+2)
-  ===>   4   *   4
-  ===>      16
-  ```
+```text
+square (2+2)
+===> (2+2) * (2+2)
+===>   4   *   4
+===>      16
+```
 
 If an incorrect redex is selected, the expression may fail to produce its normal form.
 
@@ -639,7 +641,7 @@ GHCi> [1,2,3]
 ### Type constructor
 
 It is possible to declare the type corresponding to the different functions. For it
-we have a single constructor: (→).
+we have a single constructor: (->).
 
 ```text
 If t1, t2, . . . , tn, tr are valid types then t1->t2-> . . . tn->tr is the type
