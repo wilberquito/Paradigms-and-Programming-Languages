@@ -596,7 +596,7 @@ There are two constructors for lists
 
 ```text
 If v1, v2, . . . , vn are values with type t
-then v1 : (v2 : (. . . (vn−1 : (vn : [ ])))) is a list
+then v1 : (v2 : (. . . (vn−1 : (vn : [])))) is a list
 with type [t]
 ```
 
@@ -618,13 +618,13 @@ GHCi> 'a':(1:[])
 The constructor `(:)` is right associative:
 
 ```text
-x1 : x2 : . . . xn−1 : xn : [ ] ===> x1 : (x2 : (. . . (xn−1 : (xn : [ ]))))
+x1 : x2 : . . . xn−1 : xn : [] ===> x1 : (x2 : (. . . (xn−1 : (xn : []))))
 ```
 
 Haskell allows a more convenient syntax for lists:
 
 ```text
-[x1, x2, . . . xn−1, xn] ===> x1 : (x2 : (. . . (xn−1 : (xn : [ ]))))
+[x1, x2, . . . xn−1, xn] ===> x1 : (x2 : (. . . (xn−1 : (xn : []))))
 ```
 
 Example:
