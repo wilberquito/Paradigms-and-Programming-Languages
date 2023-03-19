@@ -705,4 +705,15 @@ lucky 7 = "LUCKY NUMBER SEVEN!"
 GHCi> lucky 14
 *** Exception: Lucky.hs: Non-exhaustive pattern in function lucky
 ```
+When making patterns, we should always include a catch-all pattern so that our program doesn't crash if we get some unexpected input.
+
+### Lists
+
+### Tuples
+
+### The underlined pattern
+
+### Pseudonyms
+
+### Nested patterns
 
