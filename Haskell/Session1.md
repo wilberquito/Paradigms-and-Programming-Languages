@@ -482,7 +482,7 @@ calcChange owed given = if change > 0
 Many languages use the ++ operator to increment a value; for example, x++
 increments x. Do you think Haskell has an operator or function that works this way?
 
-## Built-in types and type constructors
+## Built-in types
   
 Previously we mentioned that Haskell has a static type system. 
 The type of every expression is known at compile time, which leads to safer code. 
@@ -527,3 +527,58 @@ So, as `Int` and `Integral` types are part of the typeclass `Integral` they both
     <summary>Toggle to see the Prelude Haskell class hierarchy</summary>
     <img src="Gif/classes.gif"/>
 </details>
+
+### Equality and order operators
+
+For all commented basic types the following binary operators are defined, which return a boolean value:
+
+| Operator |	Description |
+|:----:|:---------:|
+| > |	greater than |
+| >= |	greater than or equal |
+| < |	less than |
+| <= |	less than or equal |
+| == |	equal than |
+| /= |	different than |
+
+The type of the two arguments must be of the same type. We can not compare values of different types. Haskell will yield a type error match.
+
+Examples:
+
+```haskell
+GHCi> 10 /= 10
+False
+GHCi> "hello" == "hello"
+True
+GHCi> True <= 'a'
+<interactive>:6:8: error:
+    • Couldn't match expected type ‘Bool’ with actual type ‘Char’
+    • In the second argument of ‘(<)’, namely ‘'a'’
+      In the expression: True < 'a'
+      In an equation for ‘it’: it = True < 'a'
+```
+
+## Built-in type constructors
+
+Haskell defines structured types that allow you to represent collections of objects.
+
+### Tuples
+
+A tuple is a composite data where the type of each component can be
+distinct.
+
+```text
+If v1, v2,...,vn are values with type t1, t2,...,tn
+then (v1, v2,...,vn) is a tuple with type (t1, t2,...,tn)
+``` 
+
+Examples:
+
+```haskell
+GHCi> :type ()
+() :: ()
+GHCi> :type ('a', False)
+('a', False) :: (Char, Bool)
+GHCi> :type ('a', False)
+('a', False, 1.5) :: Fractional c => (Char, Bool, c)
+```
