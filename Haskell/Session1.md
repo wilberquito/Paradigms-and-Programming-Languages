@@ -190,7 +190,7 @@ GHCi> :t (+)
 Since Haskell has type inference, you don’t need to give any type annotations. 
 However even though type annotations aren’t required, there are multiple reasons to add them.
 
-Example
+Example:
 
 ```haskell
 doubleMe :: Int -> Int
@@ -291,7 +291,7 @@ f(5)
 
 Expressions are reduced outside-in. 
 
-Example
+Example:
 
 ```haskell
 -- equivalent to: 
@@ -345,7 +345,7 @@ Normal order reduction has many benefits
 - Any time you give a value a name, it gets shared. This means that every occurrence of the name points at
   the same (potentially unevaluated) expression (Sharing)
 
-  Example
+  Example:
 
   ```haskell
   square x = x*x
@@ -373,7 +373,7 @@ Normal order reduction has many benefits
 
 If an incorrect redex is selected, the expression may fail to produce its normal form.
 
-Example
+Example:
 
 ```haskell
 -- What happend if you call infinite by itself?
@@ -482,7 +482,7 @@ calcChange owed given = if change > 0
 Many languages use the ++ operator to increment a value; for example, x++
 increments x. Do you think Haskell has an operator or function that works this way?
 
-## Types and type constructors
+## Built-in types and type constructors
   
 Previously we mentioned that Haskell has a static type system. 
 The type of every expression is known at compile time, which leads to safer code. 
@@ -496,9 +496,11 @@ Intuitively, we can think of types as sets of values and a set of allowed operat
 
 | Type |	Literals | Use | Operations |
 |:----:|:---------:|:---:|:----------:|
-| Int |	1, 2, -3 | Number type (signed, 64bit) | +, -, \*, div, mod |
-| Integer |	1, -2, 900000000000000000	| Unbounded number type |	+, -, \*, div, mod |
-| Double | 0.1, 1.2e5	| Floating point numbers | +, -, \*, /, sqrt |
-| Bool | True, False | Truth values	| &&, ||, not |
+| Int |	1, 2, -3 | Number type (signed, 64bit) | +, -, \*, div, mod, fromIntegral |
+| Integer |	1, -2, 900000000000000000	| Unbounded number type |	+, -, \*, div, mod, fromInteger, fromIntegral |
+| Float | 0.1, 1.2e5	| Floating point numbers | +, -, \*, /, sqrt |
+| Double | 0.1, 1.2e5	| Floating point numbers. Aproximations are more precise than Float type | +, -, \*, /, sqrt |
+| Bool | True, False | Truth values	| &&, \|\|, not, otherwise |
+| Char | 'a', 'Z', '\n', '\t', '\\' | Represents a character (a letter, a digit, a punctuation mark, etc) | ord, chr, isAlpha, isDigit, isUpper, isLower |
 | String aka [Char] |	"abcd", ""	| Strings of characters	| reverse, ++ |
 
