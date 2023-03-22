@@ -59,7 +59,7 @@ GHCi> x
 4
 ```
 
-We rather persist our code into files. The `Main.hs` Haskell module has the following code:
+We rather persist our code into files. The [`Main.hs`](Examples/Main.hs) Haskell module has the following code:
 
 ```haskell
 main = print (fac 20)
@@ -658,7 +658,7 @@ sumSquares :: Integer -> Integer -> Integer
 sumSquares x y = x^2 + y^2
 ```
 
-## Pattern matching
+### Pattern matching
 
 Pattern matching consists of specifying patterns to which some data should
 conform and then checking to see if it does and deconstructing the data according to those patterns.
