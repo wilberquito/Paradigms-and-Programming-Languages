@@ -4,15 +4,15 @@ Can programming be liberated from the von Neumann style?
 
 ## Functional programming
 
-Functional programming is a programming paradigm that is based on the principles of lambda calculus. 
-Lambda calculus is a formal system developed in the 1930s by 
+Functional programming is a programming paradigm that is based on the principles of lambda calculus.
+Lambda calculus is a formal system developed in the 1930s by
 [Alonzo Church](https://es.wikipedia.org/wiki/Alonzo_Church) as a way of representing mathematical functions.
 
-> 1936 - Alan Turing invents every programming language that will ever be but 
+> 1936 - Alan Turing invents every programming language that will ever be but
 is shanghaied by British Intelligence to be 007 before he can patent them.
 
-> 1936 - Alonzo Church also invents every language that will ever be but does it better. 
-His lambda calculus is ignored because it is insufficiently C-like. 
+> 1936 - Alonzo Church also invents every language that will ever be but does it better.
+His lambda calculus is ignored because it is insufficiently C-like.
 This criticism occurs in spite of the fact that C has not yet been invented.
 
 The foundations of functional programming are abstract,
@@ -22,16 +22,16 @@ them. By focusing on computation, not computers.
 
 ## What you need to dive in?
 
-A text editor and a Haskell compiler. A good way to get started is to 
-downlaod [GHCup](https://www.haskell.org/ghcup/) which is the main installer 
-for general purpose language Haskell. Once you had downloaded any GHC version (Haskell compiler) 
-you can take a Haskell script with `.hs` extension and compile it but you can use `GHCi` 
-and interactive interface for `GHC`, GHCi is started with a simple command: `ghci`, 
+A text editor and a Haskell compiler. A good way to get started is to
+downlaod [GHCup](https://www.haskell.org/ghcup/) which is the main installer
+for general purpose language Haskell. Once you had downloaded any GHC version (Haskell compiler)
+you can take a Haskell script with `.hs` extension and compile it but you can use `GHCi`
+and interactive interface for `GHC`, GHCi is started with a simple command: `ghci`,
 you’ll be greeted with a new prompt:
 
 ```haskell
 $ ghci
-GHCi> 
+GHCi>
 ```
 
 For GHCi, you use the :q command
@@ -43,7 +43,7 @@ GHCi> :q
 Leaving GHCi.
 ```
 
-Working with GHCi is much like working with interpreters in most interpreted programming languages such as Python and Node. 
+Working with GHCi is much like working with interpreters in most interpreted programming languages such as Python and Node.
 It can be used as a simple calculator:
 
 ```haskell
@@ -128,7 +128,7 @@ But we do have recursion. Problems that can be solved iteratively can also be so
 
 ```python
 def add1():
-  # This is unsafe, 
+  # This is unsafe,
   # I can mutate the state of the app
   # and it's difficult to track 💀
   global x
@@ -173,35 +173,35 @@ The type system in Haskell ensures that every expression in the program has a we
 Everything in Haskell has a type, so the compiler can reason quite a lot about your program before compiling it, Unlike Java or Python, Haskell has type inference. If we write a number, we don't have to tell Haskell it's a number. It can infer that on its own, so we don't have to explicitly write out the types of our functions and expressions to get things done.
 
 ```haskell
-GHCi> :t 'a'  
-'a' :: Char  
-GHCi> :t True  
-True :: Bool  
-GHCi> :t "HELLO!"  
-"HELLO!" :: [Char]  
-GHCi> :t (True, 'a')  
-(True, 'a') :: (Bool, Char)  
-GHCi> :t 4 == 5  
+GHCi> :t 'a'
+'a' :: Char
+GHCi> :t True
+True :: Bool
+GHCi> :t "HELLO!"
+"HELLO!" :: [Char]
+GHCi> :t (True, 'a')
+(True, 'a') :: (Bool, Char)
+GHCi> :t 4 == 5
 4 == 5 :: Bool
-GHCi> :t (+) 
+GHCi> :t (+)
 (+) :: Num a => a -> a -> a
 ```
 
-Since Haskell has type inference, you don’t need to give any type annotations. 
+Since Haskell has type inference, you don’t need to give any type annotations.
 However even though type annotations aren’t required, there are multiple reasons to add them.
 
 Example:
 
 ```haskell
 doubleMe :: Int -> Int
-doubleMe x = x + x  
+doubleMe x = x + x
 ```
 
 - They act as documentation
 - They act as assertions that the compiler checks: help you spot mistakes
 - You can use type annotations to give a function a narrower type than Haskell infers
-  
-#### Functions 
+
+#### Functions
 
 The behavior of functions in Haskell
 comes directly from mathematics. In math, we often say things like `f(x) = y`, meaning
@@ -249,15 +249,15 @@ double :: Int -> Int
 double x = x * 2
 ```
 
-Curried functions, every function in Haskell only takes one parameter. Didn't wee see functions that take more than one parameter so far? 
-Well, it's a clever trick!. All the functions that accepted several parameters so far have been curried functions. 
-Currying is the process of transforming a function that takes multiple arguments, into a function that takes just a single argument 
+Curried functions, every function in Haskell only takes one parameter. Didn't wee see functions that take more than one parameter so far?
+Well, it's a clever trick!. All the functions that accepted several parameters so far have been curried functions.
+Currying is the process of transforming a function that takes multiple arguments, into a function that takes just a single argument
 and returns another function which accepts further arguments, one by one, that the original function would receive.
 
 ```haskell
 -- same as max :: Ord a => a -> (a -> a)
 GHCi> :t max
-max :: Ord a => a -> a -> a 
+max :: Ord a => a -> a -> a
 ```
 
 ```haskell
@@ -289,16 +289,16 @@ f(5)
 
 #### Normal order reduction
 
-Expressions are reduced outside-in. 
+Expressions are reduced outside-in.
 
 Example:
 
 ```haskell
--- equivalent to: 
+-- equivalent to:
 -- add1 = (+1)
 add1 x = x+1
 
--- equivalent to: 
+-- equivalent to:
 -- square = (^2)
 square x = x^2
 ```
@@ -322,7 +322,7 @@ When an expression cannot be further reduced it is said to be in normal form.
 ===> { by (^) operator }
 9
 ```
-  
+
 Notice that the normal order reduction is different from the application order reduction that always evaluate the arguments of a function before
 evaluating the function itself. Evaluation process is inside-out.
 
@@ -344,7 +344,7 @@ If the expression has normal form, a reduction by means of this order reaches it
 
 Expressions are passed as arguments without necessarily evaluating (pass by name)
 
-Any time you give a value a name, it gets shared. This means that every occurrence of 
+Any time you give a value a name, it gets shared. This means that every occurrence of
 the name points at the same (potentially unevaluated) expression (Sharing)
 
 Example:
@@ -362,8 +362,8 @@ square (2+2)
 ===>   4   *   4     -- (*) forces right argument
 ===>      16         -- definition of (*)
 ```
-    
-However, what really happens is that the expression `2+2` named by the variable `x` is only computed once. 
+
+However, what really happens is that the expression `2+2` named by the variable `x` is only computed once.
 The result of the evaluation is then shared between the two occurrences of `x`.
 
 ```text
@@ -389,7 +389,7 @@ zero x = 0
 ```text
 ∀n :: Integer. zero n => 0
 ```
-  
+
 If we try to to produce the normal form with the application order reduction, it hangs.
 
 ```text
@@ -410,7 +410,7 @@ zero infinite
 0
 . . .
 ```
- 
+
 #### Infinite extructures
 
 ```haskell
@@ -420,7 +420,7 @@ infiniteList = [1..]
 
 #### Lazy evaluation
 
-Values are only evaluated when they are needed. This makes it possible to work with 
+Values are only evaluated when they are needed. This makes it possible to work with
 infinite data structures, and also makes pure programs more efficient.
 
 ```haskell
@@ -456,7 +456,7 @@ main = do
 
 A better way to think about variables in Haskell is as definitions or name binding.
 
-The key benefit of variables in programming is to clarify 
+The key benefit of variables in programming is to clarify
 your code and avoid repetition, for example:
 
 This function takes two
@@ -485,11 +485,11 @@ Many languages use the ++ operator to increment a value; for example, x++
 increments x. Do you think Haskell has an operator or function that works this way?
 
 ## Built-in types
-  
-Previously we mentioned that Haskell has a static type system. 
-The type of every expression is known at compile time, which leads to safer code. 
+
+Previously we mentioned that Haskell has a static type system.
+The type of every expression is known at compile time, which leads to safer code.
 If you write a program where you try to divide a boolean type with some number, it won't even compile.
-  
+
 ### What are types by the way?
 
 Intuitively, we can think of types as sets of values and a set of allowed operations on those values.
@@ -506,9 +506,9 @@ Intuitively, we can think of types as sets of values and a set of allowed operat
 | Char | 'a', 'Z', '\n', '\t', '\\' | Represents a character (a letter, a digit, a punctuation mark, etc) | ord, chr, isAlpha, isDigit, isUpper, isLower |
 | String aka [Char] |	"abcd", ""	| Strings of characters	| reverse, ++ |
 
-Many of this operations are defined for a bigger group in a typeclass, 
-not just for the specific type. A typeclass is a sort of interface that defines some behavior. 
-If a type is a part of a typeclass, that means that it supports and 
+Many of this operations are defined for a bigger group in a typeclass,
+not just for the specific type. A typeclass is a sort of interface that defines some behavior.
+If a type is a part of a typeclass, that means that it supports and
 implements the behavior that the typeclass describes.
 
 For example, if we have ask Haskell about `div` operator type.
@@ -518,9 +518,9 @@ GHCi> :type div
 div :: Integral a => a -> a -> a
 ```
 
-Interesting. We see the `=>` symbol. Everything before the `=>` symbol is called a class constraint. 
-We can read the previous type declaration like this: the `div` function takes any two values 
-that are of the same type and returns a value of the same type. 
+Interesting. We see the `=>` symbol. Everything before the `=>` symbol is called a class constraint.
+We can read the previous type declaration like this: the `div` function takes any two values
+that are of the same type and returns a value of the same type.
 The type of those three values must be a member of the `Integral` class (this was the class constraint).
 
 So, as `Int` and `Integral` types are part of the typeclass `Integral` they both implement the `div` operator.
@@ -572,7 +572,7 @@ distinct.
 ```text
 If v1, v2, . . . ,vn are values with type t1, t2, . . . ,tn
 then (v1, v2, . . . ,vn) is a tuple with type (t1, t2, . . . ,tn)
-``` 
+```
 
 Examples:
 
@@ -660,23 +660,23 @@ sumSquares x y = x^2 + y^2
 
 ## Pattern matching
 
-Pattern matching consists of specifying patterns to which some data should 
+Pattern matching consists of specifying patterns to which some data should
 conform and then checking to see if it does and deconstructing the data according to those patterns.
 
-When defining functions, you can define separate function bodies for different patterns. 
-This leads to really neat code that's simple and readable. 
-You can pattern match on any data type — numbers, characters, lists, tuples, etc. 
+When defining functions, you can define separate function bodies for different patterns.
+This leads to really neat code that's simple and readable.
+You can pattern match on any data type — numbers, characters, lists, tuples, etc.
 
 Example:
 
 ```haskell
-lucky :: (Integral a) => a -> String  
-lucky 7 = "LUCKY NUMBER SEVEN!"  
-lucky x = "Sorry, you're out of luck, pal!" 
+lucky :: (Integral a) => a -> String
+lucky 7 = "LUCKY NUMBER SEVEN!"
+lucky x = "Sorry, you're out of luck, pal!"
 ```
 
-When you call lucky, the patterns will be checked from top to bottom and when it conforms to a pattern, 
-the corresponding function body will be used. The only way a number can conform to the first 
+When you call lucky, the patterns will be checked from top to bottom and when it conforms to a pattern,
+the corresponding function body will be used. The only way a number can conform to the first
 pattern here is if it is 7. If it's not, it falls through to the second pattern, which matches anything and binds it to x.
 
 Note that if we moved the last pattern (the catch-all one) to the top it would always say "Sorry, you're out of luck, pal!"
@@ -685,35 +685,53 @@ because it would catch all the numbers and they wouldn't have a chance to fall t
 Example:
 
 ```haskell
-lucky :: (Integral a) => a -> String 
+lucky :: (Integral a) => a -> String
 lucky x = "Sorry, you're out of luck, pal!"
-lucky 7 = "LUCKY NUMBER SEVEN!"  
+lucky 7 = "LUCKY NUMBER SEVEN!"
 ```
 
-Note also that if we remove the pattern (the catch-all one), the pattern match(es) 
+Note also that if we remove the pattern (the catch-all one), the pattern match(es)
 are non-exhastive for the function `lucky`
 meaning that for some values the function's behaviour is not specified.
 
 Example:
 
 ```haskell
-lucky :: (Integral a) => a -> String  
-lucky 7 = "LUCKY NUMBER SEVEN!"  
+lucky :: (Integral a) => a -> String
+lucky 7 = "LUCKY NUMBER SEVEN!"
 ```
 
 ```haskell
 GHCi> lucky 14
 *** Exception: Lucky.hs: Non-exhaustive pattern in function lucky
 ```
+
 When making patterns, we should always include a catch-all pattern so that our program doesn't crash if we get some unexpected input.
-
-### Lists
-
-### Tuples
 
 ### The underlined pattern
 
-### Pseudonyms
+- It take the form `_`
+- Unify with any argument
+- They don't produce binding
+
+Example:
+
+```haskell
+-- number of elements from a list of Int
+length :: [Int] -> Int
+length [] = 0
+length (_:xs) = 1 + length xs
+```
 
 ### Nested patterns
 
+It's allowed neested patterns
+
+Example:
+
+```haskell
+-- function that sums all elements from a list of tuples
+sumPairs :: [(Integer, Integer)] -> Integer
+sumPairs [] = 0
+sumPairs ((x,y):xs) = x + y + sumPairs(xs)
+```
