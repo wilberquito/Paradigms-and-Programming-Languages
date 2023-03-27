@@ -33,7 +33,7 @@ $ ghci
 GHCi>
 ```
 
-For GHCi, you use the :q command
+For GHCi, you use the `:q` command
 to exit:
 
 ```haskell
@@ -42,7 +42,7 @@ GHCi> :q
 Leaving GHCi.
 ```
 
-Working with GHCi is much like working with interpreters in most interpreted programming languages such as Python and Node.
+Working with GHCi is much like working with interpreters in most interpreted programming languages such as Python and Node for JS.
 It can be used as a simple calculator:
 
 ```haskell
@@ -67,7 +67,7 @@ fac 0 = 1
 fac n = n * fac (n-1)
 ```
 
-You can save `Main.hs` anywhere you like, but if you save it somewhere other than the current directory then we will need to change to the right directory in GHCi:
+You can save `Main.hs` anywhere you like, but if you save it somewhere other than the current directory then you will need to change to the right directory in GHCi:
 
 ```haskell
 GHCi> :cd dir
@@ -81,7 +81,7 @@ Compiling Main             ( Main.hs, interpreted )
 Ok, modules loaded: Main.
 ```
 
-If you make some changes to the source code and want GHCi to recompile the program, give the `:reload` command. The program will be recompiled as necessary, with GHCi doing its best to avoid actually recompiling modules if their external dependencies haven’t changed.
+If you make some changes to the source code and want GHCi to recompile the program, use the `:reload` command. The program will be recompiled as necessary, with GHCi doing its best to avoid actually recompiling modules if their external dependencies haven’t changed.
 
 ```haskell
 GHCi> :reload
@@ -204,8 +204,8 @@ doubleMe x = x + x
 
 The behavior of functions in Haskell
 comes directly from mathematics. In math, we often say things like `f(x) = y`, meaning
-there’s some function *f* that takes a parameter *x* and maps to a value *y*.
-In mathematics, every *x* can map to one and only one *y*.
+there’s some function `f` that takes a parameter `x` and maps to a value `y`.
+In mathematics, every `x` can map to one and only one `y`.
 
 In mathematics the application of function is denotated with parenthesis.
 
@@ -216,23 +216,28 @@ f (a, b) + c × d -- applies the function f to the parameters a and b
 In Haskell the function application is denotated by a space.
 
 ```haskell
-f a b + c * d -- same as f (a, b) + c × d
+-- same as f (a, b) + c × d
+f a b + c * d
 ```
 
 The application of functions has maximum priority.
 
 ```haskell
-g a + b -- means (g a) + b and NO g (a + b)
+-- means (g a) + b and NO g (a + b)
+g a + b
 ```
 
 Compound arguments go between parentheses.
 
 ```haskell
-f (a + b) c -- applies f function to 2 arguments.
+-- applies f function to 2 arguments.
+f (a + b) c
 ```
 
 In Haskell functions are considered first-class citizens, which means they can be passed as arguments,
 returned as values, and composed together to form more complex operations.
+
+Example:
 
 ```haskell
 map :: (a -> b) -> [a] -> [b]
@@ -242,6 +247,8 @@ map f (x:xs) = f x : map f xs
 
 Functions are pure, where its return value depends solely on its input parameters. In other words, functions
 in Haskell don't produce side effects. Because functions are pure, formal verification is relatively easy.
+
+Example:
 
 ```haskell
 double :: Int -> Int
@@ -253,24 +260,21 @@ Well, it's a clever trick!. All the functions that accepted several parameters s
 Currying is the process of transforming a function that takes multiple arguments, into a function that takes just a single argument
 and returns another function which accepts further arguments, one by one, that the original function would receive.
 
+Example:
+
 ```haskell
--- same as max :: Ord a => a -> (a -> a)
 GHCi> :t max
 max :: Ord a => a -> a -> a
-```
-
-```haskell
 GHCi> max 4 5
 5
-```
-
-```haskell
 GHCi> f = max 4
 GHCi> f 5
 5
 ```
 
-Does other languages support this feature? the vast majority don't. For example, in JS you can emulate this as:
+Does other languages support this feature? the vast majority don't. For example, in JS you can emulate this.
+
+Example:
 
 ```js
 function max(a) {
@@ -429,10 +433,9 @@ mayHang x y = y
 
 ```haskell
 GHCi> mayHang infiniteList (1 + 1)
-```
-
-```haskell
+GHCi> 2
 GHCi> mayHang (1 + 1) infiniteList
+[1,2,3...]
 ```
 
 #### Variables
@@ -456,9 +459,7 @@ main = do
 A better way to think about variables in Haskell is as definitions or name binding.
 
 The key benefit of variables in programming is to clarify
-your code and avoid repetition, for example:
-
-This function takes two
+your code and avoid repetition, for example, the following function takes two
 arguments: how much is owed and how much is given. If you’re given enough money,
 you return the difference. But if you aren’t given enough money, you don’t want to give
 negative dollars; you’ll return 0.
@@ -480,8 +481,8 @@ calcChange owed given = if change > 0
 
 ## Quick check
 
-Many languages use the ++ operator to increment a value; for example, x++
-increments x. Do you think Haskell has an operator or function that works this way?
+Many languages use the `++` operator to increment a value; for example, `x++`
+increments `x`. Do you think Haskell has an operator or function that works this way?
 
 ## Built-in types
 
@@ -544,7 +545,7 @@ For all commented basic types the following binary operators are defined, which 
 
 The type of the two arguments must be of the same type. We can not compare values of different types. Haskell will yield a type error match.
 
-Examples:
+Example:
 
 ```haskell
 GHCi> 10 /= 10
@@ -562,7 +563,7 @@ GHCi> True <= 'a'
 ## Type constructor
 
 It is possible to declare the type corresponding to the different functions. For it
-we have a single constructor: (->).
+we have a single constructor: `->`.
 
 ```text
 If t1, t2, . . . , tn, tr are valid types then t1->t2-> . . . tn->tr is the type
@@ -600,16 +601,8 @@ When you call lucky, the patterns will be checked from top to bottom and when it
 the corresponding function body will be used. The only way a number can conform to the first
 pattern here is if it is 7. If it's not, it falls through to the second pattern, which matches anything and binds it to x.
 
-Note that if we moved the last pattern (the catch-all one) to the top it would always say "Sorry, you're out of luck, pal!"
+Note that if we move the last pattern (the catch-all one) to the top it would always say "Sorry, you're out of luck, pal!"
 because it would catch all the numbers and they wouldn't have a chance to fall through and be checked for any other patterns.
-
-Example:
-
-```haskell
-lucky :: (Integral a) => a -> String
-lucky x = "Sorry, you're out of luck, pal!"
-lucky 7 = "LUCKY NUMBER SEVEN!"
-```
 
 Note also that if we remove the pattern (the catch-all one), the pattern match(es)
 are non-exhastive for the function `lucky`
@@ -660,9 +653,8 @@ There are two constructors for lists
 - `(:)` it allows to add elements at the very beggining of a list
 
 ```text
-If v1, v2, . . . , vn are values with type t
-then v1 : (v2 : (. . . (vn−1 : (vn : [])))) is a list
-with type [t]
+If v1, v2, . . . , vn are values with type t then 
+v1 : (v2 : (. . . (vn−1 : (vn : [])))) is a list with type [t]
 ```
 
 Example:
@@ -704,7 +696,7 @@ GHCi> [1,2,3]
 ```
 
 Lists themselves can also be used in pattern matching. You can match with the empty list `[]`
-or any pattern that involves `:` and the empty list.
+or any pattern that involves `:`.
 
 A pattern like `x:xs` will bind the head of the list to `x` and the rest of
 it to `xs`, even if there's only one element so `xs` ends up being an empty list.
@@ -749,8 +741,8 @@ sumPairs ((x,y):xs) = x + y + sumPairs(xs)
 if boolExpression then ifExpression else noExpression
 ```
 
-- The type of `boolExpression` must be Bool
-- The types of `ifExpression` and `noExpression` must be the same
+- The type of *boolExpression* must be `Bool`
+- The types of *ifExpression* and *noExpression* must be the same
 - The else part is mandatory
 - The evaluation is lazy
 
@@ -773,11 +765,18 @@ doubleSmallNumber' x = (if x > 100 then x else x*2) + 1
 
 Whereas patterns are a way of making sure a value conforms to some form and deconstructing it, guards are a way of testing whether some property of a value (or several of them) are true or false.
 
-- The expressions between the symbols | y = are called guards (type Bool)
+- The expressions between the symbols `| y =` are called guards (type Bool)
 - The result corresponding to the first true guard is returned
-- Many times, the last guard is otherwise. otherwise is defined simply as otherwise = True and catches everything.
+- Many times, the last guard is `otherwise`. Otherwise is a function that always evaluate to `True` and catches everything.
 
 Example:
+
+```haskell
+GHCi> :type otherwise
+otherwise :: Bool
+GHCi> otherwise
+True
+```
 
 ```haskell
 bmiTell :: (RealFloat a) => a -> String
