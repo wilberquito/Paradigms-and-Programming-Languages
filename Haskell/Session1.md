@@ -559,9 +559,7 @@ GHCi> True <= 'a'
       In an equation for ‘it’: it = True < 'a'
 ```
 
-## Built-in type constructors
-
-### Type constructor
+## Type constructor
 
 It is possible to declare the type corresponding to the different functions. For it
 we have a single constructor: (->).
@@ -581,7 +579,7 @@ sumSquares :: Integer -> Integer -> Integer
 sumSquares x y = x^2 + y^2
 ```
 
-### Pattern matching
+## Pattern matching
 
 Pattern matching consists of specifying patterns to which some data should
 conform and then checking to see if it does and deconstructing the data according to those patterns.
@@ -631,7 +629,7 @@ GHCi> lucky 14
 
 When making patterns, we should always include a catch-all pattern so that our program doesn't crash if we get some unexpected input.
 
-### Tuples
+## Tuples
 
 A tuple is a composite data where the type of each component can be
 distinct.
@@ -652,7 +650,7 @@ GHCi> :type ('a', False)
 ('a', False, 1.5) :: Fractional c => (Char, Bool, c)
 ```
 
-### Lists
+## Lists
 
 A list is a collection of zero or more elements, all of the same type.
 
@@ -717,7 +715,7 @@ head' [] = error "Can't call head on an empty list, dummy!"
 head' (x:_) = x
 ```
 
-### The underlined pattern
+## The underlined pattern
 
 - It take the form `_`
 - Unify with any argument
@@ -732,7 +730,7 @@ length [] = 0
 length (_:xs) = 1 + length xs
 ```
 
-### Nested patterns
+## Nested patterns
 
 It's allowed neested patterns
 
@@ -743,4 +741,71 @@ Example:
 sumPairs :: [(Integer, Integer)] -> Integer
 sumPairs [] = 0
 sumPairs ((x,y):xs) = x + y + sumPairs(xs)
+```
+
+## The if-else expression
+
+```text
+if boolExpression then ifExpression else noExpression
+```
+
+- The type of `boolExpression` must be Bool
+- The types of `ifExpression` and `noExpression` must be the same
+- The else part is mandatory
+- The evaluation is lazy
+
+```haskell
+-- a function that multiplies a number by 2 but only
+-- if that number is smaller than or equal to 100 because numbers bigger than 100 are big enough as it is!
+doubleSmallNumber x = if x > 100
+                        then x
+                        else x*2
+
+-- a function that multiplies a number by 2 but only
+-- if that number is smaller than or equal to 100 because numbers bigger than 100 are big enough as it is!
+-- and adds 1
+doubleSmallNumber' x = (if x > 100 then x else x*2) + 1
+```
+
+## Guards, guards
+
+Whereas patterns are a way of making sure a value conforms to some form and deconstructing it, guards are a way of testing whether some property of a value (or several of them) are true or false.
+
+- The expressions between the symbols | y = are called guards (type Bool)
+- The result corresponding to the first true guard is returned
+- Many times, the last guard is otherwise. otherwise is defined simply as otherwise = True and catches everything.
+
+```haskell
+bmiTell :: (RealFloat a) => a -> String
+bmiTell bmi
+    | bmi <= 18.5 = "You're underweight, you emo, you!"
+    | bmi <= 25.0 = "You're supposedly normal. Pffft, I bet you're ugly!"
+    | bmi <= 30.0 = "You're fat! Lose some weight, fatty!"
+    | otherwise   = "You're a whale, congratulations!"
+```
+
+## Case expression
+
+```haskell
+case expression of pattern -> result
+                   pattern -> result
+                   pattern -> result
+                   ...
+```
+
+They allow us evaluate expressions based on the possible cases of
+the value of a variable, and we can also do pattern matching on them.
+If non pattern unifies it throws an error.
+
+```haskell
+head' :: [a] -> a
+head' xs = case xs of [] -> error "No head for empty lists!"
+                      (x:_) -> x
+```
+
+```haskell
+describeList :: [a] -> String
+describeList xs = "The list is " ++ case xs of [] -> "empty."
+                                               [x] -> "a singleton list."
+                                               xs -> "a longer list."
 ```
