@@ -745,7 +745,7 @@ sumPairs ((x,y):xs) = x + y + sumPairs(xs)
 
 ## The if-else expression
 
-```text
+```haskell
 if boolExpression then ifExpression else noExpression
 ```
 
