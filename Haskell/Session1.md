@@ -801,6 +801,9 @@ They allow us evaluate expressions based on the possible cases of
 the value of a variable, and we can also do pattern matching on them.
 If non pattern unifies it throws an error.
 
+- expression and all patterns must have the same type
+- every result must have the same type
+
 Example:
 
 ```haskell
