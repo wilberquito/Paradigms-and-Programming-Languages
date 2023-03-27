@@ -754,6 +754,8 @@ if boolExpression then ifExpression else noExpression
 - The else part is mandatory
 - The evaluation is lazy
 
+Example:
+
 ```haskell
 -- a function that multiplies a number by 2 but only
 -- if that number is smaller than or equal to 100 because numbers bigger than 100 are big enough as it is!
@@ -774,6 +776,8 @@ Whereas patterns are a way of making sure a value conforms to some form and deco
 - The expressions between the symbols | y = are called guards (type Bool)
 - The result corresponding to the first true guard is returned
 - Many times, the last guard is otherwise. otherwise is defined simply as otherwise = True and catches everything.
+
+Example:
 
 ```haskell
 bmiTell :: (RealFloat a) => a -> String
@@ -797,13 +801,13 @@ They allow us evaluate expressions based on the possible cases of
 the value of a variable, and we can also do pattern matching on them.
 If non pattern unifies it throws an error.
 
+Example:
+
 ```haskell
 head' :: [a] -> a
 head' xs = case xs of [] -> error "No head for empty lists!"
                       (x:_) -> x
-```
 
-```haskell
 describeList :: [a] -> String
 describeList xs = "The list is " ++ case xs of [] -> "empty."
                                                [x] -> "a singleton list."
