@@ -10,7 +10,6 @@ Lambda calculus is a formal system developed in the 1930s by
 
 > 1936 - Alan Turing invents every programming language that will ever be but
 is shanghaied by British Intelligence to be 007 before he can patent them.
-
 > 1936 - Alonzo Church also invents every language that will ever be but does it better.
 His lambda calculus is ignored because it is insufficiently C-like.
 This criticism occurs in spite of the fact that C has not yet been invented.
@@ -98,7 +97,7 @@ Haskell is the purest functional programming language you can learn.
 
 > 1990 - A committee formed by Simon Peyton-Jones, Paul Hudak, Philip Wadler, Ashton Kutcher, and People for the Ethical Treatment of Animals creates Haskell, a pure, non-strict, functional language. Haskell gets some resistance due to the complexity of using monads to control side effects. Wadler tries to appease critics by explaining that "a monad is a monoid in the category of endofunctors, what's the problem?"
 
-### Haskell doesn't have...
+### Haskell doesn't have
 
 #### Asigments
 
@@ -496,15 +495,15 @@ Intuitively, we can think of types as sets of values and a set of allowed operat
 
 ### Syntax of types
 
-| Type |	Literals | Use | Operations |
-|:----:|:---------:|:---:|:----------:|
-| Int |	1, 2, -3 | Number type (signed, 64bit) | +, -, \*, div, mod, fromIntegral |
-| Integer |	1, -2, 900000000000000000	| Unbounded number type |	+, -, \*, div, mod, fromInteger, fromIntegral |
-| Float | 0.1, 1.2e5	| Floating point numbers | +, -, \*, /, sqrt |
-| Double | 0.1, 1.2e5	| Floating point numbers. Aproximations are more precise than Float type | +, -, \*, /, sqrt |
-| Bool | True, False | Truth values	| &&, \|\|, not, otherwise |
-| Char | 'a', 'Z', '\n', '\t', '\\' | Represents a character (a letter, a digit, a punctuation mark, etc) | ord, chr, isAlpha, isDigit, isUpper, isLower |
-| String aka [Char] |	"abcd", ""	| Strings of characters	| reverse, ++ |
+|       Type        |          Literals          |                                  Use                                   |                  Operations                   |
+| :---------------: | :------------------------: | :--------------------------------------------------------------------: | :-------------------------------------------: |
+|        Int        |          1, 2, -3          |                      Number type (signed, 64bit)                       |       +, -, \*, div, mod, fromIntegral        |
+|      Integer      | 1, -2, 900000000000000000  |                         Unbounded number type                          | +, -, \*, div, mod, fromInteger, fromIntegral |
+|       Float       |         0.1, 1.2e5         |                         Floating point numbers                         |               +, -, \*, /, sqrt               |
+|      Double       |         0.1, 1.2e5         | Floating point numbers. Aproximations are more precise than Float type |               +, -, \*, /, sqrt               |
+|       Bool        |        True, False         |                              Truth values                              |           &&, \|\|, not, otherwise            |
+|       Char        | 'a', 'Z', '\n', '\t', '\\' |  Represents a character (a letter, a digit, a punctuation mark, etc)   | ord, chr, isAlpha, isDigit, isUpper, isLower  |
+| String aka [Char] |         "abcd", ""         |                         Strings of characters                          |                  reverse, ++                  |
 
 Many of this operations are defined for a bigger group in a typeclass,
 not just for the specific type. A typeclass is a sort of interface that defines some behavior.
@@ -534,14 +533,14 @@ So, as `Int` and `Integral` types are part of the typeclass `Integral` they both
 
 For all commented basic types the following binary operators are defined, which return a boolean value:
 
-| Operator |	Description |
-|:----:|:---------:|
-| > |	greater than |
-| >= |	greater than or equal |
-| < |	less than |
-| <= |	less than or equal |
-| == |	equal than |
-| /= |	different than |
+| Operator |      Description      |
+| :------: | :-------------------: |
+|    >     |     greater than      |
+|    >=    | greater than or equal |
+|    <     |       less than       |
+|    <=    |  less than or equal   |
+|    ==    |      equal than       |
+|    /=    |    different than     |
 
 The type of the two arguments must be of the same type. We can not compare values of different types. Haskell will yield a type error match.
 
@@ -706,16 +705,16 @@ GHCi> [1,2,3]
 [1,2,3]
 ```
 
-Lists themselves can also be used in pattern matching. You can match with the empty list `[]` 
-or any pattern that involves `:` and the empty list. 
+Lists themselves can also be used in pattern matching. You can match with the empty list `[]`
+or any pattern that involves `:` and the empty list.
 
-A pattern like `x:xs` will bind the head of the list to `x` and the rest of 
+A pattern like `x:xs` will bind the head of the list to `x` and the rest of
 it to `xs`, even if there's only one element so `xs` ends up being an empty list.
 
 ```haskell
-head' :: [a] -> a  
-head' [] = error "Can't call head on an empty list, dummy!"  
-head' (x:_) = x 
+head' :: [a] -> a
+head' [] = error "Can't call head on an empty list, dummy!"
+head' (x:_) = x
 ```
 
 ### The underlined pattern
@@ -732,7 +731,6 @@ length :: [Int] -> Int
 length [] = 0
 length (_:xs) = 1 + length xs
 ```
-
 
 ### Nested patterns
 
