@@ -562,7 +562,75 @@ GHCi> True <= 'a'
 
 ## Built-in type constructors
 
-Haskell defines structured types that allow you to represent collections of objects.
+### Type constructor
+
+It is possible to declare the type corresponding to the different functions. For it
+we have a single constructor: (->).
+
+```text
+If t1, t2, . . . , tn, tr are valid types then t1->t2-> . . . tn->tr is the type
+of a function with n arguments. The type of the result is tr
+```
+
+Example:
+
+```haskell
+inc :: Integer -> Integer
+inc x = x + 1
+
+sumSquares :: Integer -> Integer -> Integer
+sumSquares x y = x^2 + y^2
+```
+
+### Pattern matching
+
+Pattern matching consists of specifying patterns to which some data should
+conform and then checking to see if it does and deconstructing the data according to those patterns.
+
+When defining functions, you can define separate function bodies for different patterns.
+This leads to really neat code that's simple and readable.
+You can pattern match on any data type — numbers, characters, lists, tuples, etc.
+
+Example:
+
+```haskell
+lucky :: (Integral a) => a -> String
+lucky 7 = "LUCKY NUMBER SEVEN!"
+lucky x = "Sorry, you're out of luck, pal!"
+```
+
+When you call lucky, the patterns will be checked from top to bottom and when it conforms to a pattern,
+the corresponding function body will be used. The only way a number can conform to the first
+pattern here is if it is 7. If it's not, it falls through to the second pattern, which matches anything and binds it to x.
+
+Note that if we moved the last pattern (the catch-all one) to the top it would always say "Sorry, you're out of luck, pal!"
+because it would catch all the numbers and they wouldn't have a chance to fall through and be checked for any other patterns.
+
+Example:
+
+```haskell
+lucky :: (Integral a) => a -> String
+lucky x = "Sorry, you're out of luck, pal!"
+lucky 7 = "LUCKY NUMBER SEVEN!"
+```
+
+Note also that if we remove the pattern (the catch-all one), the pattern match(es)
+are non-exhastive for the function `lucky`
+meaning that for some values the function's behaviour is not specified.
+
+Example:
+
+```haskell
+lucky :: (Integral a) => a -> String
+lucky 7 = "LUCKY NUMBER SEVEN!"
+```
+
+```haskell
+GHCi> lucky 14
+*** Exception: Lucky.hs: Non-exhaustive pattern in function lucky
+```
+
+When making patterns, we should always include a catch-all pattern so that our program doesn't crash if we get some unexpected input.
 
 ### Tuples
 
@@ -638,75 +706,17 @@ GHCi> [1,2,3]
 [1,2,3]
 ```
 
-### Type constructor
+Lists themselves can also be used in pattern matching. You can match with the empty list `[]` 
+or any pattern that involves `:` and the empty list. 
 
-It is possible to declare the type corresponding to the different functions. For it
-we have a single constructor: (->).
-
-```text
-If t1, t2, . . . , tn, tr are valid types then t1->t2-> . . . tn->tr is the type
-of a function with n arguments. The type of the result is tr
-```
-
-Example:
+A pattern like `x:xs` will bind the head of the list to `x` and the rest of 
+it to `xs`, even if there's only one element so `xs` ends up being an empty list.
 
 ```haskell
-inc :: Integer -> Integer
-inc x = x + 1
-
-sumSquares :: Integer -> Integer -> Integer
-sumSquares x y = x^2 + y^2
+head' :: [a] -> a  
+head' [] = error "Can't call head on an empty list, dummy!"  
+head' (x:_) = x 
 ```
-
-### Pattern matching
-
-Pattern matching consists of specifying patterns to which some data should
-conform and then checking to see if it does and deconstructing the data according to those patterns.
-
-When defining functions, you can define separate function bodies for different patterns.
-This leads to really neat code that's simple and readable.
-You can pattern match on any data type — numbers, characters, lists, tuples, etc.
-
-Example:
-
-```haskell
-lucky :: (Integral a) => a -> String
-lucky 7 = "LUCKY NUMBER SEVEN!"
-lucky x = "Sorry, you're out of luck, pal!"
-```
-
-When you call lucky, the patterns will be checked from top to bottom and when it conforms to a pattern,
-the corresponding function body will be used. The only way a number can conform to the first
-pattern here is if it is 7. If it's not, it falls through to the second pattern, which matches anything and binds it to x.
-
-Note that if we moved the last pattern (the catch-all one) to the top it would always say "Sorry, you're out of luck, pal!"
-because it would catch all the numbers and they wouldn't have a chance to fall through and be checked for any other patterns.
-
-Example:
-
-```haskell
-lucky :: (Integral a) => a -> String
-lucky x = "Sorry, you're out of luck, pal!"
-lucky 7 = "LUCKY NUMBER SEVEN!"
-```
-
-Note also that if we remove the pattern (the catch-all one), the pattern match(es)
-are non-exhastive for the function `lucky`
-meaning that for some values the function's behaviour is not specified.
-
-Example:
-
-```haskell
-lucky :: (Integral a) => a -> String
-lucky 7 = "LUCKY NUMBER SEVEN!"
-```
-
-```haskell
-GHCi> lucky 14
-*** Exception: Lucky.hs: Non-exhaustive pattern in function lucky
-```
-
-When making patterns, we should always include a catch-all pattern so that our program doesn't crash if we get some unexpected input.
 
 ### The underlined pattern
 
@@ -722,6 +732,7 @@ length :: [Int] -> Int
 length [] = 0
 length (_:xs) = 1 + length xs
 ```
+
 
 ### Nested patterns
 
