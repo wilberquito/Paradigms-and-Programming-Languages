@@ -872,7 +872,7 @@ addThree :: Int -> Int -> Int -> Int
 ### nSum
 
 ```haskell
-- Ex 4. define the function nSum. It should take an argument of
+-- Ex 4. define the function nSum. It should take an argument of
 -- type Num a => [a] and returns the sum of all elements in the list
 -- Use recursion.
 --
