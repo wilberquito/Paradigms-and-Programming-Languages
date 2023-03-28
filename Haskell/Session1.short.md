@@ -210,7 +210,8 @@ In mathematics, every `x` can map to one and only one `y`.
 In mathematics the application of function is denotated with parenthesis.
 
 ```text
-f (a, b) + c × d -- applies the function f to the parameters a and b
+-- applies the function f to the parameters a and b
+f (a, b) + c × d
 ```
 
 In Haskell the function application is denotated by a space.
@@ -274,6 +275,8 @@ max :: Ord a => a -> a -> a
 GHCi> max 4 5
 5
 GHCi> f = max 4
+GHCi> :t f
+f :: (Ord a, Num a) => a -> a
 GHCi> f 5
 5
 ```
@@ -298,7 +301,7 @@ f(5)
 
 #### Normal order reduction
 
-> See the theory; reduction strategies (lambda-calcul-breu-pdf)
+> Saw in theory; reduction strategies (lambda-calcul-breu-pdf)
 
 #### Infinite extructures
 
@@ -409,7 +412,7 @@ We can read the previous type declaration like this: the `div` function takes an
 that are of the same type and returns a value of the same type.
 The type of those three values must be a member of the `Integral` class (this was the class constraint).
 
-So, as `Int` and `Integral` types are part of the typeclass `Integral` they both implement the `div` operator.
+So, as `Int` and `Integer` types are part of the typeclass `Integral` they both implement the `div` operator.
 
 <details>
     <summary>Toggle to see the Prelude Haskell class hierarchy</summary>
@@ -438,7 +441,7 @@ GHCi> 10 /= 10
 False
 GHCi> "hello" == "hello"
 True
-GHCi> True <= 'a'
+GHCi> True < 'a'
 <interactive>:6:8: error:
     • Couldn't match expected type ‘Bool’ with actual type ‘Char’
     • In the second argument of ‘(<)’, namely ‘'a'’
@@ -448,23 +451,7 @@ GHCi> True <= 'a'
 
 ## Type constructor
 
-It is possible to declare the type corresponding to the different functions. For it
-we have a single constructor: `->`.
-
-```text
-If t1, t2, . . . , tn, tr are valid types then t1->t2-> . . . tn->tr is the type
-of a function with n arguments. The type of the result is tr
-```
-
-Example:
-
-```haskell
-inc :: Integer -> Integer
-inc x = x + 1
-
-sumSquares :: Integer -> Integer -> Integer
-sumSquares x y = x^2 + y^2
-```
+> Saw in theory, the behavior of `->`
 
 ## Pattern matching
 
@@ -525,7 +512,7 @@ GHCi> :type ()
 () :: ()
 GHCi> :type ('a', False)
 ('a', False) :: (Char, Bool)
-GHCi> :type ('a', False)
+GHCi> :type ('a', False, 1.5)
 ('a', False, 1.5) :: Fractional c => (Char, Bool, c)
 ```
 
@@ -587,6 +574,8 @@ or any pattern that involves `:`.
 A pattern like `x:xs` will bind the head of the list to `x` and the rest of
 it to `xs`, even if there's only one element so `xs` ends up being an empty list.
 
+Example:
+
 ```haskell
 head' :: [a] -> a
 head' [] = error "Can't call head on an empty list, dummy!"
@@ -636,14 +625,16 @@ Example:
 
 ```haskell
 -- a function that multiplies a number by 2 but only
--- if that number is smaller than or equal to 100 because numbers bigger than 100 are big enough as it is!
+-- if that number is smaller than or equal to 100
+-- because numbers bigger than 100 are big enough as it is!
 doubleSmallNumber x = if x > 100
                         then x
                         else x*2
 
 -- a function that multiplies a number by 2 but only
--- if that number is smaller than or equal to 100 because numbers bigger than 100 are big enough as it is!
--- and adds 1
+-- if that number is smaller than or equal to 100
+-- because numbers bigger than 100 are big enough as it is!.
+-- Adds 1
 doubleSmallNumber' x = (if x > 100 then x else x*2) + 1
 ```
 
@@ -667,10 +658,10 @@ True
 ```haskell
 bmiTell :: (RealFloat a) => a -> String
 bmiTell bmi
-    | bmi <= 18.5 = "*************************+"
-    | bmi <= 25.0 = "**************************"
-    | bmi <= 30.0 = "**************************"
-    | otherwise   = "**************************"
+    | bmi <= 18.5 = ":/"
+    | bmi <= 25.0 = ":D"
+    | bmi <= 30.0 = ":)"
+    | otherwise   = ":/"
 ```
 
 ## Case expression
@@ -682,12 +673,12 @@ case expression of pattern -> result
                    ...
 ```
 
-They allow us evaluate expressions based on the possible cases of
+It allow us evaluate expressions based on the possible cases of
 the value of a variable, and we can also do pattern matching on them.
 If non pattern unifies it throws an error.
 
-- expression and all patterns must have the same type
-- every result must have the same type
+- The expression and all patterns must have the same type
+- Every result must have the same type
 
 Example:
 
