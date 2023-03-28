@@ -255,14 +255,14 @@ double :: Int -> Int
 double x = x * 2
 ```
 
-Curried functions, every function in Haskell only takes one parameter. 
+Curried functions, every function in Haskell only takes one parameter.
 But wee saw functions that take more than one parameter so far, didn't wee?
-Well, it's a clever trick!. 
+Well, it's a clever trick!.
 
 All the functions that accepted several parameters so far have been curried functions.
-Currying is the process of transforming a function that takes multiple arguments, 
+Currying is the process of transforming a function that takes multiple arguments,
 into a function that takes just a single argument
-and returns another function which accepts further arguments, 
+and returns another function which accepts further arguments,
 one by one, that the original function would receive.
 This process is also known as `partial application`.
 
@@ -659,7 +659,7 @@ There are two constructors for lists
 - `(:)` it allows to add elements at the very beggining of a list
 
 ```text
-If v1, v2, . . . , vn are values with type t then 
+If v1, v2, . . . , vn are values with type t then
 v1 : (v2 : (. . . (vn−1 : (vn : [])))) is a list with type [t]
 ```
 
@@ -972,6 +972,3 @@ while :: (a -> Bool) -> (a -> a) -> a -> a
 interpreter :: [String] -> [String]
 . . .
 ```
-
-
-
