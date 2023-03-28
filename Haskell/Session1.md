@@ -169,7 +169,7 @@ The type system in Haskell ensures that every expression in the program has a we
 
 #### Type inference
 
-Everything in Haskell has a type, so the compiler can reason quite a lot about your program before compiling it, Unlike Java or Python, Haskell has type inference. If we write a number, we don't have to tell Haskell it's a number. It can infer that on its own, so we don't have to explicitly write out the types of our functions and expressions to get things done.
+Everything in Haskell has a type, so the compiler can reason quite a lot about your program before compiling it, Unlike Java or C, Haskell has type inference. If we write a number, we don't have to tell Haskell it's a number. It can infer that on its own, so we don't have to explicitly write out the types of our functions and expressions to get things done.
 
 ```haskell
 GHCi> :t 'a'

@@ -169,7 +169,7 @@ The type system in Haskell ensures that every expression in the program has a we
 
 #### Type inference
 
-Everything in Haskell has a type, so the compiler can reason quite a lot about your program before compiling it, Unlike Java or Python, Haskell has type inference. If we write a number, we don't have to tell Haskell it's a number. It can infer that on its own, so we don't have to explicitly write out the types of our functions and expressions to get things done.
+Everything in Haskell has a type, so the compiler can reason quite a lot about your program before compiling it, Unlike Java or C, Haskell has type inference. If we write a number, we don't have to tell Haskell it's a number. It can infer that on its own, so we don't have to explicitly write out the types of our functions and expressions to get things done.
 
 ```haskell
 GHCi> :t 'a'
@@ -742,8 +742,13 @@ distance :: something
 -- Ex 3. Define the function `addThree` of type Int -> Int -> Int -> Int
 -- to define `addThree` you previously should define the `add`
 -- function of type Int -> Int. Use `add` to define `addThree`.
+--
 -- Use partial application.
+--
 -- PS. the sum (+) haskell operator has the type Num a => a -> a
+--
+-- Examples:
+--  addThree 2 2 3 ==> 7
 
 addThree :: Int -> Int -> Int -> Int
 . . .
@@ -782,38 +787,10 @@ postagePrice :: Int -> Int
 . . .
 ```
 
-### While
-
-```haskell
--- Ex 6: implement a functional while loop. While should be a function
--- that takes a checking function, an updating function, and an
--- initial value. While should repeatedly apply the updating function
--- to the initial value as long as the value passes the checking
--- function. Finally, the value that doesn't pass the check is
--- returned.
---
--- Use if-else expression.
---
--- Examples:
---
---   while odd (+1) 1    ==>   2
---
---   while (<=4) (+1) 0  ==>   5
---
---   let check [] = True
---       check ('A':xs) = False
---       check _ = True
---   in while check tail "xyzAvvt"
---     ==> Avvt
-
-while :: (a -> Bool) -> (a -> a) -> a -> a
-. . .
-```
-
 ### Intepreter
 
 ```haskell
--- Ex 7: in this exercise you get to implement an interpreter for a
+-- Ex 6: in this exercise you get to implement an interpreter for a
 -- simple language. You should keep track of the x and y coordinates,
 -- and interpret the following commands:
 --
