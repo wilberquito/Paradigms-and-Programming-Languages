@@ -255,10 +255,16 @@ double :: Int -> Int
 double x = x * 2
 ```
 
-Curried functions, every function in Haskell only takes one parameter. Didn't wee see functions that take more than one parameter so far?
-Well, it's a clever trick!. All the functions that accepted several parameters so far have been curried functions.
-Currying is the process of transforming a function that takes multiple arguments, into a function that takes just a single argument
-and returns another function which accepts further arguments, one by one, that the original function would receive.
+Curried functions, every function in Haskell only takes one parameter. 
+But wee saw functions that take more than one parameter so far, didn't wee?
+Well, it's a clever trick!. 
+
+All the functions that accepted several parameters so far have been curried functions.
+Currying is the process of transforming a function that takes multiple arguments, 
+into a function that takes just a single argument
+and returns another function which accepts further arguments, 
+one by one, that the original function would receive.
+This process is also known as `partial application`.
 
 Example:
 
@@ -815,3 +821,157 @@ describeList xs = "The list is " ++ case xs of [] -> "empty."
                                                [x] -> "a singleton list."
                                                xs -> "a longer list."
 ```
+
+## Your turn to practice
+
+### Power
+
+```haskell
+-- Ex 1: power n k should compute n to the power k (i.e. n^k)
+-- Use recursion.
+
+power :: Integer -> Integer -> Integer
+. . .
+```
+
+### Euclidian distance
+
+```haskell
+-- Ex 2: define the function distance. It should take four arguments of
+-- type Double: x1, y1, x2, and y2 and return the (euclidean) distance
+-- between points (x1,y1) and (x2,y2).
+--
+-- Give distance a type signature, i.e. distance :: something.
+--
+-- PS. if you can't remember how the distance is computed, the formula is:
+--   square root of ((x distance) squared + (y distance) squared)
+-- Haskell implements the function `abs` which compute the absolute value of a number.
+-- You might prefer use the  `where` code block to declare variables.
+--
+-- Examples:
+--   distance 0 0 1 1  ==>  1.4142135...
+--   distance 1 1 4 5  ==>  5.0
+
+distance :: something
+. . .
+```
+
+### Add three
+
+```haskell
+-- Ex 3. Define the function `addThree` of type Int -> Int -> Int -> Int
+-- to define `addThree` you previously should define the `add`
+-- function of type Int -> Int. Use `add` to define `addThree`.
+-- Use partial application.
+-- PS. the sum (+) haskell operator has the type Num a => a -> a
+
+addThree :: Int -> Int -> Int -> Int
+. . .
+```
+
+### nSum
+
+```haskell
+- Ex 4. define the function nSum. It should take an argument of
+-- type Num a => [a] and returns the sum of all elements in the list
+-- Use recursion.
+--
+-- PS. the sum (+) haskell operator has the type Num a => a -> a
+--
+-- Examples:
+--  nSum [1,3,6] ==> 10
+
+nSum :: Num a => [a] -> a
+. . .
+```
+
+### Postage price
+
+```haskell
+-- Ex 5: A postal service prices packages the following way.
+-- Packages that weigh up to 500 grams cost 250 credits.
+-- Packages over 500 grams cost 300 credit + 1 credit per gram.
+-- Packages over 5000 grams cost a constant 6000 credits.
+--
+-- Write a function postagePrice that takes the weight of a package
+-- in grams, and returns the cost in credits.
+--
+-- Use guards.
+
+postagePrice :: Int -> Int
+. . .
+```
+
+### While
+
+```haskell
+-- Ex 6: implement a functional while loop. While should be a function
+-- that takes a checking function, an updating function, and an
+-- initial value. While should repeatedly apply the updating function
+-- to the initial value as long as the value passes the checking
+-- function. Finally, the value that doesn't pass the check is
+-- returned.
+--
+-- Use if-else expression.
+--
+-- Examples:
+--
+--   while odd (+1) 1    ==>   2
+--
+--   while (<=4) (+1) 0  ==>   5
+--
+--   let check [] = True
+--       check ('A':xs) = False
+--       check _ = True
+--   in while check tail "xyzAvvt"
+--     ==> Avvt
+
+while :: (a -> Bool) -> (a -> a) -> a -> a
+. . .
+```
+
+### Intepreter
+
+```haskell
+-- Ex 7: in this exercise you get to implement an interpreter for a
+-- simple language. You should keep track of the x and y coordinates,
+-- and interpret the following commands:
+--
+-- up -- increment y by one
+-- down -- decrement y by one
+-- left -- decrement x by one
+-- right -- increment x by one
+-- printX -- print value of x
+-- printY -- print value of y
+--
+-- The interpreter will be a function of type [String] -> [String].
+-- Its input is a list of commands, and its output is a list of the
+-- results of pthe print commands in the input.
+--
+-- PS. You might need the function `show`
+-- the function `show` has type: Show a => a -> String
+-- Numbers are part of the Show category so they implement the
+-- function show that transforms numbers to strings
+--
+-- Both coordinates start at 0.
+--
+-- Examples:
+--
+-- interpreter ["up","up","up","printY","down","printY"] ==> ["3","2"]
+-- interpreter ["up","right","right","printY","printX"] ==> ["1","2"]
+--
+-- Surprise! after you've implemented the function, try running this in GHCi:
+--     interact (unlines . interpreter . lines)
+-- after this you can enter commands on separate lines and see the
+-- responses to them
+--
+-- The suprise will only work if you generate the return list directly
+-- using (:). If you build the list in an argument to a helper
+-- function, the surprise won't work.
+
+interpreter :: [String] -> [String]
+. . .
+```
+
+
+
