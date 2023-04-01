@@ -878,8 +878,11 @@ distance :: something
 -- Ex 3. Define the function `addThree` of type Int -> Int -> Int -> Int
 -- to define `addThree` you previously should define the `add`
 -- function of type Int -> Int -> Int. Use `add` to define `addThree`.
--- Use partial application.
+--
 -- PS. the sum (+) haskell operator has the type Num a => a -> a
+--
+-- Examples:
+--  addThree 2 2 3 ==> 7
 
 addThree :: Int -> Int -> Int -> Int
 . . .
