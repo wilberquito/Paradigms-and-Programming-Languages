@@ -758,7 +758,7 @@ distance :: something
 ```haskell
 -- Ex 3. Define the function `addThree` of type Int -> Int -> Int -> Int
 -- to define `addThree` you previously should define the `add`
--- function of type Int -> Int. Use `add` to define `addThree`.
+-- function of type Int -> Int -> Int. Use `add` to define `addThree`.
 --
 -- Use partial application.
 --
