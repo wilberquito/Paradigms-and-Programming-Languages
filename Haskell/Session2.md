@@ -170,3 +170,56 @@ GHCi> applyTwice (\x -> x+1) 1
 GHCi> applyTwice (+1) 1
 3
 ```
+
+## Capture of computation with higher-order functions
+
+A lot of function that works with numbers follow this scheme:
+
+- Base case: they return a base value
+- Recursive step: you compute the `n` step from the `n-1` step
+
+Example:
+
+```haskell
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial m = let n = m-1
+              in m * factorial n
+
+sumatorio :: Integer -> Integer
+sumatorio 0 = 0
+sumatorio m = let n = m-1
+              in (+) m (sumatorio n)
+```
+
+Both functions follows the scheme:
+
+```haskell
+fun :: Integer -> Integer
+fun 0 = e
+fun m = let n = m-1
+        in f m (fun n)
+```
+
+From this we can create a higher-order function that capture the compute as follow:
+
+```haskell
+iter :: (Integer -> Integer -> Integer) ->
+        Integer -> Integer -> Integer
+iter f e = fun
+  where
+    fun :: Integer -> Integer
+    fun 0 = e
+    fun m = let n = m-1
+            in f m (fun n)
+```
+
+Thanks to capture the pattern into a function, we can define the previous functions more compact.
+
+```haskell
+factorial' :: Integer -> Integer
+factorial = iter (*) 1
+
+sumatorio :: Integer -> Integer
+sumatorio = iter (+) 0
+```
