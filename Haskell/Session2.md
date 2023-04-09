@@ -104,8 +104,6 @@ GHCi> 10 `div` 3
 
 To define operators you can use any or more than:
 
-Example:
-
 ```haskell
 : ! # $ % & ∗ + . / < = > ? @ \ ∧ | − ∼
 ```
@@ -116,7 +114,7 @@ the greater the priority.
 As well has operators has it's priority, it also has it's own asociativity. Left asociativity `infixl`,
 right asociativity `infixr` or none `infix`.
 
-Prelude base operators defined.
+Here you can see the Prelude operators definition.
 
 ```haskell
 infixr 9 .
