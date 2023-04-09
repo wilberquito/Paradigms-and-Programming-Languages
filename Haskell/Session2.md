@@ -72,3 +72,102 @@ fun x y z = x*(2*y + z)
 ```
 
 ![Partial application example](./Img/partial-aplication.png)
+
+## Operators
+
+Operators are functions of two arguments with a symbolic name.
+
+They are usually used in infix mode.
+
+Example:
+
+```haskell
+GHCi> 1 + 2
+3
+```
+
+But you can use them between parentheses.
+
+Example:
+
+```haskell
+GHCi> (+) 1 2
+3
+```
+
+A function with two arguments can be used in infix mode.
+
+```haskell
+GHCi> 10 `div` 3
+3
+```
+
+To define operators you can use any or more than:
+
+Example:
+
+```haskell
+: ! # $ % & ∗ + . / < = > ? @ \ ∧ | − ∼
+```
+
+An operator has it's own priority. The priority goes from `0` to `9`. The greater the number
+the greater the priority.
+
+As well has operators has it's priority, it also has it's own asociativity. Left asociativity `infixl`,
+right asociativity `infixr` or none `infix`.
+
+Prelude base operators defined.
+
+```haskell
+infixr 9 .
+infixl 9 !!
+infixr 8 ∧, ∧∧, ∗∗
+infixl 7 ∗, /, ‘quot‘, ‘rem‘, ‘div‘, ‘mod‘
+infixl 6 +, −
+infixr 5 :
+infixr 5 ++
+infix 4 ==, /=, <, <=, >=, >, ‘elem‘, ‘notElem‘
+infixr 3 &&
+infixr 2 ||
+infixl 1 >>, >>=
+infixr 1 =<<
+infixr 0 $, $!, ‘seq‘
+```
+
+We can create our own operators. Imagine we want to create the or exclusive operator.
+
+Example:
+
+```haskell
+-- Define the type of asociativity and the priority
+infixr 2 |||
+
+(|||) :: Bool -> Bool -> Bool
+True ||| True   = False
+False ||| False = False
+_ ||| _         = False
+```
+
+Finally, binary operators have sections. Sections are partially applied operators.
+The section of an operator is obtained by writing the
+operator and one of its arguments in parentheses. We obtein functions of one argument.
+
+If (?) is an operator, we have the following equivalences.
+
+```haskell
+(x ?) ===> \y -> x ? y
+(? y) ===> \x -> x ? y
+(?)   ===> \x y -> x ? y
+```
+
+Example:
+
+```haskell
+GHCi> applyTwice f x = f (f x)
+GHCi> :t applyTwice
+applyTwice :: (a -> a) -> a -> a
+GHCi> applyTwice (\x -> x+1) 1
+3
+GHCi> applyTwice (+1) 1
+3
+```
