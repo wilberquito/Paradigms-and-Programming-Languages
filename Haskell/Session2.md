@@ -14,7 +14,7 @@ applyTwice f x = f (f x)
 
 Notice the type declaration. In the majority of cases we don't need parentheses because
 `->` is naturally right-associative. However here, they are mandatory.
-**They indicate that the first parameter is a function that takes something and returns that same thing**.
+They indicate that the first parameter is a function that takes something and returns that same thing.
 
 The first parameter is a function (of type `a -> a`) and the second is that same `a`.
 The function can also be `Int -> Int` or `String -> String` or whatever.
