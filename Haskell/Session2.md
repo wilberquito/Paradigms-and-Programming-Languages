@@ -50,6 +50,8 @@ GHCi>
 
 Using lambda functions with higher-order functions.
 
+Example:
+
 ```haskell
 GHCi> applyTwice f x = f (f x)
 GHCi> :t applyTwice
@@ -76,7 +78,6 @@ fun x y z = x*(2*y + z)
 ## Operators
 
 Operators are functions of two arguments with a symbolic name.
-
 They are usually used in infix mode.
 
 Example:
@@ -124,7 +125,7 @@ infixl 7 ∗, /, ‘quot‘, ‘rem‘, ‘div‘, ‘mod‘
 infixl 6 +, −
 infixr 5 :
 infixr 5 ++
-infix 4 ==, /=, <, <=, >=, >, ‘elem‘, ‘notElem‘
+infix  4 ==, /=, <, <=, >=, >, ‘elem‘, ‘notElem‘
 infixr 3 &&
 infixr 2 ||
 infixl 1 >>, >>=
