@@ -115,7 +115,7 @@ the greater the priority.
 As well has operators has it's priority, it also has it's own asociativity. Left asociativity `infixl`,
 right asociativity `infixr` or none `infix`.
 
-Here you can see the Prelude operators definition.
+Here you can see the GHCi operators definition.
 
 ```haskell
 infixr 9 .
@@ -223,3 +223,61 @@ factorial = iter (*) 1
 sumatorio :: Integer -> Integer
 sumatorio = iter (+) 0
 ```
+
+## Polymoriphism
+
+Polymorphism refers to the phenomenon of something taking many forms.
+
+### The indentity function
+
+```haskell
+id :: a -> a
+id x = x
+```
+
+The identity function and just returns its argument.
+
+```haskell
+GHCi> id 'd'
+'d'
+GHCi> id [1,2,0]
+[1,2,0]
+```
+
+The `id` function seems a bit useless, but sometimes with higher-order functions
+it’s useful to have a function that does nothing.
+
+```haskell
+GHCi> filter id [True, False, True]
+[True, True]
+```
+
+### Tuples
+
+
+### Lists
+In the following code, we have a function defined on a list of any type.
+The function is defined at such a high level of abstraction that the precise input type
+simply never comes into play, yet the result is of a particular type.
+
+Example:
+
+```haskell
+length' :: [a] -> Int
+length' [] = 0
+length' (x:xs) = 1 + length xs
+```
+
+The length function exhibits parametric polymorphism because it acts
+uniformly on a range of types that share a common structure, in this case, lists.
+
+```haskell
+GHCi> :t length' [1,2,3,4,5]
+length' [1,2,3,4,5] :: Int
+GHCi> :t length' ['1','2','3','4','5']
+length' ['1','2','3','4','5'] :: Int
+```
+
+### Function composition
+
+### The ($) operator
