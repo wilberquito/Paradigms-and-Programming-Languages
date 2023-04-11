@@ -254,6 +254,45 @@ GHCi> filter id [True, False, True]
 
 ### Tuples
 
+The functions `fst` and `snd` allows us to get components.
+
+Examples:
+
+```haskell
+GHCi> fst (8,11)
+8
+GHCi> fst ("Wow", False)
+"Wow"
+GHCi> snd (8,11)
+11
+GHCi> snd ("Wow", False)
+False
+GHCi> snd ("Wow", False)
+False
+```
+Here you can notice that it's used two type variables. This mean
+that the type of each component can be different, but it's not mandatory.
+
+```haskell
+:t fst
+fst :: (a, b) -> a
+:t snd
+snd :: (a, b) -> b
+```
+
+Although you can create tuples of any number of components,
+the functions `fst` and `snd` only operates on pairs.
+
+```haskell
+GHCi> fst (1, True, "Eeeh")
+<interactive>:8:5: error:
+    • Couldn't match expected type ‘(a, b0)’
+                  with actual type ‘(a0, Bool, [Char])’
+    • In the first argument of ‘fst’, namely ‘(1, True, "Eeeh")’
+      In the expression: fst (1, True, "Eeeh")
+      In an equation for ‘it’: it = fst (1, True, "Eeeh")
+    • Relevant bindings include it :: a (bound at <interactive>:8:1)
+```
 
 ### Lists
 In the following code, we have a function defined on a list of any type.
