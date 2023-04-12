@@ -300,7 +300,7 @@ Let's see some function defined on a list of any type.
 The function is defined at such a high level of abstraction that the precise input type
 simply never comes into play, yet the result is of a particular type (sometimes).
 
-#### The length
+#### Length
 
 ```haskell
 length' :: [a] -> Int
@@ -382,7 +382,7 @@ GHCi> tail []
 *** Exception: Prelude.tail: empty list
 ```
 
-#### Concat lists
+#### Concatenation
 
 You can concatenate lists using the operator `++`.
 
@@ -428,7 +428,7 @@ GHCi> map fst [(1,2),(3,5),(6,3),(2,6),(2,5)]
 #### Filters
 
 `filter` is a function that takes a predicate (a predicate is a function that
-tells whether something is true or not, so in our case, a function that returns a boolean value)
+tells whether something is true or not)
 and a list and then returns the list of elements that satisfy the predicate.
 
 ```haskell
@@ -451,7 +451,7 @@ GHCi> let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[
 GHCi> filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
 ```
 
-> By the way which type do you thing the expression
+> By the way, which type do you thing the expression
 `let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]` has?
 
 ### Functions application with $ operator
@@ -472,10 +472,10 @@ application with `$` is right-associative.
 
 For example, what if I want to compute the `sqrt` of `3 + 4 + 9`, we can't
 write `sqrt 3 + 4 + 9` because `sqrt` would be applied to the first argument
-which is 3. We could have write `sqrt (3 + 4 +9)` of if we use `$` we can
-write it like `sqrt $ 3 + 4 +9`.
+which is 3. We could have write `sqrt (3 + 4 +9)` or if we use `$` we can
+write it like `sqrt $ 3 + 4 + 9`.
 
-Appart from getting rid of paren, `$` means that function application can be
+Appart from getting rid of parentheses, `$` means that function application can be
 treated just like another function.
 
 
