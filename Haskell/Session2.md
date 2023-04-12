@@ -317,6 +317,105 @@ GHCi> :t length' ['1','2','3','4','5']
 length' ['1','2','3','4','5'] :: Int
 ```
 
+There are multiple functions that work with lists of differents types.
+
+To get the first element of a list you can use the `head` function.
+
+```haskell
+head :: [a] -> a
+head (x:_) = x
+```
+
+```haskell
+GHCi> head ["hello", "world", "!"]
+"hello"
+GHCi> head []
+*** Exception: Prelude.head: empty list
+```
+
+To get the tail of the list you can use the function `tail`.
+
+```haskell
+tail :: [a] -> [a]
+tail (_:xs) = xs
+```
+
+```haskell
+GHCi> tail ["hello", "world", "!"]
+"hello"
+GHCi> tail []
+*** Exception: Prelude.tail: empty list
+```
+
+To get the last element of a list, you can use the function `last`.
+
+```haskell
+last :: [a] -> a
+last [x]    = x
+last (_:xs) = last xs
+```
+
+```haskell
+GHCi> last ["hello", "world", "!"]
+"!"
+GHCi> last []
+*** Exception: Prelude.last: empty list
+```
+
+To get all elements except the last one, you can use the function `init`.
+
+```haskell
+init :: [a] -> [a]
+init [x]    = []
+init (x:xs) = xs
+```
+
+```haskell
+GHCi> tail ["hello", "world", "!"]
+"hello"
+GHCi> tail []
+*** Exception: Prelude.tail: empty list
+```
+
+You can concatenate list using the operator `++`.
+
+```haskell
+infix 5 ++
+(++) :: [a] -> [a]
+[] ++ ys      = ys
+(x:xs) ++ ys  = x : (xs ++ ys)
+```
+
+```haskell
+GHCi> tail ["hello", "world", "!"]
+"hello"
+GHCi> tail []
+*** Exception: Prelude.tail: empty list
+```
+
+To produce a new list from a list, you can use the `map` function that takes a function as it's first argument
+and a list and applies that function to every element in the list,
+producing a new list.
+
+```haskell
+map :: (a -> b) -> [a] -> [b]
+map _ [] = []
+map f (x:xs) = f x : map f xs
+```
+
+```haskell
+GHCi> map (+3) [1,5,3,1,6]
+[4,8,6,4,9]
+GHCi> map (++ "!") ["BIFF", "BANG", "POW"]
+["BIFF!","BANG!","POW!"]
+GHCi> map (replicate 3) [3..6]
+[[3,3,3],[4,4,4],[5,5,5],[6,6,6]]
+GHCi> map (map (^2)) [[1,2],[3,4,5,6],[7,8]]
+[[1,4],[9,16,25,36],[49,64]]
+GHCi> map fst [(1,2),(3,5),(6,3),(2,6),(2,5)]
+[1,3,6,2,2]
+```
+
 ### Function composition
 
 ### The ($) operator
