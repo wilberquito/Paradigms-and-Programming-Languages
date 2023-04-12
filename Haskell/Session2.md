@@ -345,7 +345,7 @@ tail (_:xs) = xs
 
 ```haskell
 GHCi> tail ["hello", "world", "!"]
-"hello"
+["world", "!"]
 GHCi> tail []
 *** Exception: Prelude.tail: empty list
 ```
