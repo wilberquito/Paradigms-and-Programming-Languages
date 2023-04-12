@@ -224,7 +224,7 @@ sumatorio :: Integer -> Integer
 sumatorio = iter (+) 0
 ```
 
-## Polymoriphism
+## Polymorphism
 
 Polymorphism refers to the phenomenon of something taking many forms.
 
@@ -295,11 +295,12 @@ GHCi> fst (1, True, "Eeeh")
 ```
 
 ### Lists
-In the following code, we have a function defined on a list of any type.
-The function is defined at such a high level of abstraction that the precise input type
-simply never comes into play, yet the result is of a particular type.
 
-Example:
+Let's see some function defined on a list of any type.
+The function is defined at such a high level of abstraction that the precise input type
+simply never comes into play, yet the result is of a particular type (sometimes).
+
+#### The length
 
 ```haskell
 length' :: [a] -> Int
@@ -317,7 +318,7 @@ GHCi> :t length' ['1','2','3','4','5']
 length' ['1','2','3','4','5'] :: Int
 ```
 
-There are multiple functions that work with lists of differents types.
+#### Head
 
 To get the first element of a list you can use the `head` function.
 
@@ -333,6 +334,8 @@ GHCi> head []
 *** Exception: Prelude.head: empty list
 ```
 
+#### Tail
+
 To get the tail of the list you can use the function `tail`.
 
 ```haskell
@@ -346,6 +349,8 @@ GHCi> tail ["hello", "world", "!"]
 GHCi> tail []
 *** Exception: Prelude.tail: empty list
 ```
+
+#### Last
 
 To get the last element of a list, you can use the function `last`.
 
@@ -372,12 +377,14 @@ init (x:xs) = xs
 
 ```haskell
 GHCi> tail ["hello", "world", "!"]
-"hello"
+["hello", "world"]
 GHCi> tail []
 *** Exception: Prelude.tail: empty list
 ```
 
-You can concatenate list using the operator `++`.
+#### Concat lists
+
+You can concatenate lists using the operator `++`.
 
 ```haskell
 infix 5 ++
@@ -392,6 +399,8 @@ GHCi> tail ["hello", "world", "!"]
 GHCi> tail []
 *** Exception: Prelude.tail: empty list
 ```
+
+#### Association
 
 To produce a new list from a list, you can use the `map` function that takes a function as it's first argument
 and a list and applies that function to every element in the list,
@@ -416,6 +425,63 @@ GHCi> map fst [(1,2),(3,5),(6,3),(2,6),(2,5)]
 [1,3,6,2,2]
 ```
 
-### Function composition
+#### Filters
 
-### The ($) operator
+`filter` is a function that takes a predicate (a predicate is a function that
+tells whether something is true or not, so in our case, a function that returns a boolean value)
+and a list and then returns the list of elements that satisfy the predicate.
+
+```haskell
+filter :: (a -> Bool) -> [a] -> [a]
+filter _ [] = []
+filter p (x:xs)
+    | p x       = x : filter p xs
+    | otherwise = filter p xs
+```
+
+```haskell
+GHCi> filter (>3) [1,5,3,2,1,6,4,3,2,1]
+[5,6,4]
+GHCi> filter (==3) [1,2,3,4,5]
+[3]
+GHCi> filter even [1..10]
+[2,4,6,8,10]
+GHCi> let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]
+[[1,2,3],[3,4,5],[2,2]]
+GHCi> filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
+```
+
+> By the way which type do you thing the expression
+`let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]` has?
+
+### Functions application with $ operator
+
+```haskell
+infixr 0 $
+($) :: (a -> b) -> a -> b
+f $ x = f x
+```
+
+It's just function application... Well, almost,
+but not quite! Whereas normal function application
+(putting a space between two things) has a really high precedence,
+the `$` function has the lowest precedence.
+
+Function application with space, is left-associative meanwhile function
+application with `$` is right-associative.
+
+For example, what if I want to compute the `sqrt` of `3 + 4 + 9`, we can't
+write `sqrt 3 + 4 + 9` because `sqrt` would be applied to the first argument
+which is 3. We could have write `sqrt (3 + 4 +9)` of if we use `$` we can
+write it like `sqrt $ 3 + 4 +9`.
+
+Appart from getting rid of paren, `$` means that function application can be
+treated just like another function.
+
+
+```haskell
+GHCi>  map ($ 3) [(4+), (10*), (^2), sqrt]
+[7.0,30.0,9.0,1.7320508075688772]
+```
+
+### Function composition
