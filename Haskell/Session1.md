@@ -316,7 +316,7 @@ f(5)
 5
 ```
 
-#### Normal order reduction
+##### Normal order reduction
 
 Expressions are reduced outside-in.
 

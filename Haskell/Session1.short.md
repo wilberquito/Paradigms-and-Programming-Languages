@@ -216,6 +216,8 @@ comes directly from mathematics. In math, we often say things like `f(x) = y`, m
 there’s some function `f` that takes a parameter `x` and maps to a value `y`.
 In mathematics, every `x` can map to one and only one `y`.
 
+##### Application
+
 In mathematics the application of function is denotated with parenthesis.
 
 ```text
@@ -244,6 +246,8 @@ Compound arguments go between parentheses.
 f (a + b) c
 ```
 
+##### High order functions
+
 In Haskell functions are considered first-class citizens, which means they can be passed as arguments,
 returned as values, and composed together to form more complex operations.
 
@@ -255,6 +259,8 @@ map f []     = []
 map f (x:xs) = f x : map f xs
 ```
 
+##### Pure functions
+
 Functions are pure, where its return value depends solely on its input parameters. In other words, functions
 in Haskell don't produce side effects. Because functions are pure, formal verification is relatively easy.
 
@@ -264,6 +270,8 @@ Example:
 double :: Int -> Int
 double x = x * 2
 ```
+
+##### Curried functions
 
 Curried functions, every function in Haskell only takes one parameter.
 But wee saw functions that take more than one parameter so far, didn't wee?
@@ -308,7 +316,7 @@ f(5)
 5
 ```
 
-#### Normal order reduction
+##### Normal order reduction
 
 > Saw in theory; reduction strategies (lambda-calcul-breu-pdf)
 
