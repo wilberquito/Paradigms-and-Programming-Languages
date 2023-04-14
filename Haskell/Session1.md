@@ -192,8 +192,17 @@ However even though type annotations aren’t required, there are multiple reaso
 Example:
 
 ```haskell
-doubleMe :: Int -> Int
 doubleMe x = x + x
+
+doubleMe' :: Int -> Int
+doubleMe' x = x + x
+```
+
+```haskell
+GHCi> :type doubleMe
+doubleMe :: Num a => a -> a
+GHCi> :type doubleMe'
+doubleMe' :: Int -> Int
 ```
 
 - They act as documentation
