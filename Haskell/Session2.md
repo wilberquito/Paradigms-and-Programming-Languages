@@ -447,7 +447,7 @@ GHCi> filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
 > By the way, which type do you thing the expression
 `let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]` has?
 
-### Functions application with $ operator
+### Function application with $ operator
 
 ```haskell
 infixr 0 $
@@ -507,4 +507,47 @@ GHCi> map (\xs -> negate (sum (tail xs))) [[1..5],[3..6],[1..7]]
 [-14,-15,-27]
 GHCi> map (negate . sum . tail) [[1..5],[3..6],[1..7]]
 [-14,-15,-27]
+```
+
+## Our own types
+
+So far, we've run into a lot of data types. Bool, Int, Char, Maybe, etc.
+But how do we make our own? Well, one way is to use the data keyword to define a type.
+
+```haskell
+data Point = Point Float Float deriving (Show)
+  deriving Show
+data Shape = Circle Float Float Float | Rectangle Float Float Float Float
+  deriving Show
+```
+
+The keyword `data` means that we're defining a new data type.
+The part before the `=` denotes the **type**, which is Bool.
+The parts after the `=` are **value constructors**.
+
+The keyword `deriving` is used to automatically generate instances of certain type class.
+Being instance of the typeclass `Show` allows the type to being show in your screen.
+
+The `Shape` type has two value constuctors `Circle` which has tree arguments
+and `Rectangle` that has four arguments.
+
+We can ask `ghci` the type of the values constructors of a type.
+
+Example:
+
+```haskell
+GHCi> :t Circle
+Circle :: Point -> Float -> Shape
+GHCi> :t Rectangle
+Rectangle :: Point -> Point -> Shape
+```
+
+We can also do pattern matching on value constructors.
+
+Example:
+
+```haskell
+surface :: Shape -> Float
+surface (Circle _ r) = pi * r ^ 2
+surface (Rectangle (Point x1 y1) (Point x2 y2)) = (abs $ x2 - x1) * (abs $ y2 - y1)
 ```
