@@ -558,14 +558,14 @@ Here is an other example with the predifined `Bool` type.
 data Bool = False | True deriving (Show, . . .)
 
 infixr 3 &&
-(&&) :: Bool → Bool → Bool
-False && x = False
-True && x = x
+(&&) :: Bool -> Bool -> Bool
+False && x  = False
+True && x   = x
 
 infixr 2 ||
-( || ) :: Bool → Bool → Bool
-False || x = x
-True || x = True
+( || ) :: Bool -> Bool -> Bool
+False || x  = x
+True || x   = True
 ```
 
 ### Symbolic constructors
