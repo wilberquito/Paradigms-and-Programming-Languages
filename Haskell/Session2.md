@@ -196,7 +196,7 @@ Both functions follows the scheme:
 
 ```haskell
 fun :: Integer -> Integer
-fun 0 = ☆
+fun 0 = ★
 fun ◊ = let n = m-1
         in ◊ m (fun n)
 ```
