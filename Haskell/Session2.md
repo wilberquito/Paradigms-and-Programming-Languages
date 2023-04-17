@@ -531,7 +531,7 @@ Being instance of the typeclass `Show` allows the type to being show in your scr
 The `Shape` type has two value constuctors `Circle` which has tree arguments
 and `Rectangle` that has four arguments.
 
-We can ask `ghci` the type of the values constructors of a type.
+We can ask `ghci` the type of value constructors.
 
 Example:
 
@@ -550,4 +550,73 @@ Example:
 surface :: Shape -> Float
 surface (Circle _ r) = pi * r ^ 2
 surface (Rectangle (Point x1 y1) (Point x2 y2)) = (abs $ x2 - x1) * (abs $ y2 - y1)
+```
+
+Here is an other example with the predifined `Bool` type.
+
+```haskell
+data Bool = False | True deriving (Show, . . .)
+
+infixr 3 &&
+(&&) :: Bool → Bool → Bool
+False && x = False
+True && x = x
+
+infixr 2 ||
+( || ) :: Bool → Bool → Bool
+False || x = x
+True || x = True
+```
+
+### Symbolic constructors
+
+Imagine we have the type `Rational` defined as:
+
+```haskell
+data MyRational = Pair Integer Integer
+  deriving Show
+```
+
+and we want to define some behavior for this type,
+for example, the multiplication. To do it, we create
+an operator that multiplies two Rationals.
+
+```haskell
+infixl 7 >*<
+(>*<) :: MyRational -> MyRational -> MyRational
+(Pair a b) >*< (Pair c d) = Pair (a * c) (b * d)
+```
+
+And now we multiply two Rationals.
+
+```haskell
+GHCi> Pair 2 2 >*< Pair 3 4
+Pair 6 8
+```
+
+But if the data constructor is binary it's name can be symbolic.
+But the symbolic constructor must start with `(:)`, and the
+constructor is written infix.
+
+
+```haskell
+infix 9 :/
+data MyRational = Integer :/ Integer
+  deriving Show
+```
+
+We adjust now the operator `>*<` for the new data constructor as:
+
+
+```haskell
+infixl 7 >*<
+(>*<) :: MyRational -> MyRational -> MyRational
+(a :/ b) >*< (c :/ d) = (a * c) :/ (b * d)
+```
+
+And now we can multiply two Rationals in an "easer" way.
+
+```haskell
+GHCi> 2 :/ 2 >*< 3 :/ 4
+6 :/ 8
 ```
