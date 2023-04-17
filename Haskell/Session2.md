@@ -151,12 +151,12 @@ Finally, binary operators have sections. Sections are partially applied operator
 The section of an operator is obtained by writing the
 operator and one of its arguments in parentheses. We obtein functions of one argument.
 
-If (?) is an operator, we have the following equivalences.
+If (✶) is an operator, we have the following equivalences.
 
 ```haskell
-(x ?) ===> \y -> x ? y
-(? y) ===> \x -> x ? y
-(?)   ===> \x y -> x ? y
+(x ✶) ===> \y -> x ✶ y
+(✶ y) ===> \x -> x ✶ y
+(✶)   ===> \x y -> x ✶ y
 ```
 
 Example:
@@ -196,9 +196,9 @@ Both functions follows the scheme:
 
 ```haskell
 fun :: Integer -> Integer
-fun 0 = e
-fun m = let n = m-1
-        in f m (fun n)
+fun 0 = ☆
+fun ◊ = let n = m-1
+        in ◊ m (fun n)
 ```
 
 From this we can create a higher-order function that capture the compute as follow:
@@ -485,3 +485,20 @@ GHCi>  map ($ 3) [(4+), (10*), (^2), sqrt]
 ```
 
 ### Function composition
+
+In mathematics, function composition is defined like this:
+`(fℴg)(x) = f(g(x))`, meaning that composing two functions
+produces a new function that, when called with a parameter,
+say `x`, is the equivalent of calling `g` with the parameter `x`
+and then calling `f` with that result.
+
+In Haskell function composition is denoted with `.`.
+
+```haskell
+infixr 9 .
+(.) :: (b -> c) -> (a -> b) -> a -> c
+f . g = \x -> f (g x)
+```
+
+- The result of composing `f` and `g` is another function `f.g :: a -> c`
+- The type result of `g` must match with the input type of `f`, otherwise composition fails.
