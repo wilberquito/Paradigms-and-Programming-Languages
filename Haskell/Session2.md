@@ -447,7 +447,7 @@ GHCi> filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
 > By the way, which type do you thing the expression
 `let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]` has?
 
-### Function application with $ operator
+## Function application with $ operator
 
 ```haskell
 infixr 0 $
@@ -477,7 +477,7 @@ GHCi> map ($ 3) [(4+), (10*), (^2), sqrt]
 [7.0,30.0,9.0,1.7320508075688772]
 ```
 
-### Function composition
+## Function composition
 
 In mathematics, function composition is defined like this:
 `(fℴg)(x) = f(g(x))`, meaning that composing two functions
