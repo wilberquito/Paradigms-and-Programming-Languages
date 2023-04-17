@@ -220,8 +220,8 @@ Thanks to capture the pattern into a function, we can define the previous functi
 factorial' :: Integer -> Integer
 factorial = iter (*) 1
 
-sumatorio :: Integer -> Integer
-sumatorio = iter (+) 0
+sumatorio' :: Integer -> Integer
+sumatorio' = iter (+) 0
 ```
 
 ## Polymorphism
@@ -619,4 +619,40 @@ And now we can multiply two Rationals in an "easer" way.
 ```haskell
 GHCi> 2 :/ 2 >*< 3 :/ 4
 6 :/ 8
+```
+
+### Recursive types
+
+As we've seen, a constructor in an algebraic data type
+can have several (or none at all) fields and each field must be of some concrete type.
+With that in mind, we can make types whose constructors have fields that are of the same type!
+Using that, we can create recursive data types,
+where one value of some type contains values of that type, which in turn
+contain more values of the same type and so on.
+
+Naturals can be represented by a recurive data type.
+
+```haskell
+data Nat = Zero | Suc Nat
+  deriving Show
+```
+
+Example:
+
+```haskell
+isEven :: Nat -> Bool
+isEven Zero     = True
+isEven (Suc n)  = not (isEven n)
+
+-- (n + 1) + m = (n + m) + 1
+infixl 6 <+>
+(<+>) :: Nat -> Nat -> Nat
+Zero <+> m    = m
+(Suc n) <+> m = Suc (n <+> m)
+
+-- (n + 1) ∗ m = n ∗ m + m
+infixl 7 <*>
+(<*>) :: Nat → Nat → Nat
+Zero <*> m    = Zero
+(Suc n) <*> m = n <*> m <+> m
 ```
