@@ -196,7 +196,7 @@ Both functions follows the scheme:
 
 ```haskell
 fun :: Integer -> Integer
-fun 0 = ★
+fun 0 = ☆
 fun ◊ = let n = m-1
         in ◊ m (fun n)
 ```
@@ -235,7 +235,7 @@ id :: a -> a
 id x = x
 ```
 
-The identity function and just returns its argument.
+The identity function just returns its argument.
 
 ```haskell
 GHCi> id 'd'
@@ -244,7 +244,7 @@ GHCi> id [1,2,0]
 [1,2,0]
 ```
 
-The `id` function seems a bit useless, but sometimes with higher-order functions
+The function seems a bit useless, but sometimes with higher-order functions
 it’s useful to have a function that does nothing.
 
 ```haskell
@@ -254,7 +254,7 @@ GHCi> filter id [True, False, True]
 
 ### Tuples
 
-The functions `fst` and `snd` allows us to get components.
+The functions `fst` and `snd` allows us to get components of tuples of pairs.
 
 Examples:
 
@@ -304,8 +304,8 @@ simply never comes into play, yet the result is of a particular type (sometimes)
 
 ```haskell
 length' :: [a] -> Int
-length' [] = 0
-length' (x:xs) = 1 + length xs
+length' []      = 0
+length' (x:xs)  = 1 + length xs
 ```
 
 The length function exhibits parametric polymorphism because it acts
@@ -372,13 +372,13 @@ To get all elements except the last one, you can use the function `init`.
 ```haskell
 init :: [a] -> [a]
 init [x]    = []
-init (x:xs) = xs
+init (x:xs) = x : init xs
 ```
 
 ```haskell
-GHCi> tail ["hello", "world", "!"]
+GHCi> init ["hello", "world", "!"]
 ["hello", "world"]
-GHCi> tail []
+GHCi> init []
 *** Exception: Prelude.tail: empty list
 ```
 
@@ -391,13 +391,6 @@ infix 5 ++
 (++) :: [a] -> [a]
 [] ++ ys      = ys
 (x:xs) ++ ys  = x : (xs ++ ys)
-```
-
-```haskell
-GHCi> tail ["hello", "world", "!"]
-"hello"
-GHCi> tail []
-*** Exception: Prelude.tail: empty list
 ```
 
 #### Association
@@ -480,7 +473,7 @@ treated just like another function.
 
 
 ```haskell
-GHCi>  map ($ 3) [(4+), (10*), (^2), sqrt]
+GHCi> map ($ 3) [(4+), (10*), (^2), sqrt]
 [7.0,30.0,9.0,1.7320508075688772]
 ```
 
@@ -502,3 +495,12 @@ f . g = \x -> f (g x)
 
 - The result of composing `f` and `g` is another function `f.g :: a -> c`
 - The type result of `g` must match with the input type of `f`, otherwise composition fails.
+
+Example:
+
+```haskell
+GHCi> map (\x -> negate (abs x)) [5,-3,-6,7,-3,2,-19,24]
+[-5,-3,-6,-7,-3,-2,-19,-24]
+GHCi> map (negate . abs) [5,-3,-6,7,-3,2,-19,24]
+[-5,-3,-6,-7,-3,-2,-19,-24]
+```
