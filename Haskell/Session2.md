@@ -661,7 +661,7 @@ Zero <*> m    = Zero
 
 A value constructor can take some values parameters and then produce a new value.
 
-### The Either type constructor
+#### The Either type constructor
 
 The `Either` type constructor is used to create a new type that
 represents the union of other two types.
@@ -693,7 +693,7 @@ GHCi> :t Left True
 Left True :: Either Bool b
 ```
 
-### The Maybe type constructor
+#### The Maybe type constructor
 
 ```haskell
 data Maybe a = Nothing | Just a
