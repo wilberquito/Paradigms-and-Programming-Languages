@@ -793,3 +793,24 @@ data Car a b c = Car { company :: a
 
 Would we really benefit? probably no... because we may just end using functions
 that work on `Car String String Int` type.
+
+## Type synonyms
+
+Previously, we mentioned that when writing types, the [Char] and String types are equivalent and interchangeable.
+That's implemented with type synonyms. Type synonyms don't really do anything per se,
+they're just about giving some types different names so that they make more sense
+to someone reading our code and documentation.
+
+Example:
+
+```haskell
+type String = [Char]
+```
+
+Type synonyms can also be parameterized. If we want a type that represents an association
+list type but still want it to be general so it can use any type as the keys and values,
+we can do this:
+
+```haskell
+type AssocList k v = [(k,v)]
+```
