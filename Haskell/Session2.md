@@ -652,7 +652,7 @@ Zero <+> m    = m
 
 -- (n + 1) ∗ m = n ∗ m + m
 infixl 7 <*>
-(<*>) :: Nat → Nat → Nat
+(<*>) :: Nat -> Nat -> Nat
 Zero <*> m    = Zero
 (Suc n) <*> m = n <*> m <+> m
 ```
@@ -660,6 +660,40 @@ Zero <*> m    = Zero
 ### Polymorphics types
 
 A value constructor can take some values parameters and then produce a new value.
+
+#### The Maybe type constructor
+
+```haskell
+data Maybe a = Nothing | Just a
+  deriving Show
+```
+
+The `Maybe` type constructor allows us to represent
+values that may or may not be present.
+
+The `a` here is the type parameter. And because there's a type parameter involved,
+we call `Maybe` a type constructor.
+Depending on what we want this data type to hold when it's not Nothing
+
+So if we pass `Char` as the type parameter to `Maybe`, we get a type of `Maybe Char`.
+The value `Just 'a'` has a type of `Maybe Char`.
+
+Example:
+
+```haskell
+GHCi> Just "Haha"
+Just "Haha"
+GHCi> Just 84
+Just 84
+GHCi> :t Just "Haha"
+Just "Haha" :: Maybe [Char]
+GHCi> :t Just 84
+Just 84 :: (Num t) => Maybe t
+GHCi> :t Nothing
+Nothing :: Maybe a
+GHCi> Just 10 :: Maybe Double
+Just 10.0
+```
 
 #### The Either type constructor
 
@@ -691,40 +725,6 @@ GHCi> :t Right 'a'
 Right 'a' :: Either a Char
 GHCi> :t Left True
 Left True :: Either Bool b
-```
-
-#### The Maybe type constructor
-
-```haskell
-data Maybe a = Nothing | Just a
-  deriving Show
-```
-
-The `Maybe` type constructor allows us to represent
-values that may or may not be present.
-
-The `a` here is the type parameter. And because there's a type parameter involved,
-we call Maybe a type constructor.
-Depending on what we want this data type to hold when it's not Nothing
-
-So if we pass Char as the type parameter to Maybe, we get a type of Maybe Char.
-The value Just 'a' has a type of Maybe Char, for exampl
-
-Example:
-
-```haskell
-GHCi> Just "Haha"
-Just "Haha"
-GHCi> Just 84
-Just 84
-GHCi> :t Just "Haha"
-Just "Haha" :: Maybe [Char]
-GHCi> :t Just 84
-Just 84 :: (Num t) => Maybe t
-GHCi> :t Nothing
-Nothing :: Maybe a
-GHCi> Just 10 :: Maybe Double
-Just 10.0
 ```
 
 #### A recursive polymorphic type
