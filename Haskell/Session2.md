@@ -656,3 +656,140 @@ infixl 7 <*>
 Zero <*> m    = Zero
 (Suc n) <*> m = n <*> m <+> m
 ```
+
+### Polymorphics types
+
+A value constructor can take some values parameters and then produce a new value.
+
+### The Either type constructor
+
+The `Either` type constructor is used to create a new type that
+represents the union of other two types.
+
+```haskell
+data Either a b = Left a | Right b
+  deriving Show
+```
+
+Example:
+
+```haskell
+l1 :: [Either Integer Bool]
+l1 = [Left 1, Right True, Left 3, Left 5]
+l2 :: [Either Bool Integer ]
+l2 = [Rigth 2, Left False, Right 5]
+```
+
+```haskell
+GHCi> :t l1
+l1 :: [Either Integer Bool]
+GHCi> Right 20
+Right 20
+GHCi> Left "w00t"
+Left "w00t"
+GHCi> :t Right 'a'
+Right 'a' :: Either a Char
+GHCi> :t Left True
+Left True :: Either Bool b
+```
+
+### The Maybe type constructor
+
+```haskell
+data Maybe a = Nothing | Just a
+  deriving Show
+```
+
+The `Maybe` type constructor allows us to represent
+values that may or may not be present.
+
+The `a` here is the type parameter. And because there's a type parameter involved,
+we call Maybe a type constructor.
+Depending on what we want this data type to hold when it's not Nothing
+
+So if we pass Char as the type parameter to Maybe, we get a type of Maybe Char.
+The value Just 'a' has a type of Maybe Char, for exampl
+
+Example:
+
+```haskell
+GHCi> Just "Haha"
+Just "Haha"
+GHCi> Just 84
+Just 84
+GHCi> :t Just "Haha"
+Just "Haha" :: Maybe [Char]
+GHCi> :t Just 84
+Just 84 :: (Num t) => Maybe t
+GHCi> :t Nothing
+Nothing :: Maybe a
+GHCi> Just 10 :: Maybe Double
+Just 10.0
+```
+
+#### A recursive polymorphic type
+
+We can define a binary polymorphic tree with data in the nodes as:
+
+```haskell
+data Tree a = Empty | Node (Tree a) a (Tree a)
+  deriving Show
+```
+
+- Can be an empty tree, represented as `Empty`
+- Can be a tree with one or more levels with the `Node` value constructor.
+
+```haskell
+a :: Tree Int
+a = Node l 2 r
+  where
+    l = Node Empty 3 Empty
+    r = Empty
+```
+
+It would produce a tree such as:
+
+```text
+        2
+      /   \
+     /    --
+    3
+  /   \
+--    --
+```
+
+This function computes the sum of all node's values
+
+```haskell
+sumTree :: Tree Int -> Int
+sumTree Empty       = 0
+sumTree Tree l v r  = sumTree l + v + sumTree r
+```
+
+#### When not to use polymorphic types
+
+Using type parameters
+is very beneficial, but only when using them makes sense.
+sually we use them when our data type would work regardless
+of the type of the value it then holds inside it.
+
+We could change the `Car` type definition from this:
+
+```haskell
+data Car = Car { company :: String
+               , model :: String
+               , year :: Int
+               } deriving (Show)
+```
+
+to this:
+
+```haskell
+data Car a b c = Car { company :: a
+                     , model :: b
+                     , year :: c
+                     } deriving (Show)
+```
+
+Would we really benefit? probably no... because we may just end using functions
+that work on `Car String String Int` type.
