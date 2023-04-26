@@ -18,7 +18,7 @@ They indicate that the first parameter is a function that takes something and re
 
 The first parameter is a function (of type `a -> a`) and the second is that same `a`.
 The function can also be `Int -> Int` or `String -> String` or whatever.
-But then, the second parameter to also has to be of that type.
+But then, the second parameter also has to be of that type.
 
 
 ## Lambdas
@@ -103,7 +103,7 @@ GHCi> 10 `div` 3
 3
 ```
 
-To define operators you can use any or more than:
+To define operators you can use one or multiple of this signs:
 
 ```haskell
 : ! # $ % & ∗ + . / < = > ? @ \ ∧ | − ∼
@@ -154,9 +154,9 @@ operator and one of its arguments in parentheses. We obtein functions of one arg
 If (✶) is an operator, we have the following equivalences.
 
 ```haskell
+(✶)   ===> \x y -> x ✶ y
 (x ✶) ===> \y -> x ✶ y
 (✶ y) ===> \x -> x ✶ y
-(✶)   ===> \x y -> x ✶ y
 ```
 
 Example:
@@ -186,10 +186,10 @@ factorial 0 = 1
 factorial m = let n = m-1
               in m * factorial n
 
-sumatorio :: Integer -> Integer
-sumatorio 0 = 0
-sumatorio m = let n = m-1
-              in (+) m (sumatorio n)
+summation :: Integer -> Integer
+summation 0 = 0
+summation m = let n = m-1
+              in (+) m (summation n)
 ```
 
 Both functions follows the scheme:
@@ -197,7 +197,7 @@ Both functions follows the scheme:
 ```haskell
 fun :: Integer -> Integer
 fun 0 = ☆
-fun ◊ = let n = m-1
+fun m = let n = m-1
         in ◊ m (fun n)
 ```
 
@@ -220,8 +220,8 @@ Thanks to capture the pattern into a function, we can define the previous functi
 factorial' :: Integer -> Integer
 factorial = iter (*) 1
 
-sumatorio' :: Integer -> Integer
-sumatorio' = iter (+) 0
+summation' :: Integer -> Integer
+summation' = iter (+) 0
 ```
 
 ## Polymorphism
@@ -442,10 +442,11 @@ GHCi> filter even [1..10]
 GHCi> let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]
 [[1,2,3],[3,4,5],[2,2]]
 GHCi> filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
+"uagameasadifeent"
 ```
 
-> By the way, which type do you thing the expression
-`let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]` has?
+> Which type does the following expression has?
+`let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]`
 
 ## Function application with $ operator
 
@@ -515,10 +516,10 @@ So far, we've run into a lot of data types. Bool, Int, Char, Maybe, etc.
 But how do we make our own? Well, one way is to use the data keyword to define a type.
 
 ```haskell
-data Point = Point Float Float deriving (Show)
-  deriving Show
-data Shape = Circle Float Float Float | Rectangle Float Float Float Float
-  deriving Show
+data Point = Point Float Float
+    deriving Show
+data Shape = Circle Point Float | Rectangle Point Point
+    deriving Show
 ```
 
 The keyword `data` means that we're defining a new data type.
@@ -536,6 +537,8 @@ We can ask `ghci` the type of value constructors.
 Example:
 
 ```haskell
+GHCi> :t Point
+Point :: Float -> Float -> Point
 GHCi> :t Circle
 Circle :: Point -> Float -> Shape
 GHCi> :t Rectangle
@@ -573,7 +576,7 @@ True || x   = True
 Imagine we have the type `Rational` defined as:
 
 ```haskell
-data MyRational = Pair Integer Integer
+data Rational = Pair Integer Integer
   deriving Show
 ```
 
@@ -583,7 +586,7 @@ an operator that multiplies two Rationals.
 
 ```haskell
 infixl 7 >*<
-(>*<) :: MyRational -> MyRational -> MyRational
+(>*<) :: Rational -> Rational -> Rational
 (Pair a b) >*< (Pair c d) = Pair (a * c) (b * d)
 ```
 
@@ -601,7 +604,7 @@ constructor is written infix.
 
 ```haskell
 infix 9 :/
-data MyRational = Integer :/ Integer
+data Rational = Integer :/ Integer
   deriving Show
 ```
 
@@ -610,7 +613,7 @@ We adjust now the operator `>*<` for the new data constructor as:
 
 ```haskell
 infixl 7 >*<
-(>*<) :: MyRational -> MyRational -> MyRational
+(>*<) :: Rational -> Rational -> Rational
 (a :/ b) >*< (c :/ d) = (a * c) :/ (b * d)
 ```
 
@@ -776,18 +779,18 @@ of the type of the value it then holds inside it.
 We could change the `Car` type definition from this:
 
 ```haskell
-data Car = Car { company :: String
-               , model :: String
-               , year :: Int
+data Car = Car { company    :: String
+               , model      :: String
+               , year       :: Int
                } deriving (Show)
 ```
 
 to this:
 
 ```haskell
-data Car a b c = Car { company :: a
-                     , model :: b
-                     , year :: c
+data Car a b c = Car { company  :: a
+                     , model    :: b
+                     , year     :: c
                      } deriving (Show)
 ```
 
