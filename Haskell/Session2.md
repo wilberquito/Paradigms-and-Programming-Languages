@@ -144,7 +144,7 @@ infixr 2 |||
 (|||) :: Bool -> Bool -> Bool
 True ||| True   = False
 False ||| False = False
-_ ||| _         = False
+_ ||| _         = True
 ```
 
 Finally, binary operators have sections. Sections are partially applied operators.
@@ -256,6 +256,16 @@ GHCi> filter id [True, False, True]
 
 The functions `fst` and `snd` allows us to get components of tuples of pairs.
 
+You can notice these two function uses two type variables. This mean
+that the type of each component can be different, but it's not mandatory.
+
+```haskell
+:t fst
+fst :: (a, b) -> a
+:t snd
+snd :: (a, b) -> b
+```
+
 Examples:
 
 ```haskell
@@ -269,15 +279,6 @@ GHCi> snd ("Wow", False)
 False
 GHCi> snd ("Wow", False)
 False
-```
-Here you can notice that it's used two type variables. This mean
-that the type of each component can be different, but it's not mandatory.
-
-```haskell
-:t fst
-fst :: (a, b) -> a
-:t snd
-snd :: (a, b) -> b
 ```
 
 Although you can create tuples of any number of components,
@@ -571,7 +572,7 @@ False || x  = x
 True || x   = True
 ```
 
-### Symbolic constructors
+### Symbolic value constructor
 
 Imagine we have the type `Rational` defined as:
 
@@ -653,16 +654,47 @@ infixl 6 <+>
 Zero <+> m    = m
 (Suc n) <+> m = Suc (n <+> m)
 
--- (n + 1) ∗ m = n ∗ m + m
+-- (n + 1) * m = n * m + m
 infixl 7 <*>
 (<*>) :: Nat -> Nat -> Nat
 Zero <*> m    = Zero
 (Suc n) <*> m = n <*> m <+> m
 ```
 
-### Polymorphics types
+### Polymorphic type constructor
 
-A value constructor can take some values parameters and then produce a new value.
+If you'd want to construct a binary tree to store Strings, you could imagine doing something like
+
+```haskell
+data SBTree = Leaf String
+            | Branch String SBTree SBTree
+```
+
+But! What if we also wanted to be able to store Bool,
+we'd have to create a new binary tree. It could look something like this:
+
+```haskell
+data SBTree = Leaf String
+            | Branch String SBTree SBTree
+```
+
+Both SBTree and BBTree are type constructors. But there's a glaring problem.
+Do you see how similar they are?
+That's a sign that you really want a parameter somewhere.
+
+So we can do this:
+
+```haskell
+data BTree a = Leaf a
+             | Branch a (BTree a) (BTree a)
+```
+
+Now we introduce a type variable a as a parameter to the type constructor.
+In this declaration, BTree has become a function. It takes a type as its argument and it returns a new type.
+
+```haskell
+BTree :: * -> *
+```
 
 #### The Maybe type constructor
 
@@ -728,45 +760,6 @@ GHCi> :t Right 'a'
 Right 'a' :: Either a Char
 GHCi> :t Left True
 Left True :: Either Bool b
-```
-
-#### A recursive polymorphic type
-
-We can define a binary polymorphic tree with data in the nodes as:
-
-```haskell
-data Tree a = Empty | Node (Tree a) a (Tree a)
-  deriving Show
-```
-
-- Can be an empty tree, represented as `Empty`
-- Can be a tree with one or more levels with the `Node` value constructor.
-
-```haskell
-a :: Tree Int
-a = Node l 2 r
-  where
-    l = Node Empty 3 Empty
-    r = Empty
-```
-
-It would produce a tree such as:
-
-```text
-        2
-      /   \
-     /    --
-    3
-  /   \
---    --
-```
-
-This function computes the sum of all node's values
-
-```haskell
-sumTree :: Tree Int -> Int
-sumTree Empty       = 0
-sumTree Tree l v r  = sumTree l + v + sumTree r
 ```
 
 #### When not to use polymorphic types
