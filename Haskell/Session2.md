@@ -69,7 +69,7 @@ a new function that waits for the remaining `n − k` arguments.
 Example:
 
 ```haskell
-fun :: Int -> Int -> Int
+fun :: Int -> Int -> Int -> Int
 fun x y z = x*(2*y + z)
 ```
 
@@ -389,7 +389,7 @@ You can concatenate lists using the operator `++`.
 
 ```haskell
 infix 5 ++
-(++) :: [a] -> [a]
+(++) :: [a] -> [a] -> [a]
 [] ++ ys      = ys
 (x:xs) ++ ys  = x : (xs ++ ys)
 ```
@@ -524,7 +524,7 @@ data Shape = Circle Point Float | Rectangle Point Point
 ```
 
 The keyword `data` means that we're defining a new data type.
-The part before the `=` denotes the **type**, which is Bool.
+The part before the `=` denotes the **type**.
 The parts after the `=` are **value constructors**.
 
 The keyword `deriving` is used to automatically generate instances of certain type class.
