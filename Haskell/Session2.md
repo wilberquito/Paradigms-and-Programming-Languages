@@ -674,8 +674,8 @@ But! What if we also wanted to be able to store Bool,
 we'd have to create a new binary tree. It could look something like this:
 
 ```haskell
-data SBTree = Leaf String
-            | Branch String SBTree SBTree
+data SBTree = Leaf Bool
+            | Branch Bool SBTree SBTree
 ```
 
 Both SBTree and BBTree are type constructors. But there's a glaring problem.
