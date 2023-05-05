@@ -218,7 +218,7 @@ Thanks to capture the pattern into a function, we can define the previous functi
 
 ```haskell
 factorial' :: Integer -> Integer
-factorial = iter (*) 1
+factorial' = iter (*) 1
 
 summation' :: Integer -> Integer
 summation' = iter (+) 0
@@ -304,19 +304,19 @@ simply never comes into play, yet the result is of a particular type (sometimes)
 #### Length
 
 ```haskell
-length' :: [a] -> Int
-length' []      = 0
-length' (x:xs)  = 1 + length xs
+length :: [a] -> Int
+length []      = 0
+length (x:xs)  = 1 + length xs
 ```
 
 The length function exhibits parametric polymorphism because it acts
 uniformly on a range of types that share a common structure, in this case, lists.
 
 ```haskell
-GHCi> :t length' [1,2,3,4,5]
-length' [1,2,3,4,5] :: Int
+GHCi> :t length [1,2,3,4,5]
+length [1,2,3,4,5] :: Int
 GHCi> :t length' ['1','2','3','4','5']
-length' ['1','2','3','4','5'] :: Int
+length ['1','2','3','4','5'] :: Int
 ```
 
 #### Head
@@ -674,8 +674,8 @@ But! What if we also wanted to be able to store Bool,
 we'd have to create a new binary tree. It could look something like this:
 
 ```haskell
-data SBTree = Leaf Bool
-            | Branch Bool SBTree SBTree
+data BBTree = Leaf Bool
+            | Branch Bool BBTree BBTree
 ```
 
 Both SBTree and BBTree are type constructors. But there's a glaring problem.
