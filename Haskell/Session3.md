@@ -73,7 +73,7 @@ and each odd number that's less than 10 with "BOOM!".
 If a number isn't odd, we throw it out of our list.
 
 ```haskell
-GHCi> boomBangs xs = [ if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x]
+GHCi> boomBangs xs = [if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x]
 GHCi> boomBangs [1..20]
 ["BOOM!","BOOM!","BOOM!","BOOM!","BOOM!","BANG!","BANG!","BANG!","BANG!","BANG!"]
 ```
@@ -83,7 +83,7 @@ If we wanted all numbers from
 10 to 20 that are not 13, 15 or 19, we'd do:
 
 ```haskell
-GHCi> [x*2 | x <- [10..20], x `notElem` [13,15,19]]
+GHCi> [x*2 | x <- [10..20], x \= 13, x \= 15, x \= 19]]
 [20,22,24,28,32,34,36,40]
 ```
 
@@ -93,4 +93,15 @@ Yes, remember the functions `map` and `filter`.
 ```haskell
 GHCi> map (*2) . filter (`notElem` [13,15,19]) $ [10..20]
 [20,22,24,28,32,34,36,40]
+```
+
+Not only can we have multiple predicates in list comprehensions,
+we can also draw from several lists.
+When drawing from several lists,
+comprehensions produce all combinations of
+the given lists and then join them by the output function we supply.
+
+```haskell
+GHCi> [x*y | x <- [2,5,10], y <- [8,10,11]]
+[16,20,22,40,50,55,80,100,110]
 ```
