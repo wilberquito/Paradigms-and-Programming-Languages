@@ -333,3 +333,100 @@ GHCi> area (ASquare 3)
 GHCi> area (ACircle 3)
 28.2743 :: Area
 ```
+
+## Predifined class and instances
+
+Some of the built-in classes:
+
+- `Eq` denotates equality: `(==)` and `(/=)`
+- `Ord` denotates order: `<=`, `(<)`, `(>=)`,...
+- `Num` numeric types: `(+)`, `(-)`, `(*)`,...
+- `Show` types that can be printed in the terminal: `show`
+- `Read` types that can be readed from the terminal: `read`
+
+To know if a `type` is an instance of a typeclass you can
+ask it to the compiler.
+
+For example, let's see from which classes the type
+`Double` is instance.
+
+```haskell
+GHCi> :info Double
+type Double :: *
+data Double = GHC.Types.D# GHC.Prim.Double#
+        -- Defined in ‘GHC.Types’
+instance Eq Double -- Defined in ‘GHC.Classes’
+instance Ord Double -- Defined in ‘GHC.Classes’
+instance Enum Double -- Defined in ‘GHC.Float’
+instance Floating Double -- Defined in ‘GHC.Float’
+instance Fractional Double -- Defined in ‘GHC.Float’
+instance Num Double -- Defined in ‘GHC.Float’
+instance Real Double -- Defined in ‘GHC.Float’
+instance RealFloat Double -- Defined in ‘GHC.Float’
+instance RealFrac Double -- Defined in ‘GHC.Float’
+instance Show Double -- Defined in ‘GHC.Float’
+instance Read Double -- Defined in ‘GHC.Read’
+```
+
+### Eq class
+
+```haskell
+class Eq a where
+    (==) :: a -> a -> Bool
+    (/=) :: a -> a -> Bool
+
+    -- The minimum implementation is (==) or (/=)
+
+    x == y = not (x /= y)
+    x /= y = not (x == y)
+```
+
+- The definitions in the class `(==)` and `(/=)` denotates
+a default behavior. This default behavior is use in case
+they are not defined in the instance.
+
+- It is enought to define one of the `Eq` functions to be
+instance of the typeclass.
+
+### Ord class
+
+The `Ord` class is a subclass of `Eq`, it means that
+all type instances of `Ord` are instances of `Eq`.
+
+```haskell
+data Ordering = LT | EQ | GT
+
+class Eq a => Ord a where
+    (<), (<=), (>=), (>) :: a -> a -> Bool
+    max , min :: a -> a -> a
+    compare :: a -> a -> Ordering
+
+    -- The minimum implementation is (<=) or `compare`
+    compare x y
+        | x == y    = EQ
+        | x <= y    = LT
+        | otherwise = GT
+    x <= y = compare x y    /= GT
+    x < y = compare x y     == LT
+    x >= y = compare x y    /= LT
+    x > y = compare x y     == GT
+    max x y
+    | x >= y    = x
+    | otherwise = y
+    min x y
+    | x <= y    = x
+    | otherwise = y
+```
+
+### Show and Read class
+
+This classes are thought to work with i/o.
+To show types in terminal or read string from terminal
+and transform them into a type.
+
+```haskell
+class Show a where
+    show :: a -> String
+class Read a where
+    read :: (Read a) => String -> a
+```
