@@ -174,5 +174,98 @@ to `x :: a` and the folding of the rest of the list `foldr f y xs :: b`.
 What `foldr` is doing in the recursive call is applying
 the function `f` repeadly with two arguments.
 
+```text
+> foldr f z [x1, x2, ..., xn] == x1 `f` (x2 `f` ... (xn `f` z)...)
+```
+
  - The first argument is the first element of the list.
  - The second argument is what `f` returned from the rest of the list.
+
+ Basic usage:
+
+ ```haskell
+GHCi> foldr (||) False [False, True, False]
+True
+GHCi> foldr (||) False []
+False
+GHCi> foldr (\c acc -> acc ++ [c]) "foo" ['a', 'b', 'c', 'd']
+"foodcba"
+ ```
+
+Applying `foldr` to infinite structures usually doesn't terminate.
+
+```haskell
+GHCi> foldr (+) 0 [1..]
+```
+
+But it works nicely with lazy or short-circuiting operations.
+
+```haskell
+GHCi> foldr (||) False (repeat True)
+True
+```
+
+Now it's time to add some stricness to the fold process, This
+is rarely what you want, but can work well for structures with efficient
+right-to-left sequencing and an operator that is lazy in its left
+argument. Let's have a look at the cousin of `foldr`, `foldl`.
+
+While `foldr` processes a list right-to-left,
+`foldl` processes a list left-to-right (*left associative fold*).
+
+```haskell
+GHCi> foldr (+) 0 [1,2,3]  ==>  1+(2+(3+0))
+GHCi> foldl (+) 0 [1,2,3]  ==>  ((0+1)+2)+3
+```
+
+Let's see the definition of `foldr`.
+
+```haskell
+foldl :: (a -> b -> b) -> b -> [a] -> b
+foldl _ y []     = y
+foldl f y (x:xs) = foldl f (f y x) xs
+```
+
+`foldl` needs to process the whole list in order to produce a value.
+The reason is that foldl remains in the leftmost-outermost
+position for as long as its list argument remains non-empty.
+This makes `foldl` the priority for **lazy evaluation**.
+Only after the list becomes empty does the evaluation
+proceed into simplifying the folded values.
+
+```text
+> foldl f z [x1, x2, ..., xn] == (...((z `f` x1) `f` x2) `f`...) `f` xn
+```
+
+For example:
+
+```haskell
+head (foldr (++) [] ["Hello","World","lorem","ipsum"])
+==> head ("Hello" ++ (foldr (++) [] ["World","lorem","ipsum"]))
+==> head ('H':("ello" ++ (foldr (++) [] ["World","lorem","ipsum"])))
+==> 'H'
+```
+
+For example:
+
+```haskell
+    head (foldl (++) [] ["Hello","World","lorem","ipsum"])
+==> head (foldl (++) ([]++"Hello") ["World","lorem","ipsum"])
+==> head (foldl (++) (([]++"Hello")++"World") ["lorem","ipsum"])
+==> head (foldl (++) ((([]++"Hello")++"World")++"lorem") ["ipsum"])
+==> head (foldl (++) (((([]++"Hello")++"World")++"lorem")++"ipsum") [])
+==> head (((([]++"Hello")++"World")++"lorem")++"ipsum")
+-- head forces the last ++, which forces the next-to-last ++, and so on
+==> head ((("Hello"++"World")++"lorem")++"ipsum")
+-- same happens again
+==> head ((('H':("ello"++"World"))++"lorem")++"ipsum")
+-- for clarity, let's drop the "ello"++"World" expression which isn't needed
+==> head ((('H':__)++"lorem")++"ipsum")
+-- now the next-to-last ++ can operate
+==> head (('H':(__++"lorem"))++"ipsum")
+-- let's drop the __++"lorem" expression
+==> head (('H':__)++"ipsum")
+-- now the last ++ can operate
+==> head ('H':(__++"ipsum"))
+==> 'H'
+```
