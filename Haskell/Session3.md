@@ -341,8 +341,8 @@ Some of the built-in classes:
 - `Eq` denotates equality: `(==)` and `(/=)`
 - `Ord` denotates order: `<=`, `(<)`, `(>=)`,...
 - `Num` numeric types: `(+)`, `(-)`, `(*)`,...
-- `Show` types that can be printed in the terminal: `show`
-- `Read` types that can be readed from the terminal: `read`
+- `Show` types that can be printed in the console: `show`
+- `Read` types that can be readed from the console: `read`
 
 To know if a `type` is an instance of a typeclass you can
 ask it to the compiler.
@@ -421,7 +421,7 @@ class Eq a => Ord a where
 ### Show and Read class
 
 This classes are thought to work with i/o.
-To show types in terminal or read string from terminal
+To show types in console or read string from console
 and transform them into a type.
 
 ```haskell
@@ -433,4 +433,198 @@ class Read a where
 
 ## I/O
 
+I/O operations are not pure functions. They change
+"THE WORLD". Read and write operations changes the
+state of the outside world (side effect), because
+when we read from the console, we are not just manipuling
+data within the program. We interact with the user, reading
+input from the keyword.
+
+Similarly, if we write output to the console, we are not just
+printing some text, we also causing text to be displayed
+on the screen, which is an effect that can be observed outside
+the program itself.
+
+As I/O operations behave different than Haskell pure functions,
+we need different framework to work with them. This framework
+is call `Monad`, but we will just work with the `Monad IO`.
+
+Most programs needs some I/O operation. Haskell allows
+us to work with this inpurity with types that are
+instances of the type `IO`.
+
+For example, let's try to read something from the console.
+To read something from the console we use the action `getLine`.
+
+```haskell
+GHCi> :t getLine
+getLine :: IO String
+GHCi> getLine
+Hello World!
+"Hello World!"
+```
+
+Reading from the console means take what is written
+and parse it to a `String`. That's why the `getLine`
+action is of type `IO String`.
+
+Now, what if I want to write something in the console?
+To achieve it, we can use for example the action `putStrLn`.
+
+```haskell
+GHCi> :t putStrLn
+putStrLn :: String -> IO ()
+GHCi> putStrLn "Hello World!"
+Hello World!
+```
+
+Printing a string to the console doesn't really
+have any kind of meaningful return value,
+so a dummy value of `()` is used, the unit.
+
+> The empty tuple is a value of () and it also has a type of ().
+
+### The main function
+
+In our code, I/O actions will perform when there is `main` function
+and we run the program.
+
+```haskell
+main :: IO ()
+main = do
+    putStrLn "Hello, what's your name?"
+    name <- getLine
+    putStrLn ("Hey " ++ name ++ ", you rock!")
+```
+
+The `do` notation is syntax suggar for work with all `Monads`,
+the `do` notation opens a block of inpurity. That's why why
+can perform dirty actions here.
+
+Here is another example a litle bit more complex than the previous main.
+
+```haskell
+import Random
+main = do
+    putStrLn "How is your name?"
+    name <-getLine
+    putStrLn ("Hello " ++ name ++ ", give me your number" )
+    number <- getLine
+    let num = read number :: Int
+    ra <- randomRIO (1::Int, num)
+    putStrLn ("Here is a random number from 1 to "
+        ++ show num ++ " it is: "++ show ra)
+```
+
+### Other I/O actions
+
+There are a lot of I/O actions
+in the Haskell language that we are not covering,
+but here are a fewer more:
+
+```haskell
+GHCi>:t putChar :: Char -> IO ()
+GHCi>:t putStr :: String -> IO ()
+GHCi>:t putStrLn :: String -> IO ()
+GHCi>:t readFile :: FilePath -> IO String
+GHCi>:t writeFile :: FilePath -> String -> IO ()
+```
+
 ## Modules
+
+A Haskell module is a collection of related
+functions, types and typeclasses.
+A Haskell program is a collection
+of modules where the main module loads
+up the other modules and then uses the
+functions defined in them to do something.
+Having code split up into several modules
+has quite a lot of advantages.
+If a module is generic enough, the functions it exports
+can be used in a multitude of different programs
+
+### Using existing modules
+
+The syntax for importing modules in a Haskell
+script is `import <module name>`.
+This must be done before defining any functions,
+so imports are usually done at the top of the file.
+
+```haskell
+import Data.List
+
+numUniques :: (Eq a) => [a] -> Int
+numUniques = length . nub
+```
+
+You can use the same syntax to import modules
+in `ghci`. But you could also import modules as follow:
+
+```haskell
+GHCi> :m + Data.List Data.Map
+```
+
+The main difference is that this last syntax allows you
+to import multiple modules at once.
+
+If you just need a couple of functions from a module,
+you can selectively import just those functions
+
+```haskell
+import Data.List (nub, sort)
+```
+
+A way of dealing with name clashes of different modules,
+is to do qualified imports.
+
+```haskell
+import qualified Data.List as L
+numUniques :: (Eq a) => [a] -> Int
+numUniques = length . L.nub
+```
+
+### Making our own modules
+
+Almost every programming language enables
+you to split your code up into several
+files and Haskell is no different.
+
+We'll start by creating a file called `Geometry.hs`.
+At the beginning of a module,
+we specify the module name.
+If we have a file called `Geometry.hs`,
+then we should name our module `Geometry`.
+Then, we specify the functions that it exports and after that,
+we can start writing the functions.
+
+```haskell
+module Geometry
+( sphereVolume
+, sphereArea
+, cubeVolume
+, cubeArea
+, cuboidArea
+, cuboidVolume
+) where
+
+sphereVolume :: Float -> Float
+sphereVolume radius = (4.0 / 3.0) * pi * (radius ^ 3)
+
+sphereArea :: Float -> Float
+sphereArea radius = 4 * pi * (radius ^ 2)
+
+cubeVolume :: Float -> Float
+cubeVolume side = cuboidVolume side side side
+
+cubeArea :: Float -> Float
+cubeArea side = cuboidArea side side side
+
+cuboidVolume :: Float -> Float -> Float -> Float
+cuboidVolume a b c = rectangleArea a b * c
+
+cuboidArea :: Float -> Float -> Float -> Float
+cuboidArea a b c = rectangleArea a b * 2 + rectangleArea a c * 2 + rectangleArea c b * 2
+
+rectangleArea :: Float -> Float -> Float
+rectangleArea a b = a * b
+```
