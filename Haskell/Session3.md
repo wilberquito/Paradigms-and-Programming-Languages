@@ -334,7 +334,7 @@ GHCi> area (ACircle 3)
 28.2743 :: Area
 ```
 
-## Predifined class and instances
+## Predifined classes and instances
 
 Some of the built-in classes:
 
@@ -411,14 +411,14 @@ class Eq a => Ord a where
     x >= y = compare x y    /= LT
     x > y = compare x y     == GT
     max x y
-    | x >= y    = x
-    | otherwise = y
+        | x >= y    = x
+        | otherwise = y
     min x y
-    | x <= y    = x
-    | otherwise = y
+        | x <= y    = x
+        | otherwise = y
 ```
 
-### Show and Read class
+### Show and Read classes
 
 This classes are thought to work with i/o.
 To show types in console or read string from console
@@ -505,6 +505,8 @@ Here is another example a litle bit more complex than the previous main.
 
 ```haskell
 import Random
+
+main :: IO ()
 main = do
     putStrLn "How is your name?"
     name <-getLine
@@ -605,7 +607,11 @@ module Geometry
 , cubeArea
 , cuboidArea
 , cuboidVolume
+, Geometry(..)
 ) where
+
+data Geometry = Circle | Rectangle
+    deriving Show
 
 sphereVolume :: Float -> Float
 sphereVolume radius = (4.0 / 3.0) * pi * (radius ^ 3)
@@ -628,6 +634,8 @@ cuboidArea a b c = rectangleArea a b * 2 + rectangleArea a c * 2 + rectangleArea
 rectangleArea :: Float -> Float -> Float
 rectangleArea a b = a * b
 ```
+
+The `(..)` syntax means, export all constructors for the preceding type.
 
 To use our module, we just do:
 
