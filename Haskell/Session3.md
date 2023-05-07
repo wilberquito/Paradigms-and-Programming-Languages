@@ -269,3 +269,67 @@ Using `foldl`:
 ==> head ('H':(__++"ipsum"))
 ==> 'H'
 ```
+
+## Classes system
+
+### Overloaded functions
+
+- It makes sense for some types, not for all
+- Can have diferent definitions per each type
+
+Consider the following types:
+
+```haskell
+type Side   = Float
+type Radius = Float
+type Area   = Float
+data Square = ASquare Side deriving Show
+data Circle = ACircle Radius deriving Show
+```
+
+We would like to compute the area for this types:
+
+```haskell
+-- Computes the area of a square
+area :: Square -> Area
+area (ASquare s) = s*s
+
+-- Computes the area of a circle
+area :: Circle -> Area
+area (ACircle r) = pi * r^2
+```
+
+The `area` function makes sense for types `Square` and `Circle`
+but not for `Bool`. Hence it's not a polymorphic function.
+
+The problem here is that Haskell does not support `overloaded functions`
+as show above. You need to create a `class`.
+
+```haskell
+type Area = Float
+
+class HasArea t where
+    area :: t -> Area
+```
+
+- `t` is type variable.
+- The function `area` is just defined to the types `t` that are instances of the typeclass.
+
+To make a type be an instance of a typeclass, you can do the following.
+
+```haskell
+instance HasArea Square where
+    area (ASquare s) = s*s
+instance HasArea Circle where
+    area (ACircle r) = pi * r^2
+```
+
+If you try to use the function `area` with a non instance
+of `HasArea`, the compiler will throw you an error.
+
+```haskell
+GHCi> area (ASquare 3)
+9.0 :: Area
+GHCi> area (ACircle 3)
+28.2743 :: Area
+```
