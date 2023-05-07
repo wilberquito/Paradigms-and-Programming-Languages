@@ -628,3 +628,11 @@ cuboidArea a b c = rectangleArea a b * 2 + rectangleArea a c * 2 + rectangleArea
 rectangleArea :: Float -> Float -> Float
 rectangleArea a b = a * b
 ```
+
+To use our module, we just do:
+
+```haskell
+import Geometry
+```
+
+## Your time to practice
