@@ -105,3 +105,74 @@ the given lists and then join them by the output function we supply.
 GHCi> [x*y | x <- [2,5,10], y <- [8,10,11]]
 [16,20,22,40,50,55,80,100,110]
 ```
+
+## Folding
+
+Consider the functions
+`myMaximum :: [Int] -> Int`
+ and `countNothings :: [Maybe Int] -> Int`.
+
+```haskell
+-- Returns the biggest number in a list
+myMaximum :: [Int] -> Int
+myMaximum []        = 0
+myMaximum (x:xs)    = go x xs
+  where go biggest []       = biggest
+        go biggest (x:xs)   = go (max biggest x) xs
+
+-- Counts the occurrences of Nothing in a list
+countNothings :: [Maybe a] -> Int
+countNothings []                = 0
+countNothings (Nothing : xs)    = 1 + countNothings xs
+countNothings (Just _  : xs)    = countNothings xs
+```
+
+They have one common characteristic.
+They take a list and produce a value that depends
+on the values of the elements in the given list.
+**They fold a list of many values into a single value**.
+
+Haskell has the built-in function `foldr` to perform
+a *right associative fold* over a `Foldable` data type.
+Guess what? list, are instances of the `Foldable` type.
+
+```haskell
+GHCi> :info []
+type [] :: * -> *
+data [] a = [] | a : [a]
+        -- Defined in ‘GHC.Types’
+instance Applicative [] -- Defined in ‘GHC.Base’
+instance Eq a => Eq [a] -- Defined in ‘GHC.Classes’
+instance Functor [] -- Defined in ‘GHC.Base’
+instance Monad [] -- Defined in ‘GHC.Base’
+instance Monoid [a] -- Defined in ‘GHC.Base’
+instance Ord a => Ord [a] -- Defined in ‘GHC.Classes’
+instance Semigroup [a] -- Defined in ‘GHC.Base’
+instance Show a => Show [a] -- Defined in ‘GHC.Show’
+instance MonadFail [] -- Defined in ‘Control.Monad.Fail’
+instance Read a => Read [a] -- Defined in ‘GHC.Read’
+instance Foldable [] -- Defined in ‘Data.Foldable’
+instance Traversable [] -- Defined in ‘Data.Traversable
+```
+
+Let's see the definition of `foldr`
+that works just for lists (but the `foldr` definition
+is more generic than we see here).
+
+```haskell
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr _ y []     = y
+foldr f y (x:xs) = f x (foldr f y xs)
+```
+
+How it works?
+
+- For an empty list `[] :: [a]`, `foldr` returns a default value `y :: b`.
+- For any other list `(x:xs) :: [a]`, `foldr` applies `f :: (a -> b -> b)`
+to `x :: a` and the folding of the rest of the list `foldr f y xs :: b`.
+
+What `foldr` is doing in the recursive call is applying
+the function `f` repeadly with two arguments.
+
+ - The first argument is the first element of the list.
+ - The second argument is what `f` returned from the rest of the list.
