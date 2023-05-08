@@ -48,7 +48,7 @@ Set comprehensions have the following form:
 ![setnotation](Img/setnotation.png)
 
 - The part before the pipe is called the output function
-- `x` is a variable and `N` is the input set
+- `x` is a variable and `N` is the general set
 - `x <= 10` is a predicate
 
 This mathematical expression generates a set that
@@ -95,10 +95,10 @@ GHCi> map (*2) . filter (`notElem` [13,15,19]) $ [10..20]
 [20,22,24,28,32,34,36,40]
 ```
 
-Not only can we have multiple predicates in list comprehensions,
+Not only can we have multiple predicates in a comprehension list,
 we can also draw from several lists.
 When drawing from several lists,
-comprehensions produce all combinations of
+the comprehension produces all combinations of
 the given lists and then join them by the output function we supply.
 
 ```haskell
@@ -110,7 +110,7 @@ GHCi> [x*y | x <- [2,5,10], y <- [8,10,11]]
 
 Consider the functions
 `myMaximum :: [Int] -> Int`
- and `countNothings :: [Maybe Int] -> Int`.
+ and `countNothings :: [Maybe a] -> Int`.
 
 ```haskell
 -- Returns the biggest number in a list
@@ -226,8 +226,8 @@ foldl _ y []     = y
 foldl f y (x:xs) = foldl f (f y x) xs
 ```
 
-`foldl` needs to process the whole list in order to produce a value.
-The reason is that foldl remains in the leftmost-outermost
+**`foldl` needs to process the whole list in order to produce a value**.
+The reason is that `foldl` remains in the leftmost-outermost
 position for as long as its list argument remains non-empty.
 This makes `foldl` the priority for **lazy evaluation**.
 Only after the list becomes empty does the evaluation
@@ -325,7 +325,7 @@ instance HasArea Circle where
 ```
 
 If you try to use the function `area` with a non instance
-of `HasArea`, the compiler will throw you an error.
+of `HasArea`, the compiler will throw an error.
 
 ```haskell
 GHCi> area (ASquare 3)
@@ -382,8 +382,8 @@ class Eq a where
 ```
 
 - The definitions in the class `(==)` and `(/=)` denotates
-a default behavior. This default behavior is use in case
-they are not defined in the instance.
+a default behavior. This default behavior is used if you don't
+define de desired behavior in the instance.
 
 - It is enought to define one of the `Eq` functions to be
 instance of the typeclass.
@@ -421,7 +421,7 @@ class Eq a => Ord a where
 ### Show and Read classes
 
 This classes are thought to work with i/o.
-To show types in console or read string from console
+To show types in console or read string
 and transform them into a type.
 
 ```haskell
@@ -434,7 +434,7 @@ class Read a where
 ## I/O
 
 I/O operations are not pure functions. They change
-"THE WORLD". Read and write operations changes the
+*"THE WORLD"*. Read and write operations changes the
 state of the outside world (side effect), because
 when we read from the console, we are not just manipuling
 data within the program. We interact with the user, reading
@@ -447,10 +447,11 @@ the program itself.
 
 As I/O operations behave different than Haskell pure functions,
 we need different framework to work with them. This framework
-is call `Monad`, but we will just work with the `Monad IO`.
+is call `Monad`, but we will just work with a specific
+type of `Monad`, the `Monad IO`.
 
 Most programs needs some I/O operation. Haskell allows
-us to work with this inpurity with types that are
+us to work with this inpurity with actions that are
 instances of the type `IO`.
 
 For example, let's try to read something from the console.
@@ -497,11 +498,11 @@ main = do
     putStrLn ("Hey " ++ name ++ ", you rock!")
 ```
 
-The `do` notation is syntax suggar for work with all `Monads`,
-the `do` notation opens a block of inpurity. That's why why
+The `do` notation is syntax suggar to work with all kind of `Monads`,
+the `do` notation opens a block of inpurity. That's why
 can perform dirty actions here.
 
-Here is another example a litle bit more complex than the previous main.
+Here is another example, this is a litle bit more complex than the previous main.
 
 ```haskell
 import Random
@@ -509,7 +510,7 @@ import Random
 main :: IO ()
 main = do
     putStrLn "How is your name?"
-    name <-getLine
+    name <- getLine
     putStrLn ("Hello " ++ name ++ ", give me your number" )
     number <- getLine
     let num = read number :: Int
@@ -560,7 +561,13 @@ numUniques = length . nub
 ```
 
 You can use the same syntax to import modules
-in `ghci`. But you could also import modules as follow:
+in `ghci`.
+
+```haskell
+GHCi> import Data.List
+```
+
+But you could also import modules like this:
 
 ```haskell
 GHCi> :m + Data.List Data.Map
@@ -581,6 +588,7 @@ is to do qualified imports.
 
 ```haskell
 import qualified Data.List as L
+
 numUniques :: (Eq a) => [a] -> Int
 numUniques = length . L.nub
 ```
