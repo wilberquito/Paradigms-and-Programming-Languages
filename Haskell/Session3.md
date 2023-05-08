@@ -652,3 +652,113 @@ import Geometry
 ```
 
 ## Your time to practice
+
+```haskell
+-- Ex 1: given a list of strings and a length, return all strings that
+--  * have the given length
+--  * are made by catenating two input strings
+--
+-- Examples:
+--   joinToLength 2 ["a","b","cd"]        ==> ["aa","ab","ba","bb"]
+--   joinToLength 5 ["a","b","cd","def"]  ==> ["cddef","defcd"]
+--
+-- Hint! This is a great use for list comprehensions
+
+joinToLength :: Int -> [String] -> [String]
+joinToLength = undefined
+```
+
+```haskell
+-- Ex 2: A laboratory has been collecting measurements. Some of the
+-- measurements have failed, so the lab is using the type
+--   Either String Int
+-- to track the measurements. A Left value represents a failed measurement,
+-- while a Right value represents a succesful one.
+--
+-- Compute the sum of all succesful measurements. If there are
+-- succesful measurements, return the sum wrapped in a Right, but if
+-- there are none, return Left "no data".
+--
+-- Examples:
+--   sumSuccess [Right 1, Left "it was a snake!", Right 3]
+--     ==> Right 4
+--   sumSuccess [Left "lab blew up", Left "I was sick"]
+--     ==> Left "no data"
+--   sumSuccess []
+--     ==> Left "no data"
+--
+--  Hint: this is a great use for folds
+--
+-- Give the signature of the function
+
+sumSuccess = undefined
+```
+
+```haskell
+-- Ex 3: recall the binary function composition operation
+-- (f . g) x = f (g x). In this exercise, your task is to define a function
+-- that takes any number of functions given as a list and composes them in the
+-- same order than they appear in the list.
+--
+-- Examples:
+--   multiCompose [] "foo" ==> "foo"
+--   multiCompose [] 1     ==> 1
+--   multiCompose [(++"bar")] "foo" ==> "foobar"
+--   multiCompose [reverse, tail, (++"bar")] "foo" ==> "raboo"
+--   multiCompose [(3*), (2^), (+1)] 0 ==> 6
+--   multiCompose [(+1), (2^), (3*)] 0 ==> 2
+--
+--  Hint: this is a great use for folds
+--
+multiCompose :: [t -> t] -> t -> t
+multipleCompose = undefined
+```
+
+```haskell
+-- Ex 4: you'll find below the types Time, Distance and Velocity,
+-- which represent time, distance and velocity in seconds, meters and
+-- meters per second.
+--
+-- Implement the functions below.
+
+data Distance = Distance Double
+  deriving (Show,Eq)
+
+data Time = Time Double
+  deriving (Show,Eq)
+
+data Velocity = Velocity Double
+  deriving (Show,Eq)
+
+-- velocity computes a velocity given a distance and a time
+velocity :: Distance -> Time -> Velocity
+velocity = undefined
+
+-- travel computes a distance given a velocity and a time
+travel :: Velocity -> Time -> Distance
+travel = undefined
+```
+
+```haskell
+-- Ex 5: below you'll find a way of representing
+-- calculator operations.
+--
+-- -- Your task is to add:
+--  * create a typeclass `Calculator`
+--  which declares a function `compute` an
+--  the function `show'`
+--
+--  * Make the type `Operation` instance of `Calculator`
+--
+-- Examples:
+--   compute (Multiply 2 3) ==> 6
+--   show' (Add1 2 3) ==> "2+3"
+--   show' (Multiply 4 5) ==> "4*5"
+--   show' (Subtract 2 3) ==> "2-3"
+--   show' (Multiply 4 5) ==> "4*5"
+
+data Operation =  Add Int Int
+                | Subtract Int Int
+                | Multiply Int Int
+  deriving Show
+```
