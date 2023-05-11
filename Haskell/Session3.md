@@ -83,7 +83,7 @@ If we wanted all numbers from
 10 to 20 that are not 13, 15 or 19, we'd do:
 
 ```haskell
-GHCi> [x*2 | x <- [10..20], x \= 13, x \= 15, x \= 19]]
+GHCi> [x*2 | x <- [10..20], x \= 13, x \= 15, x \= 19]
 [20,22,24,28,32,34,36,40]
 ```
 
@@ -95,7 +95,7 @@ GHCi> map (*2) . filter (`notElem` [13,15,19]) $ [10..20]
 [20,22,24,28,32,34,36,40]
 ```
 
-Not only can we have multiple predicates in a comprehension list,
+Not only we can have multiple predicates in a comprehension list,
 we can also draw from several lists.
 When drawing from several lists,
 the comprehension produces all combinations of
@@ -104,6 +104,8 @@ the given lists and then join them by the output function we supply.
 ```haskell
 GHCi> [x*y | x <- [2,5,10], y <- [8,10,11]]
 [16,20,22,40,50,55,80,100,110]
+GHCi> [(x,y) | x <- [2,5,10], y <- [8,10,11]]
+[(2,8),(2,10),(2,11),(5,8),(5,10),(5,11),(10,8),(10,10),(10,11)]
 ```
 
 ## Folding
