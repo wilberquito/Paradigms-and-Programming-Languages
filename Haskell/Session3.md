@@ -110,6 +110,8 @@ GHCi> [(x,y) | x <- [2,5,10], y <- [8,10,11]]
 
 ## Folding
 
+### Foldr
+
 Consider the functions
 `myMaximum :: [Int] -> Int`
  and `countNothings :: [Maybe a] -> Int`.
@@ -207,6 +209,20 @@ GHCi> foldr (||) False (repeat True)
 True
 ```
 
+### Built-in function with folding
+
+A lot of functions we know can be built from foldings.
+
+If we can define a folding behavior for any data type,
+we inmediatily have for example `length` and `map` function.
+
+```haskell
+GHCi> length  = foldr (\_ -> (+) 1) 0
+GHCi> map f   = foldr ((:) . f) []
+```
+
+### Foldl
+
 Now it's time to add some stricness to the fold process, This
 is rarely what you want, but can work well for structures with efficient
 right-to-left sequencing and an operator that is lazy in its left
@@ -216,14 +232,16 @@ While `foldr` processes a list right-to-left,
 `foldl` processes a list left-to-right (*left associative fold*).
 
 ```haskell
-GHCi> foldr (+) 0 [1,2,3]  ==>  1+(2+(3+0))
-GHCi> foldl (+) 0 [1,2,3]  ==>  ((0+1)+2)+3
+GHCi> -- foldr :: (a -> b -> b) -> b -> [a] -> b
+GHCi> foldr (\x acc -> x + acc) 0 [1,2,3]  ==>  1+(2+(3+0))
+GHCi> -- foldl :: (b -> a -> b) -> b -> [a] -> b
+GHCi> foldl (\acc x -> acc + x) 0 [1,2,3]  ==>  ((0+1)+2)+3
 ```
 
-Let's see the definition of `foldr`.
+Let's see the definition of `foldl`.
 
 ```haskell
-foldl :: (a -> b -> b) -> b -> [a] -> b
+foldl :: (b -> a -> b) -> b -> [a] -> b
 foldl _ y []     = y
 foldl f y (x:xs) = foldl f (f y x) xs
 ```
