@@ -257,7 +257,7 @@ proceed into simplifying the folded values.
 > foldl f z [x1, x2, ..., xn] == (...((z `f` x1) `f` x2) `f`...) `f` xn
 ```
 
-Using `foldr`:
+Using `foldr`
 
 ```haskell
 head (foldr (++) [] ["Hello","World","lorem","ipsum"])
@@ -266,7 +266,7 @@ head (foldr (++) [] ["Hello","World","lorem","ipsum"])
 ==> 'H'
 ```
 
-Using `foldl`:
+Using `foldl`
 
 ```haskell
     head (foldl (++) [] ["Hello","World","lorem","ipsum"])
