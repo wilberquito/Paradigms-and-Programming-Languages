@@ -352,6 +352,11 @@ GHCi> area (ASquare 3)
 9.0 :: Area
 GHCi> area (ACircle 3)
 28.2743 :: Area
+GHCi> area True
+<interactive>:1:1: error:
+    • No instance for (HasArea Bool) arising from a use of ‘area’
+    • In the expression: area True
+      In an equation for ‘it’: it = area True
 ```
 
 ## Predifined classes and instances
