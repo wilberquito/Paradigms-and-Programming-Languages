@@ -106,6 +106,8 @@ Finalment podem carregar el fitxer.
   TODO
   ```
 
+TODO: punt i coma, acabar?
+
 
 ## Anonymous Variables in Prolog
 
@@ -128,35 +130,20 @@ hates(peter,tom).
 
 For a practical implementation see the knowledge base of the [var_anonymous.pl](Examples/var_anonymous.pl).
 
-## The not meta-predicate
-
-The "not" operator in Prolog is a built-in meta-predicate. A meta-predicate is a predicate that takes one or more predicates as arguments, rather than data. The "not" operator takes a single predicate as its argument and negates its truth value.
-
-The "not" operator is also known as the negation-as-failure operator, because it works by attempting to prove the negation of the goal and failing if it cannot be proven. It does not actually perform logical negation, but rather it checks if the goal can be proven to be false.
-
-The "not" operator is one of several built-in meta-predicates in Prolog that allow for more advanced logical reasoning and rule-based programming. Other examples of meta-predicates in Prolog include "call", "findall", and "assert" that we may see latter.
-
-```prolog
-domestic_animal(cat).
-domestic_animal(dog).
-
-non_domestic_animal(X) :- not(domestic_animal(X)).
-```
-
-## It's your turn to practice (I)
+## És el vostre torn (I)
 
 ### [lovers.pl](Examples/lovers.pl)
 
-Use the knowledge in lovers.pl and write in Prolog the following questions.
+Feu servir el fitxer lovers.pl and feu les següents consultes en Prolog:
 
-- Who does "John" love?
-- Who loves "Ann"?
-- Who loves someone?
-- Who is loved by someone?
-- Who love each other mutually?
-- Who loves without being loved back?
+- A qui li agrada en John?
+- Qui li agrada a l'Ann?
+- Qui està enamorat d'algú?
+- Qui és estimat per algú?
+- Quines dues persones s'estimen mútuament?
+- Qui estima sense ser correspost? (Nota: podeu fer servir `not(loves(...))`
 
-## Belive in terms 
+## Els termes
 
 It’s time for precision: exactly what are facts, rules, and queries built out of? In Prolog, 
 the answer is terms, and there are four kinds of term in Prolog: term atoms, numbers, variables, and complex terms (or structures)
