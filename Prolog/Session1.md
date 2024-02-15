@@ -1,16 +1,24 @@
-# Session 1 [^1][^2]
+# Sessió 1 [^1][^2]
 
-Prolog as the name itself suggests, is the short form of LOGic PROgramming. It is a logic-based declarative programming language. Before diving deep into the concepts of Prolog, let us first understand what exactly logic programming is.
+El nom Prolog deriva del francès "PRogramation LOGique". És un llenguatge de programació declaratiu basat en lògica.
 
-Logic Programming is one of the Computer Programming Paradigm, in which the program statements express the facts and rules about different problems within a system of formal logic, namely the Horn clauses fragment of first-order logic.
+La programació lògica és un paradigma de programació declaratiu, és a dir, els programes especifiquen quin problema volem resoldre. Això contrasta amb la programació imperativa, en que els programes especifiquen com s'ha de resoldre el problema. Altres exemples paradigmes declaratius són la programació funcional o la programació basada en restriccions. 
 
-In propositional logic, a logical formula is a Horn clause if it is a clause (disjunction of literals) with at most one positive literal.
+En el cas de Prolog, un programa consisteix en un conjunt de fets i regles especificades amb el fragment de les clàuses de Horn de la lògica de primer ordre (també anomenada lògica de predicats).
+
+Una càusula de Horn és tota clausula (disjunció de literals) que té com a molt un literal positiu.
+
+Per exemple, en lògica proposicional, la clàusula següent és una clàusula de Horn:
 
 ${\displaystyle \neg p\lor \neg q\vee \cdots \vee \neg t\vee u}$
 
-This formula can also be rewritten equivalently as an implication.
+Una clàusula de Horn també es pot reescriure equivalentment com a una implicació d'una conjunció de literals positius cap a un literal positiu:
 
 ${\displaystyle (p\wedge q\wedge \cdots \wedge t)\rightarrow u}$
+
+Un exemple en lògica de primer ordre (no proposicional):
+
+${\displaystyle (p(X)\wedge q(Y)\wedge \cdots \wedge t(X,Y))\rightarrow u(X,Y)}$
 
 ## Logic and Procedural Programming
 
