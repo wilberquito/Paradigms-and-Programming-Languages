@@ -8,28 +8,31 @@ En el cas de Prolog, un programa consisteix en un conjunt de fets i regles espec
 
 Una càusula de Horn és tota clausula (disjunció de literals) que té com a molt un literal positiu.
 
-Per exemple, en lògica proposicional, la clàusula següent és una clàusula de Horn:
+Per exemple, en lògica proposicional, una clàusula de Horn té la forma:
 
 ${\displaystyle \neg p\lor \neg q\vee \cdots \vee \neg t\vee u}$
 
 Una clàusula de Horn també es pot reescriure equivalentment com a una implicació d'una conjunció de literals positius cap a un literal positiu:
 
-${\displaystyle (p\wedge q\wedge \cdots \wedge t)\rightarrow u}$
+${\displaystyle p\wedge q\wedge \cdots \wedge t\rightarrow u}$
 
 Un exemple en lògica de primer ordre (no proposicional):
 
-${\displaystyle (p(X)\wedge q(Y)\wedge \cdots \wedge t(X,Y))\rightarrow u(X,Y)}$
+${\displaystyle p(X)\wedge q(Y) \wedge t(X,Y)\rightarrow u(X,Y)}$
 
-## Logic and Procedural Programming
+El predicat anterior, en Prolog s'escriu:
 
-From this illustration, we can see that in Procedural (imperative) Programming, we have to define the procedures, 
-and the rule how the procedures work. These procedures work step by step to solve one specific problem based on the algorithm. On the other hand, for the Logic Programming, we will provide knowledge base. Using this knowledge base, the machine can find answers by means of reasoning to the given questions, which is totally different from procedural programming.
+${\displaystyle u(X,Y)}$ :- ${\displaystyle p(X), q(Y), t(X,Y).}$
+
+## Programaicó Lògica vs Programació Imperativa
+
+En programació imperativa, un programa consisteix en una seqûència de procediments que s'executen de manera ordenada. Tenim també estructures alternatives (if-else) i repetitives (bucles). Per altra banda, en programació lògica, un programa consisteix en una base de coneixement. Un mecanisme subjacent de raonament trobarà resposta a les nostres consultes basant-se en la base de coneixement. 
 
 ![logic-vs-procedural](Img/logic_functional_programming.jpg)
 
-In procedural programming, we have to mention how one problem can be solved, but in logic programming we have to specify for which problem we actually want the solution, then the deductive mechanism (resolution) automatically finds a suitable solution that will help us solve that specific problem.
+Com ja s'ha dit, en Prolog especificarem quin problema volem resoldre i no com el volem resoldre. El com el gestiona l'intèrpret de Prolog internament. En particular, el còmput de les solucions es basa en un mecanisme deductiu, SLD-resolució.
 
-## What's Prolog?
+## Què és Prolog?
 
 Prolog or PROgramming in LOGics is a logic-based declarative programming language. It is particularly suitable for programs that involve symbolic or non-numeric-intensive computation. This is the main reason to use Prolog as the programming language in Artificial Intelligence, where symbol manipulation and inference manipulation are the fundamental tasks.
 
