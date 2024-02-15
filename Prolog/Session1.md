@@ -109,7 +109,7 @@ Finalment podem carregar el fitxer.
 TODO: punt i coma, acabar?
 
 Per fer una consulta, escriurem el fet que volem demostrar, sempre acabat en punt `.`. Prolog no acaba la resolució de la consulta quan troba una resposta, sinó **quan ha explorat tot l'arbre de cerca**. En cas que la resposta sigui *yes*, dirà quin valor prenen les variables que hi hagi. Si encara no ha explorat tot l'arbre, esperarà una instrucció:
-  - `;`: mostra el següent valor de variables que demostra la consulta, si és que n'hi ha més.
+  - `;`: continua la cerca. Mostra el següent valor de variables que demostra la consulta, si és que n'hi ha més.
   - `a`: mostra totes les solucions. Poden ser infinites!
   - `[ENTER]`: atura la cerca. 
 
