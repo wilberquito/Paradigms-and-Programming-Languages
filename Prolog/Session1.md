@@ -32,78 +32,80 @@ En programació imperativa, un programa consisteix en una seqûència de procedi
 
 Com ja s'ha dit, en Prolog especificarem quin problema volem resoldre i no com el volem resoldre. El com el gestiona l'intèrpret de Prolog internament. En particular, el còmput de les solucions es basa en un mecanisme deductiu, SLD-resolució.
 
-## Què és Prolog?
+## Prolog: definició el llenguatge
 
-Prolog or PROgramming in LOGics is a logic-based declarative programming language. It is particularly suitable for programs that involve symbolic or non-numeric-intensive computation. This is the main reason to use Prolog as the programming language in Artificial Intelligence, where symbol manipulation and inference manipulation are the fundamental tasks.
+Prolog és particularment útil per fer programes de manipulació simbòlia, i per tant és un bon candidat per aplicacions d'Intel·ligència Artificial on la manipulació simbòlica i la inferència siguin tasques fonamentals. 
 
-In Prolog, we need not mention the way how one problem can be solved, we just need to mention what the problem is, so that Prolog automatically solves it. However, in Prolog we are supposed to give clues as the solution method.
+Prolog destaca per la simplicitat del llenguatge. Té tres elements principals: 
 
-Prolog language is really simple and basically has three different elements.
-
-- *Facts* are logical atoms (typically a predicate relating some elements) that are true, for example, if we say, “Tom is the father of Jack”, then this is a fact.
+- *Fets*: són àtoms lògics (típicament predicats relacionant diversos elements) que són certs. Per exemple, el següent fet expressa "En Tom és el pare d'en Jack".
 
   ```prolog
   father(tom, jack).
   ```
-
-  Since previous fact could also be read as "the father of Tom is Jack" we **Strongly recommend** to add comments to clarify, e.g.:
+  El significat que donem a un fet és una decisió del programador. El fet anterior podria tenir la lectura alternativa "el pare d'en Tom és en Jack". Per això és **molt recomanable** afegir comentaris sobre com llegir els predicats del programa, almenys la primera vegada que apereixen. Per exemple:
 
   ```prolog
-  % tom is the father of jack
+  % En Tom es el pare d'en Jack
   father(tom, jack).
   ```
-  at least the first time a predicate is used...
 
-- *Rules* are extinctions of facts that contain conditional clauses. To satisfy a rule these conditions should be met. 
-More generally, the `:-` should be read as “if”, or “is implied by”. The part on the left hand side of the `:-` is called the head of the rule, 
-the part on the right hand side is called the body. So in general rules say: if the body of the rule is true, then the head of the rule is also true; alternatively rules can also be read as: if you want me to prove the head of the rule you need to prove all the **literals** (logical atoms and negations of logical atoms) of the body.
+  De fet, Prolog ignora el significat dels fets, només en detecta l'estructura sintàctica. Fixeu-vos que això és una propietat comuna de qualsevol llenguatge de programació. Per exemple, en un programa en C++, llevat de paraules clau del llenguatge (if, bool, ...), sempre podem reanomenar les variables, funcions, etc. Semblantment, el fet anterior es podria reanomenar com a:
 
-  This is extreamly powerful, because **Prolog can use the mechanism of inference `resolution` to deduce head**.
+  ```prolog
+  % t es el pare de j
+  f(t, j).
+  ```
+
+- *Regles*: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a “si”, or “està implicat per”. Sovint es denomina la part de l'esquerra del `:-` com a cap, i la part de la dreta com a cos. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer ha demostrar tots els literals del cos. Per exemple:
 
   ```prolog
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
   ```
+  TODO: variables. Quantificades universalment.
 
-- And to run a prolog program, we need some *Questions*, and those questions can be answered by the given facts and rules. In queries, variables are existentially quantified. The question is whether there exists a value for the variables that makes a certain conjunction of literals true according to the theory.
+- *Consultes*: Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció de literals*? TODO
+
+Exemple: existeix algú (alguna X) que sigui el pare d'en will?
 
   ```prolog
-  father(X, wil).
-  X = santos ? ;
+  father(X, will).
   no
   ```
-
-## Hello World Program
-
-
-A CLASSE HI HA EL SICSTUS TAMBÉ DIRIA...
-
-After running the GNU prolog or an interactive Prolog instance in your terminal, we can write hello world program directly from the console. To do so, we have to write the command as follows
+Exemple: existeix algú (alguna X) que sigui el pare d'en jack?
 
   ```prolog
-  write('Hello World').
+  father(X, jack).
+  X = tom
+  yes
   ```
 
-Now let us see how to run the Prolog script file (extension is *.pl) into the Prolog console.
+## Prolog: primers passos
 
-Before running *.pl file, we must store the file into the directory where the GNU prolog console is pointing, otherwise just change the directory by the following steps −
+En aquest material treballarem sobretot amb GNU prolog, encara que hi ha altres implementacions. Tot i que es poden entrar fets i regles una per una a la consola interactiva, es recomana guardar-los en un fitxer (extensió .pl), i carregar-lo.
 
-Step 1 − From the prolog console, go to File > Change Dir, then click on that menu.
+Si fem servir la consola del sistema, ho podem fer en el moment d'exexutar gprolog:
 
-Step 2 − Select the proper folder and press OK.
+  ```console
+  gprolog --consult-file fitxer.pl
+  ```
+Altrament hem d'assegurar que estem ubicats al directori correcte.
 
-![Change directory](Img/select_working_directory.jpg)
+  Pas 1 − File > Change Dir.
 
-Now we can see in the prolog console, it shows that we have successfully changed the directory.
+  Pas 2 − Seleccionar el directori i clicar OK.
 
-![Prolog console](Img/prolog_console.jpg)
+  ![Canviar directori](Img/select_working_directory.jpg)
 
-Step 3 − Now create one file (extension is *.pl) and write the code as follows. Or use the [hello.pl](Examples/hello.pl) already given for you.
 
-```prolog
-main :- write('Hello World').
-```
+  ![Prolog console](Img/prolog_console.jpg)
 
-Now, when you load the program and ask for the query main, to prove it Prolog needs to prove write('Hello World'), and this is done by its execution, i.e., by writing Hello World.
+Finalment podem carregar el fitxer.
+
+ ```console
+  TODO
+  ```
+
 
 ## Anonymous Variables in Prolog
 
@@ -276,5 +278,9 @@ Given the knowlage of els_simpsons.pl, think how would you define the following 
 - Uncle
 - Aunt
 
+
+
 [^1]: [tutorialspoint](https://www.tutorialspoint.com/prolog)
 [^2]: [learnprolog](http://www.let.rug.nl/bos/lpn//lpnpage.php?pagetype=html&pageid=lpn-htmlse1)
+
+**Agraïments: Wilber Quito, autor de la primera versió del material.**
