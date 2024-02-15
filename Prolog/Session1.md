@@ -38,7 +38,7 @@ Prolog és particularment útil per fer programes de manipulació simbòlia, i p
 
 Prolog destaca per la simplicitat del llenguatge. Té tres elements principals: 
 
-- *Fets*: són àtoms lògics (típicament predicats relacionant diversos elements) que són certs. Per exemple, el següent fet expressa "En Tom és el pare d'en Jack".
+- **Fets**: són àtoms lògics (típicament predicats relacionant diversos elements) que són certs. Per exemple, el següent fet expressa "En Tom és el pare d'en Jack".
 
   ```prolog
   father(tom, jack).
@@ -57,14 +57,14 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   f(t, j).
   ```
 
-- *Regles*: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a “si”, or “està implicat per”. Sovint es denomina la part de l'esquerra del `:-` com a cap, i la part de la dreta com a cos. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer ha demostrar tots els literals del cos. Per exemple:
+- **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a “si”, or “està implicat per”. Sovint es denomina la part de l'esquerra del `:-` com a cap, i la part de la dreta com a cos. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer ha demostrar tots els literals del cos. Per exemple:
 
   ```prolog
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
   ```
   TODO: variables. Quantificades universalment.
 
-- *Consultes*: Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció de literals*? TODO
+- **Consultes**: Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció de literals*? TODO
 
 Exemple: existeix algú (alguna X) que sigui el pare d'en will?
 
@@ -108,33 +108,27 @@ Finalment podem carregar el fitxer.
 
 TODO: punt i coma, acabar?
 
+Per fer una consulta, escriurem el fet que volem demostrar, sempre acabat en punt `.`. Prolog no acaba la resolució de la consulta quan troba una resposta, sinó **quan ha explorat tot l'arbre de cerca**. En cas que la resposta sigui *yes*, dirà quin valor prenen les variables que hi hagi. Si encara no ha explorat tot l'arbre, esperarà una instrucció:
+  - `;`: mostra el següent valor de variables que demostra la consulta, si és que n'hi ha més.
+  - `a`: mostra totes les solucions. Poden ser infinites!
+  - `[ENTER]`: atura la cerca. 
 
-## Anonymous Variables in Prolog
+Prolog suporta variables anònimes, representades amb el caràcter de guió baix ‘_’. Cada variable anonima es considera una variable diferent. S'utilitzen quan volem saber només si la resposta d'una consulta és afirmativa o negativa, independentment del valor que reben les variables de la consulta. Compara el comportament de `hates(X,tom).` i `hates(_,tom)` sobre la següent base de coneixement.
 
-Anonymous variables have no names. The anonymous variables in prolog is written by a single underscore character ‘_’. One important thing is that each individual anonymous variable is treated as different. They are not same.
-
-Now the question is, where should we use these anonymous variables? It's usuful when what matters is to know if exist any constant that in variable sustitution satisty the logic equation instead of knowing which are the terms that satisfy the logic equation.
-
-<details>
-    <summary>Toggle me to see the var_anonymous.pl knowledge</summary>
-
+Fitxer [var_anonymous.pl](Examples/var_anonymous.pl).
 ```prolog
 hates(jim,tom).
 hates(pat,bob).
 hates(dog,fox).
 hates(peter,tom).
 ```
-</details>
 
-![Anonymous variable example](Img/anonymous_variable.png)
-
-For a practical implementation see the knowledge base of the [var_anonymous.pl](Examples/var_anonymous.pl).
 
 ## És el vostre torn (I)
 
 ### [lovers.pl](Examples/lovers.pl)
 
-Feu servir el fitxer lovers.pl and feu les següents consultes en Prolog:
+Feu servir el fitxer lovers.pl i feu les següents consultes en Prolog:
 
 - A qui li agrada en John?
 - Qui li agrada a l'Ann?
@@ -145,12 +139,13 @@ Feu servir el fitxer lovers.pl and feu les següents consultes en Prolog:
 
 ## Els termes
 
-It’s time for precision: exactly what are facts, rules, and queries built out of? In Prolog, 
-the answer is terms, and there are four kinds of term in Prolog: term atoms, numbers, variables, and complex terms (or structures)
+Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regles com les consultes estan composades per **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (or estructures)
+
+TODO: repassar a les transpes
 
 - *Constants*
 
-  - *Term atoms* are the basic building blocks of Prolog, and they represent a unique identifier, 
+  - *Term atoms*: són els components més bàsics de prolog i es representen amb un identificador únic.  are the basic building blocks of Prolog, and they represent a unique identifier, 
   such as a constant or a string. Term atoms can be either a name, like "dog" or "cat", or a string 
   enclosed in single quotes, like 'dog' or 'cat'.
 
