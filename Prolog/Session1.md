@@ -1,6 +1,6 @@
 # Sessió 1 [^1][^2]
 
-El nom Prolog deriva del francès "PRogramation LOGique". És un llenguatge de programació declaratiu basat en lògica.
+El nom Prolog deriva del francès "PROgramation LOGique". És un llenguatge de programació declaratiu basat en lògica.
 
 La programació lògica és un paradigma de programació declaratiu, és a dir, els programes especifiquen quin problema volem resoldre. Això contrasta amb la programació imperativa, en que els programes especifiquen com s'ha de resoldre el problema. Altres exemples paradigmes declaratius són la programació funcional o la programació basada en restriccions. 
 
