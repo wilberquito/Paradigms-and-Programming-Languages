@@ -68,7 +68,7 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
     siblings(X, Y) :- parent(Z, X), parent(Z, Y), X\=Y.
     ```
 
-- **Consultes**: Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció de literals*? TODO
+- **Consultes**: Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció de literals*?
 
   Exemple: existeix algú (alguna X) que sigui el pare d'en will?
   
@@ -117,7 +117,7 @@ Finalment podem carregar el fitxer. Fixeu-vos que no afegim l'extensió *.pl*.
   [fitxer].
   ```
 
-Per fer una consulta, escriurem el fet que volem demostrar, sempre acabat en punt `.`. Prolog no acaba la resolució de la consulta quan troba una resposta, sinó **quan ha explorat tot l'arbre de cerca**. En cas que la resposta sigui *yes*, dirà quin valor prenen les variables que hi hagi. Si encara no ha explorat tot l'arbre, esperarà una instrucció:
+Per fer una consulta, escriurem el fet conjunt de literals que volem demostrar, sempre acabat en punt `.`. Prolog no acaba la resolució de la consulta quan troba una resposta, sinó **quan ha explorat tot l'arbre de cerca**. En cas que la resposta sigui *yes*, dirà quin valor prenen les variables que hi hagi. Si encara no ha explorat tot l'arbre, esperarà una instrucció:
   - `;`: continua la cerca. Mostra el següent valor de variables que demostra la consulta, si és que n'hi ha més.
   - `a`: mostra totes les solucions. Poden ser infinites!
   - `[ENTER]`: atura la cerca. 
