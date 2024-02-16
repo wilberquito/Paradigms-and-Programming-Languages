@@ -223,6 +223,16 @@ Donada la base de coneixement de els_simpsons.pl, definiu les regles següents:
 - Uncle
 - Aunt
 
+### Representeu el següent graf dirigit en Prolog, i definiu la regla `cami(X,Y)`, que detecta si hi ha un camí de X a Y.
+
+![Data types](Img/path.png)
+
+### Representeu el següent graf en Prolog, i definiu les regles `clique3(A,B,C)` i `clique4(A,B,C,D)`. Feu-ho també de manera que cada clique es detecti una sola vegada (sense permetre permutacions). Per exemple, si ja hem trobat el clique de 3 A=1,B=4,C=6, no volem detectar també el A=1,B=6,C=4.
+
+<details>
+  <summary>Pista</summary>
+  Podeu definir una noció d'ordre entre els nodes, i fer que la solució sigui ordenada.
+</details>
 
 
 [^1]: [tutorialspoint](https://www.tutorialspoint.com/prolog)
