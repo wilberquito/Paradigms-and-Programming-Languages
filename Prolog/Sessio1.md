@@ -1,4 +1,4 @@
-# Sessió 1 (primeres 13 transparències del PdF) [^1][^2]
+# Sessió 1  [^1][^2]
 
 El nom Prolog deriva del francès "PROgramation LOGique". És un llenguatge de programació declaratiu basat en lògica.
 
@@ -237,5 +237,6 @@ Donada la base de coneixement de els_simpsons.pl, definiu les regles següents:
 
 [^1]: [tutorialspoint](https://www.tutorialspoint.com/prolog)
 [^2]: [learnprolog](http://www.let.rug.nl/bos/lpn//lpnpage.php?pagetype=html&pageid=lpn-htmlse1)
+Mireu també les primeres 13 transparències del PdF.
 
 **Agraïments: Wilber Quito, autor de la primera versió del material.**
