@@ -2,11 +2,11 @@
 
 El nom Prolog deriva del francès "PROgramation LOGique". És un llenguatge de programació declaratiu basat en lògica.
 
-La programació lògica és un paradigma de programació declaratiu, és a dir, els programes especifiquen **quin** problema volem resoldre. Això contrasta amb la programació imperativa, en que els programes especifiquen **com** s'ha de resoldre el problema. Altres paradigmes declaratius són la programació funcional o la programació basada en restriccions. 
+La programació lògica és un paradigma de programació declaratiu, és a dir, els programes especifiquen **quin** problema volem resoldre. Això contrasta amb la programació imperativa, on els programes especifiquen **com** s'ha de resoldre el problema. Altres paradigmes declaratius són la programació funcional o la programació basada en restriccions. 
 
-En el cas de Prolog, un programa consisteix en un conjunt de fets i regles especificats amb el fragment de les clàuses de Horn de la lògica de primer ordre (també anomenada lògica de predicats).
+En el cas de Prolog, un programa consisteix en un conjunt de fets i regles especificats amb el fragment de les clàusules de Horn de la lògica de primer ordre (també anomenada lògica de predicats).
 
-Una càusula de Horn és tota clausula (disjunció de literals) que té com a molt un literal positiu.
+Una clàusula de Horn és tota clàusula (disjunció de literals) que té com a molt un literal positiu.
 
 Per exemple, en lògica proposicional, una clàusula de Horn pot tenir la forma:
 
@@ -34,7 +34,7 @@ Com ja s'ha dit, en Prolog especificarem quin problema volem resoldre i no com e
 
 ## Prolog: definició del llenguatge
 
-Prolog és particularment útil per fer programes de manipulació simbòlia, i per tant és un bon candidat per aplicacions d'Intel·ligència Artificial on la manipulació simbòlica i la inferència siguin tasques fonamentals. 
+Prolog és particularment útil per fer programes de manipulació simbòlia, i per tant és un bon candidat per aplicacions d'intel·ligència artificial on la manipulació simbòlica i la inferència siguin tasques fonamentals. 
 
 Prolog destaca per la simplicitat del llenguatge. Té tres elements principals: 
 
@@ -50,7 +50,7 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   father(tom, jack).
   ```
 
-  De fet, Prolog ignora el significat dels fets, només en detecta l'estructura sintàctica. Fixeu-vos que això és una propietat comuna de qualsevol llenguatge de programació. Per exemple, en un programa en C++, llevat de paraules clau del llenguatge (if, bool, ...), sempre podem reanomenar les variables, funcions, etc., sempre que siguem consistents amb totes les occurrències dintre de l'àmbit. Semblantment, el fet anterior es podria reanomenar com a:
+  De fet, Prolog ignora el significat dels fets, només en detecta l'estructura sintàctica. Fixeu-vos que això és una propietat comuna de qualsevol llenguatge de programació. Per exemple, en un programa en C++, llevat de paraules clau del llenguatge (if, bool, ...), sempre podem reanomenar les variables, funcions, etc., sempre que siguem consistents amb totes les ocurrències dintre de l'àmbit. Semblantment, el fet anterior es podria reanomenar com a:
 
   ```prolog
   % f(X,Y) : X es el pare de Y
@@ -59,7 +59,7 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   f(t, j).
   ```
 
-- **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a *si*, o *està implicat per*. Sovint es denomina la part de l'esquerra del `:-` com a **cap**, i la part de la dreta com a **cos**. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer ha demostrar tots els literals del cos. Un exemple de regla:
+- **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a *si*, o *està implicat per*. Sovint es denomina la part de l'esquerra del `:-` com a **cap**, i la part de la dreta com a **cos**. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer he de demostrar tots els literals del cos. Un exemple de regla:
 
   ```prolog
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
@@ -84,13 +84,13 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
 
 - **Consultes**: També *queries* o *objectius*. Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció d'àtoms*?
 
-  Exemple: existeix algú (alguna X) que sigui el pare d'en will?
+  Exemple: existeix algú (alguna X) que sigui el pare d'en Will?
   
     ```prolog
     father(X, will).
     no
     ```
-  Exemple: existeix algú (alguna X) que sigui el pare d'en jack?
+  Exemple: existeix algú (alguna X) que sigui el pare d'en Jack?
   
     ```prolog
     father(X, jack).
@@ -98,7 +98,7 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
     yes
     ```
 
-  Exemple: existeix algú (alguna X) que sigui el pare d'en jack i d'en will?
+  Exemple: existeix algú (alguna X) que sigui el pare d'en Jack i d'en Will?
 
   ```prolog
   father(X, jack),father(X,will).
@@ -114,7 +114,7 @@ Si fem servir la consola del sistema, ho podem fer en el moment d'executar gprol
   ```console
   gprolog --consult-file fitxer.pl
   ```
-Altrament hem d'assegurar que estem ubicats al directori correcte.
+Altrament, hem d'assegurar que estem ubicats al directori correcte.
 
   Pas 1 − File > Change Dir.
 
@@ -163,14 +163,14 @@ Feu servir el fitxer lovers.pl i feu les següents consultes en Prolog:
 
 ## Els termes
 
-Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regles, com les consultes estan composades per **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (or estructures)
+Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regles, com les consultes estan compostes per **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (o estructures)
 
 
 - *Constants*
 
-  - *Objectes*: són els components més bàsics de prolog i es representen amb un identificador únic que comença amb minúscula. 
+  - *Objectes*: són els components més bàsics de Prolog i es representen amb un identificador únic que comença amb minúscula. 
 
-  - *Nombres*: prolog suporta operacions de nombres enters i reals (coma flotant), ho veurem més endavant.  
+  - *Nombres*: Prolog suporta operacions de nombres enters i reals (coma flotant), ho veurem més endavant.  
 
 
 - *Variables*: comencen amb una lletra majúscula. També tenim el cas especial de la variable anònima `_`.
@@ -188,7 +188,7 @@ Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regl
   ```
 ## Tracejar l'execució
 
-En Prolog podem tracejar l'execució. Per entrar en el mode de tracejar, escriurem `trace.` Per sortir del mode de tracing, entreu `notrace.`. El següent exemple mostra quines regles s'utilitzen i quines unificacions es fan per deduïr que en Jack i la Lisa són germans.
+En Prolog podem tracejar l'execució. Per entrar en el mode de tracejar, escriurem `trace.` Per sortir del mode de *tracing*, entreu `notrace.`. El següent exemple mostra quines regles s'utilitzen i quines unificacions es fan per deduir que en Jack i la Lisa són germans.
 
 
 ```prolog
