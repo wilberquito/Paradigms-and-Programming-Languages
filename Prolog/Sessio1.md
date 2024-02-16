@@ -20,19 +20,19 @@ Un exemple en lògica de primer ordre (no proposicional):
 
 ${\displaystyle p(X)\wedge q(Y) \wedge t(X,Y)\rightarrow u(X,Y)}$
 
-El predicat anterior, en Prolog s'escriu:
+La clàusula anterior, en Prolog s'escriu:
 
 ${\displaystyle u(X,Y)}$ :- ${\displaystyle p(X), q(Y), t(X,Y).}$
 
 ## Programació Lògica vs Programació Imperativa
 
-En programació imperativa, un programa consisteix en una seqüència de procediments que s'executen de manera ordenada. Tenim també estructures alternatives (if-else) i repetitives (bucles). Per altra banda, en programació lògica, un programa consisteix en una base de coneixement. Un mecanisme subjacent de raonament trobarà resposta a les nostres consultes basant-se en la base de coneixement. 
+En programació imperativa, un programa consisteix en una seqüència de procediments que s'executen de manera ordenada. Tenim també estructures alternatives (if-else) i repetitives (bucles). Per altra banda, en programació lògica, un programa consisteix en una base de coneixement o teoria. Un mecanisme subjacent de raonament trobarà resposta a les nostres consultes basant-se en la base de coneixement. 
 
 ![logic-vs-procedural](Img/logic_imperative_programming.jpg)
 
 Com ja s'ha dit, en Prolog especificarem quin problema volem resoldre i no com el volem resoldre. El *com* el gestiona l'intèrpret de Prolog internament. En particular, el còmput de les solucions es basa en un mecanisme deductiu, SLD-resolució.
 
-## Prolog: definició el llenguatge
+## Prolog: definició del llenguatge
 
 Prolog és particularment útil per fer programes de manipulació simbòlia, i per tant és un bon candidat per aplicacions d'Intel·ligència Artificial on la manipulació simbòlica i la inferència siguin tasques fonamentals. 
 
@@ -43,18 +43,20 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   ```prolog
   father(tom, jack).
   ```
-  El significat que donem a un fet és una decisió del programador. El fet anterior podria tenir la lectura alternativa "el pare d'en Tom és en Jack". Per això és **molt recomanable** afegir comentaris sobre com llegir els predicats del programa, almenys la primera vegada que apereixen. Per exemple:
+  El significat que donem a un fet és una decisió del programador. El fet anterior podria tenir la lectura alternativa "el pare d'en Tom és en Jack". Per això és **molt recomanable** afegir comentaris sobre com llegir els predicats del programa. Per exemple:
 
   ```prolog
-  % En Tom es el pare d'en Jack
+  % father(X,Y) : X es el pare de Y
   father(tom, jack).
   ```
 
   De fet, Prolog ignora el significat dels fets, només en detecta l'estructura sintàctica. Fixeu-vos que això és una propietat comuna de qualsevol llenguatge de programació. Per exemple, en un programa en C++, llevat de paraules clau del llenguatge (if, bool, ...), sempre podem reanomenar les variables, funcions, etc., sempre que siguem consistents amb totes les occurrències dintre de l'àmbit. Semblantment, el fet anterior es podria reanomenar com a:
 
   ```prolog
-  % En tom es el pare d'en jack
-  f(tom, jack).
+  % f(X,Y) : X es el pare de Y
+  % t: tom
+  % j: jack
+  f(t, j).
   ```
 
 - **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a *si*, o *està implicat per*. Sovint es denomina la part de l'esquerra del `:-` com a **cap**, i la part de la dreta com a **cos**. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer ha demostrar tots els literals del cos. Un exemple de regla:
