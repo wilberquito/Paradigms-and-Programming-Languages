@@ -241,6 +241,8 @@ Representeu el següent graf en Prolog, i definiu les regles `clique3(A,B,C)` i 
 [^1]: [tutorialspoint](https://www.tutorialspoint.com/prolog)
 [^2]: [learnprolog](http://www.let.rug.nl/bos/lpn//lpnpage.php?pagetype=html&pageid=lpn-htmlse1)
 
-Mireu també les primeres 13 transparències del PdF.
 
 **Agraïments: Wilber Quito, autor de la primera versió del material.**
+
+Mireu també les primeres 13 transparències del PdF.
+
