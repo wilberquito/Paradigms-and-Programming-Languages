@@ -129,7 +129,7 @@ Per fer una consulta, escriurem conjunt de fets que volem demostrar, sempre acab
   - `a`: mostra totes les solucions. Poden ser infinites!
   - `[ENTER]`: atura la cerca. 
 
-Prolog suporta variables anònimes, representades amb el caràcter de guió baix ‘_’. Cada variable anonima es considera una variable diferent. S'utilitzen quan només volem saber si la resposta d'una consulta és afirmativa o negativa, independentment del valor que reben les variables de la consulta. Compara el comportament de `hates(X,tom).` i `hates(_,tom)` sobre la següent base de coneixement.
+Prolog suporta variables anònimes, representades amb el caràcter de guió baix ‘_’. Cada variable anònima es considera una variable diferent. S'utilitzen quan només volem saber si la resposta d'una consulta és afirmativa o negativa, independentment del valor que reben les variables de la consulta. Compara el comportament de `hates(X,tom).` i `hates(_,tom)` sobre la següent base de coneixement.
 
 Fitxer [var_anonymous.pl](Examples/var_anonymous.pl).
 ```prolog
@@ -139,7 +139,7 @@ hates(dog,fox).
 hates(peter,tom).
 ```
 
-Podem sortir de l'interpret amb `halt.`.
+Podem sortir de l'intèrpret amb `halt.`.
 
 ## És el vostre torn (I)
 
