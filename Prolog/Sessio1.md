@@ -24,9 +24,9 @@ El predicat anterior, en Prolog s'escriu:
 
 ${\displaystyle u(X,Y)}$ :- ${\displaystyle p(X), q(Y), t(X,Y).}$
 
-## Programaicó Lògica vs Programació Imperativa
+## Programació Lògica vs Programació Imperativa
 
-En programació imperativa, un programa consisteix en una seqûència de procediments que s'executen de manera ordenada. Tenim també estructures alternatives (if-else) i repetitives (bucles). Per altra banda, en programació lògica, un programa consisteix en una base de coneixement. Un mecanisme subjacent de raonament trobarà resposta a les nostres consultes basant-se en la base de coneixement. 
+En programació imperativa, un programa consisteix en una seqüència de procediments que s'executen de manera ordenada. Tenim també estructures alternatives (if-else) i repetitives (bucles). Per altra banda, en programació lògica, un programa consisteix en una base de coneixement. Un mecanisme subjacent de raonament trobarà resposta a les nostres consultes basant-se en la base de coneixement. 
 
 ![logic-vs-procedural](Img/logic_functional_programming.jpg)
 
@@ -63,25 +63,32 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
   ```
   Fixeu-vos que normalment les regles contenen **variables** (identificadors que comencen en majúscula). Les variables estan quantificades universalment. És a dir, s'ha de llegir com: *per tot valor de X, Y i Z, si X és el pare de Z i Z és el pare o mare de Y, llavors X és l'avi de Y*. Dues variables diferents poden tenir el mateix valor. Si ho volem evitar, ho hem d'especificar explícitament al cos:
-
-```prolog
-  siblings(X, Y) :- parent(Z, X), parent(Z, Y), X\=Y.
-  ```
+  
+  ```prolog
+    siblings(X, Y) :- parent(Z, X), parent(Z, Y), X\=Y.
+    ```
 
 - **Consultes**: Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció de literals*? TODO
 
-Exemple: existeix algú (alguna X) que sigui el pare d'en will?
+  Exemple: existeix algú (alguna X) que sigui el pare d'en will?
+  
+    ```prolog
+    father(X, will).
+    no
+    ```
+  Exemple: existeix algú (alguna X) que sigui el pare d'en jack?
+  
+    ```prolog
+    father(X, jack).
+    X = tom
+    yes
+    ```
+
+  Exemple: existeix algú (alguna X) que sigui el pare d'en jack i d'en will?
 
   ```prolog
-  father(X, will).
+  father(X, jack),father(X,will).
   no
-  ```
-Exemple: existeix algú (alguna X) que sigui el pare d'en jack?
-
-  ```prolog
-  father(X, jack).
-  X = tom
-  yes
   ```
 
 ## Prolog: primers passos
@@ -104,20 +111,18 @@ Altrament hem d'assegurar que estem ubicats al directori correcte.
 
   ![Prolog console](Img/prolog_console.jpg)
 
-Finalment podem carregar el fitxer.
+Finalment podem carregar el fitxer. Fixeu-vos que no afegim l'extensió *.pl*.
 
- ```console
-  TODO
+ ```prolog
+  [fitxer].
   ```
-
-TODO: punt i coma, acabar?
 
 Per fer una consulta, escriurem el fet que volem demostrar, sempre acabat en punt `.`. Prolog no acaba la resolució de la consulta quan troba una resposta, sinó **quan ha explorat tot l'arbre de cerca**. En cas que la resposta sigui *yes*, dirà quin valor prenen les variables que hi hagi. Si encara no ha explorat tot l'arbre, esperarà una instrucció:
   - `;`: continua la cerca. Mostra el següent valor de variables que demostra la consulta, si és que n'hi ha més.
   - `a`: mostra totes les solucions. Poden ser infinites!
   - `[ENTER]`: atura la cerca. 
 
-Prolog suporta variables anònimes, representades amb el caràcter de guió baix ‘_’. Cada variable anonima es considera una variable diferent. S'utilitzen quan volem saber només si la resposta d'una consulta és afirmativa o negativa, independentment del valor que reben les variables de la consulta. Compara el comportament de `hates(X,tom).` i `hates(_,tom)` sobre la següent base de coneixement.
+Prolog suporta variables anònimes, representades amb el caràcter de guió baix ‘_’. Cada variable anonima es considera una variable diferent. S'utilitzen quan només volem saber si la resposta d'una consulta és afirmativa o negativa, independentment del valor que reben les variables de la consulta. Compara el comportament de `hates(X,tom).` i `hates(_,tom)` sobre la següent base de coneixement.
 
 Fitxer [var_anonymous.pl](Examples/var_anonymous.pl).
 ```prolog
