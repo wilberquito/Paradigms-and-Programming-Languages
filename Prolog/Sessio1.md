@@ -68,6 +68,13 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
     siblings(X, Y) :- parent(Z, X), parent(Z, Y), X\=Y.
     ```
 
+  Podem tenir diferents regles (diferents maneres) per arribar a la mateixa conclusió:
+   ```prolog
+    parent(X, Y) :- father(X, Y).
+    parent(X, Y) :- mother(X, Y).
+    ```
+
+
 - **Consultes**: També *queries* o *objectius*. Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció d'àtoms*?
 
   Exemple: existeix algú (alguna X) que sigui el pare d'en will?
@@ -183,85 +190,31 @@ and other terms.
 
 ![Data types](Img/data_objects.jpg)
 
-## Tracing the ouput
+## Tracejar l'execució
 
-In Prolog we can trace the execution. To trace the output, you have to enter into the trace mode by typing “trace.”. Then from the output we can see that we are just tracing “marge is mother of whom?”. See the tracing output by taking X = marge, and Y as variable, there Y will be { bart, maggie ... } as answer. To come out from the tracing mode press “notrace.”
+En Prolog podem tracejar l'execució. Per fer entrar en el mode de tracejar, escriurem `trace.` Per sortir del mode de tracing, entreu `notrace.`. El següent exemple mostra quines regles s'utilitzen i quines unificacions es fan per deduïr que en Jack i la Lisa són germans.
 
-Given the knowledge:
-
-<details>
-    <summary>Toggle me to see the knowledge</summary>
 
 ```prolog
-nen(bart).
-nen(milhouse).
-nen(lisa).
-nen(maggie).
-nen(rod).
-nen(todd).
-nen(ralph).
+father(tom,jack).
+father(tom,lisa).
+father(will,tom).
+mother(ann,tom).
+mother(ann,john).
+parent(X,Y):-father(X,Y).
+parent(X,Y):-mother(X,Y).
+grandfather(X,Y):-father(X,Z),parent(Z,Y).
+siblings(X,Y):-parent(Z,X),parent(Z,Y),X\=Y.
 
-home(abe).
-home(homer).
-home(bart).
-home(ned).
-home(rod).
-home(todd).
-home(chief_wiggum).
-home(ralph).
-home(milhouse).
-home(mr_burns).
-home(smithers).
-home(groundskeeper_willie).
-home(principal_skinner).
-
-dona(marge).
-dona(lisa).
-dona(maggie).
-dona(maude).
-dona(mrs_krabappel).
-dona(ms_hoover).
-dona(patty).
-dona(selma).
-dona(jacqueline).
-
-pare(abe, homer).
-pare(homer, bart).
-pare(homer, lisa).
-pare(homer, maggie).
-pare(ned, rod).
-pare(ned, todd).
-pare(chief_wiggum,ralph).
-
-mare(marge, bart).
-mare(marge, lisa).
-mare(marge, maggie).
-mare(jacqueline, marge).
-mare(jacqueline, patty).
-mare(jacqueline, selma).
-mare(maude, rod).
-mare(maude, todd).
-
-casat(homer, marge).
-casat(ned, maude).
-
-amic(bart, milhouse).
-amic(homer, ned).
-amic(marge, maude).
-
-viu(homer, adr("Evergreen Terrace", 742, "Springfield")).
-viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
 ```
 
-</details>
+![Trace](Img/trace.png)
 
-![Trace](Img/trace-example.png)
-
-## It's your turn to practice (II)
+## És el vostre torn (II)
 
 ### [els_simpsons.pl](Examples/els_simpson.pl)
 
-Given the knowlage of els_simpsons.pl, think how would you define the following questions.
+Donada la base de coneixement de els_simpsons.pl, definiu les regles següents:
 
 - Ancestor
 - Grandfather
