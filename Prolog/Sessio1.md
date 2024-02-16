@@ -139,6 +139,7 @@ hates(dog,fox).
 hates(peter,tom).
 ```
 
+Podem sortir de l'interpret amb `halt.`.
 
 ## És el vostre torn (I)
 
