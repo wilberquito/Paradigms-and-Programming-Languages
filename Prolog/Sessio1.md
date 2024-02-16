@@ -207,7 +207,7 @@ siblings(X,Y):-parent(Z,X),parent(Z,Y),X\=Y.
 ![Trace](Img/trace.png)
 
 ### Exercici: 
-Executeu i feu tracing de la consulta `ancestor(X,Y)`, per les quatre teories següents, lògicament equivalents.
+Executeu i feu tracing de la consulta `ancestor(X,Y).`, per les quatre teories següents, lògicament equivalents.
 ```prolog
   parent(alice,bob).
   parent(bob,eve).
