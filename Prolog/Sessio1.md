@@ -158,32 +158,23 @@ Feu servir el fitxer lovers.pl i feu les següents consultes en Prolog:
 
 Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regles, com les consultes estan composades per **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (or estructures)
 
-TODO: repassar a les transpes
 
 - *Constants*
 
-  - *Term atoms*: són els components més bàsics de prolog i es representen amb un identificador únic.  are the basic building blocks of Prolog, and they represent a unique identifier, 
-  such as a constant or a string. Term atoms can be either a name, like "dog" or "cat", or a string 
-  enclosed in single quotes, like 'dog' or 'cat'.
+  - *Objectes*: són els components més bàsics de prolog i es representen amb un identificador únic que comença amb minúscula. 
 
-  - *Numbers* In Prolog, numbers are used to represent integers, floating-point numbers, or rational numbers. 
-  They are used to perform mathematical operations, like addition, subtraction, and multiplication. 
-  **Numbers aren’t particularly important in typical Prolog applications**.
+  - *Nombres*: prolog suporta operacions de nombres enters i reals (coma flotant), ho veurem més endavant.  
 
-- *Variables* are also terms. Variables in Prolog start with an uppercase letter, like X or Y, 
-and they can be used to represent any value. The variable `_` (that is, a single underscore character) is rather special. It’s called the anonymous variable,
-and we discuss late.
 
-- *Complex Terms*, in Prolog you can define terms that represent more complex data structures, like lists, trees, and graphs, using a combination of atoms, numbers, 
-and other terms.
+- *Variables*: comencen amb una lletra majúscula. També tenim el cas especial de la variable anònima `_`.
 
-  For example, you can define a term to represent a point in two-dimensional space, like this:
+- *Termes complexos*: podem definir estructures complexes com llistes, arbres i grafs fent servir combinacions de termes. Per exemple, podem definir tuples:
 
   ```prolog
-  point(X, Y).
+  viu(homer, adr("Evergreen Terrace", 742, "Springfield")).
   ```
 
-  Complex terms can also be facts or rules.
+  Els fets i regles també són termes complexos.
 
   ```prolog
   loves(vincent,mia).
