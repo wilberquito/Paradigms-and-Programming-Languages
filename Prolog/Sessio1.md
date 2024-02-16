@@ -70,6 +70,11 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
     siblings(X, Y) :- parent(Z, X), parent(Z, Y), X\=Y.
     ```
 
+  En canvi, podem utilitzar la mateixa variable per assegurar que dos valors són el mateix. L'exemple següent introdueix més variables de les necessàries:
+  ```prolog
+    siblings(X, Y) :- parent(A, X), parent(B, Y), A=B, X\=Y.
+    ```
+
   Podem tenir diferents regles (diferents maneres) per arribar a la mateixa conclusió:
    ```prolog
     parent(X, Y) :- father(X, Y).
