@@ -109,7 +109,7 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
 
 En aquest material treballarem sobretot amb GNU prolog, encara que hi ha altres implementacions. Tot i que es poden entrar fets i regles una per una a la consola interactiva, es recomana guardar-los en un fitxer (extensió .pl), i carregar-lo.
 
-Si fem servir la consola del sistema, ho podem fer en el moment d'exexutar gprolog:
+Si fem servir la consola del sistema, ho podem fer en el moment d'executar gprolog:
 
   ```console
   gprolog --consult-file fitxer.pl
@@ -186,9 +186,6 @@ Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regl
   ```prolog
   loves(vincent,mia).
   ```
-
-![Data types](Img/data_objects.jpg)
-
 ## Tracejar l'execució
 
 En Prolog podem tracejar l'execució. Per entrar en el mode de tracejar, escriurem `trace.` Per sortir del mode de tracing, entreu `notrace.`. El següent exemple mostra quines regles s'utilitzen i quines unificacions es fan per deduïr que en Jack i la Lisa són germans.
