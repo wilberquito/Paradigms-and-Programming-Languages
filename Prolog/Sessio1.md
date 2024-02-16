@@ -206,11 +206,39 @@ siblings(X,Y):-parent(Z,X),parent(Z,Y),X\=Y.
 
 ![Trace](Img/trace.png)
 
+### Exercici: 
+Executeu i feu tracing de la consulta `ancestor(X,Y)`, per les quatre teories següents, lògicament equivalents.
+```prolog
+  parent(alice,bob).
+  parent(bob,eve).
+  ancestor(X,Y):-parent(X,Y).
+  ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).
+  ```
+```prolog
+  parent(alice,bob).
+  parent(bob,eve).
+  ancestor(X,Y):-parent(X,Y).
+  ancestor(X,Y):-ancestor(Z,Y),parent(X,Z).
+  ```
+```prolog
+  parent(alice,bob).
+  parent(bob,eve).
+  ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).
+  ancestor(X,Y):-parent(X,Y).
+  ```
+
+```prolog
+  parent(alice,bob).
+  parent(bob,eve).
+  ancestor(X,Y):-ancestor(Z,Y),parent(X,Z).
+  ancestor(X,Y):-parent(X,Y).
+  ```
+
 ## És el vostre torn (II)
 
-## Els simpson
+### Els simpson
 
-# [els_simpsons.pl](Examples/els_simpson.pl)
+### [els_simpsons.pl](Examples/els_simpson.pl)
 
 Donada la base de coneixement de els_simpsons.pl, definiu les regles següents:
 
@@ -220,13 +248,13 @@ Donada la base de coneixement de els_simpsons.pl, definiu les regles següents:
 - Uncle
 - Aunt
 
-## Graf dirigit
+### Graf dirigit
 
 Representeu el següent graf dirigit en Prolog, i definiu la regla `cami(X,Y)`, que detecta si hi ha un camí de X a Y.
 
 ![Data types](Img/path.png)
 
-## Cliques
+### Cliques
 Representeu el següent graf en Prolog, i definiu les regles `clique3(A,B,C)` i `clique4(A,B,C,D)`. Feu-ho també de manera que cada clique es detecti una sola vegada (sense permetre permutacions). Per exemple, si ja hem trobat el clique de 3 A=1,B=4,C=6, no volem detectar també el A=1,B=6,C=4.
 
 ![Data types](Img/clique.png)
