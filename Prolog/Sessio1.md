@@ -193,7 +193,7 @@ and other terms.
 
 ## Tracejar l'execució
 
-En Prolog podem tracejar l'execució. Per fer entrar en el mode de tracejar, escriurem `trace.` Per sortir del mode de tracing, entreu `notrace.`. El següent exemple mostra quines regles s'utilitzen i quines unificacions es fan per deduïr que en Jack i la Lisa són germans.
+En Prolog podem tracejar l'execució. Per entrar en el mode de tracejar, escriurem `trace.` Per sortir del mode de tracing, entreu `notrace.`. El següent exemple mostra quines regles s'utilitzen i quines unificacions es fan per deduïr que en Jack i la Lisa són germans.
 
 
 ```prolog
