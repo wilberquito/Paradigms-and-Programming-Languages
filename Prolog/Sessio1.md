@@ -4,7 +4,7 @@ El nom Prolog deriva del francès "PROgramation LOGique". És un llenguatge de p
 
 La programació lògica és un paradigma de programació declaratiu, és a dir, els programes especifiquen **quin** problema volem resoldre. Això contrasta amb la programació imperativa, en que els programes especifiquen **com** s'ha de resoldre el problema. Altres paradigmes declaratius són la programació funcional o la programació basada en restriccions. 
 
-En el cas de Prolog, un programa consisteix en un conjunt de fets i regles especificades amb el fragment de les clàuses de Horn de la lògica de primer ordre (també anomenada lògica de predicats).
+En el cas de Prolog, un programa consisteix en un conjunt de fets i regles especificats amb el fragment de les clàuses de Horn de la lògica de primer ordre (també anomenada lògica de predicats).
 
 Una càusula de Horn és tota clausula (disjunció de literals) que té com a molt un literal positiu.
 
