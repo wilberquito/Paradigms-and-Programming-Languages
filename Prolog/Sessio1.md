@@ -57,12 +57,16 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   f(tom, jack).
   ```
 
-- **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a *si*, o *està implicat per*. Sovint es denomina la part de l'esquerra del `:-` com a cap, i la part de la dreta com a cos. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer ha demostrar tots els literals del cos. Per exemple:
+- **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a *si*, o *està implicat per*. Sovint es denomina la part de l'esquerra del `:-` com a **cap**, i la part de la dreta com a **cos**. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer ha demostrar tots els literals del cos. Un exemple de regla:
 
   ```prolog
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
   ```
-  TODO: variables. Quantificades universalment.
+  Fixeu-vos que normalment les regles contenen **variables** (identificadors que comencen en majúscula). Les variables estan quantificades universalment. És a dir, s'ha de llegir com: *per tot valor de X, Y i Z, si X és el pare de Z i Z és el pare o mare de Y, llavors X és l'avi de Y*. Dues variables diferents poden tenir el mateix valor. Si ho volem evitar, ho hem d'especificar explícitament al cos:
+
+```prolog
+  siblings(X, Y) :- parent(Z, X), parent(Z, Y), X\=Y.
+  ```
 
 - **Consultes**: Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció de literals*? TODO
 
