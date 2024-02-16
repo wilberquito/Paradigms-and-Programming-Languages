@@ -152,7 +152,7 @@ Feu servir el fitxer lovers.pl i feu les següents consultes en Prolog:
 - Qui està enamorat d'algú?
 - Qui és estimat per algú?
 - Quines dues persones s'estimen mútuament?
-- Qui estima sense ser correspost? (Nota: podeu fer servir `not(loves(...))`
+- Qui estima sense ser correspost? Nota: podeu fer servir la negació amb `\+ loves(...)`
 
 ## Els termes
 
