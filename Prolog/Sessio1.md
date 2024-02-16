@@ -1,4 +1,4 @@
-# Sessió 1 [^1][^2]
+# Sessió 1 (primeres 13 transparències del PdF) [^1][^2]
 
 El nom Prolog deriva del francès "PROgramation LOGique". És un llenguatge de programació declaratiu basat en lògica.
 
@@ -68,7 +68,7 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
     siblings(X, Y) :- parent(Z, X), parent(Z, Y), X\=Y.
     ```
 
-- **Consultes**: Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció de literals*?
+- **Consultes**: També *queries* o *objectius*. Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta *conjunció d'àtoms*?
 
   Exemple: existeix algú (alguna X) que sigui el pare d'en will?
   
@@ -148,7 +148,7 @@ Feu servir el fitxer lovers.pl i feu les següents consultes en Prolog:
 
 ## Els termes
 
-Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regles com les consultes estan composades per **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (or estructures)
+Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regles, com les consultes estan composades per **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (or estructures)
 
 TODO: repassar a les transpes
 
