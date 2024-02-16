@@ -2,13 +2,13 @@
 
 El nom Prolog deriva del francès "PROgramation LOGique". És un llenguatge de programació declaratiu basat en lògica.
 
-La programació lògica és un paradigma de programació declaratiu, és a dir, els programes especifiquen quin problema volem resoldre. Això contrasta amb la programació imperativa, en que els programes especifiquen com s'ha de resoldre el problema. Altres exemples paradigmes declaratius són la programació funcional o la programació basada en restriccions. 
+La programació lògica és un paradigma de programació declaratiu, és a dir, els programes especifiquen **quin** problema volem resoldre. Això contrasta amb la programació imperativa, en que els programes especifiquen **com** s'ha de resoldre el problema. Altres exemples paradigmes declaratius són la programació funcional o la programació basada en restriccions. 
 
 En el cas de Prolog, un programa consisteix en un conjunt de fets i regles especificades amb el fragment de les clàuses de Horn de la lògica de primer ordre (també anomenada lògica de predicats).
 
 Una càusula de Horn és tota clausula (disjunció de literals) que té com a molt un literal positiu.
 
-Per exemple, en lògica proposicional, una clàusula de Horn té la forma:
+Per exemple, en lògica proposicional, una clàusula de Horn pot tenir la forma:
 
 ${\displaystyle \neg p\lor \neg q\vee \cdots \vee \neg t\vee u}$
 
@@ -30,7 +30,7 @@ En programació imperativa, un programa consisteix en una seqûència de procedi
 
 ![logic-vs-procedural](Img/logic_functional_programming.jpg)
 
-Com ja s'ha dit, en Prolog especificarem quin problema volem resoldre i no com el volem resoldre. El com el gestiona l'intèrpret de Prolog internament. En particular, el còmput de les solucions es basa en un mecanisme deductiu, SLD-resolució.
+Com ja s'ha dit, en Prolog especificarem quin problema volem resoldre i no com el volem resoldre. El *com* el gestiona l'intèrpret de Prolog internament. En particular, el còmput de les solucions es basa en un mecanisme deductiu, SLD-resolució.
 
 ## Prolog: definició el llenguatge
 
@@ -50,14 +50,14 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   father(tom, jack).
   ```
 
-  De fet, Prolog ignora el significat dels fets, només en detecta l'estructura sintàctica. Fixeu-vos que això és una propietat comuna de qualsevol llenguatge de programació. Per exemple, en un programa en C++, llevat de paraules clau del llenguatge (if, bool, ...), sempre podem reanomenar les variables, funcions, etc. Semblantment, el fet anterior es podria reanomenar com a:
+  De fet, Prolog ignora el significat dels fets, només en detecta l'estructura sintàctica. Fixeu-vos que això és una propietat comuna de qualsevol llenguatge de programació. Per exemple, en un programa en C++, llevat de paraules clau del llenguatge (if, bool, ...), sempre podem reanomenar les variables, funcions, etc., sempre que siguem consistents amb totes les occurrències dintre de l'àmbit. Semblantment, el fet anterior es podria reanomenar com a:
 
   ```prolog
-  % t es el pare de j
-  f(t, j).
+  % En tom es el pare d'en jack
+  f(tom, jack).
   ```
 
-- **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a “si”, or “està implicat per”. Sovint es denomina la part de l'esquerra del `:-` com a cap, i la part de la dreta com a cos. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer ha demostrar tots els literals del cos. Per exemple:
+- **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a *si*, o *està implicat per*. Sovint es denomina la part de l'esquerra del `:-` com a cap, i la part de la dreta com a cos. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer ha demostrar tots els literals del cos. Per exemple:
 
   ```prolog
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
