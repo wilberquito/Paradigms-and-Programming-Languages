@@ -59,12 +59,12 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   f(t, j).
   ```
 
-- **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a *si*, o *està implicat per*. Sovint es denomina la part de l'esquerra del `:-` com a **cap**, i la part de la dreta com a **cos**. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: si vols que demostri el cap, primer he de demostrar tots els literals del cos. Un exemple de regla:
+- **Regles**: són extensions dels fets que representen implicacions. Més concretament, són clàusules de Horn en forma d'implicació. El símbol `:-` s'ha de llegir com a *si*, o *està implicat per*. Sovint es denomina la part de l'esquerra del `:-` com a **cap**, i la part de la dreta com a **cos**. Des d'un punt de vista més proper al mecanisme d'inferència subjacent (SLD-resolució), es pot llegir com a: **si vols que demostri el cap, primer he de demostrar tots els literals del cos**. Un exemple de regla:
 
   ```prolog
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
   ```
-  Fixeu-vos que normalment les regles contenen **variables** (identificadors que comencen en majúscula). Les variables estan quantificades universalment. És a dir, s'ha de llegir com: *per tot valor de X, Y i Z, si X és el pare de Z i Z és el pare o mare de Y, llavors X és l'avi de Y*. Dues variables diferents poden tenir el mateix valor. Si ho volem evitar, ho hem d'especificar explícitament al cos:
+  Fixeu-vos que normalment les regles contenen **variables** (identificadors que comencen en majúscula). Les variables estan quantificades universalment. És a dir, s'ha de llegir com: *per tot valor de X, Y i Z, si X és el pare de Z i Z és el progenitor de Y, llavors X és l'avi de Y*. Dues variables diferents poden tenir el mateix valor. Si ho volem evitar, ho hem d'especificar explícitament al cos:
   
   ```prolog
     siblings(X, Y) :- parent(Z, X), parent(Z, Y), X\=Y.
@@ -163,7 +163,7 @@ Feu servir el fitxer lovers.pl i feu les següents consultes en Prolog:
 
 ## Els termes
 
-Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regles, com les consultes estan compostes per **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (o estructures)
+En Prolog, tant els fets, com les regles, com les consultes estan compostes per **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (o estructures)
 
 
 - *Constants*
@@ -186,28 +186,50 @@ Siguem més precisos amb la nomenclatura. En Prolog, tant els fets, com les regl
   ```prolog
   loves(vincent,mia).
   ```
-## Tracejar l'execució
+## Entendre i tracejar l'execució
 
-En Prolog podem tracejar l'execució. Per entrar en el mode de tracejar, escriurem `trace.` Per sortir del mode de *tracing*, entreu `notrace.`. El següent exemple mostra quines regles s'utilitzen i quines unificacions es fan per deduir que en Jack i la Lisa són germans.
+Quan fem una consulta, l'intèrpret de Prolog intentarà demostrar que és conseqüència lògica de la base de coneixement (fets i regles). 
+El mecanisme deductiu que utilitza és SLD-resolució. Des d'un punt de vista més pragmàtic, podem entendre el procés de demostració d'una consulta `p` com:
+- Cerca en el fitxer .pl, **de dalt a baix**, un fet o regla que em permeti demostrar `p`. 
+  - Els fets sempre son certs, demostren la consulta automàticament.
+  - Les regles demostren el cap si podem demostrar tots els àtoms del cos. Prolog els intentarà demostrar un per un **d'esquerra a dreta**.
+
+**Atenció**: per fer demostrar un àtom amb un fet o una regla, les variables involucrades han de ser **unificables**.
+
+En l'exemple següent s'ha donat un nom diferent a les variables de regles diferents per il·lustrar 
+que en realitat són variables diferents que cal unificar, però recordeu que podem repetir noms. 
+De fet, també cal unificar les variables involucrades en diferents crides recursives d'una mateixa regla.
 
 
 ```prolog
-father(tom,jack).
-father(tom,lisa).
-father(will,tom).
-mother(ann,tom).
-mother(ann,john).
-parent(X,Y):-father(X,Y).
-parent(X,Y):-mother(X,Y).
-grandfather(X,Y):-father(X,Z),parent(Z,Y).
-siblings(X,Y):-parent(Z,X),parent(Z,Y),X\=Y.
-
+father(tom,jack). %f1
+father(tom,lisa). %f2
+father(will,tom). %f3
+mother(ann,tom). %f4
+mother(ann,john). %f5
+parent(X1,Y1):-father(X1,Y1). %r1
+parent(X2,Y2):-mother(X2,Y2). %r2
+grandfather(X3,Y3):-father(X3,Z3),parent(Z3,Y3). %r3
+siblings(X4,Y4):-parent(Z4,X4),parent(Z4,Y4),X4\=Y4. %r4
 ```
+
+La consulta `? father(X,Y).` primer es demostrarà amb `f1` i unificant `{X=tom,Y=jack}`. Si demanem més solucions es demostrarà amb `f2, {X=tom,Y=lisa}`, i finalment amb  `f3, {X=will,Y=tom}`.
+La consulta `? father(tom,X).` només es demostrarà amb `f1` i `f2`, perquè no podem unificar `{tom=will}`.
+
+La consulta `? parent(tom,Y).` es demostrarà:
+  - Primer amb `r1, {X1=tom,Y1=Y}`. Això implica demostrar `father(tom,Y)`, que admet diverses solucions.
+  - Després es provarà de demostrar amb `r2, {X2=tom,Y2=Y}`. Això implica demostrar `mother(tom,Y)`, que no és demostrable ni amb `f4` ni amb `f5`(no podem unificar `{tom=ann}`).
+
+La consulta `? siblings(X,Y).` es demostrarà amb `r4, {X4=X,Y4=Y}`. Això implica demostrar, **en aquest ordre**, `parent(Z4,X).`, `parent(Z4,Y)`, `X\=Y`.
+
+En Prolog podem tracejar l'execució. Per entrar en el mode de *tracing*, escriurem `trace.` Per sortir del mode de *tracing*, entreu `notrace.`. El següent exemple mostra quins fets i quines regles s'utilitzen i quines unificacions es fan per deduir que en Jack i la Lisa són germans
+amb la consulta `siblings(X,Y).`
+
 
 ![Trace](Img/trace.png)
 
 ### Exercici: 
-Executeu i feu tracing de la consulta `ancestor(X,Y).`, per les quatre teories següents, lògicament equivalents.
+Executeu, primer sence tracing, la consulta `ancestor(X,Y).`, per les quatre teories següents, lògicament equivalents.
 ```prolog
   parent(alice,bob).
   parent(bob,eve).
@@ -233,6 +255,7 @@ Executeu i feu tracing de la consulta `ancestor(X,Y).`, per les quatre teories s
   ancestor(X,Y):-ancestor(Z,Y),parent(X,Z).
   ancestor(X,Y):-parent(X,Y).
   ```
+Quin és el comportament en cada cas? Sabrieu dir per què? Feu servir el tracer per mirar què passa.
 
 ## És el vostre torn (II)
 
