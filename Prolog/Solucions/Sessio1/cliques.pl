@@ -16,7 +16,7 @@ aresta(n5,n6).
 
 %clique3(A,B,C) => El conjunt {A,B,C} es un clique, i la sequencia A,B,C esta ordenada lexicograficament.
 %per exemple, es pot demostrar clique3(n1,n2,n4), pero no clique3(n1,n4,n2).
-%Per tant, posarem "aresta(A,B)" en lloc de "aresta(B,A)"
+%Per tant, posarem "aresta(A,B)", "aresta(A,C)" i "aresta(B,C)" en lloc de "aresta(B,A)", "aresta(C,A)" o "aresta(C,B)"
 clique3(A,B,C) :- aresta(A,B), aresta(A,C), aresta(B,C).
 
 
