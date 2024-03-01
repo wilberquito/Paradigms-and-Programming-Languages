@@ -2,7 +2,7 @@
 
 A la sessió 1 hem vist només un fragment del Prolog limitat a lògica de primer ordre amb clàusules de Horn. 
 En aquesta sessió veurem característiques de Prolog que no corresponen a aquest fragment i que fan de Prolog 
-un llenguatge més potent. Al final veurem exemples d'unificació entre els diferents tipus de termes de què disposa Prolog.
+un llenguatge més potent. 
 
 ## Negació
 
