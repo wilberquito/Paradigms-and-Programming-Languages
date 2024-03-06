@@ -421,7 +421,7 @@ no
 ```
 
 ```prolog
-?- X=A,Y=B,X==Y.
+?- X=A,Y=A,X==Y.
 X=A
 Y=A
 yes
