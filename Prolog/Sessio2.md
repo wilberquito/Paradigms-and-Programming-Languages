@@ -70,7 +70,7 @@ X = 2+2
 ```
 
 Per **avaluar** expressions cal fer servir el predicat `is`. L'àtom lògic `E1 is E2` significa que`E1` **unifica amb el valor aritmètic de** `E2`.
-Per tant, hi ha un detall tècnic molt rellevant: `E2` **ha de ser una expressió aritmètica avaluable**.
+Per tant, hi ha un detall tècnic molt rellevant: `E2` **ha de ser una expressió aritmètica avaluable amb la unificació actual**.
 
 ```prolog
 ?- 4 is 2+2.
@@ -79,6 +79,10 @@ yes
 
 ```prolog
 ?- X is 3 * 4.
+X = 12
+```
+```prolog
+?- Y=4, X is 3 * Y.
 X = 12
 ```
 
