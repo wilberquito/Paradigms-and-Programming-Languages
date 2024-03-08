@@ -182,11 +182,11 @@ dels termes que succeeixen el Cap. Fixeu-vos que Cua pot ser una llista buida.
 
 Tenim múltiples maneres de representar una mateixa llista, combinant representacions explícites i recursives. Per exemple:
 - `[X,Y,Z]`
-- `[X,Y,Z | [] ]`
-- `[X,Y | [Z] ]`
 - `[X | [Y, Z]]`
 - `[X | [Y | [Z] ] ]`
 - `[X | [ Y | [Z | [] ] ] ]`
+- `[X,Y,Z | [] ]`
+- `[X,Y | [Z] ]`
 
 Exemples d'unificacions amb llistes:
 
