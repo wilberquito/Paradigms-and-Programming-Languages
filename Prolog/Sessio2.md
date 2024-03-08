@@ -159,7 +159,7 @@ Inst. error
 ```
 
 Això passa perquè `N` ha de tenir un valor definit quan s'avalua amb `is`.
-Indicarem a la documentació que un argument `N` ha de tenir un valor definit amb `+N`, per exemple `%fact(+N,F)`.
+Indicarem a la documentació que un argument `N` ha de tenir un valor definit (**ha d'estar instanciat**) amb `+N`, per exemple `%fact(+N,F)`.
 
 
 
