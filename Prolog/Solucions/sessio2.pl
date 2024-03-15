@@ -82,7 +82,7 @@ paths(E,X,Y,[X|Xs]) :- member(ar(X,Z),E), paths(E,Z,Y,Xs).
 
 %============================ Clique ==========================
 
-%between(+X,+Y,Z): X <= Y <= Z. Ja hi es built in
+%between(+X,+Y,Z): X <= Z <= Y. Ja hi es built in
 %between(X,Y,X):- X=<Y.
 %between(X,Y,Z):- X<Y, X2 is X+1, between(X2,Y,Z).
 
