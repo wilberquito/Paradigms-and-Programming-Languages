@@ -576,7 +576,7 @@ clique(g(V,E),C) :- ...
 
 %Exemples d'execucio
 
-%clique(g([1,2,3],[ar(1,2),ar(1,3),ar(2,3)],C).
+%clique(g([1,2,3],[ar(1,2),ar(1,3),ar(2,3)]),C).
 %C = [1] ? ;
 %C = [2] ? ;
 %C = [3] ? ;
