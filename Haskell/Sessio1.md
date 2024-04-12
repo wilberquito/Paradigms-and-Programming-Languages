@@ -435,7 +435,7 @@ Intuïtivament, podem entendre un tipus com un conjunt de valors permesos i conj
 |      Integer      | 1, -2, 900000000000000000  |                         Unbounded number type                          | +, -, \*, div, mod, fromInteger, fromIntegral |
 |       Float       |         0.1, 1.2e5         |                         Floating point numbers                         |               +, -, \*, /, sqrt               |
 |      Double       |         0.1, 1.2e5         | Floating point numbers. Aproximations are more precise than Float type |               +, -, \*, /, sqrt               |
-|       Bool        |        True, False         |                              Truth values                              |                     &&, \                     |\|, not, otherwise            |
+|       Bool        |        True, False         |                              Truth values                              |                   ||,  &&, \                     |\|, not, otherwise            |
 |       Char        | 'a', 'Z', '\n', '\t', '\\' |  Represents a character (a letter, a digit, a punctuation mark, etc)   | ord, chr, isAlpha, isDigit, isUpper, isLower  |
 | String aka [Char] |         "abcd", ""         |                         Strings of characters                          |                  reverse, ++                  |
 
