@@ -814,9 +814,9 @@ type AssocList k v = [(k,v)]
 ## Your turn to practice
 
 ```
--- Ex 1: defineix els operadors -> , <-> (implicacio i equivalencia)
--- -> te prioritat 2
--- <-> te prioritat 1
+-- Ex 1: defineix els operadors --> , <--> (implicacio i equivalencia)
+-- --> te prioritat 2
+-- <--> te prioritat 1
 -- Tots dos son associatius a l'esquerra
 -- El seu tipus es Bool -> Bool -> Bool
 ```
