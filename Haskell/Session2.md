@@ -823,7 +823,7 @@ type AssocList k v = [(k,v)]
 
 ```haskell
 -- Ex 2: define a version of map that takes three arguments: a function
--- and two lists. Example:
+-- and two lists. It returns a list. Example:
 --
 --   map2 f [x,y,z,w] [a,b,c]  ==> [f x a, f y b, f z c]
 --
