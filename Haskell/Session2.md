@@ -832,10 +832,10 @@ type AssocList k v = [(k,v)]
 --
 -- Use recursion and pattern matching.
 --
--- Create a function `f` that uses `map2`, use a lambda expression
+-- Create some function that uses `map2` and use a lambda expression
 -- as first parameter of `map2`
 --
--- Create a function `g` that uses `map2`, use a built in operator
+-- Create some function that uses `map2` and use a built in operator
 -- as first parameter of `map2`
 
 map2 = undefined
