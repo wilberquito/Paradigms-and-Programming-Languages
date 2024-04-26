@@ -813,32 +813,12 @@ type AssocList k v = [(k,v)]
 
 ## Your turn to practice
 
-```haskell
--- Ex 1: compute the biggest element, using a comparison function
--- passed as an argument.
---
--- That is, implement the function mymaximum that takes
---
-
--- * a function `bigger` :: a -> a -> Bool
-
--- * a value `initial` of type a
-
--- * a list `xs` of values of type [a]
-
---
--- and returns the biggest value it sees, considering both `initial`
--- and all element in `xs`.
---
--- Examples:
---   mymaximum (>) 3 [] ==> 3
---   mymaximum (>) 0 [1,3,2] ==> 3
---   mymaximum (>) 4 [1,3,2] ==> 4    -- initial value was biggest
---   mymaximum (<) 4 [1,3,2] ==> 1    -- note changed biggerThan
---   mymaximum (\xs ys -> length xs > length ys) [] [[1,2],[3]]
---     ==> [1,2]
-
-mymaximum = undefined
+```
+-- Ex 1: defineix els operadors -> , <-> (implicacio i equivalencia)
+-- -> te prioritat 2
+-- <-> te prioritat 1
+-- Tots dos son associatius a l'esquerra
+-- El seu tipus es Bool -> Bool -> Bool
 ```
 
 ```haskell
@@ -883,34 +863,4 @@ map2 = undefined
 --   ==> []
 
 maybeMap = undefined
-```
-
-```haskell
--- Ex 4. define a binary parametric tree.
--- Make it showable in the screen.
--- Create a synonym for trees of type int
-
-. . .
-```
-
-```haskell
--- Ex 5: a path in a tree can be represented as a list of steps that
--- go either left or right. Implement the step type.
-
-data Step = . . .
-
--- Define a function walk that takes a tree and a list of steps, and
--- returns the value at that point. Return Nothing if you fall of the
--- tree (i.e. hit a Empty).
---
--- Examples:
---   walk [] (Node 1 (Node 2 Empty Empty) Empty)       ==>  Just 1
---   walk [StepL] (Node 1 (Node 2 Empty Empty) Empty)  ==>  Just 2
---   walk [StepL,StepL] (Node 1 (Node 2 Empty Empty) Empty)  ==>  Nothing
---
--- Define the function `walk'`
--- that behaves the same as `walk`
--- but it just support trees of type int (use the synonym).
-
-. . .
 ```
