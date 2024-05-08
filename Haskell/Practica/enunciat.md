@@ -180,7 +180,7 @@ assignació de variables. Completa la següent definició de l'operador (==>) qu
 comprovar conseqüències lògiques:
 
 ```haskell
-infixl ==> 5
+infixl 5 ==>
 (==>) :: Prop -> Prop -> Bool
 a ==> b = ...
 ```
@@ -309,9 +309,13 @@ Fes `WProp` instància de `Show` per obtenir els següents resultats:
 ```
 
 ## Procediment d'entrega
+**Termini d'entrega:** 2 de juny
+
 **Cal que feu les pràctiques en parelles**. Heu d'entregar pel Moodle un fitxer comprimit `Cognom1Nom1_Cognom2Nom2.zip`
 que contingui:
 
-- El codi Haskell, anomenat `prop.hs` . Aquest fitxer, independenment de quines part hàgiu implementat, **ha de compilar**. Si alguna part no compila, desactiveu-la amb comentaris. Cal que el nom de les funcions i tipus de dades demanats coincideixin **exactament** amb els de l'enunciat. Podeu copiar els exemples d'execució de l'enunciat per comprovar-ho.
+- El codi Haskell, anomenat `prop.hs` . Aquest fitxer, independentment de quines part hàgiu implementat, **ha de compilar**. Si alguna part no compila, desactiveu-la amb comentaris. Cal que el nom de les funcions i tipus de dades demanats coincideixin **exactament** amb els de l'enunciat. Podeu copiar els exemples d'execució de l'enunciat per comprovar-ho.
 
 - Un fitxer PDF anomenat `informe.pdf`, de no més d'una pàgina, que digui quines parts heu fet i quins problemes us heu trobat.
+
+Possiblement es demani fer una entrega presencial de la pràctia.
