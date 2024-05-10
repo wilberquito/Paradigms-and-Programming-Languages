@@ -54,19 +54,6 @@ Set comprehensions have the following form:
 This mathematical expression generates a set that
 contains the doubles of all natural that satisty the predicate.
 
-Now, we can generate lists by comprehension in Haskell using the
-following syntax:
-
-```haskell
-GHCi> [x*2 | x <- [1..10]]
-[2,4,6,8,10,12,14,16,18,20]
-GHCi> [x*2 | x <- [1..], x <= 10]
-[2,4,6,8,10,12,14,16,18,20]
-```
-
-Notice that the predicate part in the comprehension list
-syntax is not mandatory.
-
 Let's say we want a comprehension that replaces
 each odd number greater than 10 with "BANG!"
 and each odd number that's less than 10 with "BOOM!".
