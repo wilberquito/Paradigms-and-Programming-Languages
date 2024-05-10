@@ -764,7 +764,7 @@ travel = undefined
 --
 -- Examples:
 --   compute (Multiply 2 3) ==> 6
---   show' (Add1 2 3) ==> "2+3"
+--   show' (Add 2 3) ==> "2+3"
 --   show' (Multiply 4 5) ==> "4*5"
 --   show' (Subtract 2 3) ==> "2-3"
 --   show' (Multiply 4 5) ==> "4*5"
