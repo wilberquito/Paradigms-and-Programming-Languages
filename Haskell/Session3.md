@@ -40,7 +40,7 @@ GHCi> [20,18..0]
 ## Comprehension list
 
 Comprehension list cames from *set comprehension*
-which is a mathematical concept of generating a small
+which is a mathematical concept of generating a
 set from a general one.
 
 Set comprehensions have the following form:
