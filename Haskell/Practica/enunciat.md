@@ -206,7 +206,7 @@ infixl 4 <==>
 a <==> b = ...
 ```
 
-Pots fer servir l'operador anterior per demostrar les següents equivalències lògiques:
+Pots fer servir l'operador anterior per demostrar les següents equivalències lògiques i conseqüències lògiques:
 
 - Doble negació: ¬(¬a) <=> a
 - Llei de De Morgan: ¬(a & b) <=> ¬a v ¬b
