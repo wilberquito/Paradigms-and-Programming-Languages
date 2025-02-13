@@ -82,9 +82,9 @@ germa(X,Y) :- progenitor(Z,X), progenitor(Z,Y), X\=Y.
 
 /*
 TODO:
-  - Ancestor
-  - Grandfather
-  - Grandmother
-  - Uncle
-  - Aunt
+  - ancestre
+  - avi
+  - avia
+  - oncle
+  - tia
  */
