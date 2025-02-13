@@ -1,11 +1,11 @@
 /*
 TODO:
-- Qui li agrada a en John?
-- A qui li agrada la Ann?
-- Qui té algú que li agrada?
-- Qui agrada a algú?
-- Quines dues persones s'agraden mútuament?
-- Qui té algu que li agrada i no és correspost?
+- A qui li agrada en John?
+- Qui li agrada a l'Ann?
+- Qui està enamorat d'algú?
+- Qui és estimat per algú?
+- Quines dues persones s'estimen mútuament?
+- Qui estima sense ser correspost?
 */
 /* loves(X,Y) significa a X li agrada Y */
 loves(john, ann).
