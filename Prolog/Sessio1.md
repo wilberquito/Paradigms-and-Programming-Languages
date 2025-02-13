@@ -285,7 +285,7 @@ Representeu mitjançant fets el següent graf, i definiu les regles `clique3(A,B
 
 <details>
   <summary>Pista (primer proveu-ho sense mirar-la)</summary>
-  Podeu definir una noció d'ordre entre els nodes, i fer que la solució sigui ordenada.
+  Podeu definir una noció d'ordre a les arestes, i fer que la solució sigui ordenada.
 </details>
 
 
