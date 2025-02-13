@@ -265,11 +265,11 @@ Quin és el comportament en cada cas? Sabrieu dir per què? Feu servir el tracer
 
 Donada la base de coneixement de els_simpsons.pl, definiu les regles següents:
 
-- Ancestor
-- Grandfather
-- Grandmother
-- Uncle
-- Aunt
+- ancestre
+- avi
+- avia
+- oncle
+- tia
 
 ### Graf dirigit
 
