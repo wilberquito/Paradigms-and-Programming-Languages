@@ -163,7 +163,7 @@ Feu servir el fitxer lovers.pl i feu les següents consultes en Prolog:
 
 ## Els termes
 
-En Prolog, tant els fets, com les regles, com les consultes estan compostes per **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (o estructures)
+En Prolog, els valors que poden prendre les variables i els paràmetres dels predicats són **termes**. Els tipus de termes que tenim són: constants, variables, i termes complexos (o estructures)
 
 
 - *Constants*
@@ -178,14 +178,9 @@ En Prolog, tant els fets, com les regles, com les consultes estan compostes per 
 - *Termes complexos*: podem definir estructures complexes com llistes, arbres i grafs fent servir combinacions de termes. Per exemple, podem definir tuples:
 
   ```prolog
-  viu(homer, adr("Evergreen Terrace", 742, "Springfield")).
+  X = habitant(homer, adr("Evergreen Terrace", 742, "Springfield")).
   ```
 
-  Els fets i regles també són termes complexos.
-
-  ```prolog
-  loves(vincent,mia).
-  ```
 ## Entendre i tracejar l'execució
 
 Quan fem una consulta, l'intèrpret de Prolog intentarà demostrar que és conseqüència lògica de la base de coneixement (fets i regles). 
