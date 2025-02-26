@@ -163,11 +163,16 @@ El predicat `fact` no és bidireccional, en el sentit que no podem fer la consul
 Inst. error
 ```
 
-Això passa perquè `N` ha de tenir un valor definit quan s'avalua amb `is`.
-Indicarem a la documentació que un argument `N` ha de tenir un valor definit (**ha d'estar instanciat**) amb `+N`, per exemple `%fact(+N,F)`.
+Això passa perquè `N` ha de tenir un valor definit quan s'avalua amb `is`. 
 
+### Precondicions sobre la instanciació
 
+Per tant, hi ha predicats que per ser consultats estableixen precondicions d'intanciació sobre els paràmetres. Això ho indicarem **a la documentació** del predicat, en forma de comentari. Tot i que hi ha altres casos, els més habituals són 3:
+- `+P`: el paràmetre `P` ha d'estar instanciat.
+- `-P`: el paràmetre `P` no pot estar instanciat.
+- `?P`: no hi ha cap precondició d'instanciació sobre el paràmetre `P`.
 
+Per exemple `%fact(+N,?F)` indica que, en el moment de consultar `fact(N,F)`, `N` ha d'estar instanciat , i `F` no cal (però pot estar-ho). 
 
 
 
