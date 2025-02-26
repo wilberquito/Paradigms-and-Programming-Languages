@@ -176,8 +176,6 @@ Per exemple `%fact(+N,?F)` indica que, en el moment de consultar `fact(N,F)`, `N
 
 
 
-
-
 ## LListes
 
 Prolog té incorporporada una estructura de dades llista, que representa una seqüència de termes, 
