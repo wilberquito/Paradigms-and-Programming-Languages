@@ -4,6 +4,61 @@ A la sessió 1 hem vist només un fragment del Prolog limitat a lògica de prime
 En aquesta sessió veurem característiques de Prolog que no corresponen a aquest fragment i que fan de Prolog 
 un llenguatge més potent. 
 
+
+## Més sobre unificació
+
+Recordeu que dos termes són unificables si existeix alguna substitució que els faci sintàcticament iguals.
+En Prolog, els operadors de unificar (i no unificar) són `=` i `\=`. 
+Els operadors `=`, `==` (i les seves negacions `\=`, `\==`) són difrents.
+L'expressió `E1 = E2` significa `E1` és unificable amb `E2`, mentre que l'expressió `E1 == E2`
+significa que E1 i E2 **ja han estat unificats** a un mateix terme.
+
+```prolog
+?- X=X.
+X=X
+yes
+```
+
+```prolog
+?- X=Y.
+Y=X
+yes
+```
+
+```prolog
+?- X==X.
+yes
+```
+
+```prolog
+?- X==Y.
+no
+```
+
+```prolog
+?- tupla(X,Y)==tupla(X,Y).
+yes
+```
+
+```prolog
+?- X=john,X=Y.
+X=john
+Y=john
+yes
+```
+
+```prolog
+?- X=john,X==Y.
+no
+```
+
+```prolog
+?- X=john,Y=john,X==Y.
+X=john
+Y=john
+yes
+```
+
 ## Aritmètica
 
 Recordeu que en Prolog tot és un terme. Per tant, els nombres `33, -2, 2.3` són termes,
@@ -113,60 +168,6 @@ Indicarem a la documentació que un argument `N` ha de tenir un valor definit (*
 
 
 
-
-## Més sobre unificació
-
-Recordeu que dos termes són unificables si existeix alguna substitució que els faci sintàcticament iguals.
-En Prolog, els operadors de unificar (i no unificar) són `=` i `\=`. 
-Els operadors `=`, `==` (i les seves negacions `\=`, `\==`) són difrents.
-L'expressió `E1 = E2` significa `E1` és unificable amb `E2`, mentre que l'expressió `E1 == E2`
-significa que E1 i E2 **ja han estat unificats** a un mateix terme.
-
-```prolog
-?- X=X.
-X=X
-yes
-```
-
-```prolog
-?- X=Y.
-Y=X
-yes
-```
-
-```prolog
-?- X==X.
-yes
-```
-
-```prolog
-?- X==Y.
-no
-```
-
-```prolog
-?- tupla(X,Y)==tupla(X,Y).
-yes
-```
-
-```prolog
-?- X=john,X=Y.
-X=john
-Y=john
-yes
-```
-
-```prolog
-?- X=john,X==Y.
-no
-```
-
-```prolog
-?- X=john,Y=john,X==Y.
-X=john
-Y=john
-yes
-```
 
 
 
