@@ -233,6 +233,81 @@ no
 ?- [1,2|L] = [X,Y,X].
 L=[1], X=1, Y=2
 ```
+#### Implementem altres predicats: remove
+
+Considereu el següent predicat remove, que estableix la relació *L2 és la llista L1 sense cap ocurrència de X*.
+
+
+```prolog
+% remove(X,L1,L2) => L2 es L1 sense cap ocurrencia de X.
+remove(_,[],[]).
+remove(X,[X|L1],L2) :- remove(X,L1,L2).
+remove(X,[Y|L1],[Y|L2]) :- remove(X,L1,L2).
+```
+
+Hi veieu algun problema? Proveu de demanar més d'una solució per la consulta:
+
+```prolog
+?- remove(1,[1,2,1],L).
+```
+
+<details>
+
+<summary>Com l'arreglem?</summary>
+
+```prolog
+% remove(X,L1,L2) => L2 es L1 sense cap ocurrencia de X.
+remove(_,[],[]).
+remove(X,[X|L1],L2) :- remove(X,L1,L2).
+remove(X,[Y|L1],[Y|L2]) :- X\=Y, remove(X,L1,L2).
+```
+
+Recordeu: **dues variables amb nom diferent també es poden unificar**.
+
+</details>
+
+
+
+### Combinació de llistes i aritmètica
+
+```prolog
+% length(L,N) => N es la llargada de L.
+length([],0).
+length([_|Xs],N) :- length(Xs,Np), N is Np+1.
+```
+
+```prolog
+% count(L,X,N) => N es el nombre de vegades que X apareix a L.
+count([],_,0).
+count([X|Xs],X,N) :- count(Xs,X,Np), N is Np+1.
+count([Y|Xs],X,N) :- X\=Y, count(Xs,X,N).
+```
+
+```prolog
+% nessim(L,N,X) => X apareix a la posicio N de L.
+nessim([X|_],0,X).
+nessim([_|Xs],N,X) :- N>0,
+                      Np is N-1,
+                      nessim(Xs,Np,X).
+```
+
+```prolog
+% split(X,L,LEQ,GT) => LEQ son els elements de L menors o iguals que X, GT son els mes grans que X
+split(_,[],[],[]).
+split(X,[Y|L],[Y|LEQs],GT) :- Y=<X, split(X,L,LEQs,GT).
+split(X,[Y|L],LEQ,[Y|GTs]) :- Y>X, split(X,L,LEQ,GTs).
+```
+
+```prolog
+% quicksort(L1,L2) => L2 es la llista L1 ordenada.
+quicksort([],[]).
+quicksort([X|Xs],L) :- split(X,Xs,LEQ,GT),
+                       quicksort(LEQ,LEQsort),
+                       quicksort(GT,GTsort),
+                       append(LEQsort,[X|GTsort],L).
+```
+
+
 
 ### Predicats sobre llistes
 
@@ -327,80 +402,6 @@ prefix(P,L) :- append(P,_,L).
 % suffix(S,L) => S es un sufix de L.
 suffix(S,L) :- append(_,S,L).
 ```
-#### Implementem altres predicats: remove
-
-Considereu el següent predicat remove, que estableix la relació *L2 és la llista L1 sense cap ocurrència de X*.
-
-
-```prolog
-% remove(X,L1,L2) => L2 es L1 sense cap ocurrencia de X.
-remove(_,[],[]).
-remove(X,[X|L1],L2) :- remove(X,L1,L2).
-remove(X,[Y|L1],[Y|L2]) :- remove(X,L1,L2).
-```
-
-Hi veieu algun problema? Proveu de demanar més d'una solució per la consulta:
-
-```prolog
-?- remove(1,[1,2,1],L).
-```
-
-<details>
-
-<summary>Com l'arreglem?</summary>
-
-```prolog
-% remove(X,L1,L2) => L2 es L1 sense cap ocurrencia de X.
-remove(_,[],[]).
-remove(X,[X|L1],L2) :- remove(X,L1,L2).
-remove(X,[Y|L1],[Y|L2]) :- X\=Y, remove(X,L1,L2).
-```
-
-Recordeu: **dues variables amb nom diferent també es poden unificar**.
-
-</details>
-
-
-
-### Combinació de llistes i aritmètica
-
-```prolog
-% length(L,N) => N es la llargada de L.
-length([],0).
-length([_|Xs],N) :- length(Xs,Np), N is Np+1.
-```
-
-```prolog
-% count(L,X,N) => N es el nombre de vegades que X apareix a L.
-count([],_,0).
-count([X|Xs],X,N) :- count(Xs,X,Np), N is Np+1.
-count([Y|Xs],X,N) :- X\=Y, count(Xs,X,N).
-```
-
-```prolog
-% nessim(L,N,X) => X apareix a la posicio N de L.
-nessim([X|_],0,X).
-nessim([_|Xs],N,X) :- N>0,
-                      Np is N-1,
-                      nessim(Xs,Np,X).
-```
-
-```prolog
-% split(X,L,LEQ,GT) => LEQ son els elements de L menors o iguals que X, GT son els mes grans que X
-split(_,[],[],[]).
-split(X,[Y|L],[Y|LEQs],GT) :- Y=<X, split(X,L,LEQs,GT).
-split(X,[Y|L],LEQ,[Y|GTs]) :- Y>X, split(X,L,LEQ,GTs).
-```
-
-```prolog
-% quicksort(L1,L2) => L2 es la llista L1 ordenada.
-quicksort([],[]).
-quicksort([X|Xs],L) :- split(X,Xs,LEQ,GT),
-                       quicksort(LEQ,LEQsort),
-                       quicksort(GT,GTsort),
-                       append(LEQsort,[X|GTsort],L).
-```
-
 
 ## Metapredicat findall
 
