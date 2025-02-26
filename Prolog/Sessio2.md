@@ -145,14 +145,21 @@ no
 ```
 
 ```prolog
-?- X=A,X==Y.
+?- X=john,X=Y.
+X=john
+Y=john
+yes
+```
+
+```prolog
+?- X=john,X==Y.
 no
 ```
 
 ```prolog
-?- X=A,Y=A,X==Y.
-X=A
-Y=A
+?- X=john,Y=john,X==Y.
+X=john
+Y=john
 yes
 ```
 
