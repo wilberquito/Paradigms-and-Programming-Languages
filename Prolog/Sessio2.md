@@ -135,7 +135,7 @@ no
 ### Predicat factorial
 
 ```prolog
-% fact(+N,F) => F es el factorial de N.
+% fact(+N,?F) => F es el factorial de N.
 fact(0,1).
 fact(N,F) :- N>0,
              Np is N-1,
