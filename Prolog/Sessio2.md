@@ -123,25 +123,30 @@ L'expressió `E1 = E2` significa `E1` és unificable amb `E2`, mentre que l'expr
 significa que E1 i E2 **ja han estat unificats** a un mateix terme.
 
 ```prolog
+?- X=X.
+X=X
+yes
+```
+
+```prolog
 ?- X=Y.
 Y=X
 yes
 ```
 
 ```prolog
-?- 2+X=2+Y.
-Y=X
-yes
-```
-
-```prolog
-?- 2+X=2+X.
+?- X==X.
 yes
 ```
 
 ```prolog
 ?- X==Y.
 no
+```
+
+```prolog
+?- tupla(X,Y)==tupla(X,Y).
+yes
 ```
 
 ```prolog
@@ -163,10 +168,6 @@ Y=john
 yes
 ```
 
-```prolog
-?- 2+X==2+X.
-yes
-```
 
 
 
