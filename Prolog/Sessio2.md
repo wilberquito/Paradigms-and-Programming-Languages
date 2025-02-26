@@ -4,56 +4,6 @@ A la sessió 1 hem vist només un fragment del Prolog limitat a lògica de prime
 En aquesta sessió veurem característiques de Prolog que no corresponen a aquest fragment i que fan de Prolog 
 un llenguatge més potent. 
 
-## Negació
-
-L'operador *not* `\+` de Prolog és un meta-predicat incorporat. Un meta-predicat és un predicat que té com a arguments altres predicats, 
-en lloc de dades.
-L'operador *not* rep un únic predicat com a argument, i en nega el valor. 
-
-Alerta: **no és una negació lògica**. Si permetéssim l'ús de negacions lògiques `¬` al cos de les regles, aquestes deixarien de ser clàusules de Horn. Per exemple,
-```prolog
-p(X) :- a(X), ¬b(X)
-``` 
-Equivaldria a la clàusula:
-
-${\displaystyle p(X) \vee ¬a(X) \vee b(X)}$
-
-En canvi, l'operador ` \+` és conegut com a l'operador de `negation-as-failure` (negació per fracàs), perquè 
-demostra la negació d'un objectiu quan fracassa en demostrar aquest objectiu.
-
-Fixeu-vos en la fórmula següent: ${\displaystyle (q(a) \wedge p(X) \vee ¬q(X)) }$
-
-En Prolog:
-```prolog
-q(a).
-p(X):-q(X).
-```
-
-Clarament *p(b)* no és conseqüència lògica de la fòrmula. 
-Per tant, si afegeixo la clàusula *¬p(b)* i faig servir resolució, 
-no obtindré la clàusula buida (no puc demostrar *p(b)* ). 
-En termes de Prolog, la consulta `? p(b).` dirà *no*.
-
-Semblantment, tampoc puc demostrar que *¬p(b)* sigui conseqüència lògica de la fórmula,
-ja que afegint *p(b)* i fent resolució tampoc obtindré la clàusula buida.
-Ara bé, si fem la consulta `? \+ p(b)`, Prolog ens dirà *yes*. 
-Això passa perquè primer, internament, ha fet la consulta `p(b)` i s'ha obtingut *no*,
-(ha *fracassat* a demostrar *p(b)* ). Ho podeu comprovar com a exercici.
-
-Així doncs, Prolog en realitat fa **SLDNF-resolució** (SLD-resolució amb *negation-as-failure*). 
-
-Comproveu els resultats de les consultes `non_domestic_animal(X).` i `non_domestic_animal(hamster).`.
-
-
-```prolog
-domestic_animal(cat).
-domestic_animal(dog).
-
-non_domestic_animal(X) :- \+ domestic_animal(X).
-```
-
-
-
 ## Aritmètica
 
 Recordeu que en Prolog tot és un terme. Per tant, els nombres `33, -2, 2.3` són termes,
@@ -160,6 +110,57 @@ Inst. error
 
 Això passa perquè `N` ha de tenir un valor definit quan s'avalua amb `is`.
 Indicarem a la documentació que un argument `N` ha de tenir un valor definit (**ha d'estar instanciat**) amb `+N`, per exemple `%fact(+N,F)`.
+
+
+
+
+## Més sobre unificació
+
+Recordeu que dos termes són unificables si existeix alguna substitució que els faci sintàcticament iguals.
+En Prolog, els operadors de unificar (i no unificar) són `=` i `\=`. 
+Els operadors `=`, `==` (i les seves negacions `\=`, `\==`) són difrents.
+L'expressió `E1 = E2` significa `E1` és unificable amb `E2`, mentre que l'expressió `E1 == E2`
+significa que E1 i E2 **ja han estat unificats** a un mateix terme.
+
+```prolog
+?- X=Y.
+Y=X
+yes
+```
+
+```prolog
+?- 2+X=2+Y.
+Y=X
+yes
+```
+
+```prolog
+?- 2+X=2+X.
+yes
+```
+
+```prolog
+?- X==Y.
+no
+```
+
+```prolog
+?- X=A,X==Y.
+no
+```
+
+```prolog
+?- X=A,Y=A,X==Y.
+X=A
+Y=A
+yes
+```
+
+```prolog
+?- 2+X==2+X.
+yes
+```
+
 
 
 
@@ -386,54 +387,6 @@ quicksort([X|Xs],L) :- split(X,Xs,LEQ,GT),
                        quicksort(LEQ,LEQsort),
                        quicksort(GT,GTsort),
                        append(LEQsort,[X|GTsort],L).
-```
-
-
-## Més sobre unificació
-
-Recordeu que dos termes són unificables si existeix alguna substitució que els faci sintàcticament iguals.
-En Prolog, els operadors de unificar (i no unificar) són `=` i `\=`. 
-Els operadors `=`, `==` (i les seves negacions `\=`, `\==`) són difrents.
-L'expressió `E1 = E2` significa `E1` és unificable amb `E2`, mentre que l'expressió `E1 == E2`
-significa que E1 i E2 **ja han estat unificats** a un mateix terme.
-
-```prolog
-?- X=Y.
-Y=X
-yes
-```
-
-```prolog
-?- 2+X=2+Y.
-Y=X
-yes
-```
-
-```prolog
-?- 2+X=2+X.
-yes
-```
-
-```prolog
-?- X==Y.
-no
-```
-
-```prolog
-?- X=A,X==Y.
-no
-```
-
-```prolog
-?- X=A,Y=A,X==Y.
-X=A
-Y=A
-yes
-```
-
-```prolog
-?- 2+X==2+X.
-yes
 ```
 
 
