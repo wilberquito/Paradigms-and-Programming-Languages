@@ -288,6 +288,9 @@ split(X,[Y|L],[Y|LEQs],GT) :- Y=<X, split(X,L,LEQs,GT).
 split(X,[Y|L],LEQ,[Y|GTs]) :- Y>X, split(X,L,LEQ,GTs).
 ```
 
+#### El vostre torn
+Implementeu la resta de predicats del fitxer [llistes.pl](Exercicis/llistes.pl).
+
 ## Predicats més habituals sobre llistes
 
 Prolog té un conjunt de predicats sobre llistes integrats. A continuació es mostra la seva definició
