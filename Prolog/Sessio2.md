@@ -386,6 +386,15 @@ reverse([X|Xs],In) :- reverse(Xs,Ps), append(Ps,[X],In).
 ```
 
 ```prolog
+% quicksort(L1,L2) => L2 es la llista L1 ordenada.
+quicksort([],[]).
+quicksort([X|Xs],L) :- split(X,Xs,LEQ,GT),
+                       quicksort(LEQ,LEQsort),
+                       quicksort(GT,GTsort),
+                       append(LEQsort,[X|GTsort],L).
+```
+
+```prolog
 % prefix(P,L) => P es un prefix de L.
 prefix(P,L) :- append(P,_,L).
 ```
@@ -396,12 +405,13 @@ suffix(S,L) :- append(_,S,L).
 ```
 
 ```prolog
-% quicksort(L1,L2) => L2 es la llista L1 ordenada.
-quicksort([],[]).
-quicksort([X|Xs],L) :- split(X,Xs,LEQ,GT),
-                       quicksort(LEQ,LEQsort),
-                       quicksort(GT,GTsort),
-                       append(LEQsort,[X|GTsort],L).
+% sublist_(Lp,L) => Lp es subllista de L
+sublist_(Lp, L) :- ...
+```
+
+```prolog
+% palindrome_(L) => L es un palindrom (es capicua) 
+palindrome_(L) :- ...
 ```
 
 ## Metapredicat findall
@@ -427,21 +437,6 @@ yes
 ##  És el vostre torn 
 
 Implementeu els predicats següents.
-
-#### sublist
-
-```prolog
-% sublist_(Lp,L) => Lp es subllista de L
-sublist_(Lp, L) :- ...
-```
-
-
-#### palindrome
-
-```prolog
-% palindrome_(L) => L es un palindrom (es capicua) 
-palindrome_(L) :- ...
-```
 
 #### insert
 
