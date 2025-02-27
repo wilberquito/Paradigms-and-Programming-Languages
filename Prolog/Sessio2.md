@@ -236,7 +236,7 @@ L=[1], X=1, Y=2
 ```
 
 ## Primers predicats sobre llistes
-Implementem els predicats `llista1`, `sumatori`, `producte` i `llargada` del fitxer 
+Implementem els predicats `llista1`, `sumatori`, `producte` i `llargada` del fitxer [llistes.pl](Exercicis/llistes.pl).
 
 
 #### Implementem altres predicats
