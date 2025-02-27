@@ -299,15 +299,6 @@ split(X,[Y|L],[Y|LEQs],GT) :- Y=<X, split(X,L,LEQs,GT).
 split(X,[Y|L],LEQ,[Y|GTs]) :- Y>X, split(X,L,LEQ,GTs).
 ```
 
-```prolog
-% quicksort(L1,L2) => L2 es la llista L1 ordenada.
-quicksort([],[]).
-quicksort([X|Xs],L) :- split(X,Xs,LEQ,GT),
-                       quicksort(LEQ,LEQsort),
-                       quicksort(GT,GTsort),
-                       append(LEQsort,[X|GTsort],L).
-```
-
 
 
 ### Predicats sobre llistes
@@ -402,6 +393,15 @@ prefix(P,L) :- append(P,_,L).
 ```prolog
 % suffix(S,L) => S es un sufix de L.
 suffix(S,L) :- append(_,S,L).
+```
+
+```prolog
+% quicksort(L1,L2) => L2 es la llista L1 ordenada.
+quicksort([],[]).
+quicksort([X|Xs],L) :- split(X,Xs,LEQ,GT),
+                       quicksort(LEQ,LEQsort),
+                       quicksort(GT,GTsort),
+                       append(LEQsort,[X|GTsort],L).
 ```
 
 ## Metapredicat findall
