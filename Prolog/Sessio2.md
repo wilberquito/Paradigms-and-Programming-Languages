@@ -438,20 +438,6 @@ yes
 
 Implementeu els predicats següents.
 
-#### insert
-
-```prolog
-% insert_(X, Xs, Ys) => Ys es el resultat d'inserir ordenadament X a Xs, assumint que Xs esta en ordre ascendent
-insert_(X, Xs, Ys) :- ...
-```
-
-#### sort_insert
-Feu servir *insert* per implementar-lo
-
-```prolog
-% sort_insert_(L, Ls) => Ls es la llista L ordenada. Feu servir insert_
-sort_insert_(L, Ls) :- ...
-```
 
 ### Predicats sobre [multiconjunts](https://en.wikipedia.org/wiki/Multiset). 
 
@@ -472,7 +458,6 @@ intersection_(Xs, Ys, Zs) :- ...
 ```
 
 #### difference
-Podeu fer servir el predicat [substract](https://www.swi-prolog.org/pldoc/doc_for?object=subtract/3).
 
 ```prolog
 % difference_(Xs, Ys, Zs) => Zs = Xs \ Ys
@@ -487,20 +472,6 @@ Podeu fer servir el predicat [sort](https://www.swi-prolog.org/pldoc/man?predica
 multiset_to_set_(Xs, Zs) :- ...
 ```
 
-
-#### sum
-
-```prolog
-% sum_(L,N) => N es la suma dels elements de L
-sum_(L, N) :- ...
-```
-
-#### sum_even
-
-```prolog
-% sum_even_(L,N) => N es la suma dels nombres parells de L
-sum_even_(L,N) :- ...
-```
 
 ### Altres predicats
 
@@ -528,28 +499,4 @@ paths(E,X,Y,P) :- ...
 %no
 ```
 
-#### cliques
-```prolog
-% clique(g(V,E),C) 
-% V,E son els nodes i arestes d'un graf. 
-% Les arestes son parelles ordenades de nodes ar(N1,N2) tal que N1 < N2
-% La llista C conte un clique ordenat del graf g(V,E).
-clique(g(V,E),C) :- ...
 
-%Exemples d'execucio
-
-%clique(g([1,2,3],[ar(1,2),ar(1,3),ar(2,3)]),C).
-%C = [1] ? ;
-%C = [2] ? ;
-%C = [3] ? ;
-%C = [1,2] ? ;
-%C = [1,3] ? ;
-%C = [2,3] ? ;
-%C = [1,2,3] ? ;
-no
-
-%Graf de la sessio 1
-%findall(C,clique(g([1,2,3,4,5,6],[ar(1,2),ar(1,4),ar(1,6),ar(2,3),ar(2,4),ar(2,6),ar(3,4),ar(4,5),ar(4,6),ar(5,6)]),C),L).
-% L = [[1],[2],[3],[4],[5],[6],[1,2],[1,4],[1,6],[2,3],[2,4],[2,6],[3,4],[4,5],[4,6],[5,6],[1,2,4],[1,2,6],[1,4,6],[2,3,4],[2,4,6],[4,5,6],[1,2,4,6]]
-yes
-```
