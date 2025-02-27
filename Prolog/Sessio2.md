@@ -171,6 +171,7 @@ L'exemple del factorial ens ensenya que hi ha predicats que tenen precondicions 
 - `+P`: el paràmetre `P` ha d'estar instanciat.
 - `-P`: el paràmetre `P` no pot estar instanciat.
 - `?P`: no hi ha cap precondició d'instanciació sobre el paràmetre `P`.
+- `0P`: el paràmetre pot ser utilitzat com a consulta.
 
 Per exemple `%fact(+N,?F)` indica que, en el moment de consultar `fact(N,F)`, `N` ha d'estar instanciat , i `F` no cal (però pot estar-ho). 
 
