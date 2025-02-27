@@ -234,7 +234,12 @@ no
 ?- [1,2|L] = [X,Y,X].
 L=[1], X=1, Y=2
 ```
-#### Implementem altres predicats: remove
+
+## Primers predicats sobre llistes
+Implementem els predicats `llista1`, `sumatori`, `producte` i `llargada` del fitxer 
+
+
+#### Implementem altres predicats
 
 Considereu el següent predicat remove, que estableix la relació *L2 és la llista L1 sense cap ocurrència de X*.
 
@@ -268,9 +273,6 @@ Recordeu: **dues variables amb nom diferent també es poden unificar**.
 </details>
 
 
-
-### Combinació de llistes i aritmètica
-
 ```prolog
 % nessim(L,N,X) => X apareix a la posicio N de L.
 nessim([X|_],0,X).
@@ -286,12 +288,12 @@ split(X,[Y|L],[Y|LEQs],GT) :- Y=<X, split(X,L,LEQs,GT).
 split(X,[Y|L],LEQ,[Y|GTs]) :- Y>X, split(X,L,LEQ,GTs).
 ```
 
-### Predicats sobre llistes
+## Predicats més habituals sobre llistes
 
 Prolog té un conjunt de predicats sobre llistes integrats. A continuació es mostra la seva definició
 per entendre el seu comportament i el comportament de l'arbre de resolució, però no cal implementar-los.
 
-#### Member
+### Member
 
 ```prolog
 % member(X,L) => X apareix a la llista L.
@@ -318,7 +320,7 @@ Què creieu que dirà Prolog a les consultes següents?
 ?- member(1,X).
 ```
 
-#### Append
+### Append
 
 ```prolog
 append([],Ys,Ys).
