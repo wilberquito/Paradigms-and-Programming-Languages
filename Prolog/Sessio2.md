@@ -272,19 +272,6 @@ Recordeu: **dues variables amb nom diferent també es poden unificar**.
 ### Combinació de llistes i aritmètica
 
 ```prolog
-% length(L,N) => N es la llargada de L.
-length([],0).
-length([_|Xs],N) :- length(Xs,Np), N is Np+1.
-```
-
-```prolog
-% count(L,X,N) => N es el nombre de vegades que X apareix a L.
-count([],_,0).
-count([X|Xs],X,N) :- count(Xs,X,Np), N is Np+1.
-count([Y|Xs],X,N) :- X\=Y, count(Xs,X,N).
-```
-
-```prolog
 % nessim(L,N,X) => X apareix a la posicio N de L.
 nessim([X|_],0,X).
 nessim([_|Xs],N,X) :- N>0,
@@ -298,8 +285,6 @@ split(_,[],[],[]).
 split(X,[Y|L],[Y|LEQs],GT) :- Y=<X, split(X,L,LEQs,GT).
 split(X,[Y|L],LEQ,[Y|GTs]) :- Y>X, split(X,L,LEQ,GTs).
 ```
-
-
 
 ### Predicats sobre llistes
 
