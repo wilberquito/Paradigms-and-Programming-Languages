@@ -440,7 +440,7 @@ diferencia(Xs, Ys, Zs) :- ...
 
 
 ```prolog
-% multiconjunt_a_conjunt(Xs, Zs) => Zs is Xs sense repeticions
+% multiconjunt_a_conjunt(Xs, Zs) => Zs es Xs sense repeticions
 multiconjunt_a_conjunt(Xs, Zs) :- ...
 ```
 
