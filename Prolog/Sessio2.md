@@ -411,59 +411,61 @@ Implementeu els predicats següents.
 
 ### Predicats sobre [multiconjunts](https://en.wikipedia.org/wiki/Multiset). 
 
-Assumirem que Xs, Ys i Zs són multiconjunts.
+Assumirem que Xs, Ys i Zs són multiconjunts d'enters.
+Podeu fer servir el predicat [sort](https://www.swi-prolog.org/pldoc/man?predicate=sort/2).
+No cal que la sorida Zs respecti l'ordre d'entrada de Xs i Ys.
 
 #### union
 
 ```prolog
-% union_(Xs, Ys, Zs) => Zs = Xs unio Ys
-union_(Xs, Ys, Zs) :- ...
+% unio(Xs, Ys, Zs) => Zs = Xs unio Ys
+unio(Xs, Ys, Zs) :- ...
 ```
 
 #### intersection
 
 ```prolog
-% intersection_(Xs, Ys, Zs) => Zs = Xs interseccio Ys
-intersection_(Xs, Ys, Zs) :- ...
+% interseccio(Xs, Ys, Zs) => Zs = Xs interseccio Ys
+interseccio(Xs, Ys, Zs) :- ...
 ```
 
 #### difference
 
 ```prolog
-% difference_(Xs, Ys, Zs) => Zs = Xs \ Ys
-difference_(Xs, Ys, Zs) :- ...
+% diferencia(Xs, Ys, Zs) => Zs = Xs \ Ys
+diferencia(Xs, Ys, Zs) :- ...
 ```
 
 #### multiset_to_set
-Podeu fer servir el predicat [sort](https://www.swi-prolog.org/pldoc/man?predicate=sort/2).
+
 
 ```prolog
-% multiset_to_set_(Xs, Zs) => Zs is Xs sense repeticions
-multiset_to_set_(Xs, Zs) :- ...
+% multiconjunt_a_conjunt(Xs, Zs) => Zs is Xs sense repeticions
+multiconjunt_a_conjunt(Xs, Zs) :- ...
 ```
 
 
 ### Altres predicats
 
-#### gcd
+#### mcd
 
 Podeu fer servir [l'Algorisme d'Euclides](https://ca.wikipedia.org/wiki/Algorisme_d%27Euclides).
 
 ```prolog
-% gcd_(A, B, M) => M es el maxim comu divisor de A i B
-gcd_(A, B, M) :- ...
+% mcd(A, B, M) => M es el maxim comu divisor de A i B
+mcd(A, B, M) :- ...
 ```
 
-#### paths
+#### camins
 
 ```prolog
-% paths(E,X,Y,P) 
+% camins(E,X,Y,P) 
 % E son les arestes d'un graf dirigit aciclic.
 % La llista P conte un cami de X a Y.
-paths(E,X,Y,P) :- ...
+camins(E,X,Y,P) :- ...
 
 %Exemple d'execucio, graf sessio 1
-%paths([ar(1,2),ar(1,3),ar(2,5),ar(3,5),ar(3,6),ar(4,3),ar(4,7),ar(5,6)],3,6,P).
+%camins([ar(1,2),ar(1,3),ar(2,5),ar(3,5),ar(3,6),ar(4,3),ar(4,7),ar(5,6)],3,6,P).
 %P = [3,6] ? ;
 %P = [3,5,6] ? ;
 %no
