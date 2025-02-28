@@ -279,7 +279,7 @@ Recordeu: **dues variables amb nom diferent també es poden unificar**.
 
 
 ```prolog
-% nessim(+L,+N,?X) => X apareix a la posicio N de L.
+% nessim(?L,+N,?X) => X apareix a la posicio N de L.
 nessim([X|_],0,X).
 nessim([_|Xs],N,X) :- N>0,
                       Np is N-1,
