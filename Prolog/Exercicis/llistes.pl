@@ -1,13 +1,13 @@
 % llista1(?L) 
-% llista(L) ==>  L es una llista d'un sol element
+% llista1(L) ==>  L es una llista d'un sol element
 
 
 %sumatori(+L,?S)
-%sumatori(L,X) ==> L es una llista de nombres i el seu sumatori és X
+%sumatori(L,S) ==> L es una llista de nombres i el seu sumatori és S
 
 
 %producte(+L,?P)
-%producte(L,P) ==> L es una llista de nombres i el seu producte és X
+%producte(L,P) ==> L es una llista de nombres i el seu producte és P
 %nota: per definició, el producte d'un conjunt buit és 1
 
 
@@ -82,7 +82,7 @@ mainAux:-
   write('Llargada: '), !, llargada(Llista,Ll), write(Ll),nl,
   !,Nivell >= 2, 
   X=2, Y=4,
-  format('Conte el ~d? ',[X]),!, obtenirBool(pertany(Llista,X),Pertany), write(Pertany), nl,
+  format('Conte el ~d? ',[X]),!, obtenirBool(pertany(X,Llista),Pertany), write(Pertany), nl,
   format('Quantes vegades conte el ~d? ',[Y]),!, comptar(Y,Llista,Recompte), write(Recompte), nl,
   write('Capgirada: '),!, capgira(Llista,Capgirada), write(Capgirada), nl,
   write('Membres parells: '),!, parells(Llista,Parells), write(Parells), nl,
