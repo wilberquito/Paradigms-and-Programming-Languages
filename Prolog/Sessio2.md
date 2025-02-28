@@ -167,7 +167,7 @@ Això passa perquè `N` ha de tenir un valor definit quan s'avalua amb `is`.
 
 ## Precondicions sobre la instanciació
 
-L'exemple del factorial ens ensenya que hi ha predicats que tenen precondicions d'intanciació sobre els paràmetres a l'hora de ser consultats. Això ho indicarem **a la documentació** del predicat, en forma de comentari. Tot i que hi ha altres casos, els més habituals són 3:
+L'exemple del factorial ens ensenya que hi ha predicats que tenen precondicions d'intanciació sobre els paràmetres a l'hora de ser consultats. Això ho indicarem **a la documentació** del predicat, en forma de comentari. Tot i que hi ha altres casos, els més habituals són:
 - `+P`: el paràmetre `P` ha d'estar instanciat.
 - `-P`: el paràmetre `P` no pot estar instanciat.
 - `?P`: no hi ha cap precondició d'instanciació sobre el paràmetre `P`.
