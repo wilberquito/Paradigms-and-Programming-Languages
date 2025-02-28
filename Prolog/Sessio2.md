@@ -297,11 +297,12 @@ split(X,[Y|L],LEQ,[Y|GTs]) :- Y>X, split(X,L,LEQ,GTs).
 Implementeu la resta de predicats del fitxer [llistes.pl](Exercicis/llistes.pl).
 
 <details>
-
 <summary>Pista per capgira</summary>
 Feu servir el predicat afegirFinal.
 </details>
 
+
+<details>
 <summary>Pista per ordenar</summary>
 Feu servir el predicat inserir.
 </details>
