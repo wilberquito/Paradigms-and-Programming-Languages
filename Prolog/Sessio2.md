@@ -205,6 +205,11 @@ Tenim múltiples maneres de representar una mateixa llista, combinant representa
 Exemples d'unificacions amb llistes:
 
 ```prolog
+?- [1,2,3] = [X|L].
+L=[2,3], X=1
+```
+
+```prolog
 ?- [1,2,3] = [X,Y|L].
 L=[3], X=1, Y=2
 ```
