@@ -250,7 +250,7 @@ Considereu el següent predicat remove, que estableix la relació *L2 és la lli
 
 
 ```prolog
-% remove(X,L1,L2) => L2 es L1 sense cap ocurrencia de X.
+% remove(+X,+L1,?L2) => L2 es L1 sense cap ocurrencia de X.
 remove(_,[],[]).
 remove(X,[X|L1],L2) :- remove(X,L1,L2).
 remove(X,[Y|L1],[Y|L2]) :- remove(X,L1,L2).
@@ -267,7 +267,7 @@ Hi veieu algun problema? Proveu de demanar més d'una solució per la consulta:
 <summary>Com l'arreglem?</summary>
 
 ```prolog
-% remove(X,L1,L2) => L2 es L1 sense cap ocurrencia de X.
+% remove(+X,+L1,?L2) => L2 es L1 sense cap ocurrencia de X.
 remove(_,[],[]).
 remove(X,[X|L1],L2) :- remove(X,L1,L2).
 remove(X,[Y|L1],[Y|L2]) :- X\=Y, remove(X,L1,L2).
@@ -279,7 +279,7 @@ Recordeu: **dues variables amb nom diferent també es poden unificar**.
 
 
 ```prolog
-% nessim(L,N,X) => X apareix a la posicio N de L.
+% nessim(+L,+N,?X) => X apareix a la posicio N de L.
 nessim([X|_],0,X).
 nessim([_|Xs],N,X) :- N>0,
                       Np is N-1,
@@ -287,7 +287,7 @@ nessim([_|Xs],N,X) :- N>0,
 ```
 
 ```prolog
-% split(X,L,LEQ,GT) => LEQ son els elements de L menors o iguals que X, GT son els mes grans que X
+% split(+X,+L,?LEQ,?GT) => LEQ son els elements de L menors o iguals que X, GT son els mes grans que X
 split(_,[],[],[]).
 split(X,[Y|L],[Y|LEQs],GT) :- Y=<X, split(X,L,LEQs,GT).
 split(X,[Y|L],LEQ,[Y|GTs]) :- Y>X, split(X,L,LEQ,GTs).
@@ -417,35 +417,35 @@ Implementeu els predicats següents.
 ### Predicats sobre [multiconjunts](https://en.wikipedia.org/wiki/Multiset). 
 
 Assumirem que Xs, Ys i Zs són multiconjunts d'enters.
+Assumirem tambe que Zs està ordenada.
 Podeu fer servir el predicat [sort](https://www.swi-prolog.org/pldoc/man?predicate=sort/2).
-No cal que la sorida Zs respecti l'ordre d'entrada de Xs i Ys.
 
-#### union
+
+#### unio
 
 ```prolog
-% unio(Xs, Ys, Zs) => Zs = Xs unio Ys
+% unio(+Xs, +Ys, ?Zs) => Zs = Xs unio Ys
 unio(Xs, Ys, Zs) :- ...
 ```
 
-#### intersection
+#### intersecció
 
 ```prolog
-% interseccio(Xs, Ys, Zs) => Zs = Xs interseccio Ys
+% interseccio(+Xs, +Ys, ?Zs) => Zs = Xs interseccio Ys
 interseccio(Xs, Ys, Zs) :- ...
 ```
 
-#### difference
-
+#### diferència
 ```prolog
-% diferencia(Xs, Ys, Zs) => Zs = Xs \ Ys
+% diferencia(+Xs, +Ys, ?Zs) => Zs = Xs \ Ys
 diferencia(Xs, Ys, Zs) :- ...
 ```
 
-#### multiset_to_set
+#### multiconjunt_a_conjunt
 
 
 ```prolog
-% multiconjunt_a_conjunt(Xs, Zs) => Zs es Xs sense repeticions
+% multiconjunt_a_conjunt(+Xs, ?Zs) => Zs es Xs sense repeticions
 multiconjunt_a_conjunt(Xs, Zs) :- ...
 ```
 
@@ -457,14 +457,14 @@ multiconjunt_a_conjunt(Xs, Zs) :- ...
 Podeu fer servir [l'Algorisme d'Euclides](https://ca.wikipedia.org/wiki/Algorisme_d%27Euclides).
 
 ```prolog
-% mcd(A, B, M) => M es el maxim comu divisor de A i B
+% mcd(+A, +B, ?M) => M es el maxim comu divisor de A i B
 mcd(A, B, M) :- ...
 ```
 
 #### camins
 
 ```prolog
-% camins(E,X,Y,P) 
+% camins(+E,+X,+Y,?P) 
 % E son les arestes d'un graf dirigit aciclic.
 % La llista P conte un cami de X a Y.
 camins(E,X,Y,P) :- ...
