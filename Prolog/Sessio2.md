@@ -429,7 +429,7 @@ Implementeu els predicats següents.
 
 Assumirem que Xs, Ys i Zs són multiconjunts d'enters.
 Assumirem tambe que Zs està ordenada.
-Podeu fer servir el predicat [sort](https://www.swi-prolog.org/pldoc/man?predicate=sort/2).
+Podeu fer servir el predicat [msort](https://www.swi-prolog.org/pldoc/doc_for?object=msort/2).
 
 
 #### unio
