@@ -6,7 +6,41 @@
 Els metapredicats són predicats que reben com a paràmetre altres predicats. S'especifica a la documentació que un paràmetre `P` és un predicat que pot ser consultat amb `0P` (veure sessió 2).
 
 ### Call
-El metapredicat [https://www.swi-prolog.org/pldoc/man?predicate=call/2](call) és el més bàsic, i ens permet implementar altres metapredicats. 
+El metapredicat [call](https://www.swi-prolog.org/pldoc/man?predicate=call/2) és el més bàsic, i ens permet implementar altres metapredicats. El primer paràmetre és una consulta d'un sol àtom, i admet un nombre ilimitat d'altres paràmetres, que s'afegiran per ordre a la consulta. El comportament de `call` és que fa la consulta rebuda per paràmetre:
+
+```prolog
+| ?- call(member(X,[4,3,1])).
+X = 4 ? ;
+X = 3 ? ;
+X = 1
+(1 ms) yes
+```
+```prolog
+?- call(member(X),[4,3,1]). 
+X = 4 ? ;
+X = 3 ? ;
+X = 1
+yes
+```
+
+```prolog
+?- call(member,X,[4,3,1]). 
+X = 4 ? ;
+X = 3 ? ;
+X = 1
+yes
+```
+
+```prolog
+| ?- member(Predicat,[sumatori,producte,llargada]),call(Predicat,[1,2,3,4],Resultat). 
+Predicat = sumatori
+Resultat = 10 ? ;
+Predicat = producte
+Resultat = 24 ? ;
+Predicat = llargada
+Resultat = 4
+yes
+```
 
 El metapredicat `findall` ens permet capturar totes les unificacions que demostren una consulta, incloure-les en una llista amb el format desitjat.
 El primer paràmetre indica el format, el segon la consulta, i el tercer la llista resultant.
