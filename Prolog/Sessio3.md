@@ -42,24 +42,6 @@ Resultat = 4
 yes
 ```
 
-El metapredicat `findall` ens permet capturar totes les unificacions que demostren una consulta, incloure-les en una llista amb el format desitjat.
-El primer paràmetre indica el format, el segon la consulta, i el tercer la llista resultant.
-
-```prolog
-%Amb el fitxer lovers.pl
-?- findall([X,Y], loves(X,Y), L).
-L = [[john,ann],[ann,michael],[luis,isabel],[michael,ann],[laura,john],[isabel,luis]]
-yes
-
-?- findall(l(X,Y), loves(X,Y), L).
-L = [l(john,ann),l(ann,michael),l(luis,isabel),l(michael,ann),l(laura,john),l(isabel,luis)]
-yes
-
-?- findall(loves_someone(X), loves(X,_), L).
-L = [loves_someone(john),loves_someone(ann),loves_someone(luis),loves_someone(michael),loves_someone(laura),loves_someone(isabel)]
-yes
-```
-
 ### Findall
 
 El metapredicat `findall` ens permet capturar totes les unificacions que demostren una consulta, incloure-les en una llista amb el format desitjat.
