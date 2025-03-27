@@ -233,7 +233,7 @@ El concepte de funció a Haskell manté el significat que li donem en matemàtiq
 El que matemàticament denotem entre parèntesis, amb Haskell ho escrivim separat per espais
 ```text
 ```haskell
--- Es el mateix que as f (a, b) + c × d
+-- Es el mateix que f (a, b) + c × d
 f a b + c * d
 ```
 
