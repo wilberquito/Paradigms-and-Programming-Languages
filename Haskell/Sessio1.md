@@ -443,7 +443,7 @@ Algunes d'aquestes operacions estan definides per un tipus més generic que el d
 Un *typeclass* és una mena d'interfície que defineix cert comportament. 
 Si un tipus pertany a un typeclass, significa suporta **i implementa** el comportament del typeclass.
 
-Per exemple, si preguntem a Haskell el tipus de l'operador `div`:
+Per exemple, si preguntem a Haskell el tipus de la funció `div`:
 
 ```haskell
 Prelude> :type div
