@@ -212,15 +212,15 @@ Tot i que no sigui obligatori especificar els tipus, hi ha diversos motius pels 
 ```haskell
 doubleMe x = x + x
 
-doubleMe :: Int -> Int
-doubleMe x = x + x
+doubleMe2 :: Int -> Int
+doubleMe2 x = x + x
 ```
 
 ```haskell
 Prelude> :type doubleMe
 doubleMe :: Num a => a -> a
-Prelude> :type doubleMe'
-doubleMe' :: Int -> Int
+Prelude> :type doubleMe2
+doubleMe2 :: Int -> Int
 ```
 
 #### Funcions
