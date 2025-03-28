@@ -777,22 +777,6 @@ distance :: something
 . . .
 ```
 
-### nSum
-
-```haskell
--- Ex 2. define the function nSum. It should take an argument of
--- type Num a => [a] and returns the sum of all elements in the list
--- Use recursion.
---
--- PS. the sum (+) haskell operator has the type Num a => a -> a
---
--- Examples:
---  nSum [1,3,6] ==> 10
-
-nSum :: Num a => [a] -> a
-. . .
-```
-
 
 
 ### Intepreter
