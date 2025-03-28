@@ -212,8 +212,8 @@ Tot i que no sigui obligatori especificar els tipus, hi ha diversos motius pels 
 ```haskell
 doubleMe x = x + x
 
-doubleMe' :: Int -> Int
-doubleMe' x = x + x
+doubleMe :: Int -> Int
+doubleMe x = x + x
 ```
 
 ```haskell
