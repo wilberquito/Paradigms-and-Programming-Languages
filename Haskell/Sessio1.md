@@ -19,7 +19,7 @@ This criticism occurs in spite of the fact that C has not yet been invented.
 > 
 > Font: [A Brief, Incomplete, and Mostly Wrong History of programming languages](http://james-iry.blogspot.com/2009/05/brief-incomplete-and-mostly-wrong.html)
 
-Els fonaments de la programació funcional són notacions matemàtiques abstractes,
+Els fonaments de la programació funcional són notacions matemàtiques abstractes
 de càlcul que transcendeixen una implementació específica. Això
 ens porta cap a un mètode de programació que sovint resol problemes simplement 
 descrivint-los[^1]. 
