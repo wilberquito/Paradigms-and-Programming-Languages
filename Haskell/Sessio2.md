@@ -2,7 +2,7 @@
 
 ## Funcions d'ordre superior
 
-Les funcions poden prendre funcions com a paràmetres i també retornar funcions.
+Les funcions d'ordre superior són aquelles que reben una o més funcions com a paràmetre. 
 Són útils perquè permeten capturar esquemes computacionals generals (abstracció).
 
 Exemple:
