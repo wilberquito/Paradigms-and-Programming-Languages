@@ -1,33 +1,30 @@
-# Session 2
+# Sessió 2
 
-## Higher order functions
+## Funcions d'ordre superior
 
-Functions can take functions as parameters and also return functions.
-They are useful because they allow capturing general computational schemes (abstraction).
+Les funcions poden prendre funcions com a paràmetres i també retornar funcions.
+Són útils perquè permeten capturar esquemes computacionals generals (abstracció).
 
-Example:
+Exemple:
 
 ```haskell
-applyTwice :: (a -> a) -> a -> a
-applyTwice f x = f (f x)
+aplicaDosCops :: (a -> a) -> a -> a
+aplicaDosCops f x = f (f x)
 ```
 
-Notice the type declaration. In the majority of cases we don't need parentheses because
-`->` is naturally right-associative. However here, they are mandatory.
-They indicate that the first parameter is a function that takes something and returns that same thing.
+Fixeu-vos amb la declaració de tipus. En la majoria de casos no necessitem parèntesis. En aquest cas són necessàris (recordeu que 
+el constructor de tipus
+`->` és associatiu a la dreta).
+En aquest cas, s'indica que el primer paràmetre és una funció que rep un valor de tipus `a` i retorna un valor del mateix tipus `a`.
 
-The first parameter is a function (of type `a -> a`) and the second is that same `a`.
-The function can also be `Int -> Int` or `String -> String` or whatever.
-But then, the second parameter also has to be of that type.
 
 
 ## Lambdas
 
-Lambdas are basically anonymous functions that are used because we need some functions only once.
-Normally, we make a lambda with the sole purpose of passing it to a higher-order function.
-We usually surround them by parentheses, because otherwise they extend all the way to the right.
+Les expressions lambda són bàsicament funcions anònimes, que típicament es fan servir quan només volem fer servir la funció una vegada en un lloc puntual. Un cas freqüent és passar una expressió labmda a una funció d'ordre superior.
+Típicament les posem entre parèntesis, ja que altrament abarquen tot el que tenen a la dreta. 
 
-Example:
+Exemples:
 
 ```haskell
 GHCi> :t (\x -> x+1)
@@ -35,11 +32,6 @@ GHCi> :t (\x -> x+1)
 GHCi> (\x -> x+1) 10
 11
 ```
-
-You can create functions with more than one argument using lambda functions.
-
-Example:
-
 ```haskell
 GHCi> :t (\x y -> x+y)
 (\x y -> x+y) :: Num a => a -> a -> a
@@ -48,15 +40,13 @@ GHCi> (\x y -> x+y) 1 2
 GHCi>
 ```
 
-Using lambda functions with higher-order functions.
-
 Example:
 
 ```haskell
-GHCi> applyTwice f x = f (f x)
-GHCi> :t applyTwice
-applyTwice :: (a -> a) -> a -> a
-GHCi> applyTwice (\x -> x+1) 1
+GHCi> aplicaDosCops f x = f (f x)
+GHCi> :t aplicaDosCops
+aplicaDosCops :: (a -> a) -> a -> a
+GHCi> aplicaDosCops (\x -> x+1) 1
 3
 ```
 
