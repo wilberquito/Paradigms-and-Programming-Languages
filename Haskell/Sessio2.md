@@ -50,7 +50,7 @@ GHCi> aplicaDosCops (\x -> x+1) 1
 3
 ```
 
-## Partial application
+## Aplicació parcial
 
 If `f` is a function of `n` arguments and it is
 apply `k ≤ n` arguments with the appropriate types, the result is obtained
