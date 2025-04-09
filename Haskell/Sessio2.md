@@ -187,11 +187,11 @@ iter f base = fun
 Gràcies a capturar el patró dins d'una funció, podem definir les funcions anteriors de forma més compacta.
 
 ```haskell
-factorial' :: Integer -> Integer
-factorial' = iter (*) 1
+factorial :: Integer -> Integer
+factorial = iter (*) 1
 
-summation' :: Integer -> Integer
-summation' = iter (+) 0
+sumatori :: Integer -> Integer
+sumatori = iter (+) 0
 ```
 
 ## Polimorfisme
@@ -271,12 +271,12 @@ Vegem algunes funcions definides sobre una llista de qualsevol tipus.
 La funció està definida a un nivell tan alt d’abstracció que el tipus d’entrada concret
 simplement no entra en joc, però el resultat és d’un tipus particular (de vegades).
 
-#### Longitud
+#### Llargada
 
 ```haskell
 length :: [a] -> Int
 length []      = 0
-length (x:xs)  = 1 + length xs
+length (_:xs)  = 1 + llargada xs
 ```
 
 La funció `length` mostra polimorfisme paramètric perquè actua
@@ -322,186 +322,6 @@ GHCi> tail []
 ```
 
 
-
-## Capture of computation with higher-order functions
-
-A lot of function that works with numbers follow this scheme:
-
-- Base case: they return a base value
-- Recursive step: you compute the `n` step from the `n-1` step
-
-Example:
-
-```haskell
-factorial :: Integer -> Integer
-factorial 0 = 1
-factorial m = let n = m-1
-              in m * factorial n
-
-summation :: Integer -> Integer
-summation 0 = 0
-summation m = let n = m-1
-              in (+) m (summation n)
-```
-
-Both functions follows the scheme:
-
-```haskell
-fun :: Integer -> Integer
-fun 0 = ☆
-fun m = let n = m-1
-        in ◊ m (fun n)
-```
-
-From this we can create a higher-order function that capture the compute as follow:
-
-```haskell
-iter :: (Integer -> Integer -> Integer) ->
-        Integer -> Integer -> Integer
-iter f e = fun
-  where
-    fun :: Integer -> Integer
-    fun 0 = e
-    fun m = let n = m-1
-            in f m (fun n)
-```
-
-Thanks to capture the pattern into a function, we can define the previous functions more compact.
-
-```haskell
-factorial' :: Integer -> Integer
-factorial' = iter (*) 1
-
-summation' :: Integer -> Integer
-summation' = iter (+) 0
-```
-
-## Polymorphism
-
-Polymorphism refers to the phenomenon of something taking many forms.
-
-### The indentity function
-
-```haskell
-id :: a -> a
-id x = x
-```
-
-The identity function just returns its argument.
-
-```haskell
-GHCi> id 'd'
-'d'
-GHCi> id [1,2,0]
-[1,2,0]
-```
-
-The function seems a bit useless, but sometimes with higher-order functions
-it’s useful to have a function that does nothing.
-
-```haskell
-GHCi> filter id [True, False, True]
-[True, True]
-```
-
-### Tuples
-
-The functions `fst` and `snd` allows us to get components of tuples of pairs.
-
-You can notice these two function uses two type variables. This mean
-that the type of each component can be different, but it's not mandatory.
-
-```haskell
-:t fst
-fst :: (a, b) -> a
-:t snd
-snd :: (a, b) -> b
-```
-
-Examples:
-
-```haskell
-GHCi> fst (8,11)
-8
-GHCi> fst ("Wow", False)
-"Wow"
-GHCi> snd (8,11)
-11
-GHCi> snd ("Wow", False)
-False
-GHCi> snd ("Wow", False)
-False
-```
-
-Although you can create tuples of any number of components,
-the functions `fst` and `snd` only operates on pairs.
-
-```haskell
-GHCi> fst (1, True, "Eeeh")
-<interactive>:8:5: error:
-    • Couldn't match expected type ‘(a, b0)’
-                  with actual type ‘(a0, Bool, [Char])’
-    • In the first argument of ‘fst’, namely ‘(1, True, "Eeeh")’
-      In the expression: fst (1, True, "Eeeh")
-      In an equation for ‘it’: it = fst (1, True, "Eeeh")
-    • Relevant bindings include it :: a (bound at <interactive>:8:1)
-```
-
-### Lists
-
-Let's see some function defined on a list of any type.
-The function is defined at such a high level of abstraction that the precise input type
-simply never comes into play, yet the result is of a particular type (sometimes).
-
-#### Length
-
-```haskell
-length :: [a] -> Int
-length []      = 0
-length (x:xs)  = 1 + length xs
-```
-
-The length function exhibits parametric polymorphism because it acts
-uniformly on a range of types that share a common structure, in this case, lists.
-
-```haskell
-GHCi> :t length [1,2,3,4,5]
-length [1,2,3,4,5] :: Int
-GHCi> :t length' ['1','2','3','4','5']
-length ['1','2','3','4','5'] :: Int
-```
-
-#### Head
-
-To get the first element of a list you can use the `head` function.
-
-```haskell
-head :: [a] -> a
-head (x:_) = x
-```
-
-```haskell
-GHCi> head ["hello", "world", "!"]
-"hello"
-GHCi> head []
-*** Exception: Prelude.head: empty list
-```
-
-#### Tail
-
-To get the tail of the list you can use the function `tail`.
-
-```haskell
-tail :: [a] -> [a]
-tail (_:xs) = xs
-```
-
-```haskell
-GHCi> tail ["hello", "world", "!"]
-["world", "!"]
-GHCi> tail []
-*** Exception: Prelude.tail: empty list
-```
 
 #### Last
 
