@@ -142,6 +142,187 @@ Si (✶) és un operador, tenim les següents equivalències:
 (✶ y) ===> \x -> x ✶ y
 ```
 
+
+
+## Captura del càlcul amb funcions d'ordre superior
+
+Moltes funcions que treballen amb nombres segueixen aquest esquema:
+
+- Cas base: retornen un valor base
+- Pas recursiu: es calcula el pas `n` a partir del pas `n-1`
+
+Exemple:
+
+```haskell
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial n = (*) n ( factorial (n-1) )
+
+sumatori :: Integer -> Integer
+sumatori 0 = 0
+sumatori n = (+) n (sumatori (n-1) )
+
+```
+
+Ambdues funcions segueixen l'esquema:
+
+```haskell
+fun :: Integer -> Integer
+fun 0 = base
+fun n =  f n (fun (n-1))
+```
+
+A partir d'això podem crear una funció d'ordre superior que capturi aquest càlcul:
+
+```haskell
+iter :: (Integer -> Integer -> Integer) ->
+        Integer -> Integer -> Integer
+iter f base = fun
+  where
+    fun :: Integer -> Integer
+    fun 0 = e
+    fun n = f n (fun (n-1))
+```
+
+Gràcies a capturar el patró dins d'una funció, podem definir les funcions anteriors de forma més compacta.
+
+```haskell
+factorial' :: Integer -> Integer
+factorial' = iter (*) 1
+
+summation' :: Integer -> Integer
+summation' = iter (+) 0
+```
+
+## Polimorfisme
+
+El polimorfisme fa referència al fenomen d’alguna cosa que pot tenir moltes formes.
+
+### La funció identitat
+
+```haskell
+id :: a -> a
+id x = x
+```
+
+La funció identitat simplement retorna el seu argument.
+
+```haskell
+GHCi> id 'd'
+'d'
+GHCi> id [1,2,0]
+[1,2,0]
+```
+
+La funció pot semblar una mica inútil, però de vegades amb funcions d'ordre superior
+és útil tenir una funció que no faci res.
+
+```haskell
+GHCi> filter id [True, False, True]
+[True, True]
+```
+
+### Parells
+
+Les funcions `fst` i `snd` permeten obtenir els components d’un parell de valors.
+
+Podem veure que aquestes dues funcions fan servir dues variables de tipus. Això vol dir
+que el tipus de cada component pot ser diferent, però no és obligatori.
+
+```haskell
+:t fst
+fst :: (a, b) -> a
+:t snd
+snd :: (a, b) -> b
+```
+
+Exemples:
+
+```haskell
+GHCi> fst (8,11)
+8
+GHCi> fst ("Wow", False)
+"Wow"
+GHCi> snd (8,11)
+11
+GHCi> snd ("Wow", False)
+False
+GHCi> snd ("Wow", False)
+False
+```
+
+Tot i que pots crear tuples de qualsevol nombre de components,
+les funcions `fst` i `snd` només operen sobre parells.
+
+```haskell
+GHCi> fst (1, True, "Eeeh")
+<interactive>:8:5: error:
+    • Couldn't match expected type ‘(a, b0)’
+                  with actual type ‘(a0, Bool, [Char])’
+    • In the first argument of ‘fst’, namely ‘(1, True, "Eeeh")’
+      In the expression: fst (1, True, "Eeeh")
+      In an equation for ‘it’: it = fst (1, True, "Eeeh")
+    • Relevant bindings include it :: a (bound at <interactive>:8:1)
+```
+
+### Llistes
+
+Vegem algunes funcions definides sobre una llista de qualsevol tipus.
+La funció està definida a un nivell tan alt d’abstracció que el tipus d’entrada concret
+simplement no entra en joc, però el resultat és d’un tipus particular (de vegades).
+
+#### Longitud
+
+```haskell
+length :: [a] -> Int
+length []      = 0
+length (x:xs)  = 1 + length xs
+```
+
+La funció `length` mostra polimorfisme paramètric perquè actua
+de manera uniforme sobre una gamma de tipus que comparteixen una estructura comuna, en aquest cas, les llistes.
+
+```haskell
+GHCi> :t length [1,2,3,4,5]
+length [1,2,3,4,5] :: Int
+GHCi> :t length' ['1','2','3','4','5']
+length ['1','2','3','4','5'] :: Int
+```
+
+#### Capçalera
+
+Per obtenir el primer element d’una llista pots fer servir la funció `head`.
+
+```haskell
+head :: [a] -> a
+head (x:_) = x
+```
+
+```haskell
+GHCi> head ["hello", "world", "!"]
+"hello"
+GHCi> head []
+*** Exception: Prelude.head: empty list
+```
+
+#### Cua
+
+Per obtenir la resta de la llista pots fer servir la funció `tail`.
+
+```haskell
+tail :: [a] -> [a]
+tail (_:xs) = xs
+```
+
+```haskell
+GHCi> tail ["hello", "world", "!"]
+["world", "!"]
+GHCi> tail []
+*** Exception: Prelude.tail: empty list
+```
+
+
+
 ## Capture of computation with higher-order functions
 
 A lot of function that works with numbers follow this scheme:
