@@ -40,7 +40,7 @@ GHCi> (\x y -> x+y) 1 2
 GHCi>
 ```
 
-Example:
+Exemple:
 
 ```haskell
 GHCi> aplicaDosCops f x = f (f x)
@@ -49,63 +49,57 @@ aplicaDosCops :: (a -> a) -> a -> a
 GHCi> aplicaDosCops (\x -> x+1) 1
 3
 ```
-
 ## Aplicació parcial
 
-If `f` is a function of `n` arguments and it is
-apply `k ≤ n` arguments with the appropriate types, the result is obtained
-a new function that waits for the remaining `n − k` arguments.
+Si `f` és una funció de `n` arguments i s’hi apliquen `k ≤ n` arguments amb els tipus apropiats, s’obté com a resultat una nova funció que espera els `n − k` arguments restants.
 
-Example:
+Exemple:
 
 ```haskell
 fun :: Int -> Int -> Int -> Int
 fun x y z = x*(2*y + z)
 ```
 
-![Partial application example](./Img/partial-aplication.png)
+![Exemple d'aplicació parcial](./Img/partial-aplication.png)
 
-## Operators
+## Operadors
 
-Operators are functions of two arguments with a symbolic name.
-They are usually used in infix mode.
+Els operadors són funcions de dos arguments amb un nom simbòlic. Normalment s’utilitzen amb notació infixa.
 
-Example:
+Exemple:
 
 ```haskell
 GHCi> 1 + 2
 3
 ```
 
-But you can use them between parentheses.
+Però també es poden utilitzar amb notació prefixa si els posem entre parèntesis.
 
-Example:
+Exemple:
 
 ```haskell
 GHCi> (+) 1 2
 3
 ```
 
-A function with two arguments can be used in infix mode.
+I, al revés, una funció amb dos arguments es pot utilitzar amb notació infixa.
 
 ```haskell
 GHCi> 10 `div` 3
 3
 ```
 
-To define operators you can use one or multiple of this signs:
+Per definir operadors es poden utilitzar un o més dels següents símbols:
 
 ```haskell
 : ! # $ % & ∗ + . / < = > ? @ \ ∧ | − ∼
 ```
 
-An operator has it's own priority. The priority goes from `0` to `9`. The greater the number
-the greater the priority.
+Un operador té la seva pròpia prioritat. La prioritat va de `0` a `9`. Com més gran és el número, més gran és la prioritat.
 
-As well has operators has it's priority, it also has it's own asociativity. Left asociativity `infixl`,
-right asociativity `infixr` or none `infix`.
+A més a més de la prioritat, els operadors també tenen associativitat pròpia. Pot ser associativitat a l’esquerra `infixl`, a la dreta `infixr` o cap `infix`.
 
-Here you can see the GHCi operators definition.
+Aquí pots veure la definició dels operadors del GHCi.
 
 ```haskell
 infixr 9 .
@@ -122,13 +116,14 @@ infixl 1 >>, >>=
 infixr 1 =<<
 infixr 0 $, $!, ‘seq‘
 ```
+L'aplicació té prioritat 10. 
 
-We can create our own operators. Imagine we want to create the or exclusive operator.
+Podem crear els nostres propis operadors. Imagina que volem crear un operador xor.
 
-Example:
+Exemple:
 
 ```haskell
--- Define the type of asociativity and the priority
+-- Definim el tipus d’associativitat i la prioritat
 infixr 2 |||
 
 (|||) :: Bool -> Bool -> Bool
@@ -137,28 +132,14 @@ False ||| False = False
 _ ||| _         = True
 ```
 
-Finally, binary operators have sections. Sections are partially applied operators.
-The section of an operator is obtained by writing the
-operator and one of its arguments in parentheses. We obtein functions of one argument.
+Finalment, els operadors binaris tenen seccions. Les seccions són operadors parcialment aplicats. La secció d’un operador s’obté escrivint l’operador i un dels seus arguments entre parèntesis. S’obtenen funcions d’un sol argument.
 
-If (✶) is an operator, we have the following equivalences.
+Si (✶) és un operador, tenim les següents equivalències:
 
 ```haskell
 (✶)   ===> \x y -> x ✶ y
 (x ✶) ===> \y -> x ✶ y
 (✶ y) ===> \x -> x ✶ y
-```
-
-Example:
-
-```haskell
-GHCi> applyTwice f x = f (f x)
-GHCi> :t applyTwice
-applyTwice :: (a -> a) -> a -> a
-GHCi> applyTwice (\x -> x+1) 1
-3
-GHCi> applyTwice (+1) 1
-3
 ```
 
 ## Capture of computation with higher-order functions
