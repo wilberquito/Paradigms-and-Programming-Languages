@@ -124,75 +124,6 @@ Si (✶) és un operador, tenim les següents equivalències:
 (✶ y) ===> \x -> x ✶ y
 ```
 
-## Funcions d'ordre superior
-
-Les funcions d'ordre superior són aquelles que reben una o més funcions com a paràmetre. 
-Són útils perquè permeten capturar esquemes computacionals generals (abstracció).
-
-Exemple:
-
-```haskell
-aplicaDosCops :: (a -> a) -> a -> a
-aplicaDosCops f x = f (f x)
-```
-
-Fixeu-vos amb la declaració de tipus. En la majoria de casos no necessitem parèntesis. En aquest cas són necessàris (recordeu que 
-el constructor de tipus
-`->` és associatiu a la dreta).
-En aquest cas, s'indica que el primer paràmetre és una funció que rep un valor de tipus `a` i retorna un valor del mateix tipus `a`.
-
-
-
-## Captura del càlcul amb funcions d'ordre superior
-
-Moltes funcions que treballen amb nombres segueixen aquest esquema:
-
-- Cas base: retornen un valor base
-- Pas recursiu: es calcula el pas `n` a partir del pas `n-1`
-
-Exemple:
-
-```haskell
-factorial :: Integer -> Integer
-factorial 0 = 1
-factorial n = (*) n ( factorial (n-1) )
-
-sumatori :: Integer -> Integer
-sumatori 0 = 0
-sumatori n = (+) n (sumatori (n-1) )
-
-```
-
-Ambdues funcions segueixen l'esquema:
-
-```haskell
-fun :: Integer -> Integer
-fun 0 = base
-fun n =  f n (fun (n-1))
-```
-
-A partir d'això podem crear una funció d'ordre superior que capturi aquest càlcul:
-
-```haskell
-iter :: (Integer -> Integer -> Integer) ->
-        Integer -> Integer -> Integer
-iter f base = fun
-  where
-    fun :: Integer -> Integer
-    fun 0 = e
-    fun n = f n (fun (n-1))
-```
-
-Gràcies a capturar el patró dins d'una funció, podem definir les funcions anteriors de forma més compacta.
-
-```haskell
-factorial :: Integer -> Integer
-factorial = iter (*) 1
-
-sumatori :: Integer -> Integer
-sumatori = iter (+) 0
-```
-
 ## Polimorfisme
 
 El polimorfisme fa referència al fenomen d’alguna cosa que pot tenir moltes formes.
@@ -363,7 +294,78 @@ infix 5 ++
 (x:xs) ++ ys  = x : (xs ++ ys)
 ```
 
-#### Map
+
+## Funcions d'ordre superior
+
+Les funcions d'ordre superior són aquelles que reben una o més funcions com a paràmetre. 
+Són útils perquè permeten capturar esquemes computacionals generals (abstracció).
+
+Exemple:
+
+```haskell
+aplicaDosCops :: (a -> a) -> a -> a
+aplicaDosCops f x = f (f x)
+```
+
+Fixeu-vos amb la declaració de tipus. En la majoria de casos no necessitem parèntesis. En aquest cas són necessàris (recordeu que 
+el constructor de tipus
+`->` és associatiu a la dreta).
+En aquest cas, s'indica que el primer paràmetre és una funció que rep un valor de tipus `a` i retorna un valor del mateix tipus `a`.
+
+
+
+### Captura del càlcul amb funcions d'ordre superior
+
+Moltes funcions que treballen amb nombres segueixen aquest esquema:
+
+- Cas base: retornen un valor base
+- Pas recursiu: es calcula el pas `n` a partir del pas `n-1`
+
+Exemple:
+
+```haskell
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial n = (*) n ( factorial (n-1) )
+
+sumatori :: Integer -> Integer
+sumatori 0 = 0
+sumatori n = (+) n (sumatori (n-1) )
+
+```
+
+Ambdues funcions segueixen l'esquema:
+
+```haskell
+fun :: Integer -> Integer
+fun 0 = base
+fun n =  f n (fun (n-1))
+```
+
+A partir d'això podem crear una funció d'ordre superior que capturi aquest càlcul:
+
+```haskell
+iter :: (Integer -> Integer -> Integer) ->
+        Integer -> Integer -> Integer
+iter f base = fun
+  where
+    fun :: Integer -> Integer
+    fun 0 = e
+    fun n = f n (fun (n-1))
+```
+
+Gràcies a capturar el patró dins d'una funció, podem definir les funcions anteriors de forma més compacta.
+
+```haskell
+factorial :: Integer -> Integer
+factorial = iter (*) 1
+
+sumatori :: Integer -> Integer
+sumatori = iter (+) 0
+```
+
+
+### Map
 
 La funció `map` rep com a paràmetre una funció com a primer argument, una llista com a segon argument, i retorna la llista resultant d'aplicar la funció a cadascun dels elements de la llista original.
 
@@ -386,7 +388,7 @@ GHCi> map fst [(1,2),(3,5),(6,3),(2,6),(2,5)]
 [1,3,6,2,2]
 ```
 
-#### Filter
+### Filter
 
 `filter` és una funció que rep com a primer paràmetre una funció Booleana (un predicat) i com a segon paràmetre una llista, i retorna la sub-llista d'elements que satisfan el predicat.
 
