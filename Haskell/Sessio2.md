@@ -364,30 +364,6 @@ sumatori :: Integer -> Integer
 sumatori = iter (+) 0
 ```
 
-
-### Map
-
-La funció `map` rep com a paràmetre una funció com a primer argument, una llista com a segon argument, i retorna la llista resultant d'aplicar la funció a cadascun dels elements de la llista original.
-
-```haskell
-map :: (a -> b) -> [a] -> [b]
-map _ [] = []
-map f (x:xs) = f x : map f xs
-```
-
-```haskell
-GHCi> map (+3) [1,5,3,1,6]
-[4,8,6,4,9]
-GHCi> map (++ "!") ["BIFF", "BANG", "POW"]
-["BIFF!","BANG!","POW!"]
-GHCi> map (replicate 3) [3..6]
-[[3,3,3],[4,4,4],[5,5,5],[6,6,6]]
-GHCi> map (map (^2)) [[1,2],[3,4,5,6],[7,8]]
-[[1,4],[9,16,25,36],[49,64]]
-GHCi> map fst [(1,2),(3,5),(6,3),(2,6),(2,5)]
-[1,3,6,2,2]
-```
-
 ### Filter
 
 `filter` és una funció que rep com a primer paràmetre una funció Booleana (un predicat) i com a segon paràmetre una llista, i retorna la sub-llista d'elements que satisfan el predicat.
@@ -413,6 +389,30 @@ GHCi> let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[
 GHCi> filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
 "uagameasadifeent"
 ```
+
+### Map
+
+La funció `map` rep com a paràmetre una funció com a primer argument, una llista com a segon argument, i retorna la llista resultant d'aplicar la funció a cadascun dels elements de la llista original.
+
+```haskell
+map :: (a -> b) -> [a] -> [b]
+map _ [] = []
+map f (x:xs) = f x : map f xs
+```
+
+```haskell
+GHCi> map (+3) [1,5,3,1,6]
+[4,8,6,4,9]
+GHCi> map (++ "!") ["BIFF", "BANG", "POW"]
+["BIFF!","BANG!","POW!"]
+GHCi> map (replicate 3) [3..6]
+[[3,3,3],[4,4,4],[5,5,5],[6,6,6]]
+GHCi> map (map (^2)) [[1,2],[3,4,5,6],[7,8]]
+[[1,4],[9,16,25,36],[49,64]]
+GHCi> map fst [(1,2),(3,5),(6,3),(2,6),(2,5)]
+[1,3,6,2,2]
+```
+
 
 ## Aplicació amb l'operador $
 
