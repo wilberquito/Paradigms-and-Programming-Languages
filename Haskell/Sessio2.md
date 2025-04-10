@@ -321,9 +321,9 @@ GHCi> tail []
 *** Exception: Prelude.tail: empty list
 ```
 
-#### Last
+#### Últim
 
-To get the last element of a list, you can use the function `last`.
+Per obtenir l'últim element d'una llista, podem fer servir la funció `last`.
 
 ```haskell
 last :: [a] -> a
@@ -338,7 +338,7 @@ GHCi> last []
 *** Exception: Prelude.last: empty list
 ```
 
-To get all elements except the last one, you can use the function `init`.
+La funció `init` retorna tots els elements menys l'últim.
 
 ```haskell
 init :: [a] -> [a]
@@ -353,9 +353,9 @@ GHCi> init []
 *** Exception: Prelude.tail: empty list
 ```
 
-#### Concatenation
+#### Concatenació
 
-You can concatenate lists using the operator `++`.
+L'operador de concatenació és el `++`.
 
 ```haskell
 infix 5 ++
@@ -364,11 +364,9 @@ infix 5 ++
 (x:xs) ++ ys  = x : (xs ++ ys)
 ```
 
-#### Association
+#### Map
 
-To produce a new list from a list, you can use the `map` function that takes a function as it's first argument
-and a list and applies that function to every element in the list,
-producing a new list.
+La funció `map` rep com a paràmetre una funció com a primer argument, una llista com a segon argument, i retorna la llista resultant d'aplicar la funció a cadascun dels elements de la llista original.
 
 ```haskell
 map :: (a -> b) -> [a] -> [b]
@@ -389,11 +387,10 @@ GHCi> map fst [(1,2),(3,5),(6,3),(2,6),(2,5)]
 [1,3,6,2,2]
 ```
 
-#### Filters
+#### Filter
 
-`filter` is a function that takes a predicate (a predicate is a function that
-tells whether something is true or not)
-and a list and then returns the list of elements that satisfy the predicate.
+`filter` és una funció que rep com a primer paràmetre una funció Booleana (un predicat) i com a segon paràmetre una llista, i retorna la sub-llista d'elements que satisfan el predicat.
+
 
 ```haskell
 filter :: (a -> Bool) -> [a] -> [a]
@@ -416,10 +413,10 @@ GHCi> filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
 "uagameasadifeent"
 ```
 
-> Which type does the following expression has?
+> Quin és el tipus de l'expressió següent?
 `let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]`
 
-## Function application with $ operator
+## Aplicació amb l'operador $
 
 ```haskell
 infixr 0 $
@@ -427,10 +424,7 @@ infixr 0 $
 f $ x = f x
 ```
 
-It's just function application... Well, almost,
-but not quite! Whereas normal function application
-(putting a space between two things) has a really high precedence,
-the `$` function has the lowest precedence.
+Recordeu que l'aplicació té prioritat màxima. En canvi, si posem l'operador `$` entre la funció i el paràmetre, passa a tenir prioritat mínima. També canvia l'associativitat: l'aplicació normal (separada per espais) és associativa a l'esquerra, i l'operador `$` és associatiu a la dreta.
 
 Function application with space, is left-associative meanwhile function
 application with `$` is right-associative.
