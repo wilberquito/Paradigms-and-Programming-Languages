@@ -413,9 +413,6 @@ GHCi> filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
 "uagameasadifeent"
 ```
 
-> Quin és el tipus de l'expressió següent?
-`let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]`
-
 ## Aplicació amb l'operador $
 
 ```haskell
@@ -426,16 +423,12 @@ f $ x = f x
 
 Recordeu que l'aplicació té prioritat màxima. En canvi, si posem l'operador `$` entre la funció i el paràmetre, passa a tenir prioritat mínima. També canvia l'associativitat: l'aplicació normal (separada per espais) és associativa a l'esquerra, i l'operador `$` és associatiu a la dreta.
 
-Function application with space, is left-associative meanwhile function
-application with `$` is right-associative.
 
-For example, what if I want to compute the `sqrt` of `3 + 4 + 9`, we can't
-write `sqrt 3 + 4 + 9` because `sqrt` would be applied to the first argument
-which is 3. We could have write `sqrt (3 + 4 +9)` or if we use `$` we can
-write it like `sqrt $ 3 + 4 + 9`.
+Per exemple, si volem calcular l'arrel quadrada de `3 + 4 + 9`, no podem escriure 
+`sqrt 3 + 4 + 9`, perquè `sqrt` només s'aplicaria al primer agument, que és 3. 
+Podem escriure `sqrt (3 + 4 +9)`, o bé, `sqrt $ 3 + 4 + 9`.
 
-Appart from getting rid of parentheses, `$` means that function application can be
-treated just like another function.
+El `$` també ens permet fer coses com la següent:
 
 
 ```haskell
@@ -443,15 +436,12 @@ GHCi> map ($ 3) [(4+), (10*), (^2), sqrt]
 [7.0,30.0,9.0,1.7320508075688772]
 ```
 
-## Function composition
+## Composició
 
-In mathematics, function composition is defined like this:
-`(fℴg)(x) = f(g(x))`, meaning that composing two functions
-produces a new function that, when called with a parameter,
-say `x`, is the equivalent of calling `g` with the parameter `x`
-and then calling `f` with that result.
+En matemàtiques, la composició de funcions es defineix així:
+`(fℴg)(x) = f(g(x))`. És a dir, composar dues funcions produeix una nova funció, equivalent a passar el retorn de la segona funció com a paràmetre de la primera. 
 
-In Haskell function composition is denoted with `.`.
+Amb Haskell, l'operador de composició és `.`:
 
 ```haskell
 infixr 9 .
@@ -459,10 +449,10 @@ infixr 9 .
 f . g = \x -> f (g x)
 ```
 
-- The result of composing `f` and `g` is another function `f.g :: a -> c`
-- The type result of `g` must match with the input type of `f`, otherwise composition fails.
+- El resultat de composar `f` i `g` és una nova funció  `f.g :: a -> c`
+- El tipus de retorn de `g` ha de ser el mateix que el tipus del paràmetre de `f`, altrament tenim error de tipus.
 
-Example:
+Exemple:
 
 ```haskell
 GHCi> map (\x -> negate (abs x)) [5,-3,-6,7,-3,2,-19,24]
@@ -475,7 +465,7 @@ GHCi> map (negate . sum . tail) [[1..5],[3..6],[1..7]]
 [-14,-15,-27]
 ```
 
-## Your turn to practice
+## El vostre torn
 
 ```
 -- Ex 1: defineix els operadors --> , <--> (implicacio i equivalencia)
@@ -486,35 +476,28 @@ GHCi> map (negate . sum . tail) [[1..5],[3..6],[1..7]]
 ```
 
 ```haskell
--- Ex 2: define a version of map that takes three arguments: a function
--- and two lists. It returns a list. Example:
+-- Ex 2: defineix una versió del map que rep tres paràmetres: una funció i dues llistes. Retorna la llista resultant d'aplicar la funció als elements d'el mateix índex de les dues llistes. Exemple:
 --
 --   map2 f [x,y,z,w] [a,b,c]  ==> [f x a, f y b, f z c]
 --
--- If the lists have differing lengths, ignore the trailing elements
--- of the longer list.
+-- Si les llistes tenen llargada diferent, s'ignoren els elements que sobren al final de la llista més llarga.
 --
--- Use recursion and pattern matching.
+-- Fes servir pattern matching.
 --
--- Create some function that uses `map2` and use a lambda expression
--- as first parameter of `map2`
+-- Crea alguna funció que utilitzi `map2` i tingui una lambda expressió com a primer paràmetre. 
 --
--- Create some function that uses `map2` and use a built in operator
--- as first parameter of `map2`
+-- Crea alguna funció que utilitzi `map2` i tingui algun operador pre-definit com a primer paràmetre.
 
-map2 = undefined
 ```
 
 ```haskell
--- Ex 3: implement the function maybeMap, which works a bit like a
--- combined map & filter.
+-- Ex 3: Implementa la funció maybeMap, que fa una barreja entre un map i un filter.
 ---
--- maybeMap is given a list ([a]) and a function of type a -> Maybe b.
--- This function is called for all values in the list. If the function
--- returns Just x, x will be in the result list. If the function
--- returns Nothing, no value gets added to the result list.
+-- Donada una llista ([a]) i una funció de tipus a -> Maybe b, retorna una llista ([b])
+-- Per cada element de la llista, si la funció retorna Nothing, s'exclou l'element del resultat,
+-- altrament (retorna Just x) s'inclou x al resultat.
 --
--- Examples:
+-- Exemples:
 --
 -- let f x = if x>0 then Just (2*x) else Nothing
 -- in maybeMap f [0,1,-1,4,-2,2]
@@ -526,5 +509,4 @@ map2 = undefined
 -- maybeMap (\x -> Nothing) [1,2,3]
 --   ==> []
 
-maybeMap = undefined
 ```
