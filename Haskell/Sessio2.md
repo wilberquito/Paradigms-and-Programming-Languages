@@ -1,23 +1,5 @@
 # Sessió 2
 
-## Funcions d'ordre superior
-
-Les funcions d'ordre superior són aquelles que reben una o més funcions com a paràmetre. 
-Són útils perquè permeten capturar esquemes computacionals generals (abstracció).
-
-Exemple:
-
-```haskell
-aplicaDosCops :: (a -> a) -> a -> a
-aplicaDosCops f x = f (f x)
-```
-
-Fixeu-vos amb la declaració de tipus. En la majoria de casos no necessitem parèntesis. En aquest cas són necessàris (recordeu que 
-el constructor de tipus
-`->` és associatiu a la dreta).
-En aquest cas, s'indica que el primer paràmetre és una funció que rep un valor de tipus `a` i retorna un valor del mateix tipus `a`.
-
-
 
 ## Lambdas
 
@@ -141,6 +123,23 @@ Si (✶) és un operador, tenim les següents equivalències:
 (x ✶) ===> \y -> x ✶ y
 (✶ y) ===> \x -> x ✶ y
 ```
+
+## Funcions d'ordre superior
+
+Les funcions d'ordre superior són aquelles que reben una o més funcions com a paràmetre. 
+Són útils perquè permeten capturar esquemes computacionals generals (abstracció).
+
+Exemple:
+
+```haskell
+aplicaDosCops :: (a -> a) -> a -> a
+aplicaDosCops f x = f (f x)
+```
+
+Fixeu-vos amb la declaració de tipus. En la majoria de casos no necessitem parèntesis. En aquest cas són necessàris (recordeu que 
+el constructor de tipus
+`->` és associatiu a la dreta).
+En aquest cas, s'indica que el primer paràmetre és una funció que rep un valor de tipus `a` i retorna un valor del mateix tipus `a`.
 
 
 
