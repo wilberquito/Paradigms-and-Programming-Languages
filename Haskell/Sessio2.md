@@ -1,7 +1,7 @@
 # Sessió 2
 
 
-## Lambdas
+## Lambdes
 
 Les expressions lambda són bàsicament funcions anònimes, que típicament es fan servir quan només volem fer servir la funció una vegada en un lloc puntual. Un cas freqüent és passar una expressió labmda a una funció d'ordre superior.
 Típicament les posem entre parèntesis, ja que altrament abarquen tot el que tenen a la dreta. 
@@ -452,6 +452,7 @@ f . g = \x -> f (g x)
 
 - El resultat de composar `f` i `g` és una nova funció  `f.g :: a -> c`
 - El tipus de retorn de `g` ha de ser el mateix que el tipus del paràmetre de `f`, altrament tenim error de tipus.
+- La composició és associativa a la dreta
 
 Exemple:
 
