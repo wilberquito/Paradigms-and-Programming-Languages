@@ -41,8 +41,8 @@ El següent exemple mostra la sintaxi d'un conjunt per comprensió:
 ![setnotation](Img/setnotation.png)
 
 - La part anterior a la barra vertical és la funció de sortida.
-- `x` és una variable que prendrà, un per un, els valors de conjunt original `N`
-- `x <= 10` és un predicat
+- `x` és una variable que prendrà els valors de conjunt original `N`.
+- `x <= 10` és un predicat.
 
 Aquesta expressió matemàtica genera un conjunt que conté el doble de tots els naturals més petits o iguals que 10.
 
