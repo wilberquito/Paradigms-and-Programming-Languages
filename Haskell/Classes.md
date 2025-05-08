@@ -165,7 +165,7 @@ class Read a where
 ```
 
 ```haskell
--- Ex 5: below you'll find a way of representing
+-- Exercise: below you'll find a way of representing
 -- calculator operations.
 --
 -- -- Your task is to add:
