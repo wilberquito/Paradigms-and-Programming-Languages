@@ -164,3 +164,27 @@ class Read a where
     read :: (Read a) => String -> a
 ```
 
+```haskell
+-- Ex 5: below you'll find a way of representing
+-- calculator operations.
+--
+-- -- Your task is to add:
+--  * create a typeclass `Calculator`
+--  which declares a function `compute` an
+--  the function `show'`
+--
+--  * Make the type `Operation` instance of `Calculator`
+--
+-- Examples:
+--   compute (Multiply 2 3) ==> 6
+--   show' (Add 2 3) ==> "2+3"
+--   show' (Multiply 4 5) ==> "4*5"
+--   show' (Subtract 2 3) ==> "2-3"
+--   show' (Multiply 4 5) ==> "4*5"
+
+data Operation =  Add Int Int
+                | Subtract Int Int
+                | Multiply Int Int
+  deriving Show
+```
+
