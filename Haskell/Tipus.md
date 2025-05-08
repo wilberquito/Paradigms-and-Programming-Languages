@@ -298,3 +298,32 @@ we can do this:
 ```haskell
 type AssocList k v = [(k,v)]
 ```
+
+
+## Your time to practice
+
+
+```haskell
+-- Exercise: you'll find below the types Time, Distance and Velocity,
+-- which represent time, distance and velocity in seconds, meters and
+-- meters per second.
+--
+-- Implement the functions below.
+
+data Distance = Distance Double
+  deriving (Show,Eq)
+
+data Time = Time Double
+  deriving (Show,Eq)
+
+data Velocity = Velocity Double
+  deriving (Show,Eq)
+
+-- velocity computes a velocity given a distance and a time
+velocity :: Distance -> Time -> Velocity
+velocity = undefined
+
+-- travel computes a distance given a velocity and a time
+travel :: Velocity -> Time -> Distance
+travel = undefined
+```
