@@ -63,7 +63,7 @@ GHCi> boomBangs [1..20]
 ```
 
 Podem incloure diversos predicats.
-Si volguéssim tots els nombres del 10 al 20 que no són el 13, 15 o 19, faríem:
+Si volguéssim el doble de tots els nombres del 10 al 20 que no són el 13, 15 o 19, faríem:
 
 
 
