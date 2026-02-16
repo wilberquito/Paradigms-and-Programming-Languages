@@ -1,4 +1,4 @@
-# Sessió 1  [^1][^2]
+# Sessió 1
 
 El nom Prolog deriva del francès _PROgramation LOGique_. És un llenguatge de programació declaratiu basat en lògica.
 
@@ -304,12 +304,4 @@ Representeu mitjançant fets el següent graf, i definiu les regles `clique3(A,B
   Podeu definir una noció d'ordre a les arestes, i fer que la solució sigui ordenada.
 </details>
 
-
-[^1]: [tutorialspoint](https://www.tutorialspoint.com/prolog)
-[^2]: [learnprolog](http://www.let.rug.nl/bos/lpn//lpnpage.php?pagetype=html&pageid=lpn-htmlse1)
-
-
-**Agraïments: Wilber Quito, autor de la primera versió del material.**
-
 Mireu també les primeres 13 transparències del PdF.
-
