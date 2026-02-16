@@ -238,11 +238,9 @@ La consulta `? parent(tom,Y).` es demostrarà:
     
   - Després es provarà de demostrar amb `r2` unificant $\\{X2 \rightarrow tom, \ Y \rightarrow Y2\\}$. Això implica demostrar `mother(tom,Y2)`, que no és demostrable ni amb `f4` ni amb `f5`(no podem unificar $\\{tom \rightarrow ann\\}$).
 
-La consulta `? siblings(X,Y).` es demostrarà amb `r4` unificant $\{X \rightarrow X4, \, Y \rightarrow Y4\}$. Això implica demostrar, **en aquest ordre**, `parent(Z4,X4).`, `parent(Z4,Y4)`, `X4\=Y4`.
+La consulta `? siblings(X,Y).` es demostrarà amb `r4` unificant $\\{X \rightarrow X4, \ Y \rightarrow Y4\\}$. Això implica demostrar, **en aquest ordre**, `parent(Z4,X4)`, `parent(Z4,Y4)`, `X4\=Y4`.
 
-En Prolog podem tracejar l'execució. Per entrar en el mode de *tracing*, escriurem `trace.` Per sortir del mode de *tracing*, entreu `notrace.`. El següent exemple mostra quins fets i quines regles s'utilitzen i quines unificacions es fan per deduir que en Jack i la Lisa són germans
-amb la consulta `siblings(X,Y).`
-
+En Prolog podem tracejar l'execució. Per entrar en el mode de *tracing*, escriurem `trace.` Per sortir del mode de *tracing*, entreu `notrace.`. El següent exemple mostra quins fets i quines regles s'utilitzen i quines unificacions es fan per deduir que en Jack i la Lisa són germans amb la consulta `siblings(X,Y).`
 
 ![Trace](Img/trace.png)
 
@@ -281,9 +279,7 @@ Quin és el comportament en cada cas? Sabrieu dir per què? Feu servir el tracer
 
 ### Els simpson
 
-### [els_simpsons.pl](Examples/els_simpson.pl)
-
-Donada la base de coneixement de `els_simpsons.pl`, definiu les regles següents:
+Donada la base de coneixement de [`els_simpsons.pl`](Examples/els_simpson.pl), definiu les regles següents:
 
 - ancestre
 - avi
