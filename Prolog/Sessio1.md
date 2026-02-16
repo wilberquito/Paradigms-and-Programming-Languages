@@ -36,9 +36,9 @@ En Prolog especificarem quin problema volem resoldre i no com el volem resoldre.
 
 ## Prolog: definició del llenguatge
 
-Prolog és particularment útil per fer programes de manipulació simbòlia, i per tant és un bon candidat per aplicacions d'intel·ligència artificial on la manipulació simbòlica i la inferència siguin tasques fonamentals.
+Prolog és particularment útil per fer programes de manipulació simbòlica, i per tant és un bon candidat per aplicacions d'intel·ligència artificial on la manipulació simbòlica i la inferència siguin tasques fonamentals.
 
-Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
+Per exemplificar la simplicitat del llenguatge i els seus tres elements principals farém ús de la base de coneixment []() 
 
 - **Fets**: són àtoms lògics (típicament predicats relacionant diversos elements) que són certs. Per exemple, el següent fet expressa _"En Tom és el pare d'en Jack"_.
 
@@ -49,8 +49,8 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   El significat que donem a un fet és una decisió del programador. El fet anterior podria tenir la lectura alternativa _"el pare d'en Tom és en Jack"_. Per això és **molt recomanable** afegir comentaris sobre com llegir els predicats del programa. Per exemple:
 
   ```prolog
-  % father(X,Y) : X es el pare de Y
-  father(tom, jack).
+  % father(X, Y) : X es el pare de Y
+  father(tom,jack).
   ```
 
   De fet, **Prolog ignora el significat dels fets, només en detecta l'estructura sintàctica**. Fixeu-vos que això és una propietat comuna de qualsevol llenguatge de programació. Per exemple, en un programa en C++, llevat de paraules clau del llenguatge (_if_, _bool_, ...), sempre podem reanomenar les variables, funcions, etc., sempre que siguem consistents amb totes les ocurrències dintre de l'àmbit. Semblantment, el fet anterior es podria reanomenar com a:
@@ -107,7 +107,7 @@ Prolog destaca per la simplicitat del llenguatge. Té tres elements principals:
   Exemple: existeix algú (alguna X) que sigui el pare d'en Jack i d'en Will?
 
   ```prolog
-  father(X, jack),father(X,will).
+  father(X, jack), father(X, will).
   no
   ```
 
