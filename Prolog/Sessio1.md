@@ -26,8 +26,8 @@ ${\displaystyle u(X,Y)}$ :- ${\displaystyle p(X), q(Y), t(X,Y).}$
 
 ## Programació Lògica vs Programació Imperativa
 
-En programació imperativa, un programa consisteix en una seqüència de procediments que s'executen de manera ordenada. Tenim també estructures alternatives (_if-else_) i repetitives (_loops_). 
-Per altra banda, en programació lògica, un programa consisteix en una base de coneixement o teoria. 
+En programació imperativa, un programa consisteix en una seqüència de procediments que s'executen de manera ordenada. Tenim també estructures alternatives (_if-else_) i repetitives (_loops_).
+Per altra banda, en programació lògica, un programa consisteix en una base de coneixement o teoria.
 Un mecanisme subjacent de raonament trobarà resposta a les nostres consultes basant-se en la base de coneixement.
 
 ![logic-vs-procedural](Img/logic_imperative_programming.jpg)
@@ -38,14 +38,14 @@ En Prolog especificarem quin problema volem resoldre i no com el volem resoldre.
 
 Prolog és particularment útil per fer programes de manipulació simbòlica, i per tant és un bon candidat per aplicacions d'intel·ligència artificial on la manipulació simbòlica i la inferència siguin tasques fonamentals.
 
-Per exemplificar la simplicitat del llenguatge i els seus tres elements principals farém ús de la base de coneixment []() 
+Per exemplificar la simplicitat del llenguatge i els seus tres elements principals farém ús de la base de coneixement [`family.pl`](Examples/family.pl).
 
 - **Fets**: són àtoms lògics (típicament predicats relacionant diversos elements) que són certs. Per exemple, el següent fet expressa _"En Tom és el pare d'en Jack"_.
 
   ```prolog
   father(tom, jack).
   ```
-  
+
   El significat que donem a un fet és una decisió del programador. El fet anterior podria tenir la lectura alternativa _"el pare d'en Tom és en Jack"_. Per això és **molt recomanable** afegir comentaris sobre com llegir els predicats del programa. Per exemple:
 
   ```prolog
@@ -67,8 +67,8 @@ Per exemplificar la simplicitat del llenguatge i els seus tres elements principa
   ```prolog
   grandfather(X, Y) :- father(X, Z), parent(Z, Y).
   ```
-  
-  Fixeu-vos que normalment les regles contenen **variables** (identificadors que comencen en majúscula). Les variables estan quantificades universalment. És a dir, s'ha de llegir com: *per tot valor de X, Y i Z, si X és el pare de Z i Z és el progenitor de Y, llavors X és l'avi de Y*. **Dues variables diferents poden unificar a un mateix valor**. Si ho volem evitar, ho hem d'especificar explícitament al cos:
+
+  Fixeu-vos que normalment les regles contenen **variables** (identificadors que comencen en majúscula). Les variables estan quantificades universalment. És a dir, s'ha de llegir com: *"per tot valor de X, Y i Z, si X és el pare de Z i Z és el progenitor de Y, llavors X és l'avi de Y"*. **Dues variables diferents poden unificar a un mateix valor**. Si ho volem evitar, ho hem d'especificar explícitament al cos:
 
   ```prolog
     siblings(X, Y) :- parent(Z, X), parent(Z, Y), X\=Y.
@@ -87,9 +87,9 @@ Per exemplificar la simplicitat del llenguatge i els seus tres elements principa
     parent(X, Y) :- mother(X, Y).
     ```
 
-- **Consultes**: També *queries* o *objectius*. Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: _existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta conjunció d'àtoms?_
+- **Consultes**: També *queries* o *objectius*. Donada una base de coneixement, formada per fets i regles, per executar un programa farem una *consulta*. A les consultes les variables estan quantificades existencialment. És a dir, fem la pregunta: _"existeix algun valor per cadascuna de les variables tal que es pugui demostrar aquesta conjunció d'àtoms?"_
 
-  Exemple: existeix algú (alguna X) que sigui el pare d'en Jack?
+  _Existeix algú (alguna X) que sigui el pare d'en Jack?_
 
     ```prolog
     father(X, jack).
@@ -97,17 +97,17 @@ Per exemplificar la simplicitat del llenguatge i els seus tres elements principa
     yes
     ```
 
-  Exemple: existeix algú (alguna X) que sigui el pare d'en Will?
+  _Existeix algú (alguna X) que sigui el pare d'en Wil?_
 
   ```prolog
-  father(X, will).
+  father(X, wil).
   no
   ```
 
-  Exemple: existeix algú (alguna X) que sigui el pare d'en Jack i d'en Will?
+  _Existeix algú (alguna X) que sigui el pare d'en Jack i d'en Wil?_
 
   ```prolog
-  father(X, jack), father(X, will).
+  father(X, jack), father(X, wil).
   no
   ```
 
@@ -159,7 +159,7 @@ hates(dog,fox).
 hates(peter,tom).
 ```
 
-Podem sortir de l'intèrpret amb `halt.`.
+Nota: fent ús de la comanda `halt.` podem sortir de l'intèrpret.
 
 ## És el vostre torn (I)
 
@@ -211,15 +211,15 @@ Quan fem una consulta, l'intèrpret de Prolog intentarà demostrar que és _cons
 
 **Per fer demostrar un àtom amb un fet o una regla, les variables involucrades han de ser __unificables__.**
 
-En l'exemple següent s'ha donat un nom diferent a les variables de regles diferents per il·lustrar
+L'exemple següent és una variació de la base de coneixement [`family.pl`](Examples/family.pl) on s'ha donat un noms diferents a les variables de les regles per il·lustrar
 que en realitat són variables diferents que cal unificar, però recordeu que podem repetir noms.
-De fet, també cal unificar les variables involucrades en diferents crides recursives d'una mateixa regla.
+De fet, també cal unificar les variables involucrades en diferents crides recursives d'una mateixa regla!
 
 
 ```prolog
 father(tom,jack). %f1
 father(tom,lisa). %f2
-father(will,tom). %f3
+father(wil,tom).  %f3
 mother(ann,tom).  %f4
 mother(ann,john). %f5
 parent(X1,Y1):-father(X1,Y1). %r1
@@ -228,14 +228,14 @@ grandfather(X3,Y3):-father(X3,Z3),parent(Z3,Y3).     %r3
 siblings(X4,Y4):-parent(Z4,X4),parent(Z4,Y4),X4\=Y4. %r4
 ```
 
-La consulta `? father(X,Y).` primer es demostrarà amb `f1` i unificant $\\{X \rightarrow tom, \ Y \rightarrow jack\\}$. Si demanem més solucions es demostrarà amb `f2` unificant $\\{X \rightarrow tom, \ Y \rightarrow lisa\\}$, i finalment amb `f3` unificant $\\{X \rightarrow will, \ Y \rightarrow tom\\}$.
+La consulta `? father(X,Y).` primer es demostrarà amb `f1` i unificant $\\{X \rightarrow tom, \ Y \rightarrow jack\\}$. Si demanem més solucions es demostrarà amb `f2` unificant $\\{X \rightarrow tom, \ Y \rightarrow lisa\\}$, i finalment amb `f3` unificant $\\{X \rightarrow wil, \ Y \rightarrow tom\\}$.
 
-La consulta `? father(tom,X).` només es demostrarà amb `f1` i `f2`, però no amb `f3` perquè NO podem unificar $\\{tom \rightarrow will\\}$.
+La consulta `? father(tom,X).` només es demostrarà amb `f1` i `f2`, però no amb `f3` perquè NO es pot unificar $\\{tom \rightarrow will\\}$.
 
 La consulta `? parent(tom,Y).` es demostrarà:
 
   - Primer amb `r1`, unificant $\\{X1 \rightarrow tom, \ Y \rightarrow Y1\\}$. Això implica demostrar `father(tom,Y1)`, que admet diverses solucions.
-    
+
   - Després es provarà de demostrar amb `r2` unificant $\\{X2 \rightarrow tom, \ Y \rightarrow Y2\\}$. Això implica demostrar `mother(tom,Y2)`, que no és demostrable ni amb `f4` ni amb `f5`(no podem unificar $\\{tom \rightarrow ann\\}$).
 
 La consulta `? siblings(X,Y).` es demostrarà amb `r4` unificant $\\{X \rightarrow X4, \ Y \rightarrow Y4\\}$. Això implica demostrar, **en aquest ordre**, `parent(Z4,X4)`, `parent(Z4,Y4)`, `X4\=Y4`.
@@ -244,36 +244,39 @@ En Prolog podem tracejar l'execució. Per entrar en el mode de *tracing*, escriu
 
 ![Trace](Img/trace.png)
 
-### Exercici:
+### Exercici
 
-Executeu, primer sence tracing, la consulta `ancestor(X,Y).`, per les quatre teories següents, lògicament equivalents.
+Expandiu la base de coneixement [`ancestor.pl`](Exercicis/ancestor.pl) i execute primer sence tracing, la consulta `ancestor(X,Y).`, amb les següents regles lògicament equivalents.
 
-```prolog
-  parent(alice,bob).
-  parent(bob,eve).
-  ancestor(X,Y):-parent(X,Y).
-  ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).
-  ```
-```prolog
-  parent(alice,bob).
-  parent(bob,eve).
-  ancestor(X,Y):-parent(X,Y).
-  ancestor(X,Y):-ancestor(Z,Y),parent(X,Z).
-  ```
-```prolog
-  parent(alice,bob).
-  parent(bob,eve).
-  ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).
-  ancestor(X,Y):-parent(X,Y).
-  ```
+Quin és el comportament en cada cas? Sabrieu dir per què? Feu servir el tracer per mirar què passa si cal.
 
-```prolog
-  parent(alice,bob).
-  parent(bob,eve).
-  ancestor(X,Y):-ancestor(Z,Y),parent(X,Z).
-  ancestor(X,Y):-parent(X,Y).
-  ```
-Quin és el comportament en cada cas? Sabrieu dir per què? Feu servir el tracer per mirar què passa.
+- I)
+
+  ```prolog
+    ancestor(X,Y):-parent(X,Y).
+    ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).
+    ```
+
+- II)
+
+  ```prolog
+    ancestor(X,Y):-parent(X,Y).
+    ancestor(X,Y):-ancestor(Z,Y),parent(X,Z).
+    ```
+
+- III)
+
+  ```prolog
+    ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).
+    ancestor(X,Y):-parent(X,Y).
+    ```
+
+- IV)
+
+  ```prolog
+    ancestor(X,Y):-ancestor(Z,Y),parent(X,Z).
+    ancestor(X,Y):-parent(X,Y).
+    ```
 
 ## És el vostre torn (II)
 
