@@ -2,11 +2,11 @@
 
 El nom Prolog deriva del francès _PROgramation LOGique_. És un llenguatge de programació declaratiu basat en lògica.
 
-La programació lògica és un paradigma de programació declaratiu, és a dir, els programes especifiquen **quin** problema volem resoldre. Això contrasta amb la _programació imperativa_, on els programes especifiquen **com** s'ha de resoldre el problema. Altres paradigmes declaratius són la _programació funcional_ (que visitarem m'es tard en el curs) o la _programació basada en restriccions_.
+La programació lògica és un paradigma de programació declaratiu, és a dir, els programes especifiquen **quin** problema volem resoldre. Això contrasta amb la _programació imperativa_, on els programes especifiquen **com** s'ha de resoldre el problema. Altres paradigmes declaratius són la _programació funcional_ (que visitarem més tard en el curs) o la _programació basada en restriccions_.
 
-En el cas de Prolog, un programa consisteix en un conjunt de **_fets_** i **_regles_** especificats amb el fragment de les _clàusules de Horn_ de la lògica de primer ordre (també anomenada lògica de predicats).
+En el cas de Prolog, un programa consisteix en un conjunt de **_fets_** i **_regles_** especificats amb el fragment de les _clàusules de Horn_ de la _lògica de primer ordre_ (també anomenada lògica de predicats).
 
-En lògica proposicional una clàusula de Horn és tota clàusula formada per disjuncio de literals que té com a molt un literal positiu. Nota: un literal és una _variable_ o la negació d'una variable.
+En _lògica proposicional_ una clàusula de Horn és tota clàusula formada per disjuncio de literals que té com a molt un literal positiu. Nota: un literal és una _variable_ o la negació d'una variable.
 
 Una clàusula de Horn pot tenir la forma:
 
@@ -209,7 +209,7 @@ Quan fem una consulta, l'intèrpret de Prolog intentarà demostrar que és _cons
 
   - Les regles demostren el cap si podem demostrar tots els àtoms del cos. Prolog els intentarà demostrar un per un **d'esquerra a dreta**.
 
-**Per fer demostrar un àtom amb un fet o una regla, les variables involucrades han de ser __unificables__.**
+  **Per demostrar un àtom amb un fet o una regla, les variables involucrades han de ser __unificables__.**
 
 L'exemple següent és una variació de la base de coneixement [`family.pl`](Examples/family.pl) on s'ha donat un noms diferents a les variables de les regles per il·lustrar
 que en realitat són variables diferents que cal unificar, però recordeu que podem repetir noms.
