@@ -1,13 +1,13 @@
 /*
 TODO:
-- Who does "John" love?
-- Who loves "Ann"?
-- Who loves someone?
-- Who is loved by someone?
-- Who love each other mutually?
-- Who loves without being loved back?
+- A qui li agrada en John?
+- Qui li agrada a l'Ann?
+- Qui està enamorat d'algú?
+- Qui és estimat per algú?
+- Quines dues persones s'estimen mútuament?
+- Qui estima sense ser correspost?
 */
-
+/* loves(X,Y) significa a X li agrada Y */
 loves(john, ann).
 loves(ann, michael).
 loves(luis, isabel).
