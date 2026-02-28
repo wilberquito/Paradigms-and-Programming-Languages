@@ -9,7 +9,7 @@ un llenguatge més potent.
 
 Recordeu que dos termes són unificables si existeix alguna substitució que els faci sintàcticament iguals.
 En Prolog, els operadors de unificar (i no unificar) són `=` i `\=`. 
-Els operadors `=`, `==` (i les seves negacions `\=`, `\==`) són difrents.
+Els operadors `=`, `==` (i les seves negacions `\=`, `\==`) són diferents.
 L'expressió `E1 = E2` significa `E1` és unificable amb `E2`, mentre que l'expressió `E1 == E2`
 significa que E1 i E2 **ja han estat unificats** a un mateix terme.
 
@@ -89,23 +89,33 @@ X = 12
 ```prolog
 ?- Y=4, X is 3 * Y.
 X = 12
+Y = 4
 ```
 
 Fixeu-vos que la part avaluable de `is` ha de ser la de la dreta.
 
 ```prolog
+% 4 s'avalua com a expressió aritmètica, donant com a resultat un 4, però, 4 no unifica amb 2+2.
 ?- 2+2 is 4.
 no
 ```
 
 ```prolog
+% X no és una expressió aritmètica evaluable.
 ?- 4 is X.
 Inst. error
 ```
 
 ```prolog
+% X+2 no és una expressió aritmètica evaluable.
 ?- 4 is 2+X.
 Inst. error
+```
+
+```prolog
+?- X=2, 4 is 2+X.
+X = 2
+yes
 ```
 
 Hi ha predicats relacionals que avaluen tots dos costats (si són avaluables): `<`, `=<`, `>`, `>=`, `=:=` and `=\=`.
@@ -163,7 +173,11 @@ El predicat `fact` no és bidireccional, en el sentit que no podem fer la consul
 Inst. error
 ```
 
+<details>
+<summary>Per què?</summary>
+
 Això passa perquè `N` ha de tenir un valor definit quan s'avalua amb `is`. 
+</details>
 
 ## Precondicions sobre la instanciació
 
@@ -191,8 +205,8 @@ Possibles exemples de llistes:
 En Prolog les llistes són estructures de dades recursives, és a dir, es poden definir a partir d'altres llistes.
 Una llista és:
 - Una llista buida `[]`, o
-- Una llista no buida `[ Cap | Cua ]`, on Cap és el primer terme de la llista, i Cua és la llista 
-dels termes que succeeixen el Cap. Fixeu-vos que Cua pot ser una llista buida. 
+- Una llista no buida `[ Cap | Cua ]`, on `Cap` és el primer terme de la llista, i `Cua` és la llista 
+dels termes que succeeixen el `Cap`.
 
 Tenim múltiples maneres de representar una mateixa llista, combinant representacions explícites i recursives. Per exemple:
 - `[X,Y,Z]`
@@ -231,6 +245,7 @@ L=[3,4], X=1, Y=2
 ```
 
 ```prolog
+% Una llista de 3 termes no pot unificar amb una llista de 4 termes.
 ?- [1,2,3] = [X,Y,Z,T].
 no
 ```
