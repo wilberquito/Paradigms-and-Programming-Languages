@@ -350,8 +350,8 @@ Què creieu que dirà Prolog a les consultes següents?
 ```
 
 ```prolog
-% aquesta es mes complicada
-?- member(1,X).
+% N'hi ha un nombre finit de sol·lucions?
+?- member(1,L).
 ```
 
 ### Append
@@ -425,6 +425,12 @@ prefix(P,L) :- append(P,_,L).
 suffix(S,L) :- append(_,S,L).
 ```
 
+
+<details>
+<summary>Pensem'ho</summary>
+Entre tots...
+</details>
+
 ```prolog
 % sublist_(Lp,L) => Lp es subllista de L
 sublist_(Lp, L) :- ...
@@ -454,6 +460,24 @@ Podeu fer servir el predicat [msort](https://www.swi-prolog.org/pldoc/doc_for?ob
 unio(Xs, Ys, Zs) :- ...
 ```
 
+<details>
+<summary>Exemples de sortida:</summary>
+  
+```prolog
+| ?- unio([],[],[]).
+yes
+  
+| ?- unio([a,b],[c,a],Xs).
+Xs = [a,a,b,c]
+yes
+
+| ?- unio([],[c,a],Xs).
+Xs = [a,c]
+yes
+```
+</details>
+
+
 #### intersecció
 
 ```prolog
@@ -461,11 +485,51 @@ unio(Xs, Ys, Zs) :- ...
 interseccio(Xs, Ys, Zs) :- ...
 ```
 
+<details>
+<summary>Exemples de sortida:</summary>
+
+```prolog
+| ?- interseccio([],[1,2,3],Xs).
+Xs = []
+yes
+
+| ?- interseccio([1],[],Xs).
+Xs = []
+yes
+
+| ?- interseccio([1,b],[a,b,1,a,b],Xs).
+Xs = [1,b]
+yes
+
+| ?- interseccio([1,b,1],[a,b,1,a,b,1],Xs).
+Xs = [1,1,b]
+yes
+```
+</details>
+
 #### diferència
 ```prolog
 % diferencia(+Xs, +Ys, ?Zs) => Zs = Xs \ Ys
 diferencia(Xs, Ys, Zs) :- ...
 ```
+
+<details>
+<summary>Exemples de sortida:</summary>
+
+```prolog
+| ?- diferencia([1,1],[1],Xs).
+Xs = [1]
+yes
+
+| ?- diferencia([1,1],[1,2],Xs).
+Xs = [1]
+yes
+
+| ?- diferencia([1,1,2,2,2],[1,2],Xs).
+Xs = [1,2,2]
+yes
+```
+</details>
 
 #### multiconjunt_a_conjunt
 
@@ -474,7 +538,6 @@ diferencia(Xs, Ys, Zs) :- ...
 % multiconjunt_a_conjunt(+Xs, ?Zs) => Zs es Xs sense repeticions
 multiconjunt_a_conjunt(Xs, Zs) :- ...
 ```
-
 
 ### Altres predicats
 
