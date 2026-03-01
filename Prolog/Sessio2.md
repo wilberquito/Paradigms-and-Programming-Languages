@@ -486,7 +486,7 @@ interseccio(Xs, Ys, Zs) :- ...
 ```
 
 <details>
-<summary>Exemples de sortida:</summary>
+<summary>Exemples de sortida</summary>
 
 ```prolog
 | ?- interseccio([],[1,2,3],Xs).
@@ -514,7 +514,7 @@ diferencia(Xs, Ys, Zs) :- ...
 ```
 
 <details>
-<summary>Exemples de sortida:</summary>
+<summary>Exemples de sortida</summary>
 
 ```prolog
 | ?- diferencia([1,1],[1],Xs).
@@ -533,11 +533,36 @@ yes
 
 #### multiconjunt_a_conjunt
 
-
+  
 ```prolog
 % multiconjunt_a_conjunt(+Xs, ?Zs) => Zs es Xs sense repeticions
 multiconjunt_a_conjunt(Xs, Zs) :- ...
 ```
+
+<details>
+<summary>Exemples de sortida</summary>
+
+```prolog
+| ?- multiconjunt_a_conjunt([2, 3, 1, 1],Xs).
+Xs = [1,2,3]
+yes
+
+| ?- multiconjunt_a_conjunt([2,3,1,1],Xs).
+Xs = [1,2,3]
+yes
+
+| ?- multiconjunt_a_conjunt([2],Xs).
+Xs = [2]
+yes
+
+| ?- multiconjunt_a_conjunt([],Xs).
+Xs = []
+yes
+
+| ?- multiconjunt_a_conjunt([2,1,2],[1,2]).
+(1 ms) yes
+```
+</details>
 
 ### Altres predicats
 
