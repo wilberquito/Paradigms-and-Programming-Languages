@@ -415,6 +415,12 @@ quicksort([X|Xs],L) :- split(X,Xs,LEQ,GT),
                        append(LEQsort,[X|GTsort],L).
 ```
 
+<details>
+<summary>Quina es la complexitat en el cas pitjor, per què?</summary>
+PSS... agafem el primer com a pivot!
+</details>
+
+
 ```prolog
 % prefix(P,L) => P es un prefix de L.
 prefix(P,L) :- append(P,_,L).
