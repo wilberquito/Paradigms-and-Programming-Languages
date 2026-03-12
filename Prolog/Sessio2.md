@@ -467,7 +467,7 @@ unio(Xs, Ys, Zs) :- ...
 ```
 
 <details>
-<summary>Exemples de sortida:</summary>
+<summary>Exemples de sortida</summary>
   
 ```prolog
 | ?- unio([],[],[]).
@@ -581,6 +581,30 @@ Podeu fer servir [l'Algorisme d'Euclides](https://ca.wikipedia.org/wiki/Algorism
 mcd(A, B, M) :- ...
 ```
 
+<details>
+
+<summary>Exemples de sortida</summary>
+
+```prolog
+| ?- mcd(9,42,L).
+L = 3 ? ;
+no
+
+| ?- mcd(13,3,L).
+L = 1 ? ;
+(1 ms) no
+
+| ?- mcd(13,3,L).
+L = 1 ? ;
+no
+
+| ?- mcd(48,72,L).
+L = 24 ? ;
+no
+```
+  
+</details>
+
 #### camins
 
 ```prolog
@@ -588,12 +612,19 @@ mcd(A, B, M) :- ...
 % E son les arestes d'un graf dirigit aciclic.
 % La llista P conte un cami de X a Y.
 camins(E,X,Y,P) :- ...
-
-%Exemple d'execucio, graf sessio 1
-%camins([ar(1,2),ar(1,3),ar(2,5),ar(3,5),ar(3,6),ar(4,3),ar(4,7),ar(5,6)],3,6,P).
-%P = [3,6] ? ;
-%P = [3,5,6] ? ;
-%no
 ```
+
+<details>
+
+<summary>Exemples de sortida</summary>
+
+```prolog
+| ?- camins([ar(1,2),ar(1,3),ar(2,5),ar(3,5),ar(3,6),ar(4,3),ar(4,7),ar(5,6)],3,6,P).
+P = [3,5,6] ? ;
+P = [3,6] ? ;
+no
+```
+
+</details>
 
 
