@@ -1,7 +1,6 @@
 # Sessió 3
 
 
-
 ## Metapredicats
 Els metapredicats són predicats que reben com a paràmetre altres predicats. S'especifica a la documentació que un paràmetre `P` és un predicat que pot ser consultat amb `0P` (veure sessió 2).
 
@@ -65,39 +64,36 @@ yes
 
 ### Negació
 
-L'operador *not* `\+` de Prolog és un meta-predicat incorporat. Un meta-predicat és un predicat que té com a arguments altres predicats, 
-en lloc de dades.
-L'operador *not* rep un únic predicat com a argument, i en nega el valor. 
+L'operador de negació (`\+`) de Prolog és un meta-predicat que rep un únic predicat com a argument, i en "nega" el valor. 
 
 Alerta: **no és una negació lògica**. Si permetéssim l'ús de negacions lògiques `¬` al cos de les regles, aquestes deixarien de ser clàusules de Horn. Per exemple,
+
 ```prolog
 p(X) :- a(X), ¬b(X)
-``` 
+```
+
 Equivaldria a la clàusula:
 
 ${\displaystyle p(X) \vee ¬a(X) \vee b(X)}$
 
-En canvi, l'operador ` \+` és conegut com a l'operador de `negation-as-failure` (negació per fracàs), perquè 
-demostra la negació d'un objectiu quan fracassa en demostrar aquest objectiu.
+En canvi, l'operador `\+` és conegut com l'operador de _negation-as-failure_ (negació per fracàs), 
+perquè satisfa quan Prolog fracasa al demostrar el _goal_ (objectiu) que l'acompanya. 
 
-Fixeu-vos en la fórmula següent: ${\displaystyle (q(a) \wedge p(X) \vee ¬q(X)) }$
+
+Fixeu-vos en la fórmula ${F = \displaystyle t(a) \wedge (p(X) \vee ¬t(X)) }$
 
 En Prolog:
+
 ```prolog
-q(a).
-p(X):-q(X).
+t(a).
+p(X):-t(X).
 ```
 
-Clarament *p(b)* no és conseqüència lògica de la fòrmula. 
-Per tant, si afegeixo la clàusula *¬p(b)* i faig servir resolució, 
-no obtindré la clàusula buida (no puc demostrar *p(b)* ). 
-En termes de Prolog, la consulta `? p(b).` dirà *no*.
+Clarament $p(b)$ no és conseqüència lògica de la fòrmula $F$, ja que $F \land \neg p(b) \nvdash_{Res} \bot$.
+Desde un punt de vista pràctic, Prolog dirà _no_ a la consulta `? p(b).`.  Semblantment, $\neg{p(b)}$ tampoc és conseqüència lògica de la fórmula, ja que $F \land p(b) \nvdash_{Res} \bot$.
 
-Semblantment, tampoc puc demostrar que *¬p(b)* sigui conseqüència lògica de la fórmula,
-ja que afegint *p(b)* i fent resolució tampoc obtindré la clàusula buida.
-Ara bé, si fem la consulta `? \+ p(b)`, Prolog ens dirà *yes*. 
-Això passa perquè primer, internament, ha fet la consulta `p(b)` i s'ha obtingut *no*,
-(ha *fracassat* a demostrar *p(b)* ). Ho podeu comprovar com a exercici.
+Ara bé, si fem la consulta `? \+ p(b)`, Prolog ens dirà _yes_. 
+Això passa perquè internament, primer, ha intentat demostrar `p(b)` i ha fracassat.
 
 Així doncs, Prolog en realitat fa **SLDNF-resolució** (SLD-resolució amb *negation-as-failure*). 
 
