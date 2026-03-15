@@ -229,11 +229,11 @@ A:- (branca alternativa per la consulta G) % Branca 3
 ```
 
 
-tal que `A` the s'unifica amb la consulta `G`: després d'haver demostrat B1,...,Bk, per la branca 1,
+tal que `A` unifica amb la consulta `? G.`: després d'haver demostrat `B1,...,Bk`, per la `Branca 1`,
 el tall es demostra automàticament, i el seu efecte és:
 
-1) Si l'intent de satisfer Bk+1,...,Bn falla, el Backtracking només és permès fins al tall.
-2) Les branques posteriors (Branca 2, Branca 3, ...) són descartades.
+1) Si l'intent de satisfer `Bk+1,...,Bn` falla, el Backtracking només és permès fins al tall.
+2) Les branques posteriors (`Branca 2`, `Branca 3`, ...) són descartades.
 
 Vegem com funciona el tall en el primer exemple.
 
@@ -345,13 +345,14 @@ sort(Xs,Ys):- append(As,[X,Y|Ns],Xs),
 
 El primer tall torna a fer la funció d'exclusió mútua: si ja està ordenada, no cal provar la regla següent.
 
-La segona regla busca un parell d'elements consecutius desordenats (X,Y), si hi són els ordena i repeteix el procés recursivamen.
+La segona regla busca un parell d'elements consecutius desordenats `(X,Y)`, si hi són els ordena i repeteix el procés recursivamen.
 El tall aquí ens prohibeix ordenar més d'una vegada la llista: a cada crida recursiva, agafa només el primer parell d'elements desordenats que trobis.
 
 ## La negació per fracàs
 
-Recordeu el metapredicat de negació per fracàs `\+Q`. Una consulta negada té èxit si s'intenta
-falsificar-ho falla.
+Recordeu el metapredicat de negació per fracàs `\+Q`? 
+
+- Una consulta negada té èxit si al intentar demostrar la consulta Prolog falla.
 
 La seva implementació fa ús del tall `!` i el predicat integrat `fail`, que sempre falla:
 
@@ -373,7 +374,7 @@ Vist com a arbre:
 Tenim dos escenaris possibles, que efectivament compleixen amb la negació per fracàs:
 - La consulta `Q` es pot demostrar: en aquest cas, la primera branca avança fins a fallar amb `fail`,
   i el tall prohibeix explorar la segona branca. Per tant `\+Q` no es pot demostrar.
-- La consulta `Q` no es pot demostrar: en aquest cas la primera branca fallarà abans d'arribar al fail, s'explorarà
+- La consulta `Q` no es pot demostrar: en aquest cas la primera branca fallarà abans d'arribar al `fail`, s'explorarà
   la segona branca, que demostrarà `\+Q`.
 
 ## I/O i tall
