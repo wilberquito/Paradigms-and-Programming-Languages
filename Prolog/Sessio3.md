@@ -2,10 +2,12 @@
 
 
 ## Metapredicats
-Els metapredicats són predicats que reben com a paràmetre altres predicats. S'especifica a la documentació que un paràmetre `P` és un predicat que pot ser consultat amb `0P` (veure sessió 2).
+Els metapredicats són predicats que reben com a paràmetre altres predicats.
+A l'especificació d'un predicat, farem ús de `0P` per denotar que un paràmetre `P` qualsevol s'utilitza com a consulta (veure sessió 2).
 
 ### Call
-El metapredicat [call](https://www.swi-prolog.org/pldoc/man?predicate=call/2) és el més bàsic, i ens permet implementar altres metapredicats. El primer paràmetre és una consulta d'un sol àtom, i admet un nombre ilimitat d'altres paràmetres, que s'afegiran per ordre a la consulta. El comportament de `call` és que fa la consulta rebuda per paràmetre:
+El metapredicat [call](https://www.swi-prolog.org/pldoc/man?predicate=call/2) és el més bàsic, i ens permet implementar altres metapredicats. El primer paràmetre és una consulta d'un sol àtom, i admet un nombre ilimitat d'altres paràmetres, que s'afegiran per ordre a la consulta.
+
 
 ```prolog
 | ?- call(member(X,[4,3,1])).
@@ -72,15 +74,15 @@ Alerta: **no és una negació lògica**. Si permetéssim l'ús de negacions lòg
 p(X) :- a(X), ¬b(X)
 ```
 
-Equivaldria a la clàusula:
+Equivaldria a una clàusula que no és d'Horn:
 
-${\displaystyle p(X) \vee ¬a(X) \vee b(X)}$
+${\displaystyle p(X) \leftarrow a(X) \land b(X) \equiv p(X) \vee ¬a(X) \vee b(X)}$
 
 En canvi, l'operador `\+` és conegut com l'operador de _negation-as-failure_ (negació per fracàs), 
-perquè satisfa quan Prolog fracasa al demostrar el _goal_ (objectiu) que l'acompanya. 
+perquè satisfà quan Prolog fracasa al demostrar el _goal_ (objectiu) que l'acompanya. 
 
 
-Fixeu-vos en la fórmula ${F = \displaystyle t(a) \wedge (p(X) \vee ¬t(X)) }$
+Fixeu-vos en la fórmula ${F = \displaystyle t(a) \wedge (p(X) \vee ¬t(X)) }$.
 
 En Prolog:
 
@@ -90,15 +92,13 @@ p(X):-t(X).
 ```
 
 Clarament $p(b)$ no és conseqüència lògica de la fòrmula $F$, ja que $F \land \neg p(b) \nvdash_{Res} \bot$.
-Desde un punt de vista pràctic, Prolog dirà _no_ a la consulta `? p(b).`.  Semblantment, $\neg{p(b)}$ tampoc és conseqüència lògica de la fórmula, ja que $F \land p(b) \nvdash_{Res} \bot$.
+Desde un punt de vista pràctic, Prolog dirà _no_ a la consulta `? p(b).`.  Semblantment, $\neg{p(b)}$ 
+tampoc és conseqüència lògica de la fórmula, ja que $F \land p(b) \nvdash_{Res} \bot$. 
 
 Ara bé, si fem la consulta `? \+ p(b)`, Prolog ens dirà _yes_. 
 Això passa perquè internament, primer, ha intentat demostrar `p(b)` i ha fracassat.
 
 Així doncs, Prolog en realitat fa **SLDNF-resolució** (SLD-resolució amb *negation-as-failure*). 
-
-Comproveu els resultats de les consultes `non_domestic_animal(X).` i `non_domestic_animal(hamster).`.
-
 
 ```prolog
 domestic_animal(cat).
@@ -107,6 +107,7 @@ domestic_animal(dog).
 non_domestic_animal(X) :- \+ domestic_animal(X).
 ```
 
+Comproveu els resultats de les consultes `non_domestic_animal(X).` i `non_domestic_animal(hamster).`.
 
 ##  Arbre de cerca
 
@@ -155,24 +156,24 @@ Vegem com es genera l'arbre de cerca per a la consulta:
  []      []        []
 ```
 Recordeu que les consultes i les regles poden compartir noms de variable, però això no significa que siguin la mateixa variable.
-Així doncs, quan convingui reanomenarem les variables de les regles, per exemple afegint apòstrofs (X', X'', ...).
+Així doncs, quan convingui reanomenarem les variables de les regles, per exemple afegint apòstrofs $(X', X'', \cdots)$.
 
 Les solucions s'enumeren llegint l'arbre d'esquerra a dreta, i es reconstrueixen mitjançant la composició de substitució, per exemple:
-`{X'' -> 2}∘{X' -> X''}∘{X -> X'}` per tant `X -> 2`. La seqüència de solucions en l'exemple anterior és `X=2, X=2, X=3, X=1, X=0`.
+$\\{X'' \rightarrow 2\\}\circ\\{X' \rightarrow X''\\}\circ\\{X \rightarrow X'\\}$ per tant $\\{X \rightarrow 2\\}$. 
+
+La seqüència de solucions en l'exemple anterior és $X=2, \ X=2, \ X=3, \ X=1, \ X=0$.
 
 ### Un segon exemple
 
 Recordeu el predicat `member`?
 
 ```prolog
-% member(A,B), element A occurs in list B
+% member(?A,?B), element A occurs in list B
 member(X,[X|_]).
 member(X,[_|L]):- member(X,L).
 ```
 
-
 Vegem com es genera l'arbre de cerca per a la consulta:
-
 
 ```prolog
 ?- member(X,[a,b,c]).
@@ -194,11 +195,14 @@ Vegem com es genera l'arbre de cerca per a la consulta:
                   []     [member(X''',[])]
                               /     \   
                              /       \
-                            *         * 
+                          fail      fail 
 ```
 
-Aquesta consulta té tres solucions: `X=a, X=b` (perquè `X=X'` i `X'=b`), i `X=c` (perquè `X=X'` i `X'=X''` i `X''=c`).
+La consulta `? member(X, [a,b,c]).`, té tres possibles sol·lucions en el següent ordre:
 
+1. $X=a$, ja que $\\{X \rightarrow a\\}$.
+2. $X=b$, ja que $\\{X' \rightarrow b\\}\circ\\{X \rightarrow X'\\}$.
+3. $X=c$, ja que $\\{X'' \rightarrow c\\}\circ\\{X' \rightarrow X''\\}\circ\\{X \rightarrow X'\\}$.
 
 ### Control sobre l'arbre de cerca: el tall
 
@@ -206,14 +210,13 @@ Prolog té els avantatges de ser declaratiu, però sovint això ho paguem amb un
 L'ordre i la repetició de clàusules poden provocar redundància en les respostes i en els fracassos.
 
 Problemes que volem resoldre:
+
 - Ineficiència
 - Comportaments no especificats
 
-Prolog té un predicat incorporat anomenat tall (*cut*), que s'escriu `!`, i que ens permet controlar l'arbre de cerca mitjançant la poda de branques redundants o innecessàries.
-És un predicat que sempre té èxit, i talla les branques obertes de l'arbre de cerca.
-D'aquesta manera, es dona un control directe en l'exploració de l'arbre de cerca.
-Els talls s'utilitzen per fer que els programes en Prolog siguin eficients. Això sovint té la contrapartida que
-els programes Prolog siguin menys declaratius i llegibles.
+Prolog té un predicat incorporat anomenat tall (*cut*), que s'escriu `!`, i 
+que ens permet controlar l'arbre de cerca mitjançant la poda de branques redundants (ineficiència) o innecessàries (comportaments no especificats).
+El tall fa que els programes siguin menys declaratius i llegibles.
 
 El tall **sempre té èxit** i provoca que es descartin totes les branques alternatives que estan pendents d'explorar.
 Es pot entendre com una porta de no retorn: **després d'haver demostrat el tall en el cos d'una regla, no podem recular
@@ -222,7 +225,7 @@ més enrere d'ell fent backtracking, ni tampoc podem visitar fets o regles pende
 Donada una regla de forma:
 
 ```text
-A:- B1,...,Bk,!,Bk+1,...,Bn. % Branca 1
+A:- B1,...,Bk,!,Bk+1,...,Bn.               % Branca 1
 A:- (branca alternativa per la consulta G) % Branca 2
 A:- (branca alternativa per la consulta G) % Branca 3
 ...
@@ -235,9 +238,7 @@ el tall es demostra automàticament, i el seu efecte és:
 1) Si l'intent de satisfer `Bk+1,...,Bn` falla, el Backtracking només és permès fins al tall.
 2) Les branques posteriors (`Branca 2`, `Branca 3`, ...) són descartades.
 
-Vegem com funciona el tall en el primer exemple.
-
-Definició del coneixement de base.
+Definició del coneixement de base **(s'ha introduit el tall)**.
 
 ```prolog
 q(X):- p(X).
@@ -254,11 +255,10 @@ b(2).
 b(3).
 ```
 
-
-Comparació entre l'arbre podat i l'arbre original a partir del primer exemple.
+Fixeu-vos que l'espai de cerca s'ha vist afectat al afegir el `!` a la regla `p(X):-a(X),!,b(X)`.
 
 ```text
-                 (pruned)                    (original)    
+                 (Original)                   (Podat)    
                                                            
                   [q(X)]                       [q(X)]      
                   /    \                       /    \ 
@@ -266,23 +266,24 @@ Comparació entre l'arbre podat i l'arbre original a partir del primer exemple.
                 /        \                   /        \
              [p(X')]      []              [p(X')]      []
              /     \                      /     \ 
-     X'=X'' /      ---            X'=X'' /       \ X'=1
-           /                            /         \
-   [a(X''),!,b(X'')]             [a(X''),b(X'')]   []
-        /     \                     /     \
- X''=2 /      ---            X''=2 /       \ X''=3
-      /                           /         \
-  [!,b(2)]                     [b(2)]      [b(3)]
-   /    \                      /    \         \
-  /      \                    /      \         \
- []      []                  []      []        []
+     X'=X'' /       \ X'=1        X'=X'' /      ---
+           /         \                  /           
+   [a(X''),b(X'')]    []        [a(X''),!,b(X'')]   
+        /     \                     /     \          
+ X''=2 /       \ X''=3       X''=2 /      ---        
+      /         \                 /                  
+  [b(2)]      [b(3)]         [!,b(2)]               
+   /    \         \           /    \                
+  /      \         \         /      \               
+ []      []        []       []      []              
 ```
 
+Seqüència de solucions:
 
-Canviant una mica el codi, les solucions ara són `X=2, X=2, X=0`.
+- Original: $X=2, \ X=2, \ X=3, \ X=1, \ X=0$.
+- Podat: $X=2, \ X=2, \ X=0$.
 
 ### Factorial amb tall
-
 
 ```prolog
 % fact(+N,F) => F is the factorial of N
@@ -305,7 +306,7 @@ Què creus que passarà amb la següent consulta?
 ```
 
 Una possible solució és controlar la satisfactibilitat de la segona clàusula afegint la restricció `N>0`, 
-com hem vist en la sessió anterior.
+com hem vist en la sessió anterior, e.g.,
 
 ```prolog
 % fact(+N,F) => F is the factorial of N
@@ -315,6 +316,7 @@ fact(N,F):- N>0,
             fact(Np,F1),
             F is F1 * N.
 ```
+
 Alternativament podem fer servir el tall. Fixeu-vos que aquí té un efecte d'exclusió mútua de les dues clàusules,
 és a dir, proves la segona si i només si la primera falla.
 
@@ -350,47 +352,51 @@ El tall aquí ens prohibeix ordenar més d'una vegada la llista: a cada crida re
 
 ## La negació per fracàs
 
-Recordeu el metapredicat de negació per fracàs `\+Q`? 
+Recordeu el metapredicat de negació per fracàs `\+Q`? Una consulta negada té èxit si al intentar demostrar la consulta Prolog falla.
 
-- Una consulta negada té èxit si al intentar demostrar la consulta Prolog falla.
-
-La seva implementació fa ús del tall `!` i el predicat integrat `fail`, que sempre falla:
+La seva implementació fa ús del tall `!` (sempre satisfà) i el predicat integrat `fail` (sempre falla).
 
 ```prolog
-not(Q) :- call(Q), !, fail. %Branca 1
-not(Q). % Branca 2
+not(Q) :- call(Q), !, fail. % Branca 1
+not(Q).                     % Branca 2
 ```
 
 Vist com a arbre:
 
-```prolog
+```tex
            [\+Q]         
           /     \             
-         /       \          
+    Q=Q' /       \ Q=Q'         
         /         \          
-  [Q,!,fail]       []     
+  [Q',!,fail]     []     
 ```
 
-Tenim dos escenaris possibles, que efectivament compleixen amb la negació per fracàs:
-- La consulta `Q` es pot demostrar: en aquest cas, la primera branca avança fins a fallar amb `fail`,
-  i el tall prohibeix explorar la segona branca. Per tant `\+Q` no es pot demostrar.
-- La consulta `Q` no es pot demostrar: en aquest cas la primera branca fallarà abans d'arribar al `fail`, s'explorarà
-  la segona branca, que demostrarà `\+Q`.
+Tenim dos escenaris possibles per demostrar la consulta `? \+Q.`:
+
+- `Q` es pot demostrar: la primera branca avança fins a fallar amb `fail`,
+  i el `!` prohibeix explorar la segona branca. Per tant `\+Q` no es pot demostrar.
+- `Q` no es pot demostrar: en aquest cas la primera branca fallarà abans d'arribar al `!`, s'explorarà
+  la segona satisfent `\+Q`.
 
 ## I/O i tall
 
 ```prolog
+% writeln(+L) => auxiliary predicate for writing
+writeln([]):- nl.
+writeln([X|Xs]):- write(X),
+                  writeln(Xs).
+
 % repeat => a built-in predicate that always satisfy.
 repeat.
 repeat:- repeat.
 
-% read_number(X) => X is a number read from the keyboard.
+% read_number(-X) => X is a number read from the keyboard.
 read_number(X):-  repeat, 
                   write("PSS. enter a number: "),
                   read(X), 
                   number(X), !.
               
-% treat_number(X) => If X is 0 then satisfy otherwise 
+% treat_number(+X) => If X is 0 then satisfy otherwise 
 % the square of the number is computed and then fail,
 treat_number(0):- !.
 treat_number(X):- R is X*X, 
@@ -408,13 +414,15 @@ Fixeu-vos que els string al write (o print) van entre **cometes simples**.
 
 Més entada i sortida: http://www.gprolog.org/manual/html_node/gprolog039.html
 
-
 ## Tipus de dades a partir de termes
 
 Prolog no ens permet crear nous tipus (de fet no hi ha tipus). Per simular tipus de dades,
 necessitem definir el comportament dels termes.
 
 ```prolog
+% tempty => Represents an empty tree
+tempty.
+
 % buidtree(N,A,B,T) => T is the tree with node N, A as left son, B as right son.
 bluidtree(N,T1,T2,tree(N,T1,T2)).
 
@@ -473,11 +481,11 @@ Alternativament (rang s'ha d'implementar, exercici a continuació):
 taulesMultiplicar:-
    rang(1,10,L),
    member(X,L),
-   print('\n=== Taula del '), 
+   print('\n=== Taula del '),      % write, nl
    print(X), print(' ===\n'), 
    member(Y,L),
    Z is X*Y, 
-   format("\n%d*%d=%d\n",[X,Y,Z]).
+   format("\n%d*%d=%d\n",[X,Y,Z]). % formatted output
 ```
 
 
