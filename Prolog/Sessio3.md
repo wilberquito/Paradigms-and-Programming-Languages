@@ -76,7 +76,7 @@ p(X) :- a(X), ¬b(X)
 
 Equivaldria a una clàusula que no és d'Horn:
 
-${\displaystyle p(X) \leftarrow a(X) \land b(X) \equiv p(X) \vee ¬a(X) \vee b(X)}$
+${\displaystyle p(X) \leftarrow a(X) \land ¬b(X) \equiv p(X) \vee ¬a(X) \vee b(X)}$
 
 En canvi, l'operador `\+` és conegut com l'operador de _negation-as-failure_ (negació per fracàs), 
 perquè satisfà quan Prolog fracasa al demostrar el _goal_ (objectiu) que l'acompanya. 
@@ -193,9 +193,9 @@ Vegem com es genera l'arbre de cerca per a la consulta:
               X''= c /       \ X''=X'''
                     /         \
                   []     [member(X''',[])]
-                              /     \   
-                             /       \
-                          fail      fail 
+                              /      
+                             /      
+                          fail
 ```
 
 La consulta `? member(X, [a,b,c]).`, té tres possibles sol·lucions en el següent ordre:
@@ -499,12 +499,3 @@ Intenta fer servir el tall per implementar el predicat `rang`.
 % rang(+B,+D,L) => L is the list of numbers from B to D. B < D.
 rang(B,D,L):- ...
 ```
-
-<details>
-  <summary>Aquí teniu una solució (primer proveu-ho sense mirar-la)</summary>
-
-  ```prolog
-   rang(D,D,[D]):- !.
-   rang(B,D,[B|L]):- C is B+1, rang(C,D,L).
-  ```
-</details>
