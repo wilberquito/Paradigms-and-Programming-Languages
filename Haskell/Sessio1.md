@@ -22,7 +22,7 @@ This criticism occurs in spite of the fact that C has not yet been invented.
 Els fonaments de la programació funcional són notacions matemàtiques abstractes
 de càlcul que transcendeixen una implementació específica. Això
 ens porta cap a un mètode de programació que sovint resol problemes simplement 
-descrivint-los[^1]. 
+descrivint-los. 
 
 És a dir, estem parlant d'un **llenguatge declaratiu**.
 
@@ -231,7 +231,7 @@ El concepte de funció a Haskell manté el significat que li donem en matemàtiq
 ##### Aplicació
 
 El que matemàticament denotem entre parèntesis, amb Haskell ho escrivim separat per espais
-```text
+
 ```haskell
 -- Es el mateix que f (a, b) + c × d
 f a b + c * d
@@ -499,8 +499,8 @@ Prelude> True < 'a'
 El *pattern matching* consisteix a especificar patrons amb els quals les dades han d'enxaixar,
 i tractar les dades segons amb quin patró han encaixat.
 
-Quan definim funcions, podem separar el ceu cos amb diferents patrons. 
-Això ens permet obtenir un code més net, simple i llegible.
+Quan definim una funcio, podem separar el seu cos amb diferents patrons. 
+Això ens permet obtenir un codi més net, simple i llegible.
 Podem definir patrons per qualsevol tipus de dades: nombres, caràcters, llistes, tuples, etc.
 
 Exemple:
@@ -542,9 +542,6 @@ lucky 7 = "LUCKY NUMBER SEVEN!"
 Prelude> lucky 14
 *** Exception: Lucky.hs: Non-exhaustive pattern in function lucky
 ```
-
-**ALERTA: no té res a veure amb les diferents regles per un mateix predicat amb Prolog!**
-
 
 ## Tuples
 
@@ -821,7 +818,3 @@ distance :: something
 interpreter :: [String] -> [String]
 . . .
 ```
-
-
-
-[^1]: [Get Programming with Haskell](https://livebook.manning.com/book/get-programming-with-haskell/about-this-book/).
