@@ -100,7 +100,7 @@ infixr 0 $, $!, ‘seq‘
 ```
 L'aplicació té prioritat 10. 
 
-Podem crear els nostres propis operadors. Imagina que volem crear un operador xor.
+Podem crear els nostres propis operadors. Imagina que volem crear l'operador `xor`.
 
 Exemple:
 
@@ -326,11 +326,11 @@ Exemple:
 ```haskell
 factorial :: Integer -> Integer
 factorial 0 = 1
-factorial n = (*) n ( factorial (n-1) )
+factorial n = (*) n (factorial (n-1))
 
 sumatori :: Integer -> Integer
 sumatori 0 = 0
-sumatori n = (+) n (sumatori (n-1) )
+sumatori n = (+) n (sumatori (n-1))
 
 ```
 
@@ -350,7 +350,7 @@ iter :: (Integer -> Integer -> Integer) ->
 iter f base = fun
   where
     fun :: Integer -> Integer
-    fun 0 = e
+    fun 0 = base
     fun n = f n (fun (n-1))
 ```
 
@@ -422,15 +422,14 @@ infixr 0 $
 f $ x = f x
 ```
 
-Recordeu que l'aplicació té prioritat màxima. En canvi, si posem l'operador `$` entre la funció i el paràmetre, passa a tenir prioritat mínima. També canvia l'associativitat: l'aplicació normal (separada per espais) és associativa a l'esquerra, i l'operador `$` és associatiu a la dreta.
+A diferencia de l'aplicació (separa per espais), l'aplicació amb l'operador `$` passa a tenir prioritat mínima i l'associativat canvia cap a la dreta.
 
 
-Per exemple, si volem calcular l'arrel quadrada de `3 + 4 + 9`, no podem escriure 
-`sqrt 3 + 4 + 9`, perquè `sqrt` només s'aplicaria al primer agument, que és 3. 
-Podem escriure `sqrt (3 + 4 +9)`, o bé, `sqrt $ 3 + 4 + 9`.
+Exemple pràctic: si volem calcular l’arrel quadrada de l’expressió `3 + 4 + 9`, no podem escriure `sqrt 3 + 4 + 9`, ja que, si respectem la prioritat d’aplicació i de l’operador suma, els parèntesis implícits donarien lloc a l’expressió ((sqrt 3) + 4) + 9.
 
-El `$` també ens permet fer coses com la següent:
+En canvi, si utilitzem l’operador d’aplicació `$`, podem aplicar l’arrel quadrada a tota l’expressió escrivint `sqrt $ 3 + 4 + 9`, que és equivalent a escriure `sqrt (3 + 4 + 9)`.
 
+Un altre exemple:
 
 ```haskell
 GHCi> map ($ 3) [(4+), (10*), (^2), sqrt]
@@ -440,7 +439,7 @@ GHCi> map ($ 3) [(4+), (10*), (^2), sqrt]
 ## Composició
 
 En matemàtiques, la composició de funcions es defineix així:
-`(fℴg)(x) = f(g(x))`. És a dir, composar dues funcions produeix una nova funció, equivalent a passar el retorn de la segona funció com a paràmetre de la primera. 
+$(f \circ g)(x) = f(g(x))$. És a dir, composar dues funcions produeix una nova funció, equivalent a passar el retorn de la segona funció com a paràmetre de la primera. 
 
 Amb Haskell, l'operador de composició és `.`:
 
