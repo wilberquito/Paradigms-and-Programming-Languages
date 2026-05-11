@@ -1,65 +1,76 @@
-## Classes system
-
-### Overloaded functions
-
-- It makes sense for some types, not for all
-- Can have diferent definitions per each type
+## Overloading
 
 Consider the following types:
 
 ```haskell
 type Side   = Float
+data Square = Square Side deriving Show
+
 type Radius = Float
+data Circle = Circle Radius deriving Show
+
+-- Mesure of the are of any >= 2D figure
 type Area   = Float
-data Square = ASquare Side deriving Show
-data Circle = ACircle Radius deriving Show
 ```
 
-We would like to compute the area for this types:
+Computing the `area` of a `Square` or a `Circle` makes sense, but, Haskell does not support traditional _overloaded functions_, i.e, creating
+functions with the same name but with different number of parameters or types.
+
+This is not possible:
 
 ```haskell
--- Computes the area of a square
 area :: Square -> Area
-area (ASquare s) = s*s
+area (Square s) = s * s
 
--- Computes the area of a circle
 area :: Circle -> Area
-area (ACircle r) = pi * r^2
+area (Square r) = pi * r * r
 ```
 
-The `area` function makes sense for types `Square` and `Circle`
-but not for `Bool`. Hence it's not a polymorphic function.
+Honestly, computing the `area` only make sense for certain types (what is the area of a `Bool`?). Hence, the `area` can not be defined as a parametric polymorfic function, i.e., a function that
+the type truly does not matter.
 
-The problem here is that Haskell does not support `overloaded functions`
-as show above. You need to create a `class`.
+In Haskell, overloading is only acceptable by using _type classes_, which provide a structured way to control overloading functions.
 
 ```haskell
 type Area = Float
 
-class HasArea t where
-    area :: t -> Area
+class Shape a where
+ area :: a -> Area
 ```
 
-- `t` is type variable.
-- The function `area` is just defined to the types `t` that are instances of the typeclass.
+- `a` is type variable.
+- The function `area` is just defined to the types `a` that are instances of the typeclass, i.e., being part of the group `Shape`.
 
-To make a type be an instance of a typeclass, you can do the following.
+Making a type to be part of a group or instance of a typeclass:
 
 ```haskell
-instance HasArea Square where
-    area (ASquare s) = s*s
-instance HasArea Circle where
-    area (ACircle r) = pi * r^2
+class Shape a where
+    area :: a -> Area
+
+instance Shape Square where
+    area (Square s) = s * s
+
+instance Shape Circle where
+    area (Circle r) = pi * r * r
 ```
 
-If you try to use the function `area` with a non instance
-of `HasArea`, the compiler will throw an error.
+As a result:
 
 ```haskell
-GHCi> area (ASquare 3)
-9.0 :: Area
-GHCi> area (ACircle 3)
-28.2743 :: Area
+ghci> :info Square
+type Square :: *            -- type constructor
+data Square = Square Side   -- value constructor
+instance Shape Square       -- instance of Shape
+```
+
+If you try to use the function `area` with a non-instance
+of `Shape`, the compiler will throw an error.
+
+```haskell
+GHCi> area (Square 3)
+9.0
+GHCi> area (Circle 3)
+28.2743
 GHCi> area True
 <interactive>:1:1: error:
     • No instance for (HasArea Bool) arising from a use of ‘area’
@@ -78,10 +89,7 @@ Some of the built-in classes:
 - `Read` types that can be readed from the console: `read`
 
 To know if a `type` is an instance of a typeclass you can
-ask it to the compiler.
-
-For example, let's see from which classes the type
-`Double` is instance.
+ask it to the compiler. e.g.,
 
 ```haskell
 GHCi> :info Double
