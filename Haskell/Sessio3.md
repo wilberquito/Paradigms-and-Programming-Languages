@@ -34,18 +34,13 @@ GHCi> [20,18..0]
 ## Llistes per comprensió
 
 Les llistes per comprensió són una variant en forma de llista dels conjunts per comprensió, 
-que és una sintaxi utilitzada en matemàtiques per generar un conjunt a partir d’un altre conjunt original.
+que és una sintaxi utilitzada en matemàtiques per generar un conjunt a partir d’un altre conjunt original, e.g., $S = \\{ 2 \cdot x | x \in \mathcal{N}, x\\% 2 = 0, x\\% 5 = 0 \\}$.
 
-El següent exemple mostra la sintaxi d'un conjunt per comprensió:
+- La part anterior a la barra vertical és l'expressió que produeix membres del nou set.
+- $x$ és una variable que pren els valors de conjunt original $\mathcal{N}$.
+- $x\\% 2 = 0, x\\% 5 = 0$ són predicats.
 
-![setnotation](Img/setnotation.png)
-
-- La part anterior a la barra vertical és la funció de sortida.
-- `x` és una variable que prendrà els valors de conjunt original `N`.
-- `x <= 10` és un predicat.
-
-Aquesta expressió matemàtica genera un conjunt que conté el doble de tots els naturals més petits o iguals que 10.
-
+Aquesta expressió matemàtica genera un conjunt que conté el doble de tots els naturals que són pars i multiples de 5.
 
 
 Les llistes per comprensió segueixen una sintaxi similar que els conjunts, però preserven l'ordre de l'enumeració. En podem trobar en diferents llenguatges,  no només Haskell.
