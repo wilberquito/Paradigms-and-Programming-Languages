@@ -67,8 +67,7 @@ True || x   = True
 Imagine we have the type `Rational` defined as:
 
 ```haskell
-data Rational = Pair Integer Integer
-  deriving Show
+data Rational = Pair Integer Integerderiving Show
 ```
 
 and we want to define some behavior for this type,
@@ -156,17 +155,14 @@ Zero <*> m    = Zero
 If you'd want to construct a binary tree to store Strings, you could imagine doing something like
 
 ```haskell
-data S_Tree = S_Leaf String
-            | S_Branch String S_Tree S_Tree
-
+data S_Tree = S_Leaf String | S_Branch String S_Tree S_Tree
 ```
 
 But! What if we also wanted to be able to store Bool,
 we'd have to create a new binary tree. It could look something like this:
 
 ```haskell
-data B_Tree = B_Leaf Bool
-            | B_Branch Bool B_Tree B_Tree
+data B_Tree = B_Leaf Bool | B_Branch Bool B_Tree B_Tree
 ```
 
 Both `S_Tree` and `B_Tree` are type constructors. 
@@ -182,8 +178,7 @@ type B_Tree :: *
 But there's a glaring problem. Do you see how similar they are? It seems that we actually need a composed type.
 
 ```haskell
-data Tree a = Leaf a
-             | Branch a (Tree a) (Tree a)
+data Tree a = Leaf a | Branch a (Tree a) (Tree a)
 ```
 
 We construct a composed type by introducing a type variable a as a parameter to the type constructor.
