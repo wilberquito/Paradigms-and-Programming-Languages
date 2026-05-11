@@ -1,3 +1,5 @@
+# More about types
+
 
 ## Our own types
 
@@ -149,57 +151,63 @@ Zero <*> m    = Zero
 (Suc n) <*> m = n <*> m <+> m
 ```
 
-### Polymorphic type constructor
+## Polymorphic type constructor
 
 If you'd want to construct a binary tree to store Strings, you could imagine doing something like
 
 ```haskell
-data SBTree = Leaf String
-            | Branch String SBTree SBTree
+data S_Tree = S_Leaf String
+            | S_Branch String S_Tree S_Tree
+
 ```
 
 But! What if we also wanted to be able to store Bool,
 we'd have to create a new binary tree. It could look something like this:
 
 ```haskell
-data BBTree = Leaf Bool
-            | Branch Bool BBTree BBTree
+data B_Tree = B_Leaf Bool
+            | B_Branch Bool B_Tree B_Tree
 ```
 
-Both SBTree and BBTree are type constructors. But there's a glaring problem.
-Do you see how similar they are?
-That's a sign that you really want a parameter somewhere.
-
-So we can do this:
+Both `S_Tree` and `B_Tree` are type constructors. 
 
 ```haskell
-data BTree a = Leaf a
-             | Branch a (BTree a) (BTree a)
+ghci> :info S_Tree
+type S_Tree :: *
+
+ghci> :info B_Tree
+type B_Tree :: *
 ```
 
-Now we introduce a type variable a as a parameter to the type constructor.
-In this declaration, BTree has become a function. It takes a type as its argument and it returns a new type.
+But there's a glaring problem. Do you see how similar they are? It seems that we actually need a composed type.
 
 ```haskell
-BTree :: * -> *
+data Tree a = Leaf a
+             | Branch a (Tree a) (Tree a)
 ```
 
-#### The Maybe type constructor
+We construct a composed type by introducing a type variable a as a parameter to the type constructor.
+In this declaration, `Tree` has become a function. It takes a type as its argument and it returns a new type.
 
 ```haskell
+ghci> :info Tree
+Tree :: * -> *
+```
+
+## Maybe
+
+```haskell
+type Maybe :: * -> *
 data Maybe a = Nothing | Just a
-  deriving Show
 ```
 
-The `Maybe` type constructor allows us to represent
-values that may or may not be present.
+The `Maybe` type constructor allows us to represent values that may or may not be present.
 
-The `a` here is the type parameter. And because there's a type parameter involved,
-we call `Maybe` a type constructor.
-Depending on what we want this data type to hold when it's not Nothing
+The `Maybe` type constructor has two value constructor:
 
-So if we pass `Char` as the type parameter to `Maybe`, we get a type of `Maybe Char`.
-The value `Just 'a'` has a type of `Maybe Char`.
+- `Just a`: a value of type `a` is present.
+- `Nothing`: there is nothing present.
+
 
 Example:
 
@@ -218,14 +226,15 @@ GHCi> Just 10 :: Maybe Double
 Just 10.0
 ```
 
-#### The Either type constructor
+## Either
 
 The `Either` type constructor is used to create a new type that
 represents the union of other two types.
 
 ```haskell
+ghci> :info Either
+type Either :: * -> * -> *
 data Either a b = Left a | Right b
-  deriving Show
 ```
 
 Example:
@@ -250,12 +259,10 @@ GHCi> :t Left True
 Left True :: Either Bool b
 ```
 
-#### When not to use polymorphic types
+## When not to use polymorphic types
 
 Using type parameters
-is very beneficial, but only when using them makes sense.
-sually we use them when our data type would work regardless
-of the type of the value it then holds inside it.
+is very beneficial but only when using them makes sense. It makes sense when the data type works regardless of the type of the value it holds.
 
 We could change the `Car` type definition from this:
 
@@ -280,8 +287,8 @@ that work on `Car String String Int` type.
 
 ## Type synonyms
 
-Previously, we mentioned that when writing types, the [Char] and String types are equivalent and interchangeable.
-That's implemented with type synonyms. Type synonyms don't really do anything per se,
+The types `[Char]` and `String` are equivalent and interchangeable.
+That's implemented with _type synonyms_. Type synonyms don't really do anything _per se_,
 they're just about giving some types different names so that they make more sense
 to someone reading our code and documentation.
 
@@ -291,9 +298,7 @@ Example:
 type String = [Char]
 ```
 
-Type synonyms can also be parameterized. If we want a type that represents an association
-list type but still want it to be general so it can use any type as the keys and values,
-we can do this:
+Type synonyms can also be parameterized by type variables:
 
 ```haskell
 type AssocList k v = [(k,v)]
