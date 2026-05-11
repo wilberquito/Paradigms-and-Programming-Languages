@@ -150,9 +150,9 @@ Zero <*> m    = Zero
 (Suc n) <*> m = n <*> m <+> m
 ```
 
-## Polymorphic type constructor
+## Parametric polymorphic types
 
-If you'd want to construct a binary tree to store Strings, you could imagine doing something like
+If you'd want to construct a binary tree to store string, you could imagine doing something like:
 
 ```haskell
 data S_Tree = S_Leaf String | S_Branch String S_Tree S_Tree
@@ -189,7 +189,7 @@ ghci> :info Tree
 Tree :: * -> *
 ```
 
-## Maybe
+### Maybe
 
 ```haskell
 type Maybe :: * -> *
@@ -221,7 +221,7 @@ GHCi> Just 10 :: Maybe Double
 Just 10.0
 ```
 
-## Either
+### Either
 
 The `Either` type constructor is used to create a new type that
 represents the union of other two types.
@@ -254,7 +254,7 @@ GHCi> :t Left True
 Left True :: Either Bool b
 ```
 
-## When not to use polymorphic types
+## When not to use parametric polymorphic types
 
 Using type parameters
 is very beneficial but only when using them makes sense. It makes sense when the data type works regardless of the type of the value it holds.
