@@ -29,7 +29,9 @@ area (Square r) = pi * r * r
 Honestly, computing the `area` only make sense for certain types (what is the area of a `Bool`?). Hence, the `area` can not be defined as a parametric polymorfic function, i.e., a function that
 the type truly does not matter.
 
-In Haskell, overloading is only acceptable by using _type classes_, which provide a structured way to control overloading functions.
+## Typeclasses
+
+In Haskell, overloading is only acceptable by using _type classes_. **A typeclass is a sort of interface that defines some behavior**. If a type is a part of a typeclass, that means that it supports and implements the behavior the typeclass describes.
 
 ```haskell
 type Area = Float
@@ -39,7 +41,12 @@ class Shape a where
 ```
 
 - `a` is type variable.
-- The function `area` is just defined to the types `a` that are instances of the typeclass, i.e., being part of the group `Shape`.
+- The function `area` is just defined to the types `a` that are instances of the typeclass (notice the type constraint).
+
+```haskell
+ghci> :t area
+area :: Shape a => a -> Area
+```
 
 Making a type to be part of a group or instance of a typeclass:
 
