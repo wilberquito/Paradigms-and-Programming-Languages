@@ -16,7 +16,7 @@ type Area   = Float
 Computing the `area` of a `Square` or a `Circle` makes sense, but, Haskell does not support traditional _overloaded functions_, i.e, creating
 functions with the same name but with different number of parameters or types.
 
-This is not possible:
+In Haskell, this is not possible:
 
 ```haskell
 area :: Square -> Area
@@ -26,12 +26,12 @@ area :: Circle -> Area
 area (Square r) = pi * r * r
 ```
 
-Honestly, computing the `area` only make sense for certain types (what is the area of a `Bool`?). Hence, the `area` can not be defined as a parametric polymorfic function, i.e., a function that
-the type truly does not matter.
+Computing the `area` only make sense for certain types (what is the area of a `Bool`?). Hence, **`area` can not be defined as a parametric polymorfic function**.
+Remember, a parametric polymorfic function is a function defined generically, and the behaviour of the function works regardless of the type.
 
 ## Typeclasses
 
-In Haskell, overloading is only acceptable by using _type classes_. **A typeclass is a sort of interface that defines some behavior**. If a type is a part of a typeclass, that means that it supports and implements the behavior the typeclass describes.
+In Haskell, overloading is only acceptable by using _typeclasses_. **A typeclass is a sort of interface that defines some behavior**. If a type is a part of a typeclass, that means that it supports and implements the behaviour the typeclass describes.
 
 ```haskell
 type Area = Float
@@ -40,13 +40,8 @@ class Shape a where
  area :: a -> Area
 ```
 
-- `a` is type variable.
-- The function `area` is just defined to the types `a` that are instances of the typeclass (notice the type constraint).
-
-```haskell
-ghci> :t area
-area :: Shape a => a -> Area
-```
+- `a` is a type variable.
+- `area` is just defined to the types `a` that are instances of the typeclass.
 
 Making a type to be part of a group or instance of a typeclass:
 
@@ -61,14 +56,13 @@ instance Shape Circle where
     area (Circle r) = pi * r * r
 ```
 
-As a result:
+Nothice the type constraint appearing in `area` when asking about its type information.
 
 ```haskell
-ghci> :info Square
-type Square :: *            -- type constructor
-data Square = Square Side   -- value constructor
-instance Shape Square       -- instance of Shape
+ghci> :t area
+area :: Shape a => a -> Area
 ```
+
 
 If you try to use the function `area` with a non-instance
 of `Shape`, the compiler will throw an error.
@@ -90,8 +84,8 @@ GHCi> area True
 Some of the built-in classes:
 
 - `Eq` denotates equality: `(==)` and `(/=)`
-- `Ord` denotates order: `<=`, `(<)`, `(>=)`,...
-- `Num` numeric types: `(+)`, `(-)`, `(*)`,...
+- `Ord` denotates order: `<=`, `(<)`, `(>=)`, ...
+- `Num` numeric types: `(+)`, `(-)`, `(*)`, ...
 - `Show` types that can be printed in the console: `show`
 - `Read` types that can be readed from the console: `read`
 
