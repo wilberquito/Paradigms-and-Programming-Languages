@@ -3,25 +3,24 @@
 
 ## Our own types
 
-So far, we've run into a lot of data types. Bool, Int, Char, Maybe, etc.
-But how do we make our own? Well, one way is to use the data keyword to define a type.
+So far, we've run into a lot of data types. `Bool`, `Int`, `Char`, `Maybe`, etc.
+But how do we make our own? Well, one way is to use the `data` keyword to define a type.
 
 ```haskell
 data Point = Point Float Float
     deriving Show
+
 data Shape = Circle Point Float | Rectangle Point Point
     deriving Show
 ```
 
 The keyword `data` means that we're defining a new data type.
-The part before the `=` denotes the **type**.
-The parts after the `=` are **value constructors**.
 
-The keyword `deriving` is used to automatically generate instances of certain type class.
-Being instance of the typeclass `Show` allows the type to being show in your screen.
+- The part before the `=` denotes the **type**.
+- The parts after the `=` are **value constructors**.
+- The keyword `deriving` is used to automatically generate instances of certain type class (being instance of the typeclass `Show` allows the type to being show in your screen).
 
-The `Shape` type has two value constuctors `Circle` which has tree arguments
-and `Rectangle` that has four arguments.
+The `Shape` type has two value constuctors `Circle` and `Rectangle`. Whereas the type `Point` has only one value constructor `Point`.
 
 We can ask `ghci` the type of value constructors.
 
@@ -152,6 +151,8 @@ Zero <*> m    = Zero
 
 ## Parametric polymorphic types
 
+### Trees
+
 If you'd want to construct a binary tree to store string, you could imagine doing something like:
 
 ```haskell
@@ -165,33 +166,44 @@ we'd have to create a new binary tree. It could look something like this:
 data B_Tree = B_Leaf Bool | B_Branch Bool B_Tree B_Tree
 ```
 
-Both `S_Tree` and `B_Tree` are type constructors. 
-
-```haskell
-ghci> :info S_Tree
-type S_Tree :: *
-
-ghci> :info B_Tree
-type B_Tree :: *
-```
-
-But there's a glaring problem. Do you see how similar they are? It seems that we actually need a composed type.
+Both `S_Tree` and `B_Tree` are type constructors. But there's a glaring problem. Do you see how similar they are? It seems that we actually need a _parametric polymorphic type_ 
+(where the defintion of a tree works regarless of the type).
 
 ```haskell
 data Tree a = Leaf a | Branch a (Tree a) (Tree a)
 ```
 
-We construct a composed type by introducing a type variable a as a parameter to the type constructor.
-In this declaration, `Tree` has become a function. It takes a type as its argument and it returns a new type.
+We construct a composed type by introducing a type variable a as a parameter to the type constructor `Tree`.
+In this declaration, `Tree` has become a function (type constructor). It takes a type as its argument and it returns a new type.
 
 ```haskell
 ghci> :info Tree
-Tree :: * -> *
+Tree :: * -> *  
 ```
+
+### Lists
+
+We are going to emulate the definition of the type `[a]` by our own means.
+
+```haskell
+data List a = Null | Const a (List a)
+    deriving Show
+```
+
+```haskell
+ghci> :info List
+type List :: * -> *
+data List a = Null | Const a (List a)
+```
+
+- `List a` is a type
+- `List` is a type constructor (as it requires a type variable for defining an actual type)
+- `Null` and `Const a (List a)` are value constructors of type `List a`.
 
 ### Maybe
 
 ```haskell
+ghci> :info Maybe
 type Maybe :: * -> *
 data Maybe a = Nothing | Just a
 ```
