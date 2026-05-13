@@ -1,9 +1,9 @@
 
-## I/O
+# I/O
 
-I/O operations are not pure functions. They change
-*"THE WORLD"*. Read and write operations changes the
-state of the outside world (side effect), because
+`I/O` operations are not pure functions. They change
+**_"THE WORLD"_**. Read and write operations changes the
+state of the outside world (this is known as producing a _side effect_), because
 when we read from the console, we are not just manipuling
 data within the program. We interact with the user, reading
 input from the keyword.
@@ -13,14 +13,11 @@ printing some text, we also causing text to be displayed
 on the screen, which is an effect that can be observed outside
 the program itself.
 
-As I/O operations behave different than Haskell pure functions,
+As `I/O` operations behave different than Haskell pure functions,
 we need different framework to work with them. This framework
-is call `Monad`, but we will just work with a specific
+is calle the `Monad` framework, but we will just work with a specific
 type of `Monad`, the `Monad IO`.
 
-Most programs needs some I/O operation. Haskell allows
-us to work with this inpurity with actions that are
-instances of the type `IO`.
 
 For example, let's try to read something from the console.
 To read something from the console we use the action `getLine`.
@@ -33,12 +30,9 @@ Hello World!
 "Hello World!"
 ```
 
-Reading from the console means take what is written
-and parse it to a `String`. That's why the `getLine`
-action is of type `IO String`.
+The `getLine` is a `I/O` action that contains a result of type `String`. 
 
-Now, what if I want to write something in the console?
-To achieve it, we can use for example the action `putStrLn`.
+To write something in the console we can use the `putStrLn`.
 
 ```haskell
 GHCi> :t putStrLn
@@ -49,11 +43,14 @@ Hello World!
 
 Printing a string to the console doesn't really
 have any kind of meaningful return value,
-so a dummy value of `()` is used, the unit.
+so a dummy value of `()` is used, the `unit`.
 
-> The empty tuple is a value of () and it also has a type of ().
+> The `unit` or `()` is a type with a single value; the empty tuple represented as `()`.
 
-### The main function
+## main
+
+The $99\%$ of our code can be written with just pure functions, yet,
+frequently, the programs needs user interaction, as a result `I/O` actions are required.
 
 In our code, I/O actions will perform when there is `main` function
 and we run the program.
@@ -73,19 +70,29 @@ can perform dirty actions here.
 Here is another example, this is a litle bit more complex than the previous main.
 
 ```haskell
-import Random
-
-main :: IO ()
+main :: IO()
 main = do
-    putStrLn "How is your name?"
-    name <- getLine
-    putStrLn ("Hello " ++ name ++ ", give me your number" )
-    number <- getLine
-    let num = read number :: Int
-    ra <- randomRIO (1::Int, num)
-    putStrLn ("Here is a random number from 1 to "
-        ++ show num ++ " it is: "++ show ra)
+  putStrLn "Capturing multiples of m from factorials in range [0..n]" -- output action + jump line
+  putStr "n: "                                      -- output action
+  n <- fmap (\str -> (read str :: Int)) getLine     -- input action + cast the read String to an Int
+  putStr "m: "                                      -- output action
+  m <- fmap (\str -> (read str :: Int)) getLine     -- input action + cast the read String to an Int
+  -- define pure logic in the do block
+  let 
+    f = (\ps x -> if x `elem` [0,1] then [1] else (x * head ps) : ps)
+    p = (\x -> x `mod` m == 0)
+    factorials     = foldl f [] [1..n]
+    multiples      = filter p factorials
+    notMultiples   = filter  (not . p) factorials
+  putStrLn $ "In range [0.." ++ show n ++ "] there are " ++ show (length multiples) ++ " factorials multiples of " ++ show m
+  putStrLn $ show multiples
+
+  -- last line of the do block is the 'return' value, it matches the return type of the main function with IO()
+  putStrLn $ "In range [0.." ++ show n ++ "] there are " ++ show (length notMultiples) ++ " factorials not multiples of " ++ show m
+  putStrLn $ show notMultiples
 ```
+
+We can _map over_ `IO String` using `fmap` because it is an instance of `Monad` and every monad is a `Functor` (things that can be mapped over).
 
 ### Other I/O actions
 
