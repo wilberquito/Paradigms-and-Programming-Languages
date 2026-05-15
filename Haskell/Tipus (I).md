@@ -20,24 +20,20 @@ The keyword `data` means that we're defining a new data type.
 - The parts after the `=` are **value constructors**.
 - The keyword `deriving` is used to automatically generate instances of certain type class (being instance of the typeclass `Show` allows the type to being show in your screen).
 
-The `Shape` type has two value constuctors `Circle` and `Rectangle`. Whereas the type `Point` has only one value constructor `Point`.
+> The `Shape` type has two value constuctors `Circle` and `Rectangle`. Whereas the type `Point` has only one value constructor `Point`.
 
 We can ask `ghci` the type of value constructors.
 
-Example:
-
 ```haskell
-GHCi> :t Point
+ghci> :t Point
 Point :: Float -> Float -> Point
-GHCi> :t Circle
+ghci> :t Circle
 Circle :: Point -> Float -> Shape
-GHCi> :t Rectangle
+ghci> :t Rectangle
 Rectangle :: Point -> Point -> Shape
 ```
 
 We can also do pattern matching on value constructors.
-
-Example:
 
 ```haskell
 surface :: Shape -> Float
@@ -63,15 +59,14 @@ True || x   = True
 
 ### Symbolic value constructor
 
-Imagine we have the type `Rational` defined as:
+We can define a `Rational` number as:
 
 ```haskell
 data Rational = Pair Integer Integerderiving Show
 ```
 
-and we want to define some behavior for this type,
-for example, the multiplication. To do it, we create
-an operator that multiplies two Rationals.
+among other operations, the multiplication of rationals makes sense. We do
+it by defining the multiplication through an operator.
 
 ```haskell
 infixl 7 >*<
@@ -79,17 +74,18 @@ infixl 7 >*<
 (Pair a b) >*< (Pair c d) = Pair (a * c) (b * d)
 ```
 
-And now we multiply two Rationals.
+And now we multiply two rationals.
 
 ```haskell
-GHCi> Pair 2 2 >*< Pair 3 4
+ghci> Pair 2 2 >*< Pair 3 4
 Pair 6 8
 ```
 
-But if the data constructor is binary it's name can be symbolic.
+If the data constructor is binary it's name can be symbolic.
 But the symbolic constructor must start with `(:)`, and the
 constructor is written infix.
 
+> Do you remember the `:` data constructor of lists?
 
 ```haskell
 infix 9 :/
@@ -109,18 +105,16 @@ infixl 7 >*<
 And now we can multiply two Rationals in an "easer" way.
 
 ```haskell
-GHCi> 2 :/ 2 >*< 3 :/ 4
+ghci> 2 :/ 2 >*< 3 :/ 4
 6 :/ 8
 ```
 
 ### Recursive types
 
-As we've seen, a constructor in an algebraic data type
-can have several (or none at all) fields and each field must be of some concrete type.
-With that in mind, we can make types whose constructors have fields that are of the same type!
-Using that, we can create recursive data types,
-where one value of some type contains values of that type, which in turn
-contain more values of the same type and so on.
+A constructor in an algebraic data type might have several fields and each field must be of some concrete type.
+With that in mind, we can make types which constructors have fields that are of the same type.
+
+> A recursive data type is a type in which at least one value contains another value of the same type, which may in turn contain additional values of that type, and so on indefinitely.
 
 Naturals can be represented by a recurive data type.
 
@@ -129,7 +123,7 @@ data Nat = Zero | Suc Nat
   deriving Show
 ```
 
-Example:
+Operations over `Nat`:
 
 ```haskell
 isEven :: Nat -> Bool
@@ -166,15 +160,18 @@ we'd have to create a new binary tree. It could look something like this:
 data B_Tree = B_Leaf Bool | B_Branch Bool B_Tree B_Tree
 ```
 
-Both `S_Tree` and `B_Tree` are type constructors. But there's a glaring problem. Do you see how similar they are? It seems that we actually need a _parametric polymorphic type_ 
-(where the defintion of a tree works regarless of the type).
+Both `S_Tree` and `B_Tree` are type constructors. But there's a glaring problem. Do you see how similar they are? It seems like
+a tree should work regardless of the type it "wraps".
+
+We can define a tree as parametric polymorphic type.
 
 ```haskell
 data Tree a = Leaf a | Branch a (Tree a) (Tree a)
 ```
 
-We construct a composed type by introducing a type variable a as a parameter to the type constructor `Tree`.
-In this declaration, `Tree` has become a function (type constructor). It takes a type as its argument and it returns a new type.
+> `Tree` is a type constructor and it uses a type variable `a` as argument for constructing a type `Tree a`.
+
+**`Tree` itself is not a concrete type - it is a type constructor of kind:**
 
 ```haskell
 ghci> :info Tree
@@ -183,17 +180,11 @@ Tree :: * -> *
 
 ### Lists
 
-We are going to emulate the definition of the type `[a]` by our own means.
+List are actually defined as recursive parametric polymorphic types.
 
 ```haskell
 data List a = Null | Const a (List a)
     deriving Show
-```
-
-```haskell
-ghci> :info List
-type List :: * -> *
-data List a = Null | Const a (List a)
 ```
 
 - `List a` is a type
@@ -299,7 +290,6 @@ That's implemented with _type synonyms_. Type synonyms don't really do anything 
 they're just about giving some types different names so that they make more sense
 to someone reading our code and documentation.
 
-Example:
 
 ```haskell
 type String = [Char]
