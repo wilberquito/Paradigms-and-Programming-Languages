@@ -51,19 +51,21 @@ cada nombre senar més gran que 10 per "BANG!"
 i cada nombre senar menor que 10 per "BOOM!".
 Si un nombre no és senar, el descartem de la nostra llista. En Haskell ho farem així:
 
+> Les llistes per comprensió és poden utilitzar per emular el compartament de la funció `map`.
+
 ```haskell
-GHCi> boomBangs xs = [if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x]
-GHCi> boomBangs [1..20]
+ghci> boomBangs xs = [if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x]
+ghci> boomBangs [1..20]
 ["BOOM!","BOOM!","BOOM!","BOOM!","BOOM!","BANG!","BANG!","BANG!","BANG!","BANG!"]
 ```
 
 Podem incloure diversos predicats.
 Si volguéssim el doble de tots els nombres del 10 al 20 que no són el 13, 15 o 19, faríem:
 
-
+> També poden emular el comportament de la funció `filter`.
 
 ```haskell
-GHCi> [x*2 | x <- [10..20], x \= 13, x \= 15, x \= 19]
+ghci> [x*2 | x <- [10..20], x \= 13, x \= 15, x \= 19]
 [20,22,24,28,32,34,36,40]
 ```
 
@@ -75,9 +77,9 @@ i es poden utilitzar a la funció de sortida que proporcionem.
 
 
 ```haskell
-GHCi> [x*y | x <- [2,5,10], y <- [8,10,11]]
+ghci> [x*y | x <- [2,5,10], y <- [8,10,11]]
 [16,20,22,40,50,55,80,100,110]
-GHCi> [(x,y) | x <- [2,5,10], y <- [8,10,11]]
+ghci> [(x,y) | x <- [2,5,10], y <- [8,10,11]]
 [(2,8),(2,10),(2,11),(5,8),(5,10),(5,11),(10,8),(10,10),(10,11)]
 ```
 
@@ -87,32 +89,37 @@ GHCi> [(x,y) | x <- [2,5,10], y <- [8,10,11]]
 
 Considereu les funcions següents:
 ```haskell
---sumatori l = suma dels elements de l
+-- sumatori l = suma dels elements de l
 sumatori :: Num a => [a] -> a
-sumatori [] = 0
-sumatori (x:xs) = x + sumatori xs
+sumatori []      = 0
+sumatori (x:xs)  = x + sumatori xs
 
---producte l = producte dels elements de l
+-- producte l = producte dels elements de l
 producte :: Num a => [a] -> a
-producte [] = 1
+producte []     = 1
 producte (x:xs) = x * producte xs
 
---llargada l = llargada de l
+-- llargada l = llargada de l
 llargada :: [a] -> Integer
-llargada [] = 0
+llargada []     = 0
 llargada (_:xs) = 1 + llargada xs
 
-
---comptar x l = nombre de vegades que x apareix a l
+-- comptar x l = nombre de vegades que x apareix a l
 comptar :: Eq a => a -> [a] -> Integer
-comptar _ [] = 0
+comptar _ []     = 0
 comptar x (y:ys) = (if x == y then 1 else 0) + comptar x ys
 ```
 
-Semblantment a com vam veure amb les funcions que es poden implementar amb `filter`, totes segueixen un patró: efectuen una operació sobre una llista, si la llista és buida retornen una constant (l'*element neutre*), altrament combinen el primer element amb el resultat d'efectuar l'operació sobre la resta d'elements. En certa manera, *pleguen* (fold) els elements d'una llista.
+Totes les definicions anteriors segueixen el següent patró: 
 
+1) efectuen una operació sobre una llista, si la llista és buida retornen una constant (l'*element neutre*),
+2) altrament combinen el primer element amb el resultat d'efectuar l'operació sobre la resta d'elements.
 
-Haskell té les funcions d'ordre superior incorporades `foldr` i `foldl`, que pertanyen a la classe `Foldable`. En el cas de llistes, la funció `foldr` generalitza totes les que acabem de veure:
+> En certa manera, _pleguen_ (fold) els elements d'una llista.
+
+Haskell té les funcions d'ordre superior incorporades `foldr` i `foldl`, que pertanyen a instancies de la _typeclass_ `Foldable`. 
+
+La funció `foldr` generalitza les definicions anteriors. Mireu:
 
 ```haskell
 foldr :: (a -> b -> b) -> b -> [a] -> b
@@ -121,8 +128,10 @@ foldr f y (x:xs) = f x (foldr f y xs)
 ```
 
 La lectura dels paràmetres és la següent:
-* El primer paràmetre és una funció que combina el retorn de la crida recursiva amb el primer element de la llista.
-* El segon paràmetre és l'element neutre, és a dir, què retorna la nostra operació si s'efectua sobre una llista buida.
+
+- Primer paràmetre: funció `a -> b -> b` que s'aplica al primer element de la llista `[a]` i el resultat de la crida recursiva `b`.
+- Segon paràmetre: element neutre `b`, representa el resultat de aplicar `foldr` sobre una llista buida.
+- Tercer paràmetre: llista que _pleguem_ fen ús de `foldr`.
 
 ### Foldl
 
@@ -139,10 +148,10 @@ foldl f y (x:xs) = foldl f (f y x) xs
 Fixeu-vos en la diferència en l'ordre d'execució:
 
 ```haskell
-GHCi> -- foldr :: (a -> b -> b) -> b -> [a] -> b
-GHCi> foldr (\x acc -> x + acc) 0 [1,2,3]  ==>  1+(2+(3+0))
-GHCi> -- foldl :: (b -> a -> b) -> b -> [a] -> b
-GHCi> foldl (\acc x -> acc + x) 0 [1,2,3]  ==>  ((0+1)+2)+3
+ghci> -- foldr :: (a -> b -> b) -> b -> [a] -> b
+ghci> foldr (\x acc -> x + acc) 0 [1,2,3]  ==>  1+(2+(3+0))
+ghci> -- foldl :: (b -> a -> b) -> b -> [a] -> b
+ghci> foldl (\acc x -> acc + x) 0 [1,2,3]  ==>  ((0+1)+2)+3
 ```
 
 
