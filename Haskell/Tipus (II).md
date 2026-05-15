@@ -27,7 +27,8 @@ area (Square r) = pi * r * r
 ```
 
 Computing the `area` only make sense for certain types (what is the area of a `Bool`?). Hence, **`area` can not be defined as a parametric polymorfic function**.
-Remember, a parametric polymorfic function is a function defined generically, and the behaviour of the function works regardless of the type.
+
+> Remember, a parametric polymorfic function is a function defined generically, and the behaviour of the function works regardless of the type.
 
 ## Typeclasses
 
@@ -162,15 +163,25 @@ class Eq a => Ord a where
 
 ### Show and Read classes
 
-This classes are thought to work with i/o.
-To show types in console or read string
-and transform them into a type.
+This typeclasses are mainly thought to work with I/O. Although
+are quite usuful for casting (show non-string values through the console or read string
+and transform them into a value of different type)
 
 ```haskell
 class Show a where
     show :: a -> String
+
 class Read a where
     read :: (Read a) => String -> a
+```
+
+Example:
+
+```haskell
+ghci> show 9.9
+"9.9"
+ghci> read "9.9" :: Float
+9.9
 ```
 
 ```haskell
