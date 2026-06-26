@@ -1,5 +1,5 @@
 % Defineix les regles per a la relació d'ancestre
-% propasades a l'enunciat. Comenta en cada cas el que fa Prolog.
+% proposades a l'enunciat. Comenta en cada cas el que fa Prolog.
 
 parent(alice, bob).
 parent(bob, eve).

@@ -347,7 +347,7 @@ sort(Xs,Ys):- append(As,[X,Y|Ns],Xs),
 
 El primer tall torna a fer la funció d'exclusió mútua: si ja està ordenada, no cal provar la regla següent.
 
-La segona regla busca un parell d'elements consecutius desordenats `(X,Y)`, si hi són els ordena i repeteix el procés recursivamen.
+La segona regla busca un parell d'elements consecutius desordenats `(X,Y)`, si hi són els ordena i repeteix el procés recursivament.
 El tall aquí ens prohibeix ordenar més d'una vegada la llista: a cada crida recursiva, agafa només el primer parell d'elements desordenats que trobis.
 
 ## La negació per fracàs
@@ -412,7 +412,7 @@ squares:- repeat,
 
 Fixeu-vos que els string al write (o print) van entre **cometes simples**.
 
-Més entada i sortida: http://www.gprolog.org/manual/html_node/gprolog039.html
+Més entrada i sortida: http://www.gprolog.org/manual/html_node/gprolog039.html
 
 ## Tipus de dades a partir de termes
 

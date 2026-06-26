@@ -307,27 +307,27 @@ La definició de tipus d'una funció, com ja hem vist, es fa mitjançant `->`:
 és el **constructor de tipus**, i és associatiu per la dreta.
 Per exemple, la funció:
 
-```haskel
+```haskell
 f :: a -> b -> c -> d -> e
 ```
 
 També es pot escriure com a:
-```haskel
+```haskell
 f :: a -> (b -> c -> d -> e)
 ```
 
 O bé:
-```haskel
+```haskell
 f :: a -> (b -> (c -> d -> e))
 ```
 
 O també:
-```haskel
+```haskell
 f :: a -> (b -> (c -> (d -> e)))
 ```
 
 Però compte! **No és el mateix** que, per exemple:
-```haskel
+```haskell
 f :: (a -> b) -> c -> d -> e
 ```
 
@@ -412,7 +412,7 @@ restaGT0 a b = if resta > 0
                         else 0
   where resta = b – a
 ```
-**El where ha d'estar indentat un pas a la dreta del no de la funció. És una mica primmirat...**
+**El where ha d'estar indentat un pas a la dreta del nom de la funció. És una mica primmirat...**
 ## Pregunta...
 
 Diferents llenguatges inclouen l'operador `++` per incrementar un valor; 
@@ -436,7 +436,7 @@ Intuïtivament, podem entendre un tipus com un conjunt de valors permesos i conj
 |        Int        |          1, 2, -3          |                      Number type (signed, 64bit)                       |       +, -, \*, div, mod, fromIntegral        |
 |      Integer      | 1, -2, 900000000000000000  |                         Unbounded number type                          | +, -, \*, div, mod, fromInteger, fromIntegral |
 |       Float       |         0.1, 1.2e5         |                         Floating point numbers                         |               +, -, \*, /, sqrt               |
-|      Double       |         0.1, 1.2e5         | Floating point numbers. Aproximations are more precise than Float type |               +, -, \*, /, sqrt               |
+|      Double       |         0.1, 1.2e5         | Floating point numbers. Approximations are more precise than Float type |               +, -, \*, /, sqrt               |
 |       Bool        |        True, False         |                              Truth values                              |           &&, \|\|, not, otherwise            |
 |       Char        | 'a', 'Z', '\n', '\t', '\\' |  Represents a character (a letter, a digit, a punctuation mark, etc)   | ord, chr, isAlpha, isDigit, isUpper, isLower  |
 | String aka [Char] |         "abcd", ""         |                         Strings of characters                          |                  reverse, ++                  |
@@ -452,7 +452,7 @@ Prelude> :type div
 div :: Integral a => a -> a -> a
 ```
 
-Veiem que el símbol `=>`. La part esquera del `=>` s'anomena una restricció.
+Veiem que el símbol `=>`. La part esquerra del `=>` s'anomena una restricció.
 Ho podem llegir tot plegat de la manera següent: la funció `div` rep dos valors tals que tinguin el mateix tipus i retorna un valor 
 del mateix tipus (part `a -> a -> a`). A més a més, el tipus `a` ha de ser un membre del typeclass `Integral`
 (restricció, part `Integral a`).
@@ -498,7 +498,7 @@ Prelude> True < 'a'
 
 ## Pattern matching
 
-El *pattern matching* consisteix a especificar patrons amb els quals les dades han d'enxaixar,
+El *pattern matching* consisteix a especificar patrons amb els quals les dades han d'encaixar,
 i tractar les dades segons amb quin patró han encaixat.
 
 Quan definim una funcio, podem separar el seu cos amb diferents patrons. 

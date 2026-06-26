@@ -76,7 +76,7 @@ viu(ned, adr("Evergreen Terrace", 744, "Springfield")).
 progenitor(X,Y) :- pare(X,Y).
 progenitor(X,Y) :- mare(X,Y).
 
-% X i Y s�n germans
+% X i Y són germans
 germa(X,Y) :- progenitor(Z,X), progenitor(Z,Y), X\=Y.
 
 

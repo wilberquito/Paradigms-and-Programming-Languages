@@ -9,7 +9,7 @@ data Square = Square Side deriving Show
 type Radius = Float
 data Circle = Circle Radius deriving Show
 
--- Mesure of the are of any >= 2D figure
+-- Measure of the area of any >= 2D figure
 type Area   = Float
 ```
 
@@ -26,9 +26,9 @@ area :: Circle -> Area
 area (Circle r) = pi * r * r
 ```
 
-Computing the `area` only make sense for certain types (what is the area of a `Bool`?). Hence, **`area` can not be defined as a parametric polymorfic function**.
+Computing the `area` only make sense for certain types (what is the area of a `Bool`?). Hence, **`area` can not be defined as a parametric polymorphic function**.
 
-> Remember, a parametric polymorfic function is a function defined generically, and the behaviour of the function works regardless of the type.
+> Remember, a parametric polymorphic function is a function defined generically, and the behaviour of the function works regardless of the type.
 
 ## Typeclasses
 
@@ -57,7 +57,7 @@ instance Shape Circle where
     area (Circle r) = pi * r * r
 ```
 
-Nothice the type constraint appearing in `area` when asking about its type information.
+Notice the type constraint appearing in `area` when asking about its type information.
 
 ```haskell
 ghci> :t area
@@ -88,7 +88,7 @@ Some of the built-in classes:
 - `Ord` denotates order: `<=`, `(<)`, `(>=)`, ...
 - `Num` numeric types: `(+)`, `(-)`, `(*)`, ...
 - `Show` types that can be printed in the console: `show`
-- `Read` types that can be readed from the console: `read`
+- `Read` types that can be read from the console: `read`
 
 To know if a `type` is an instance of a typeclass you can
 ask it to the compiler. e.g.,
@@ -128,7 +128,7 @@ class Eq a where
 a default behavior. This default behavior is used if you don't
 define de desired behavior in the instance.
 
-- It is enought to define one of the `Eq` functions to be
+- It is enough to define one of the `Eq` functions to be
 instance of the typeclass.
 
 ### Ord class
@@ -164,7 +164,7 @@ class Eq a => Ord a where
 ### Show and Read classes
 
 This typeclasses are mainly thought to work with I/O. Although
-are quite usuful for casting (show non-string values through the console or read string
+are quite useful for casting (show non-string values through the console or read string
 and transform them into a value of different type)
 
 ```haskell

@@ -240,7 +240,7 @@ Example:
 l1 :: [Either Integer Bool]
 l1 = [Left 1, Right True, Left 3, Left 5]
 l2 :: [Either Bool Integer ]
-l2 = [Rigth 2, Left False, Right 5]
+l2 = [Right 2, Left False, Right 5]
 ```
 
 ```haskell

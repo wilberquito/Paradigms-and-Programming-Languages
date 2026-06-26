@@ -60,7 +60,7 @@ Podem incloure diversos predicats.
 Si volguéssim el doble de tots els nombres del 10 al 20 que no són el 13, 15 o 19, faríem:
 
 ```haskell
-ghci> [x*2 | x <- [10..20], x \= 13, x \= 15, x \= 19]
+ghci> [x*2 | x <- [10..20], x /= 13, x /= 15, x /= 19]
 [20,22,24,28,32,34,36,40]
 ```
 

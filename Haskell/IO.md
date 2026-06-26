@@ -4,9 +4,9 @@
 `I/O` operations are not pure functions. They change
 **_"THE WORLD"_**. Read and write operations changes the
 state of the outside world (this is known as producing a _side effect_), because
-when we read from the console, we are not just manipuling
+when we read from the console, we are not just manipulating
 data within the program. We interact with the user, reading
-input from the keyword.
+input from the keyboard.
 
 Similarly, if we write output to the console, we are not just
 printing some text, we also causing text to be displayed
@@ -15,7 +15,7 @@ the program itself.
 
 As `I/O` operations behave different than Haskell pure functions,
 we need different framework to work with them. This framework
-is calle the `Monad` framework, but we will just work with a specific
+is called the `Monad` framework, but we will just work with a specific
 type of `Monad`, the `Monad IO`.
 
 
@@ -63,11 +63,11 @@ main = do
     putStrLn ("Hey " ++ name ++ ", you rock!")
 ```
 
-The `do` notation is syntax suggar to work with all kind of `Monads`,
-the `do` notation opens a block of inpurity. That's why
+The `do` notation is syntax sugar to work with all kind of `Monads`,
+the `do` notation opens a block of impurity. That's why
 can perform dirty actions here.
 
-Here is another example, this is a litle bit more complex than the previous main.
+Here is another example, this is a little bit more complex than the previous main.
 
 ```haskell
 main :: IO()

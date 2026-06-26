@@ -230,7 +230,7 @@ siblings(X4,Y4):-parent(Z4,X4),parent(Z4,Y4),X4\=Y4. %r4
 
 La consulta `? father(X,Y).` primer es demostrarà amb `f1` i unificant $\\{X \rightarrow tom, \ Y \rightarrow jack\\}$. Si demanem més solucions es demostrarà amb `f2` unificant $\\{X \rightarrow tom, \ Y \rightarrow lisa\\}$, i finalment amb `f3` unificant $\\{X \rightarrow wil, \ Y \rightarrow tom\\}$.
 
-La consulta `? father(tom,X).` només es demostrarà amb `f1` i `f2`, però no amb `f3` perquè NO es pot unificar $\\{tom \rightarrow will\\}$.
+La consulta `? father(tom,X).` només es demostrarà amb `f1` i `f2`, però no amb `f3` perquè NO es pot unificar $\\{tom \rightarrow wil\\}$.
 
 La consulta `? parent(tom,Y).` es demostrarà:
 

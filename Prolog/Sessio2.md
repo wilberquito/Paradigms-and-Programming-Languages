@@ -193,7 +193,7 @@ Per exemple `%fact(+N,?F)` indica que, en el moment de consultar `fact(N,F)`, `N
 
 ## LListes
 
-Prolog té incorporporada una estructura de dades llista, que representa una seqüència de termes, 
+Prolog té incorporada una estructura de dades llista, que representa una seqüència de termes, 
 no necessàriament del mateix tipus. La sintàxi per representar-la explícitament és una seqüència d'elements separats per coma `,` 
 delimitada per claudàtors `[ ]`.
 
